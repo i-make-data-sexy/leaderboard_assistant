@@ -1,0 +1,6 @@
+venv/
+archive/
+db_credentials.txt
+.DS_Store
+**.xlsx
+generate_key.py
