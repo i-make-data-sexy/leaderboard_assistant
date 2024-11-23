@@ -76,6 +76,7 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "The table defaults to sorting by rank. I prefer to sort by Arena Score.",
                     "You can sort the table by each column."
+                    "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "paper": {
                     "text": "Nerdy details 🤓",
@@ -144,6 +145,9 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Higher is better across all of their metrics.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
+                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
+                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition."
                     "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "paper": {
@@ -182,7 +186,98 @@ RECOMMENDATIONS = {
                         "score_interpretation": "Higher ELO scores represent superior conversational ability, as judged through head-to-head comparisons."
                     }
                 ]
-            }
+            },
+            {
+                "leaderboard": "Hugging Face",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+                },
+                "tooltip": "The Hugging Face leaderboard only includes open models, so you won't find performance metrics for proprietary models here (e.g., OpenAI, Google, Anthropic, etc).",
+                "analysis_tips": [
+                    "I'll be honest. This is my least favorite leaderboard. It's not as user-friendly as the others. It's very busy and only includes a table at the time of writing.",
+                    "It offers a total of 27 columns but only shows eight by default. Above the chart you can select which columns you want to display.",
+                    "The whole reason I'm creating this tool is that none of the leaderboards make it easy to see how metrics are defined. But the sheer busyness of this leaderboard makes that oversight more glaring.",
+                    "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Average",
+                        "metric_measures": "The overall average score across all evaluated tasks.",
+                        "score_interpretation": "Higher scores indicate better overall performance."
+                    },
+                    {
+                        "metric_name": "IFEval",
+                        "metric_measures": "Evaluates the model's instruction-following capability.",
+                        "score_interpretation": "Higher scores indicate better adherence to instructions."
+                    },
+                    {
+                        "metric_name": "IFEval Raw",
+                        "metric_measures": "The unprocessed or raw scores from instruction-following evaluations.",
+                        "score_interpretation": "Higher scores reflect better raw instruction-following performance."
+                    },
+                    {
+                        "metric_name": "BBH",
+                        "metric_measures": "Evaluates performance on challenging prompts from the Big-Bench Hard (BBH) dataset.",
+                        "score_interpretation": "Higher scores reflect better handling of complex, nuanced tasks."
+                    },
+                    {
+                        "metric_name": "BBH Raw",
+                        "metric_measures": "The raw scores from the BBH dataset evaluation.",
+                        "score_interpretation": "Higher scores indicate better raw performance on complex prompts."
+                    },
+                    {
+                        "metric_name": "MATH Lvl 5",
+                        "metric_measures": "Evaluates mathematical reasoning at a high (Level 5) difficulty.",
+                        "score_interpretation": "Higher scores indicate better performance on advanced mathematical problems."
+                    },
+                    {
+                        "metric_name": "MATH Lvl 5 Raw",
+                        "metric_measures": "The raw, unprocessed scores from the Level 5 MATH dataset.",
+                        "score_interpretation": "Higher scores reflect better raw mathematical problem-solving performance."
+                    },
+                    {
+                        "metric_name": "GPQA",
+                        "metric_measures": "Evaluates performance on General Physics Question Answering tasks.",
+                        "score_interpretation": "Higher scores indicate better accuracy in answering physics-related questions."
+                    },
+                    {
+                        "metric_name": "GPQA Raw",
+                        "metric_measures": "The raw scores from GPQA evaluations.",
+                        "score_interpretation": "Higher scores reflect better raw performance on physics-related questions."
+                    },
+                    {
+                        "metric_name": "MUSR",
+                        "metric_measures": "Evaluates performance on multi-step reasoning tasks.",
+                        "score_interpretation": "Higher scores reflect better ability to perform chained reasoning."
+                    },
+                    {
+                        "metric_name": "MUSR Raw",
+                        "metric_measures": "The raw scores from MUSR evaluations.",
+                        "score_interpretation": "Higher scores indicate better raw performance in chained reasoning tasks."
+                    },
+                    {
+                        "metric_name": "MMLU-PRO",
+                        "metric_measures": "Evaluates professional-level reasoning and knowledge across diverse subjects.",
+                        "score_interpretation": "Higher scores reflect better reasoning at a professional level."
+                    },
+                    {
+                        "metric_name": "MMLU-PRO Raw",
+                        "metric_measures": "The raw scores from professional-level MMLU evaluations.",
+                        "score_interpretation": "Higher scores indicate better raw performance in professional-level reasoning."
+                    },
+                    {
+                        "metric_name": "CO₂ cost (kg)",
+                        "metric_measures": "Measures the carbon footprint of running the model in kilograms of CO₂.",
+                        "score_interpretation": "Lower scores indicate more environmentally efficient models."
+                    }
+                ]
+            },
+            
         ],
         "Code": {
             "leaderboard": "CodeBench",
