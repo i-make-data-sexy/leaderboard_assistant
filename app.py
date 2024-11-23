@@ -277,7 +277,57 @@ RECOMMENDATIONS = {
                     }
                 ]
             },
-            
+            {
+                "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.vellum.ai/llm-leaderboard"
+                },
+                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
+                "analysis_tips": [
+                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
+                    "The last updated date is at the bottom of the page."
+                    "I really like that this leaderboard includes cutoff dates. Most do not.",
+                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Average",
+                        "metric_measures": "The overall average score across all evaluated tasks, providing a general performance indicator.",
+                        "score_interpretation": "Higher scores reflect better overall performance."
+                    },
+                    {
+                        "metric_name": "Multi-choice Qs",
+                        "metric_measures": "Vellum's label for the MMLU Benchmark. Measures the model's ability to answer multiple-choice questions across 57 academic subjects, evaluating both reasoning and general world knowledge.",
+                        "score_interpretation": "Higher scores indicate better reasoning and accuracy."
+                    },
+                    {
+                        "metric_name": "Reasoning",
+                        "metric_measures": "Vellum's label for the HellaSwag Benchmark. Assesses the model's commonsense reasoning and ability to predict plausible next steps in a scenario.",
+                        "score_interpretation": "Higher scores denote better commonsense reasoning capabilities."
+                    },
+                    {
+                        "metric_name": "Python coding",
+                        "metric_measures": "Vellum's label for the HumanEval Benchmark. Evaluates the model's ability to generate correct Python code from problem statements.",
+                        "score_interpretation": "Higher scores reflect greater proficiency in coding tasks."
+                    },
+                    {
+                        "metric_name": "Future Capabilities",
+                        "metric_measures": "Vellum's label for the BBHard Benchmark. Tests the model's performance on nuanced and challenging prompts from the Big-Bench Hard dataset.",
+                        "score_interpretation": "Higher scores reflect better handling of complex and nuanced tasks."
+                    },
+                    {
+                        "metric_name": "Grade school math",
+                        "metric_measures": "Vellum's label for the GSM-8k Benchmark. Evaluates the model’s ability to solve grade school-level math word problems.",
+                        "score_interpretation": "Higher scores indicate better problem-solving accuracy."
+                    },
+                    {
+                        "metric_name": "Math problems",
+                        "metric_measures": "Vellum's label for the MATH Benchmark. Assesses mathematical reasoning and accuracy on advanced topics such as algebra and calculus.",
+                        "score_interpretation": "Higher scores denote better performance in complex mathematical reasoning."
+                    },
+                ]
+            },     
         ],
         "Code": {
             "leaderboard": "CodeBench",
@@ -303,7 +353,8 @@ RECOMMENDATIONS = {
                     ]
                 }
             ]
-        }
+        },
+        
     },
     "Speed": {
         # Similar structure as "Quality" but with speed-specific metrics
