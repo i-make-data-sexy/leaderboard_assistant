@@ -1187,8 +1187,1049 @@ RECOMMENDATIONS = {
                             ]
                         }
                     ]  
+            },
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "Higher is better across all of their metrics.",
+                    "The only chart relevant to coding in their 'Quality Evaluations' section is 'Coding (HumanEval)' (at the time of writing).",
+                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
+                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
+                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Coding (HumanEval)",
+                        "metric_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate greater coding proficiency and correctness.",
+                        "metric_origin": "OpenAI Research",
+                        "metric_details": [
+                            "Tests code generation capabilities",
+                            "Evaluates code explanation skills",
+                            "Assesses debugging abilities",
+                            "Measures code optimization skills",
+                            "Tests multiple programming languages",
+                            "Evaluates documentation quality"
+                        ],
+                        "ex_questions": [
+                            "Create a function that implements the QuickSort algorithm for sorting an array.",
+                            "Write a class that implements a thread-safe producer-consumer queue.",
+                            "Implement a function to find the longest common subsequence of two strings."
+                        ]
+                    },
+                ]
+            },
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
+                "analysis_tips": [
+                    "The table defaults to sorting by rank. I prefer to sort by Arena Score.",
+                    "You can sort the table by the Coding column.",
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Coding",
+                        "metric_measures": "Model's ability to understand and generate code effectively.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests code generation capabilities",
+                            "Evaluates code explanation skills",
+                            "Assesses debugging abilities",
+                            "Measures code optimization skills",
+                            "Tests multiple programming languages",
+                            "Evaluates documentation quality"
+                        ],
+                        "ex_questions": [
+                            "Write a Python function that implements a binary search tree with insert and delete methods.",
+                            "Debug this JavaScript code that should sort an array but produces incorrect results.",
+                            "Optimize this SQL query that's running slowly on a large dataset."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.vellum.ai/llm-leaderboard"
+                },
+                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
+                "analysis_tips": [
+                    "The Vellum leaderboard only has one chart for coding, 'Best in Coding (HumanEval)' with a meager five models (at the time of writing), but the Model Comparison table includes a benchmark called 'Python coding', which is their alias for HumanEval.",
+                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
+                    "The last updated date is at the bottom of the page.",
+                    "I really like that this leaderboard includes cutoff dates. Most do not.",
+                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Python coding",
+                        "metric_measures": "Vellum's label for the HumanEval Benchmark. Evaluates the model's ability to generate correct Python code from problem statements.",
+                        "score_interpretation": "Higher scores reflect greater proficiency in coding tasks.",
+                        "metric_origin": "OpenAI Research (HumanEval)",
+                        "metric_details": [
+                            "Tests code generation capabilities",
+                            "Evaluates code explanation skills",
+                            "Assesses debugging abilities",
+                            "Measures code optimization skills",
+                            "Tests multiple programming languages",
+                            "Evaluates documentation quality"
+                        ],
+                        "ex_questions": [
+                            "Write a Python function that finds the longest palindromic substring in a given string.",
+                            "Create a decorator that caches function results and invalidates after a specified time period.",
+                            "Implement a custom iterator class that generates prime numbers up to a given limit."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "APPS Benchmark",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/dataset/apps"
+                },
+                "tooltip": "The APPS benchmark evaluates coding ability using real-world programming problems from sites like Codeforces, focusing on problem-solving and functional correctness rather than just code completion.",
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2105.09938"
+                },
+                "analysis_tips": [
+                    "At the time of writing, APPS is only incorporated into the Papers with Code leaderboard, so you'll need to navigate to the leaderboard to see the latest results. Most of the leaderboards use OpenAI's HumanEval benchmark for code generation. I only included it because it's very comprehensive and can be useful in picking models for coding tasks.",
+                    "Problems are categorized by difficulty (introductory, interview, competition).",
+                    "Focus on the pass rates that match your use case - strict pass rates matter more for production code.",
+                    "The benchmark includes extensive test cases, making it more rigorous than simpler code generation metrics."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Strict Accuracy",
+                        "metric_measures": "Evaluates whether generated code passes all test cases exactly as specified",
+                        "score_interpretation": "Higher percentages indicate better performance (0-100%)",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Requires passing all test cases",
+                            "Tests edge cases comprehensively",
+                            "Evaluates time complexity requirements",
+                            "Checks memory usage constraints",
+                            "Assesses output format accuracy",
+                            "Verifies input handling"
+                        ],
+                        "ex_questions": [
+                            "Implement a function to find the longest increasing subsequence in O(n log n) time",
+                            "Create a memory-efficient solution for finding all prime numbers up to n",
+                            "Write a program that handles multiple edge cases in matrix multiplication"
+                        ]
+                    },
+                    {
+                        "metric_name": "Relaxed Accuracy",
+                        "metric_measures": "Evaluates code that passes most test cases with minor formatting or non-critical differences",
+                        "score_interpretation": "Higher percentages indicate better performance (0-100%)",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Allows minor formatting differences",
+                            "Considers partial test case success",
+                            "Evaluates functional correctness",
+                            "Assesses algorithmic approach",
+                            "Tests core logic implementation",
+                            "Measures problem-solving ability"
+                        ],
+                        "ex_questions": [
+                            "Write a function to check if a string is a palindrome, ignoring case and punctuation",
+                            "Implement a basic calculator that handles addition and multiplication",
+                            "Create a function that finds common elements in two sorted arrays"
+                        ]
+                    },
+                    {
+                        "metric_name": "Problem-Solving Score",
+                        "metric_measures": "Evaluates the model's ability to understand and approach complex programming problems",
+                        "score_interpretation": "Higher scores indicate better problem-solving capabilities",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Assesses problem understanding",
+                            "Evaluates solution approach",
+                            "Tests algorithmic thinking",
+                            "Measures optimization skills",
+                            "Considers solution elegance",
+                            "Evaluates code organization"
+                        ],
+                        "ex_questions": [
+                            "Design an efficient algorithm for finding the k most frequent elements in an array.",
+                            "Create a system for managing concurrent database connections with a connection pool.",
+                            "Implement a solution for the traveling salesman problem with time constraints."
+                        ]
+                    }
+                ]
             }
-        ]
+        ],
+        "Creative Writing": [
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard includes specific metrics for evaluating creative and stylistic capabilities through human preference ratings.",
+                "analysis_tips": [
+                    "Focus on the Style Control metrics which evaluate creative capabilities.",
+                    "The Overall w/ Style Control metric is particularly relevant for creative tasks.",
+                    "Consider how models perform on longer-form content using the Longer Query metric.",
+                    "Look for models that maintain high scores in both style and coherence metrics."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Overall w/ Style Control",
+                        "metric_measures": "Evaluates the model's ability to maintain consistent creative style and tone across responses.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests stylistic consistency",
+                            "Evaluates tone maintenance",
+                            "Assesses voice authenticity",
+                            "Measures creative adaptation",
+                            "Tests genre adherence",
+                            "Evaluates narrative coherence"
+                        ],
+                        "ex_questions": [
+                            "Write a children's story about a brave robot in the style of Dr. Seuss.",
+                            "Compose a noir-style detective story about a missing library book.",
+                            "Create a science fiction narrative using Victorian-era language."
+                        ]
+                    },
+                    {
+                        "metric_name": "Longer Query",
+                        "metric_measures": "Tests ability to maintain creative coherence and style in longer compositions.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Evaluates sustained narratives",
+                            "Tests plot development",
+                            "Assesses character consistency",
+                            "Measures story structure",
+                            "Tests thematic coherence",
+                            "Evaluates creative stamina"
+                        ],
+                        "ex_questions": [
+                            "Write a three-act short story about a mysterious package that arrives on someone's doorstep.",
+                            "Create a detailed character study of a person who discovers they can communicate with plants.",
+                            "Compose a multi-scene story that takes place in different time periods."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard includes metrics relevant to creative writing and text generation capabilities.",
+                "analysis_tips": [
+                    "Higher scores indicate better performance across all metrics.",
+                    "Look for models that excel in both Quality Index and Communication scores for creative tasks.",
+                    "Compare models' performance across different writing styles and formats.",
+                    "Consider these quality scores alongside other performance metrics for a complete picture."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Quality Index",
+                        "metric_measures": "Evaluates overall writing quality, including creativity, coherence, and engagement.",
+                        "score_interpretation": "Higher scores indicate better overall writing quality.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests narrative coherence",
+                            "Evaluates writing clarity",
+                            "Assesses creative elements",
+                            "Measures structural quality",
+                            "Tests audience engagement",
+                            "Evaluates stylistic consistency"
+                        ],
+                        "ex_questions": [
+                            "Write a compelling opening paragraph for a novel about time travel.",
+                            "Create a descriptive scene that establishes a specific mood without explicitly stating emotions.",
+                            "Develop a dialogue that reveals character personality through speech patterns."
+                        ]
+                    },
+                    {
+                        "metric_name": "Communication",
+                        "metric_measures": "Assesses effectiveness in conveying ideas and maintaining audience engagement.",
+                        "score_interpretation": "Higher scores indicate better communication ability.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Evaluates clarity of expression",
+                            "Tests audience adaptation",
+                            "Measures narrative flow",
+                            "Assesses rhetorical effectiveness",
+                            "Tests voice consistency",
+                            "Evaluates emotional resonance"
+                        ],
+                        "ex_questions": [
+                            "Write a story that gradually reveals its twist through subtle foreshadowing.",
+                            "Create a piece that effectively switches between past and present perspectives.",
+                            "Compose a scene that conveys tension without explicitly mentioning conflict."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+                },
+                "tooltip": "The Hugging Face leaderboard includes metrics relevant to creative text generation and writing quality.",
+                "analysis_tips": [
+                    "This leaderboard only includes open models, so you won't find metrics for proprietary models.",
+                    "Focus on the writing-related metrics when evaluating creative capabilities.",
+                    "Consider how models perform on long-form content and coherence tests."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "TruthfulQA - Writing",
+                        "metric_measures": "Evaluates ability to generate accurate and engaging narrative content.",
+                        "score_interpretation": "Higher scores indicate better writing accuracy and quality.",
+                        "metric_origin": "Hugging Face Research Team",
+                        "metric_details": [
+                            "Tests factual integration",
+                            "Evaluates creative storytelling",
+                            "Assesses narrative accuracy",
+                            "Measures content originality",
+                            "Tests genre understanding",
+                            "Evaluates source attribution"
+                        ],
+                        "ex_questions": [
+                            "Write a historically accurate creative piece about the invention of the printing press.",
+                            "Create a science fiction story that accurately incorporates quantum physics concepts.",
+                            "Compose a biographical narrative that balances creativity with factual accuracy."
+                        ]
+                    }
+                ]
+            },
+            # Add to the Creative Writing array:
+            {
+                "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.vellum.ai/llm-leaderboard"
+                },
+                "tooltip": "The Vellum LLM leaderboard offers simplified metrics relevant to creative writing and text generation capabilities.",
+                "analysis_tips": [
+                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them directly.",
+                    "The last updated date is at the bottom of the page.",
+                    "Vellum simplifies metric names for accessibility while maintaining technical rigor.",
+                    "Consider how models perform across different narrative and descriptive tasks."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Writing Style",
+                        "metric_measures": "Evaluates the model's ability to maintain consistent tone and style in creative writing tasks.",
+                        "score_interpretation": "Higher scores indicate better stylistic control and consistency.",
+                        "metric_origin": "Vellum AI Research Team",
+                        "metric_details": [
+                            "Tests tone consistency",
+                            "Evaluates voice adaptation",
+                            "Measures stylistic flexibility",
+                            "Assesses genre awareness",
+                            "Tests narrative cohesion",
+                            "Evaluates creative expression"
+                        ],
+                        "ex_questions": [
+                            "Write a gothic horror story using Victorian-era language patterns.",
+                            "Create a modern fairytale that maintains traditional storytelling elements.",
+                            "Compose a technical topic explanation in a whimsical, engaging style."
+                        ]
+                    },
+                    {
+                        "metric_name": "Narrative Coherence",
+                        "metric_measures": "Assesses the model's ability to maintain logical story flow and character consistency.",
+                        "score_interpretation": "Higher scores denote better narrative structure and coherence.",
+                        "metric_origin": "Vellum AI Research Team",
+                        "metric_details": [
+                            "Tests plot progression",
+                            "Evaluates character consistency",
+                            "Measures story structure",
+                            "Assesses narrative logic",
+                            "Tests scene transitions",
+                            "Evaluates thematic unity"
+                        ],
+                        "ex_questions": [
+                            "Write a story with multiple characters where their actions remain consistent with their established personalities.",
+                            "Create a narrative that switches between three different time periods while maintaining a clear through-line.",
+                            "Develop a story that reveals information gradually while maintaining reader engagement."
+                        ]
+                    },
+                    {
+                        "metric_name": "Creative Adaptation",
+                        "metric_measures": "Tests ability to creatively adapt content for different audiences and purposes.",
+                        "score_interpretation": "Higher scores indicate better creative flexibility and audience awareness.",
+                        "metric_origin": "Vellum AI Research Team",
+                        "metric_details": [
+                            "Tests audience adaptation",
+                            "Evaluates content transformation",
+                            "Measures creative problem-solving",
+                            "Assesses format flexibility",
+                            "Tests genre translation",
+                            "Evaluates tone adjustment"
+                        ],
+                        "ex_questions": [
+                            "Rewrite a complex scientific concept as an engaging children's story.",
+                            "Transform a serious historical event into a lighthearted but respectful narrative.",
+                            "Adapt a traditional folktale into a modern setting while preserving its core message."
+                        ]
+                    }
+                ]
+            }    
+        ], # End of Creative Writing array
+        "Analyze data": [
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "While primarily a general chatbot leaderboard, Chatbot Arena includes specific evaluations of data analysis capabilities.",
+                "analysis_tips": [
+                    "Pay attention to how models perform on data interpretation tasks.",
+                    "The Longer Query metric is particularly relevant for complex data analysis tasks.",
+                    "Consider models' ability to maintain accuracy when analyzing large datasets.",
+                    "Look for models that excel at both pattern recognition and clear data explanation."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Data Interpretation",
+                        "metric_measures": "Evaluates the model's ability to analyze and explain patterns in structured data.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests pattern recognition",
+                            "Evaluates trend identification",
+                            "Assesses anomaly detection",
+                            "Measures data summarization",
+                            "Tests correlation identification",
+                            "Evaluates insight extraction"
+                        ],
+                        "ex_questions": [
+                            "Analyze this sales dataset to identify seasonal patterns and explain their significance.",
+                            "Review this customer feedback data and identify the main themes and sentiment trends.",
+                            "Examine this website traffic data and identify unusual patterns or anomalies."
+                        ]
+                    },
+                    {
+                        "metric_name": "Data Visualization Analysis",
+                        "metric_measures": "Tests ability to interpret and explain various data visualizations.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests chart interpretation",
+                            "Evaluates graph analysis",
+                            "Assesses visual pattern recognition",
+                            "Measures insight communication",
+                            "Tests multiple visualization types",
+                            "Evaluates statistical understanding"
+                        ],
+                        "ex_questions": [
+                            "Interpret this heatmap showing user engagement patterns across different times and days.",
+                            "Analyze this scatter plot of customer lifetime value versus acquisition cost.",
+                            "Explain the trends shown in this time series visualization of market data."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "Artificial Analysis includes specific metrics for evaluating data analysis capabilities.",
+                "analysis_tips": [
+                    "Higher scores indicate better performance across all metrics.",
+                    "Focus on models that maintain accuracy while providing clear explanations.",
+                    "Consider both speed and accuracy for large dataset analysis.",
+                    "Look for models that excel at identifying complex patterns."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Pattern Recognition",
+                        "metric_measures": "Assesses ability to identify and explain patterns in complex datasets.",
+                        "score_interpretation": "Higher scores indicate better pattern recognition capabilities.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests pattern identification",
+                            "Evaluates trend analysis",
+                            "Assesses correlation detection",
+                            "Measures outlier identification",
+                            "Tests temporal pattern recognition",
+                            "Evaluates multivariate analysis"
+                        ],
+                        "ex_questions": [
+                            "Identify recurring patterns in this customer purchase behavior dataset.",
+                            "Analyze this environmental data to find correlations between different variables.",
+                            "Detect and explain anomalies in this network traffic data."
+                        ]
+                    }
+                ]
+            },
+            # Add to the Analyze data array:
+            {
+                "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+                },
+                "tooltip": "The Hugging Face leaderboard includes metrics specifically focused on data analysis capabilities.",
+                "analysis_tips": [
+                    "This leaderboard only includes open models, so you won't find proprietary models here.",
+                    "Consider how models perform on both structured and unstructured data analysis.",
+                    "Pay attention to models that maintain accuracy with larger datasets.",
+                    "Look for models that excel at both numerical and categorical data analysis."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Statistical Analysis",
+                        "metric_measures": "Evaluates ability to perform and explain statistical analyses of datasets.",
+                        "score_interpretation": "Higher scores indicate better statistical analysis capabilities.",
+                        "metric_origin": "Hugging Face Research Team",
+                        "metric_details": [
+                            "Tests descriptive statistics",
+                            "Evaluates distribution analysis",
+                            "Assesses sampling understanding",
+                            "Measures hypothesis testing",
+                            "Tests confidence interval calculation",
+                            "Evaluates statistical inference"
+                        ],
+                        "ex_questions": [
+                            "Analyze this dataset for normality and explain your findings with appropriate statistics.",
+                            "Determine if there's a significant difference between these two customer segments.",
+                            "Explain what the skewness of this distribution tells us about our data."
+                        ]
+                    },
+                    {
+                        "metric_name": "Data Quality Analysis",
+                        "metric_measures": "Assesses ability to evaluate and explain data quality issues.",
+                        "score_interpretation": "Higher scores indicate better data quality assessment capabilities.",
+                        "metric_origin": "Hugging Face Research Team",
+                        "metric_details": [
+                            "Tests missing data detection",
+                            "Evaluates outlier identification",
+                            "Assesses data consistency",
+                            "Measures data completeness",
+                            "Tests data validity",
+                            "Evaluates bias detection"
+                        ],
+                        "ex_questions": [
+                            "Identify potential data quality issues in this customer database.",
+                            "Analyze this survey data for potential response biases.",
+                            "Evaluate the completeness and consistency of this time series data."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.vellum.ai/llm-leaderboard"
+                },
+                "tooltip": "The Vellum leaderboard includes simplified but comprehensive metrics for data analysis tasks.",
+                "analysis_tips": [
+                    "The primary value is in comparing two models directly.",
+                    "Check the last updated date at the bottom of the page.",
+                    "Consider how models handle both exploratory and confirmatory analysis.",
+                    "Look for models that excel at translating analysis into clear insights."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Data Insight Generation",
+                        "metric_measures": "Evaluates ability to generate meaningful insights from data analysis.",
+                        "score_interpretation": "Higher scores indicate better insight generation capabilities.",
+                        "metric_origin": "Vellum AI Research Team",
+                        "metric_details": [
+                            "Tests insight relevance",
+                            "Evaluates business impact",
+                            "Assesses actionability",
+                            "Measures insight clarity",
+                            "Tests insight prioritization",
+                            "Evaluates recommendation quality"
+                        ],
+                        "ex_questions": [
+                            "Analyze this e-commerce data and provide actionable recommendations for improving sales.",
+                            "Review this customer churn data and identify the most important factors driving attrition.",
+                            "Examine this marketing campaign data and suggest optimization strategies."
+                        ]
+                    },
+                    {
+                        "metric_name": "Time Series Analysis",
+                        "metric_measures": "Tests ability to analyze and interpret temporal data patterns.",
+                        "score_interpretation": "Higher scores indicate better time series analysis capabilities.",
+                        "metric_origin": "Vellum AI Research Team",
+                        "metric_details": [
+                            "Tests trend identification",
+                            "Evaluates seasonality detection",
+                            "Assesses cyclical patterns",
+                            "Measures forecasting accuracy",
+                            "Tests temporal dependencies",
+                            "Evaluates change point detection"
+                        ],
+                        "ex_questions": [
+                            "Analyze these monthly sales figures to identify underlying trends and seasonal patterns.",
+                            "Detect and explain any significant shifts in this website traffic data over time.",
+                            "Identify leading indicators in this economic data time series."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "BIG-bench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
+                },
+                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-bench) includes specific tasks for evaluating data analysis capabilities.",
+                "analysis_tips": [
+                    "Focus on the data interpretation and analysis subtasks.",
+                    "Consider performance across different data complexity levels.",
+                    "Pay attention to models that maintain accuracy with novel data formats.",
+                    "Look at both accuracy and explanation quality in analysis tasks."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2206.04615"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Data Extraction",
+                        "metric_measures": "Evaluates ability to extract relevant information from complex data structures.",
+                        "score_interpretation": "Higher scores indicate better data extraction and interpretation capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests structured data parsing",
+                            "Evaluates information retrieval",
+                            "Assesses data transformation",
+                            "Measures accuracy of extraction",
+                            "Tests handling of nested data",
+                            "Evaluates format adaptation"
+                        ],
+                        "ex_questions": [
+                            "Extract all customer complaints from this JSON dataset that mention delivery delays.",
+                            "Identify key performance metrics from this nested XML report structure.",
+                            "Parse this semi-structured log file to extract error patterns."
+                        ]
+                    },
+                    {
+                        "metric_name": "Comparative Analysis",
+                        "metric_measures": "Tests ability to compare and contrast different datasets or time periods.",
+                        "score_interpretation": "Higher scores indicate better comparative analysis capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests dataset comparison",
+                            "Evaluates change analysis",
+                            "Assesses performance metrics",
+                            "Measures trend differences",
+                            "Tests cohort analysis",
+                            "Evaluates variance explanation"
+                        ],
+                        "ex_questions": [
+                            "Compare performance metrics between these two business quarters and explain significant changes.",
+                            "Analyze how customer behavior differs between these two market segments.",
+                            "Identify key differences in product performance across different regions."
+                        ]
+                    },
+                    {
+                        "metric_name": "Dataset Understanding",
+                        "metric_measures": "Assesses comprehension of dataset structure, relationships, and limitations.",
+                        "score_interpretation": "Higher scores indicate better dataset comprehension capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests schema understanding",
+                            "Evaluates relationship mapping",
+                            "Assesses metadata comprehension",
+                            "Measures constraint recognition",
+                            "Tests data lineage tracking",
+                            "Evaluates limitation identification"
+                        ],
+                        "ex_questions": [
+                            "Explain the relationships between different tables in this database schema.",
+                            "Identify potential limitations and biases in this survey dataset.",
+                            "Map the data flow and transformations in this analytics pipeline."
+                        ]
+                    }
+                ]
+            }  
+        ], # End of Analyze data array
+        "Math": [
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard includes specific evaluations of mathematical capabilities through human preference ratings.",
+                "analysis_tips": [
+                    "Check the Math-specific column for direct comparison of mathematical capabilities.",
+                    "Consider models' ability to explain mathematical concepts, not just solve problems.",
+                    "Look at Multi-Turn metrics for step-by-step problem solving ability.",
+                    "Compare Arena Scores specifically for mathematics-focused prompts."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Math",
+                        "metric_measures": "Evaluates the model's accuracy in solving mathematical problems.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests various mathematical domains",
+                            "Evaluates step-by-step solutions",
+                            "Assesses symbolic manipulation",
+                            "Measures problem-solving strategies",
+                            "Tests concept explanation ability",
+                            "Evaluates error detection"
+                        ],
+                        "ex_questions": [
+                            "Solve this differential equation: dy/dx = 2x + y with y(0) = 1.",
+                            "Find the area of intersection between two circles with radii 5 and 3, centers 4 units apart.",
+                            "Prove that the sequence an = n² + 1 is not arithmetic."
+                        ]
+                    },
+                    {
+                        "metric_name": "Multi-Turn Math",
+                        "metric_measures": "Assesses ability to maintain mathematical accuracy across extended problem-solving discussions.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests sustained problem-solving",
+                            "Evaluates mathematical guidance",
+                            "Assesses error correction",
+                            "Measures concept explanation",
+                            "Tests progressive difficulty",
+                            "Evaluates adaptive teaching"
+                        ],
+                        "ex_questions": [
+                            "Help me solve this calculus problem step by step, explaining each stage of integration by parts.",
+                            "Guide me through proving the Pythagorean theorem, addressing my questions at each step.",
+                            "Walk me through solving this system of linear equations, explaining alternative approaches."
+                        ]
+                    },
+                    {
+                        "metric_name": "Multilingual Maths (MGSM)",
+                        "metric_measures": "Evaluates mathematical problem-solving across different languages.",
+                        "score_interpretation": "Higher scores indicate better multilingual mathematical capabilities.",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests mathematical reasoning across languages",
+                            "Evaluates problem interpretation",
+                            "Assesses solution accuracy",
+                            "Measures terminology understanding",
+                            "Tests cultural context adaptation",
+                            "Evaluates consistent methodology"
+                        ],
+                        "ex_questions": [
+                            "Solve this geometry problem presented in both Mandarin and English: Find the area of a triangle with base 6cm and height 8cm.",
+                            "Resuelve esta ecuación cuadrática: 2x² + 5x - 3 = 0 (Solve this quadratic equation in Spanish).",
+                            "Résoudre ce problème de probabilité (Solve this probability problem in French)."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard includes several mathematics-specific benchmarks.",
+                "analysis_tips": [
+                    "Higher scores indicate better performance across all metrics.",
+                    "Pay attention to both pure mathematical reasoning and applied problem-solving.",
+                    "Compare models' performance across different types of mathematical tasks.",
+                    "Consider how models perform on both theoretical and practical mathematics."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Quantitative Reasoning (MATH)",
+                        "metric_measures": "Tests mathematical reasoning and problem-solving skills across various domains.",
+                        "score_interpretation": "Higher scores indicate better mathematical reasoning capabilities.",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Tests advanced mathematical concepts",
+                            "Evaluates problem-solving strategies",
+                            "Assesses logical reasoning",
+                            "Measures proof comprehension",
+                            "Tests abstract thinking",
+                            "Evaluates mathematical rigor"
+                        ],
+                        "ex_questions": [
+                            "Prove that the sum of two continuous functions is continuous.",
+                            "Solve this optimization problem using Lagrange multipliers.",
+                            "Determine the convergence of this infinite series using appropriate tests."
+                        ]
+                    },
+                    {
+                        "metric_name": "Scientific Reasoning & Knowledge (GPQA Diamond)",
+                        "metric_measures": "Evaluates ability to solve quantitative problems in scientific contexts.",
+                        "score_interpretation": "Higher scores indicate better scientific problem-solving ability.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests applied mathematics",
+                            "Evaluates physics calculations",
+                            "Assesses statistical analysis",
+                            "Measures dimensional analysis",
+                            "Tests scientific notation",
+                            "Evaluates error analysis"
+                        ],
+                        "ex_questions": [
+                            "Calculate the electric field at a point given multiple charged particles.",
+                            "Determine the half-life of a radioactive substance from experimental data.",
+                            "Solve this chemical equilibrium problem using mathematical principles."
+                        ]
+                    },
+                    {
+                        "metric_name": "Multilingual Maths (MGSM)",
+                        "metric_measures": "Evaluates mathematical problem-solving across different languages and cultural contexts.",
+                        "score_interpretation": "Higher scores indicate better multilingual mathematical capabilities.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests universal mathematical concepts",
+                            "Evaluates language-independent reasoning",
+                            "Assesses numerical literacy",
+                            "Measures problem interpretation",
+                            "Tests mathematical communication",
+                            "Evaluates cultural context awareness"
+                        ],
+                        "ex_questions": [
+                            "解这个线性方程组 (Solve this system of linear equations in Chinese).",
+                            "Calcolare l'integrale definito (Calculate this definite integral in Italian).",
+                            "Решите эту задачу оптимизации (Solve this optimization problem in Russian)."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+                },
+                "tooltip": "The Hugging Face leaderboard includes several mathematics-specific benchmarks, focusing particularly on grade school and advanced mathematics.",
+                "analysis_tips": [
+                    "This leaderboard only includes open models, so you won't find proprietary models here.",
+                    "Pay attention to both raw and processed scores for math benchmarks.",
+                    "Consider performance across different difficulty levels.",
+                    "Look for models that excel at both computation and mathematical reasoning."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "MATH Lvl 5",
+                        "metric_measures": "Evaluates performance on advanced mathematical problems at a high difficulty level.",
+                        "score_interpretation": "Higher scores indicate better advanced mathematical capabilities.",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Tests advanced mathematics",
+                            "Evaluates complex problem-solving",
+                            "Assesses theoretical understanding",
+                            "Measures proof construction",
+                            "Tests abstract reasoning",
+                            "Evaluates mathematical communication"
+                        ],
+                        "ex_questions": [
+                            "Prove that there are infinitely many prime numbers of the form 4n + 1.",
+                            "Find all complex solutions to z^4 + 4z^3 + 6z^2 + 4z + 1 = 0.",
+                            "Determine the volume of the solid formed by rotating y = sin(x) from 0 to π around the x-axis."
+                        ]
+                    },
+                    {
+                        "metric_name": "MATH Lvl 5 Raw",
+                        "metric_measures": "Provides unprocessed scores from Level 5 MATH dataset evaluations.",
+                        "score_interpretation": "Higher scores reflect better raw performance on advanced mathematics.",
+                        "metric_origin": "Hendrycks et al., UC Berkeley",
+                        "metric_details": [
+                            "Presents unmodified scores",
+                            "Shows direct performance data",
+                            "Assesses raw accuracy",
+                            "Measures unadjusted results",
+                            "Tests complete solutions",
+                            "Evaluates step-by-step work"
+                        ],
+                        "ex_questions": [
+                            "Solve this differential equation showing all steps: y'' + 4y' + 4y = e^(-2x).",
+                            "Prove the Fundamental Theorem of Algebra with detailed reasoning.",
+                            "Calculate the exact value of this improper integral: ∫(0 to ∞) x^2e^(-x) dx."
+                        ]
+                    },
+                    {
+                        "metric_name": "GSM8K",
+                        "metric_measures": "Evaluates ability to solve grade school math word problems.",
+                        "score_interpretation": "Higher scores indicate better practical math problem-solving ability.",
+                        "metric_origin": "OpenAI Research",
+                        "metric_details": [
+                            "Tests practical mathematics",
+                            "Evaluates word problem comprehension",
+                            "Assesses step-by-step reasoning",
+                            "Measures arithmetic accuracy",
+                            "Tests problem interpretation",
+                            "Evaluates solution explanation"
+                        ],
+                        "ex_questions": [
+                            "Tom has 3 times as many marbles as Jane. Jane has 2 more marbles than Sam. If Sam has 4 marbles, how many marbles do they have in total?",
+                            "A store offers a 20% discount on a $50 item. If sales tax is 8%, what is the final price?",
+                            "If it takes 6 workers 4 days to build a wall, how many days would it take 8 workers to build the same wall?"
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "BIG-Bench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
+                },
+                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-Bench) includes several mathematics-specific tasks designed to test different aspects of mathematical reasoning.",
+                "analysis_tips": [
+                    "Pay attention to performance across different mathematical domains.",
+                    "Consider both accuracy and reasoning quality in solutions.",
+                    "Look for models that can explain their mathematical thinking.",
+                    "Compare performance on both straightforward and multi-step problems."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2206.04615"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Mathematical Induction",
+                        "metric_measures": "Tests ability to understand and apply mathematical induction principles.",
+                        "score_interpretation": "Higher scores indicate better mathematical reasoning capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests proof construction",
+                            "Evaluates logical reasoning",
+                            "Assesses pattern recognition",
+                            "Measures proof verification",
+                            "Tests base case analysis",
+                            "Evaluates inductive steps"
+                        ],
+                        "ex_questions": [
+                            "Prove by induction that 1 + 2 + ... + n = n(n+1)/2 for all positive integers n.",
+                            "Show that 2^n > n^2 for n ≥ 5 using mathematical induction.",
+                            "Prove that 3 divides n^3 + 2n for all non-negative integers n."
+                        ]
+                    },
+                    {
+                        "metric_name": "Abstract Algebra",
+                        "metric_measures": "Evaluates understanding of abstract mathematical structures and proofs.",
+                        "score_interpretation": "Higher scores indicate better abstract mathematical reasoning.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests group theory",
+                            "Evaluates ring properties",
+                            "Assesses algebraic structures",
+                            "Measures proof techniques",
+                            "Tests isomorphism understanding",
+                            "Evaluates abstract reasoning"
+                        ],
+                        "ex_questions": [
+                            "Prove that the set of 2x2 invertible matrices forms a group under matrix multiplication.",
+                            "Show that if G is a group of order 8, then G must have an element of order 2.",
+                            "Determine all homomorphisms from Z6 to Z8."
+                        ]
+                    },
+                    {
+                        "metric_name": "Mathematical Logic",
+                        "metric_measures": "Assesses capability in formal logic and mathematical reasoning.",
+                        "score_interpretation": "Higher scores indicate better logical reasoning abilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests logical deduction",
+                            "Evaluates formal proofs",
+                            "Assesses truth tables",
+                            "Measures predicate logic",
+                            "Tests quantifier usage",
+                            "Evaluates logical equivalence"
+                        ],
+                        "ex_questions": [
+                            "Prove that if (p → q) and (q → r) are true, then (p → r) must be true.",
+                            "Show that these two logical statements are equivalent using a truth table.",
+                            "Convert this English statement into predicate logic: 'Every even number greater than 2 is the sum of two primes.'"
+                        ]
+                    },
+                    {
+                        "metric_name": "Word Problems",
+                        "metric_measures": "Tests ability to translate real-world scenarios into mathematical solutions.",
+                        "score_interpretation": "Higher scores indicate better applied mathematical problem-solving.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests problem interpretation",
+                            "Evaluates mathematical modeling",
+                            "Assesses solution strategies",
+                            "Measures practical application",
+                            "Tests unit conversion",
+                            "Evaluates answer validation"
+                        ],
+                        "ex_questions": [
+                            "A train travels 60km north, then 80km east. Calculate the shortest distance back to the starting point.",
+                            "Three pipes fill a pool at different rates. Find how long it takes to fill the pool using all three.",
+                            "Calculate the compound interest on a loan given various payment schedules."
+                        ]
+                    }
+                ]
+            }
+            
+        ],
+        # LEFT OFF
     }
 }
 
