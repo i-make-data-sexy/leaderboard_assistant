@@ -75,7 +75,7 @@ RECOMMENDATIONS = {
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
                     "The table defaults to sorting by rank. I prefer to sort by Arena Score.",
-                    "You can sort the table by each column."
+                    "You can sort the table by each column.",
                     "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "paper": {
@@ -132,6 +132,11 @@ RECOMMENDATIONS = {
                         "metric_name": "Arena Score",
                         "metric_measures": "Ranks based on LLM performance in head-to-head comparisons. This score is derived using the Elo rating system, a method traditionally employed in chess and other competitive games to assess the relative skill levels of players.",
                         "score_interpretation": "Score ranges from 1 – thousands (higher is better)."
+                    },
+                    {
+                        "metric_name": "Multilingual Maths (MGSM)",
+                        "metric_measures": "Evaluates the model's ability to solve mathematical problems presented in multiple languages, testing both quantitative reasoning and multilingual comprehension.",
+                        "score_interpretation": "Higher scores indicate better performance in solving math problems across diverse languages, reflecting both mathematical accuracy and multilingual capabilities."
                     }
                 ]
             },
@@ -147,7 +152,7 @@ RECOMMENDATIONS = {
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
                     "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition."
+                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "paper": {
@@ -158,32 +163,32 @@ RECOMMENDATIONS = {
                     {
                         "metric_name": "Quality Index",
                         "metric_measures": "A composite score that evaluates the overall quality of the AI model's output across multiple tasks, balancing correctness, coherence, and relevance.",
-                        "score_interpretation": "Higher scores indicate better quality."
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate better performance."
                     },
                     {
                         "metric_name": "Reasoning & Knowledge (MMLU)",
                         "metric_measures": "Measures the model's ability to answer questions across 57 academic subjects, testing both reasoning and world knowledge.",
-                        "score_interpretation": "Higher scores reflect a stronger ability to reason and recall factual information."
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate better performance, reflecting a stronger ability to reason and recall factual information."
                     },
                     {
                         "metric_name": "Scientific Reasoning & Knowledge (GPQA Diamond)",
                         "metric_measures": "Evaluates the model's ability to answer questions requiring scientific reasoning, logical problem-solving, and subject-specific expertise.",
-                        "score_interpretation": "Higher scores denote superior scientific understanding and problem-solving accuracy."
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate better performance, indicating superior scientific understanding and problem-solving accuracy."
                     },
                     {
                         "metric_name": "Quantitative Reasoning (MATH)",
-                        "metric_measures": "Tests the model’s mathematical reasoning and problem-solving skills, including algebra, calculus, and number theory.",
-                        "score_interpretation": "Higher scores indicate better mathematical reasoning and accuracy."
+                        "metric_measures": "Tests the model's mathematical reasoning and problem-solving skills, including algebra, calculus, and number theory.",
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate better performance, i.e., higher mathematical reasoning and accuracy."
                     },
                     {
                         "metric_name": "Coding (HumanEval)",
                         "metric_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
-                        "score_interpretation": "Higher scores reflect greater coding proficiency and correctness."
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate greater coding proficiency and correctness."
                     },
                     {
                         "metric_name": "Communication (LMSys Chatbot Arena ELO Score)",
-                        "metric_measures": "Measures the model’s performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
-                        "score_interpretation": "Higher ELO scores represent superior conversational ability, as judged through head-to-head comparisons."
+                        "metric_measures": "Measures the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate superior conversational ability, as judged by one-to-one comparisons."
                     }
                 ]
             },
@@ -286,7 +291,7 @@ RECOMMENDATIONS = {
                 "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
                 "analysis_tips": [
                     "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page."
+                    "The last updated date is at the bottom of the page.",
                     "I really like that this leaderboard includes cutoff dates. Most do not.",
                     "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'."
                 ],
@@ -318,43 +323,138 @@ RECOMMENDATIONS = {
                     },
                     {
                         "metric_name": "Grade school math",
-                        "metric_measures": "Vellum's label for the GSM-8k Benchmark. Evaluates the model’s ability to solve grade school-level math word problems.",
+                        "metric_measures": "Vellum's label for the GSM-8k Benchmark. Evaluates the model's ability to solve grade school-level math word problems.",
                         "score_interpretation": "Higher scores indicate better problem-solving accuracy."
                     },
                     {
                         "metric_name": "Math problems",
                         "metric_measures": "Vellum's label for the MATH Benchmark. Assesses mathematical reasoning and accuracy on advanced topics such as algebra and calculus.",
                         "score_interpretation": "Higher scores denote better performance in complex mathematical reasoning."
-                    },
+                    }
                 ]
-            },     
+            }
         ],
-        "Code": {
-            "leaderboard": "CodeBench",
-            "leaderboard_link": {
-                "text": "Visit CodeBench Leaderboard",
-                "url": "https://codebench.com"
+        "Code": [
+            {
+                "leaderboard": "BigCodeBench Leaderboard",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://bigcode-bench.github.io/"
+                },
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2406.15877"
+                },
+                "analysis_tips": [
+                    "Use Calibrated Pass@1 when evaluating models for practical scenarios where minor code fixes are acceptable.",
+                    "Compare raw Pass@1 with Calibrated Pass@1 to assess the model's strict correctness versus its usability.",
+                    "Pass@k metrics are helpful when determining how often models produce at least one correct solution in multiple attempts.",
+                    "Calibrated Pass@1 adjusts the raw Pass@1 metric to account for common errors or omissions that might not necessarily indicate the model's inability to solve the task. It is designed to provide a fairer comparison by considering the model's intent and coding capabilities, even when the output is incomplete or imperfect.", 
+                    "I find it helpful to think of Calibrated Pass@1 in terms of human developers. When developers write code, we may miss certain details like importing a library, defining helper functions, or adding boilerplate code. These omissions don't necessarily reflect poor coding skills but might stem from assumptions about the environment or the context. Similarly, LLMs sometimes generate code that is functionally correct but incomplete, such as forgetting imports or minor details that can easily be inferred.",
+                    "Click 'base' or 'instructed' to remove them from the chart. This feature can be buggy. If all the models disappear, click 'Instruct' or 'Average' and return to 'Complete'.",
+                    "Hard vs Full: The 'Hard' option evaluates models on more challenging or complex datasets, while 'Full' includes all datasets, providing a broader overview of model performance.",
+                    "Complete, Instruct, Average: These toggles control the evaluation focus. 'Complete' assesses the model's ability to handle complete tasks, 'Instruct' focuses on instruction-following capabilities, and 'Average' represents an aggregate score across both types.",
+                    "Show Models with Unknown Sizes: Enables or disables the inclusion of models whose parameter sizes or details are not disclosed. Useful for filtering out incomplete data.",
+                    "Base vs Instructed: The color coding distinguishes between 'base' models (green) and 'instructed' models (gray), highlighting whether the model has undergone fine-tuning or instruction-based training."
+                ],
+                "metrics": [
+                    {
+                        "metric_name": "Calibrated Pass@1",
+                        "metric_measures": "Adjusts the raw Pass@1 metric by accounting for common omissions or minor errors in code, such as missing imports or boilerplate. It measures the likelihood of a model generating code that solves a task correctly with slight, acceptable deviations.",
+                        "score_interpretation": "Higher scores indicate better performance, emphasizing usability and real-world applicability over strict correctness."
+                    },
+                    {
+                        "metric_name": "Pass@1 (Raw)",
+                        "metric_measures": "The percentage of tasks solved correctly by the first attempt, without calibration for omissions or partial correctness.",
+                        "score_interpretation": "Higher scores indicate stricter correctness with no allowance for omissions."
+                    },
+                    {
+                        "metric_name": "Pass@k (k=5, 10)",
+                        "metric_measures": "The percentage of tasks for which at least one of the top-k generated solutions is correct.",
+                        "score_interpretation": "Higher scores indicate better overall task-solving ability across multiple attempts."
+                    }
+                ]
             },
-            "metrics": [
-                {
-                    "metric_name": "Code Quality",
-                    "metric_def": "Evaluates the accuracy, readability, and efficiency of generated code.",
-                    "metric_report_link": {
-                        "text": "View Code Quality Report",
-                        "url": "https://codebench.com/quality"
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard only offers one chart pertinent to coding (HumanEval).",
+                "analysis_tips": [
+                    "Higher is better across all of their metrics.",
+                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
+                    "The only code-leaning chart is the 'Coding' chart, in the Quality Evaluations section.",
+                    "Once you've narrowed down your code-focused LLM, the What LLM Provider is helpful in providing context as it does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Quality Index",
+                        "metric_measures": "A composite score that evaluates the overall quality of the AI model's output across multiple tasks, balancing correctness, coherence, and relevance.",
+                        "score_interpretation": "Higher scores indicate better quality."
                     },
-                    "learn_more_link": {
-                        "text": "Learn more about Code Quality",
-                        "url": "https://codebench.com/docs/quality"
+                    {
+                        "metric_name": "Reasoning & Knowledge (MMLU)",
+                        "metric_measures": "Measures the model's ability to answer questions across 57 academic subjects, testing both reasoning and world knowledge.",
+                        "score_interpretation": "Higher scores reflect a stronger ability to reason and recall factual information."
                     },
-                    "analysis_tips": [
-                        "High-quality code generation reduces debugging effort.",
-                        "Focus on models with strong support for your programming language."
-                    ]
-                }
-            ]
-        },
-        
+                    {
+                        "metric_name": "Scientific Reasoning & Knowledge (GPQA Diamond)",
+                        "metric_measures": "Evaluates the model's ability to answer questions requiring scientific reasoning, logical problem-solving, and subject-specific expertise.",
+                        "score_interpretation": "Higher scores denote superior scientific understanding and problem-solving accuracy."
+                    },
+                    {
+                        "metric_name": "Quantitative Reasoning (MATH)",
+                        "metric_measures": "Tests the model's mathematical reasoning and problem-solving skills, including algebra, calculus, and number theory.",
+                        "score_interpretation": "Higher scores indicate better mathematical reasoning and accuracy."
+                    },
+                    {
+                        "metric_name": "Coding (HumanEval)",
+                        "metric_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
+                        "score_interpretation": "Higher scores reflect greater coding proficiency and correctness."
+                    },
+                    {
+                        "metric_name": "Communication (LMSys Chatbot Arena ELO Score)",
+                        "metric_measures": "Measures the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
+                        "score_interpretation": "Higher ELO scores represent superior conversational ability, as judged through head-to-head comparisons."
+                    },
+                    {
+                        "metric_name": "Multilingual Maths (MGSM)",
+                        "metric_measures": "Evaluates the model's ability to solve mathematical problems presented in multiple languages, testing both quantitative reasoning and multilingual comprehension.",
+                        "score_interpretation": "Higher scores indicate better performance in solving math problems across diverse languages, reflecting both mathematical accuracy and multilingual capabilities."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
+                "analysis_tips": [
+                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. I also recommend sorting by the 'Coding' column since it's the only metric pertinent to coding.",
+                    "You can sort the table by each column.",
+                    "A model may have a significantly higher 'Coding' score than its 'Overall' score (e.g., Claude 3.5 Sonnet at the time of writing). I can personally attest to Sonnet's coding prowess and often prefer it over o1-preview because it's less prone to accidentally remove sections of your code in its responses. This is why it's important to tether your model needs to each pipeline in your AI app."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Coding",
+                        "metric_measures": "Model's ability to understand and generate code effectively.",
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate better performance."
+                    }
+                ]
+            }
+        ]
     },
     "Speed": {
         # Similar structure as "Quality" but with speed-specific metrics
@@ -373,41 +473,7 @@ RECOMMENDATIONS = {
 
 
 
-# RECOMMENDATIONS = {
-#     "Quality": {
-#         "Chat": 
-#             {"leaderboard": "Chatbot Arena",
-#              "metrics": {
-#                  "metric_name": "Overall",
-#                  "metric_def": "The general ranking of the model across all task categories."},},
-#         "Code": "",
-#         "Creative writing": "",
-#         "Analyze data": "",
-#         "Math": "",
-#         "Complex reasoning": "",
-#         "Text to speech": "",
-#         "Speech to text": "",
-#         "Text to image": "",
-#         "Image to text": "",
-#         "Text to video": "",
-        
-#     },
-#     "Code": {
-#         "Open Source": "We recommend CodeGen.",
-#         "Proprietary": "We recommend OpenAI's Codex.",
-#         "No Preference": "Consider both CodeGen and Codex."
-#     },
-#     "Write Creatively": {
-#         "Open Source": "Try EleutherAI's GPT-NeoX.",
-#         "Proprietary": "Use OpenAI's GPT-4 for creative writing.",
-#         "No Preference": "Both GPT-NeoX and GPT-4 are excellent."
-#     },
-#     "Analyze Data": {
-#         "Open Source": "We recommend BigScience's BLOOM.",
-#         "Proprietary": "We recommend Google's PaLM.",
-#         "No Preference": "Explore both BLOOM and PaLM."
-#     }
-# }
+
 
 # Home Route
 @app.route('/')
