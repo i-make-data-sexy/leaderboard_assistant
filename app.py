@@ -30,18 +30,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 # In-memory structure to guide the question flow
 QUESTIONS = {
-    "goal": {
-        "question": "What do you want to evaluate?",
-        "tooltip": "There are many metrics leaderboards provide. The answer to this question will help whittle down the list of metrics to choose from.",
-        "options": [
-            "Quality", 
-            "Speed",
-            "Latency", 
-            "Cost", 
-            "Context Window"
-            ],
-        "next": "task"
-    },
     "task": {
         "question": "What task do you want the model to do?",
         "tooltip": "This list isn't exhaustive of what AI can do; it's more representative of the types of tasks that have associated intelligence-leaning performance metrics.",
@@ -56,10 +44,24 @@ QUESTIONS = {
             "Speech to text", 
             "Text to image", 
             "Image to text", 
-            "Text to video"
+            "Text to video",
+            "Other" 
+            ],
+        "next": "goal"
+    },
+    "goal": {
+        "question": "What do you want to evaluate?",
+        "tooltip": "There are many metrics leaderboards provide. The answer to this question will help whittle down the list of metrics to choose from.",
+        "options": [
+            "Quality", 
+            "Speed",
+            "Latency", 
+            "Cost", 
+            "Context Window"
             ],
         "next": "recommendation"
     },
+    
 }
 
 # Recommendations with detailed metric information
@@ -2501,6 +2503,103 @@ RECOMMENDATIONS = {
         ],
          "Text to speech": [
             {
+                "leaderboard": "Artificial Analysis TTS",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/text-to-speech"
+                },
+                "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
+                "analysis_tips": [
+                    "Higher scores indicate better performance across all metrics.",
+                    "Consider both quality and speed metrics for production use.",
+                    "Pay attention to cost implications alongside performance.",
+                    "Compare performance between real-time and non-real-time models.",
+                    "Use their interactive visualizations to compare models directly."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Voice Naturalness",
+                        "metric_measures": "Evaluates how natural and human-like the synthesized speech sounds.",
+                        "score_interpretation": "Higher scores indicate more natural-sounding speech.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests human-likeness",
+                            "Evaluates prosody quality",
+                            "Assesses voice consistency",
+                            "Measures emotional expression",
+                            "Tests accent authenticity",
+                            "Evaluates speaking rhythm"
+                        ],
+                        "ex_questions": [
+                            "Compare naturalness between emotional and neutral speech synthesis.",
+                            "Evaluate prosody in questions versus statements.",
+                            "Assess the authenticity of different speaking styles."
+                        ]
+                    },
+                    {
+                        "metric_name": "Voice Clarity",
+                        "metric_measures": "Assesses the clarity and intelligibility of synthesized speech.",
+                        "score_interpretation": "Higher scores indicate clearer speech output.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests pronunciation clarity",
+                            "Evaluates articulation",
+                            "Assesses audio quality",
+                            "Measures word boundaries",
+                            "Tests phoneme accuracy",
+                            "Evaluates speaker consistency"
+                        ],
+                        "ex_questions": [
+                            "Compare clarity in fast versus normal speech rates.",
+                            "Evaluate pronunciation of technical terms.",
+                            "Assess intelligibility in different acoustic contexts."
+                        ]
+                    },
+                    {
+                        "metric_name": "Processing Speed",
+                        "metric_measures": "Evaluates the time taken to generate speech from text input.",
+                        "score_interpretation": "Higher scores indicate faster processing.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests generation speed",
+                            "Evaluates latency",
+                            "Assesses real-time capability",
+                            "Measures throughput",
+                            "Tests batch processing",
+                            "Evaluates resource efficiency"
+                        ],
+                        "ex_questions": [
+                            "Compare processing speed for different text lengths.",
+                            "Evaluate real-time performance under varying loads.",
+                            "Assess scalability with batch processing."
+                        ]
+                    },
+                    {
+                        "metric_name": "Speaker Consistency",
+                        "metric_measures": "Evaluates the model's ability to maintain consistent voice characteristics.",
+                        "score_interpretation": "Higher scores indicate better consistency.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests voice stability",
+                            "Evaluates accent maintenance",
+                            "Assesses style preservation",
+                            "Measures tonal consistency",
+                            "Tests character retention",
+                            "Evaluates speaker identity"
+                        ],
+                        "ex_questions": [
+                            "Compare voice consistency across long passages.",
+                            "Evaluate maintenance of speaking style in different contexts.",
+                            "Assess stability of voice characteristics over time."
+                        ]
+                    }
+                ]
+            },
+            {
                 "leaderboard": "Papers with Code TTS",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2861,6 +2960,838 @@ RECOMMENDATIONS = {
                             "Compare quality scores across different language families.",
                             "Evaluate code-switching performance in multilingual text.",
                             "Assess pronunciation accuracy in non-native accents."
+                        ]
+                    }
+                ]
+            }
+        ], # End of Text to Speech (TTS) tasks
+        "Speech to text": [
+            {
+                "leaderboard": "Artificial Analysis STT",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/speech-to-text"
+                },
+                "tooltip": "Artificial Analysis provides comprehensive metrics for speech-to-text capabilities, focusing on production-ready models.",
+                "analysis_tips": [
+                    "Higher scores indicate better performance across all metrics.",
+                    "Consider both accuracy and speed metrics for production use.",
+                    "Compare performance across different audio quality levels.",
+                    "Look at real-world performance rather than just ideal conditions.",
+                    "Use their interactive visualizations to compare models directly."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Transcription Accuracy",
+                        "metric_measures": "Evaluates overall accuracy of speech recognition across various conditions.",
+                        "score_interpretation": "Higher scores indicate better transcription accuracy.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests word accuracy",
+                            "Evaluates punctuation placement",
+                            "Assesses grammar correction",
+                            "Measures speaker differentiation",
+                            "Tests context understanding",
+                            "Evaluates formatting accuracy"
+                        ],
+                        "ex_questions": [
+                            "Compare transcription accuracy between native and non-native speakers.",
+                            "Evaluate punctuation accuracy in complex sentences.",
+                            "Assess formatting consistency in different document types."
+                        ]
+                    },
+                    {
+                        "metric_name": "Real-World Robustness",
+                        "metric_measures": "Assesses performance in challenging real-world conditions.",
+                        "score_interpretation": "Higher scores indicate better handling of real-world scenarios.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests background noise handling",
+                            "Evaluates accent recognition",
+                            "Assesses microphone quality impact",
+                            "Measures distance adaptation",
+                            "Tests multi-speaker scenarios",
+                            "Evaluates environmental resilience"
+                        ],
+                        "ex_questions": [
+                            "Analyze performance in a busy cafe environment.",
+                            "Compare accuracy between professional and consumer microphones.",
+                            "Evaluate recognition quality at different speaker distances."
+                        ]
+                    },
+                    {
+                        "metric_name": "Processing Efficiency",
+                        "metric_measures": "Evaluates the speed and resource usage of speech recognition.",
+                        "score_interpretation": "Higher scores indicate more efficient processing.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests processing speed",
+                            "Evaluates resource usage",
+                            "Assesses batch handling",
+                            "Measures real-time capability",
+                            "Tests memory efficiency",
+                            "Evaluates scaling performance"
+                        ],
+                        "ex_questions": [
+                            "Compare processing time for different audio lengths.",
+                            "Evaluate performance under different computational constraints.",
+                            "Assess real-time transcription capabilities."
+                        ]
+                    },
+                    {
+                        "metric_name": "Specialized Content",
+                        "metric_measures": "Tests accuracy on domain-specific and technical content.",
+                        "score_interpretation": "Higher scores indicate better specialized content handling.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests technical terminology",
+                            "Evaluates domain adaptation",
+                            "Assesses jargon accuracy",
+                            "Measures consistency",
+                            "Tests field-specific terms",
+                            "Evaluates context understanding"
+                        ],
+                        "ex_questions": [
+                            "Compare accuracy in medical versus legal terminology.",
+                            "Evaluate recognition of technical scientific terms.",
+                            "Assess performance on industry-specific jargon."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Common Voice",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/dataset/common-voice"
+                },
+                "tooltip": "Mozilla's Common Voice is a comprehensive benchmark for evaluating speech recognition across multiple languages and accents.",
+                "analysis_tips": [
+                    "Lower WER and CER scores indicate better performance.",
+                    "Consider performance across different languages if multilingual support is needed.",
+                    "Pay attention to both clean and noisy audio performance.",
+                    "Look for models tested on diverse speaker demographics."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/1912.06670"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Word Error Rate (WER)",
+                        "metric_measures": "Evaluates accuracy of speech recognition by measuring word-level errors.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "Speech Recognition Research",
+                        "metric_details": [
+                            "Tests word accuracy",
+                            "Evaluates word substitutions",
+                            "Assesses word deletions",
+                            "Measures word insertions",
+                            "Tests sentence structure",
+                            "Evaluates contextual understanding"
+                        ],
+                        "ex_questions": [
+                            "Compare WER across different accent variations of English.",
+                            "Evaluate word accuracy in noisy versus clean audio conditions.",
+                            "Assess recognition accuracy for technical terminology."
+                        ]
+                    },
+                    {
+                        "metric_name": "Character Error Rate (CER)",
+                        "metric_measures": "Assesses transcription accuracy at the character level.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "Speech Recognition Research",
+                        "metric_details": [
+                            "Tests character-level accuracy",
+                            "Evaluates spelling precision",
+                            "Assesses phonetic accuracy",
+                            "Measures punctuation handling",
+                            "Tests diacritic recognition",
+                            "Evaluates character substitutions"
+                        ],
+                        "ex_questions": [
+                            "Analyze character-level accuracy in proper nouns.",
+                            "Compare performance on languages with different character sets.",
+                            "Evaluate accuracy in continuous versus isolated speech."
+                        ]
+                    },
+                    {
+                        "metric_name": "Sentence Error Rate (SER)",
+                        "metric_measures": "Evaluates the proportion of sentences with any transcription errors.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "Mozilla Common Voice Team",
+                        "metric_details": [
+                            "Tests sentence-level accuracy",
+                            "Evaluates complete utterances",
+                            "Assesses semantic preservation",
+                            "Measures grammatical correctness",
+                            "Tests context preservation",
+                            "Evaluates meaning accuracy"
+                        ],
+                        "ex_questions": [
+                            "Compare sentence accuracy across different speaking speeds.",
+                            "Evaluate performance on complex versus simple sentences.",
+                            "Assess accuracy in conversational versus formal speech."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "LibriSpeech ASR",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/sota/speech-recognition-on-librispeech-test-clean"
+                },
+                "tooltip": "LibriSpeech is a benchmark derived from audiobooks, offering both clean and noisy speech recognition evaluations.",
+                "analysis_tips": [
+                    "Consider both test-clean and test-other (noisy) scores.",
+                    "Compare performance between read speech and spontaneous speech.",
+                    "Look for models that maintain consistency across different speakers.",
+                    "Pay attention to real-time factor for production deployment."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/1912.01766"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Clean Speech WER",
+                        "metric_measures": "Evaluates word error rate on clear, well-recorded speech samples.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "LibriSpeech Research Team",
+                        "metric_details": [
+                            "Tests ideal conditions",
+                            "Evaluates clear articulation",
+                            "Assesses baseline accuracy",
+                            "Measures optimal performance",
+                            "Tests speaker consistency",
+                            "Evaluates pronunciation clarity"
+                        ],
+                        "ex_questions": [
+                            "Compare accuracy between different speaking rates in clean conditions.",
+                            "Evaluate performance on professional versus amateur readers.",
+                            "Assess recognition of clearly articulated technical terms."
+                        ]
+                    },
+                    {
+                        "metric_name": "Noisy Speech WER",
+                        "metric_measures": "Assesses word error rate on speech samples with background noise or poor recording quality.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "LibriSpeech Research Team",
+                        "metric_details": [
+                            "Tests noise resilience",
+                            "Evaluates robustness",
+                            "Assesses interference handling",
+                            "Measures signal separation",
+                            "Tests acoustic adaptation",
+                            "Evaluates error recovery"
+                        ],
+                        "ex_questions": [
+                            "Analyze performance with different types of background noise.",
+                            "Compare accuracy at various signal-to-noise ratios.",
+                            "Evaluate recognition in reverberant conditions."
+                        ]
+                    },
+                    {
+                        "metric_name": "Real-Time Factor (RTF)",
+                        "metric_measures": "Evaluates processing speed relative to audio duration.",
+                        "score_interpretation": "Lower values indicate faster processing (RTF < 1 means faster than real-time).",
+                        "metric_origin": "LibriSpeech Research Team",
+                        "metric_details": [
+                            "Tests processing speed",
+                            "Evaluates latency",
+                            "Assesses computational efficiency",
+                            "Measures throughput",
+                            "Tests resource usage",
+                            "Evaluates batch processing"
+                        ],
+                        "ex_questions": [
+                            "Compare processing speed for different audio lengths.",
+                            "Evaluate real-time performance under varying loads.",
+                            "Assess latency with different hardware configurations."
+                        ]
+                    },
+                    {
+                        "metric_name": "Homophone Accuracy",
+                        "metric_measures": "Tests ability to correctly transcribe words that sound identical but have different meanings.",
+                        "score_interpretation": "Higher percentages indicate better accuracy (100% is perfect).",
+                        "metric_origin": "LibriSpeech Research Team",
+                        "metric_details": [
+                            "Tests contextual understanding",
+                            "Evaluates semantic disambiguation",
+                            "Assesses context usage",
+                            "Measures word choice",
+                            "Tests grammar awareness",
+                            "Evaluates meaning preservation"
+                        ],
+                        "ex_questions": [
+                            "Evaluate accuracy in distinguishing 'their/there/they're' based on context.",
+                            "Compare performance on technical homophones in different fields.",
+                            "Assess contextual disambiguation in continuous speech."
+                        ]
+                    }
+                ]
+            },
+            # Add to the Speech to text array:
+            {
+                "leaderboard": "English Speech Benchmark (ESB)",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/dataset/esb"
+                },
+                "tooltip": "The English Speech Benchmark evaluates speech recognition across diverse accents, speaking styles, and recording conditions.",
+                "analysis_tips": [
+                    "Consider performance across different English accents.",
+                    "Pay attention to scores on spontaneous versus prepared speech.",
+                    "Look for models that handle diverse speaking styles well.",
+                    "Compare performance on different speech domains (interviews, lectures, conversations)."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2210.13352"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Accent Robustness",
+                        "metric_measures": "Evaluates recognition accuracy across different English accents and dialects.",
+                        "score_interpretation": "Higher scores indicate better accent handling (0-100).",
+                        "metric_origin": "ESB Research Team",
+                        "metric_details": [
+                            "Tests accent variation",
+                            "Evaluates dialect handling",
+                            "Assesses pronunciation differences",
+                            "Measures regional adaptability",
+                            "Tests phonetic variations",
+                            "Evaluates accent bias"
+                        ],
+                        "ex_questions": [
+                            "Compare recognition accuracy between British and Indian English accents.",
+                            "Evaluate performance on non-native English speakers from different regions.",
+                            "Assess adaptation to regional pronunciation patterns."
+                        ]
+                    },
+                    {
+                        "metric_name": "Spontaneous Speech WER",
+                        "metric_measures": "Assesses accuracy on natural, unscripted speech with disfluencies.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "ESB Research Team",
+                        "metric_details": [
+                            "Tests natural speech",
+                            "Evaluates disfluency handling",
+                            "Assesses hesitation markers",
+                            "Measures filler word handling",
+                            "Tests self-corrections",
+                            "Evaluates incomplete utterances"
+                        ],
+                        "ex_questions": [
+                            "Analyze accuracy in handling speech repairs and restarts.",
+                            "Compare performance on formal versus casual conversations.",
+                            "Evaluate recognition of filler words and hesitations."
+                        ]
+                    },
+                    {
+                        "metric_name": "Domain Adaptation Score",
+                        "metric_measures": "Evaluates performance across different speech domains and contexts.",
+                        "score_interpretation": "Higher scores indicate better domain adaptation (0-100).",
+                        "metric_origin": "ESB Research Team",
+                        "metric_details": [
+                            "Tests domain transfer",
+                            "Evaluates context handling",
+                            "Assesses vocabulary adaptation",
+                            "Measures style transfer",
+                            "Tests jargon recognition",
+                            "Evaluates register adaptation"
+                        ],
+                        "ex_questions": [
+                            "Compare accuracy between academic lectures and casual conversations.",
+                            "Evaluate performance on technical presentations versus interviews.",
+                            "Assess recognition of domain-specific terminology."
+                        ]
+                    },
+                    {
+                        "metric_name": "Speaking Rate Robustness",
+                        "metric_measures": "Tests recognition accuracy across different speaking speeds.",
+                        "score_interpretation": "Higher scores indicate better handling of varied speech rates (0-100).",
+                        "metric_origin": "ESB Research Team",
+                        "metric_details": [
+                            "Tests speed variation",
+                            "Evaluates rapid speech",
+                            "Assesses slow speech",
+                            "Measures rhythm handling",
+                            "Tests temporal adaptation",
+                            "Evaluates pace changes"
+                        ],
+                        "ex_questions": [
+                            "Compare accuracy between fast and slow speakers.",
+                            "Evaluate performance on varying speech rates within the same utterance.",
+                            "Assess recognition quality during speed transitions."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "SpeechOcean762",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/dataset/speechocean762"
+                },
+                "tooltip": "SpeechOcean762 is a multilingual benchmark focusing on real-world speech recognition scenarios, including challenging acoustic conditions.",
+                "analysis_tips": [
+                    "Consider performance across different environmental conditions.",
+                    "Pay attention to far-field versus near-field speech recognition.",
+                    "Look for models that handle overlapping speech well.",
+                    "Compare scores across different microphone types and configurations."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2303.11355"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Environmental Robustness",
+                        "metric_measures": "Evaluates recognition accuracy across different acoustic environments.",
+                        "score_interpretation": "Higher scores indicate better environmental adaptation (0-100).",
+                        "metric_origin": "SpeechOcean Research Team",
+                        "metric_details": [
+                            "Tests acoustic variations",
+                            "Evaluates background noise",
+                            "Assesses reverberation handling",
+                            "Measures echo cancellation",
+                            "Tests ambient adaptation",
+                            "Evaluates spatial acoustics"
+                        ],
+                        "ex_questions": [
+                            "Compare recognition accuracy in indoor versus outdoor environments.",
+                            "Evaluate performance in rooms with different reverberation characteristics.",
+                            "Assess adaptation to varying background noise types."
+                        ]
+                    },
+                    {
+                        "metric_name": "Distance Robustness",
+                        "metric_measures": "Assesses performance at varying distances between speaker and microphone.",
+                        "score_interpretation": "Higher scores indicate better distance handling (0-100).",
+                        "metric_origin": "SpeechOcean Research Team",
+                        "metric_details": [
+                            "Tests far-field speech",
+                            "Evaluates volume variation",
+                            "Assesses signal strength",
+                            "Measures distance impact",
+                            "Tests microphone arrays",
+                            "Evaluates spatial processing"
+                        ],
+                        "ex_questions": [
+                            "Compare accuracy between close-talking and far-field scenarios.",
+                            "Evaluate performance degradation with increasing distance.",
+                            "Assess recognition quality with different microphone configurations."
+                        ]
+                    },
+                    {
+                        "metric_name": "Overlapping Speech Accuracy",
+                        "metric_measures": "Tests ability to recognize speech in multi-speaker scenarios.",
+                        "score_interpretation": "Higher scores indicate better handling of overlapping speech (0-100).",
+                        "metric_origin": "SpeechOcean Research Team",
+                        "metric_details": [
+                            "Tests speaker separation",
+                            "Evaluates voice disambiguation",
+                            "Assesses cross-talk handling",
+                            "Measures speaker tracking",
+                            "Tests conversation flow",
+                            "Evaluates interference rejection"
+                        ],
+                        "ex_questions": [
+                            "Analyze accuracy in transcribing overlapping conversations.",
+                            "Compare performance with different numbers of simultaneous speakers.",
+                            "Evaluate speaker attribution in mixed conversations."
+                        ]
+                    },
+                    {
+                        "metric_name": "Device Adaptation",
+                        "metric_measures": "Evaluates performance across different recording devices and microphone types.",
+                        "score_interpretation": "Higher scores indicate better device adaptability (0-100).",
+                        "metric_origin": "SpeechOcean Research Team",
+                        "metric_details": [
+                            "Tests device variation",
+                            "Evaluates microphone quality",
+                            "Assesses hardware differences",
+                            "Measures frequency response",
+                            "Tests sampling rates",
+                            "Evaluates signal processing"
+                        ],
+                        "ex_questions": [
+                            "Compare recognition quality between professional and consumer microphones.",
+                            "Evaluate performance across different mobile device types.",
+                            "Assess adaptation to varying audio sampling rates."
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Text to image": [
+            {
+                "leaderboard": "LAION LIED",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://laion.ai/blog/lied/"
+                },
+                "tooltip": "The LAION Image Evaluation Dashboard (LIED) provides standardized metrics for comparing text-to-image models.",
+                "analysis_tips": [
+                    "Higher CLIP scores indicate better text-image alignment.",
+                    "Consider both automated metrics and human evaluations.",
+                    "Pay attention to aesthetic quality alongside accuracy.",
+                    "Look for models that maintain consistency across different prompt types."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2306.09400"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "CLIP Score",
+                        "metric_measures": "Evaluates how well generated images align with their text descriptions.",
+                        "score_interpretation": "Higher scores indicate better text-image alignment (0-100).",
+                        "metric_origin": "OpenAI Research",
+                        "metric_details": [
+                            "Tests semantic matching",
+                            "Evaluates concept accuracy",
+                            "Assesses attribute fidelity",
+                            "Measures style adherence",
+                            "Tests compositional understanding",
+                            "Evaluates visual accuracy"
+                        ],
+                        "ex_questions": [
+                            "Compare CLIP scores between simple and complex prompts.",
+                            "Evaluate alignment accuracy for abstract versus concrete concepts.",
+                            "Assess how well specific attributes are preserved in generation."
+                        ]
+                    },
+                    {
+                        "metric_name": "Aesthetic Score",
+                        "metric_measures": "Assesses the visual quality and appeal of generated images.",
+                        "score_interpretation": "Higher scores indicate better aesthetic quality (0-10).",
+                        "metric_origin": "LAION Research Team",
+                        "metric_details": [
+                            "Tests visual appeal",
+                            "Evaluates composition",
+                            "Assesses color harmony",
+                            "Measures technical quality",
+                            "Tests artistic merit",
+                            "Evaluates overall impact"
+                        ],
+                        "ex_questions": [
+                            "Compare aesthetic quality across different artistic styles.",
+                            "Evaluate composition quality in landscape versus portrait orientations.",
+                            "Assess color harmony in different lighting conditions."
+                        ]
+                    },
+                    {
+                        "metric_name": "Prompt Fidelity",
+                        "metric_measures": "Evaluates how accurately the image captures specific details from the prompt.",
+                        "score_interpretation": "Higher scores indicate better prompt adherence (0-100).",
+                        "metric_origin": "LAION Research Team",
+                        "metric_details": [
+                            "Tests detail accuracy",
+                            "Evaluates object placement",
+                            "Assesses attribute matching",
+                            "Measures spatial relations",
+                            "Tests color accuracy",
+                            "Evaluates consistency"
+                        ],
+                        "ex_questions": [
+                            "Analyze accuracy of specific object placement from prompt descriptions.",
+                            "Compare fidelity of simple versus complex spatial relationships.",
+                            "Evaluate preservation of specific colors and textures."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "PartiPrompts",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/paper/scaling-autoregressive-models-for-content-rich"
+                },
+                "tooltip": "PartiPrompts is a comprehensive benchmark focusing on challenging aspects of text-to-image generation, including compositionality and fine-grained details.",
+                "analysis_tips": [
+                    "Pay attention to performance on compositional prompts.",
+                    "Consider both object accuracy and spatial relationship handling.",
+                    "Look for models that maintain consistency across different prompt types.",
+                    "Compare performance on counting and numerical prompts."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2206.10789"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Compositional Accuracy",
+                        "metric_measures": "Evaluates ability to correctly compose multiple objects and attributes in a single image.",
+                        "score_interpretation": "Higher scores indicate better compositional generation (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests object relationships",
+                            "Evaluates attribute binding",
+                            "Assesses spatial layout",
+                            "Measures object interaction",
+                            "Tests scene complexity",
+                            "Evaluates contextual coherence"
+                        ],
+                        "ex_questions": [
+                            "Generate an image of a red cube on top of a blue sphere next to a yellow pyramid.",
+                            "Create a scene with three dogs playing fetch, one holding a frisbee.",
+                            "Show a garden with blooming roses behind a white picket fence."
+                        ]
+                    },
+                    {
+                        "metric_name": "Numerical Understanding",
+                        "metric_measures": "Assesses ability to handle prompts with specific quantities and counting.",
+                        "score_interpretation": "Higher scores indicate better numerical accuracy (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests quantity accuracy",
+                            "Evaluates counting precision",
+                            "Assesses numerical arrangements",
+                            "Measures pattern repetition",
+                            "Tests sequential ordering",
+                            "Evaluates group composition"
+                        ],
+                        "ex_questions": [
+                            "Generate exactly five red balloons floating in a blue sky.",
+                            "Create an image of three pairs of matching socks.",
+                            "Show a grid of four rows and three columns of identical apples."
+                        ]
+                    },
+                    {
+                        "metric_name": "Attribute Binding",
+                        "metric_measures": "Tests accuracy in applying specific attributes to correct objects.",
+                        "score_interpretation": "Higher scores indicate better attribute association (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests color assignment",
+                            "Evaluates size relationships",
+                            "Assesses texture application",
+                            "Measures style consistency",
+                            "Tests material rendering",
+                            "Evaluates detail preservation"
+                        ],
+                        "ex_questions": [
+                            "Generate a large red car next to a small blue bicycle.",
+                            "Create a wooden chair with a velvet cushion.",
+                            "Show a shiny metal sphere next to a matte plastic cube."
+                        ]
+                    },
+                    {
+                        "metric_name": "Spatial Understanding",
+                        "metric_measures": "Evaluates comprehension and execution of spatial relationships in prompts.",
+                        "score_interpretation": "Higher scores indicate better spatial reasoning (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests positional accuracy",
+                            "Evaluates relative placement",
+                            "Assesses depth perception",
+                            "Measures perspective handling",
+                            "Tests distance relationships",
+                            "Evaluates orientation accuracy"
+                        ],
+                        "ex_questions": [
+                            "Place a coffee cup between two books, with the handle facing right.",
+                            "Show a bird flying above three trees of increasing height.",
+                            "Create an image with a cat sitting behind a glass of water."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "DrawBench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/paper/photorealistic-text-to-image-diffusion-models"
+                },
+                "tooltip": "DrawBench provides a systematic evaluation framework focusing on challenging aspects of text-to-image generation, particularly photorealism and complex prompts.",
+                "analysis_tips": [
+                    "Consider performance across all prompt categories.",
+                    "Pay attention to both automated metrics and human evaluations.",
+                    "Compare models' handling of abstract versus concrete concepts.",
+                    "Look for consistent performance across different complexity levels."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2205.11487"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Photorealism",
+                        "metric_measures": "Evaluates the visual realism and fidelity of generated images.",
+                        "score_interpretation": "Higher scores indicate more photorealistic output (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests visual authenticity",
+                            "Evaluates lighting accuracy",
+                            "Assesses shadow rendering",
+                            "Measures texture detail",
+                            "Tests perspective accuracy",
+                            "Evaluates material properties"
+                        ],
+                        "ex_questions": [
+                            "Generate a photorealistic portrait in natural outdoor lighting.",
+                            "Create a detailed image of water droplets on a leaf.",
+                            "Show a realistic interior scene with proper lighting and shadows."
+                        ]
+                    },
+                    {
+                        "metric_name": "COLOR Score",
+                        "metric_measures": "Assesses accuracy and consistency of color handling in generated images.",
+                        "score_interpretation": "Higher scores indicate better color fidelity (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests color accuracy",
+                            "Evaluates color relationships",
+                            "Assesses color harmony",
+                            "Measures color consistency",
+                            "Tests lighting impact",
+                            "Evaluates color context"
+                        ],
+                        "ex_questions": [
+                            "Create an image with specific Pantone color combinations.",
+                            "Generate a sunset scene with accurate color gradients.",
+                            "Show a color wheel with precise hue transitions."
+                        ]
+                    },
+                    {
+                        "metric_name": "Complex Description Score",
+                        "metric_measures": "Evaluates ability to handle detailed and complex text descriptions.",
+                        "score_interpretation": "Higher scores indicate better handling of complex prompts (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests prompt comprehension",
+                            "Evaluates detail inclusion",
+                            "Assesses scene complexity",
+                            "Measures coherence",
+                            "Tests abstract concepts",
+                            "Evaluates narrative elements"
+                        ],
+                        "ex_questions": [
+                            "Generate a bustling city street during rush hour with various types of vehicles and pedestrians.",
+                            "Create a detailed fantasy landscape combining elements of different biomes.",
+                            "Show a complex mechanical device with multiple moving parts."
+                        ]
+                    },
+                    {
+                        "metric_name": "DRAW Score",
+                        "metric_measures": "Assesses overall drawing quality and artistic execution.",
+                        "score_interpretation": "Higher scores indicate better artistic quality (0-100).",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests artistic coherence",
+                            "Evaluates style consistency",
+                            "Assesses composition",
+                            "Measures technical skill",
+                            "Tests creative interpretation",
+                            "Evaluates aesthetic appeal"
+                        ],
+                        "ex_questions": [
+                            "Create a Renaissance-style portrait with appropriate technique and lighting.",
+                            "Generate an impressionist landscape with characteristic brushwork.",
+                            "Show a comic book scene with proper stylistic elements."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "ImagenHub",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/paper/imagenhub-photorealistic-text-to-image"
+                },
+                "tooltip": "ImagenHub provides comprehensive evaluation metrics focusing on photorealism, creativity, and technical quality across diverse generation scenarios.",
+                "analysis_tips": [
+                    "Consider both technical and perceptual quality metrics.",
+                    "Look at performance across different image types and styles.",
+                    "Pay attention to both aesthetic and accuracy scores.",
+                    "Compare models' ability to handle diverse prompt types."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2306.01873"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Image Fidelity (IF)",
+                        "metric_measures": "Evaluates the technical quality and accuracy of generated images.",
+                        "score_interpretation": "Higher scores indicate better image fidelity (0-100).",
+                        "metric_origin": "ImagenHub Research Team",
+                        "metric_details": [
+                            "Tests image resolution",
+                            "Evaluates detail preservation",
+                            "Assesses noise levels",
+                            "Measures artifact presence",
+                            "Tests edge clarity",
+                            "Evaluates texture quality"
+                        ],
+                        "ex_questions": [
+                            "Compare image quality at different resolution scales.",
+                            "Evaluate detail preservation in complex textures.",
+                            "Assess the presence of generation artifacts in different scenarios."
+                        ]
+                    },
+                    {
+                        "metric_name": "Semantic Consistency",
+                        "metric_measures": "Assesses how well the generated image matches the semantic content of the prompt.",
+                        "score_interpretation": "Higher scores indicate better semantic alignment (0-100).",
+                        "metric_origin": "ImagenHub Research Team",
+                        "metric_details": [
+                            "Tests concept accuracy",
+                            "Evaluates semantic matching",
+                            "Assesses contextual relevance",
+                            "Measures prompt adherence",
+                            "Tests subject recognition",
+                            "Evaluates theme consistency"
+                        ],
+                        "ex_questions": [
+                            "Generate an image that matches multiple semantic concepts simultaneously.",
+                            "Create a scene that accurately reflects abstract descriptions.",
+                            "Show proper interpretation of metaphorical language in prompts."
+                        ]
+                    },
+                    {
+                        "metric_name": "Creative Interpretation",
+                        "metric_measures": "Evaluates the model's ability to handle creative and artistic prompts.",
+                        "score_interpretation": "Higher scores indicate better creative execution (0-100).",
+                        "metric_origin": "ImagenHub Research Team",
+                        "metric_details": [
+                            "Tests style adaptation",
+                            "Evaluates artistic quality",
+                            "Assesses creative freedom",
+                            "Measures stylistic accuracy",
+                            "Tests artistic coherence",
+                            "Evaluates aesthetic choices"
+                        ],
+                        "ex_questions": [
+                            "Create an image combining multiple artistic styles cohesively.",
+                            "Generate an abstract interpretation of an emotional concept.",
+                            "Show a creative reinterpretation of a classical artwork."
+                        ]
+                    },
+                    {
+                        "metric_name": "Technical Robustness",
+                        "metric_measures": "Assesses consistency and reliability across different generation scenarios.",
+                        "score_interpretation": "Higher scores indicate better technical stability (0-100).",
+                        "metric_origin": "ImagenHub Research Team",
+                        "metric_details": [
+                            "Tests generation stability",
+                            "Evaluates consistency",
+                            "Assesses reproducibility",
+                            "Measures error handling",
+                            "Tests edge cases",
+                            "Evaluates failure modes"
+                        ],
+                        "ex_questions": [
+                            "Generate multiple variations of the same prompt to test consistency.",
+                            "Evaluate handling of edge case scenarios and unusual prompts.",
+                            "Assess stability with increasingly complex requirements."
                         ]
                     }
                 ]
