@@ -4,3 +4,4 @@ db_credentials.txt
 .DS_Store
 **.xlsx
 generate_key.py
+swipe_file.py

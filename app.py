@@ -1,4 +1,11 @@
 # ========================================================================
+#   Prompt info
+# ======================================================================== 
+
+# Claude Chat
+# https://claude.ai/chat/f81e0f63-f70a-472b-8956-e7c44cb01c54
+
+# ========================================================================
 #   Imports
 # ======================================================================== 
 
@@ -31,27 +38,25 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # In-memory structure to guide the question flow
 QUESTIONS = {
     "task": {
-        "question": "What task do you want the model to do?",
-        "tooltip": "This list isn't exhaustive of what AI can do; it's more representative of the types of tasks that have associated intelligence-leaning performance metrics.",
+        "question": "What do you want the model to do?",
+        "tooltip": "This list isn't exhaustive of what AI can do; it's more representative of the types of tasks that have associated intelligence-leaning performance benchmarks.",
         "options": [
+            "Chain agents", 
             "Chat", 
-            "Code", 
-            "Creative writing", 
-            "Analyze data", 
-            "Math", 
-            "Complex reasoning", 
-            "Text to speech", 
-            "Speech to text", 
-            "Text to image", 
-            "Image to text", 
-            "Text to video",
-            "Other" 
+            "Solve complex problems",  
+            "Generate code", 
+            "Generate images", 
+            "Generate text", 
+            "Generate video"
+            "Solve math problems", 
+            "Convert speech to text", 
+            "Convert text to speech" 
             ],
         "next": "goal"
     },
     "goal": {
         "question": "What do you want to evaluate?",
-        "tooltip": "There are many metrics leaderboards provide. The answer to this question will help whittle down the list of metrics to choose from.",
+        "tooltip": "There are many metrics leaderboards provide. The answer to this question will help whittle down the list of benchmarks to choose from.",
         "options": [
             "Quality", 
             "Speed",
@@ -64,11 +69,46 @@ QUESTIONS = {
     
 }
 
-# Recommendations with detailed metric information
+# Recommendations with detailed benchmark information
 RECOMMENDATIONS = {
+    # Evaluate: Quality
     "Quality": {
+        "Chain agents": [
+            {
+                # VERIFED   
+                "leaderboard": "SEAL",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://scale.com/leaderboard/tool_use"
+                },
+                "tooltip": "",
+                "analysis_tips": [],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": ""
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Score",
+                        "metric_measures": "Score calculates the mean of ToolComp-Enterprise and ToolComp-Chat. ToolComp-Enterprise assesses models on tasks requiring the use of 11 distinct tools, reflecting complex scenarios typical in enterprise settings. ToolComp-Chat evaluates models on tasks involving two common tools—Google Search and Python Interpreter—focusing on general-purpose chatbot capabilities.",
+                        "score_interpretation": "Score ranges from 1 to 100 (higher is better).",
+                        "metric_origin": "ToolComp",
+                        "metric_details": [
+                            "The ToolComp benchmark comprises 485 prompts & final answers designed to evaluate the proficiency of AI models in tasks necessitating dependent tool usage.",
+                            "Define dependent tool calling as the need to call multiple tools in sequence such that the output of a previous tool must be used to motivate the input for a subsequent tool.",
+                        ],
+                        "ex_questions": [
+                            "Suppose you have a 2 inch x 2 inch x 2 inch box. How many of these boxes can you fit into the biggest U-Haul truck (biggest truck as of 2024)?",
+                            "Calculate the average daytime temperature in Paris during the week of Halloween (October 29th to November 4th, 2023). To plan accordingly, Sarah's family also wants to know the extreme temperatures experienced during this period. Specifically, what were the highest and lowest temperatures (in Fahrenheit) recorded in Paris during this time frame? Additionally, her family wants to know which date in this period had the lowest temperature as well the total hours of precipitation and the amount of rainfall (in mm) on that specific date.",
+                            "Can you find Microsoft's stock price on the day before Windows XP was released and on the day of its release? Then, provide the percentage change between the two stock prices and the date difference between the two dates.",
+                        ]
+                    }
+                ]
+            },
+            ],
         "Chat": [
             {
+                # VERIFIED
                 "leaderboard": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -76,9 +116,10 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score.",
+                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
                     "You can sort the table by each column.",
-                    "The What LLM Provider does a much better job visualizing the data from the Artificial Analysis leaderboard imo (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
+                    "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and hte nature of the prompt source (e.g., configurable, fixed, or crowd).",
                 ],
                 "paper": {
                     "text": "Nerdy details 🤓",
@@ -859,7 +900,286 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Code": [
+        "Solve complex problems": [
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard includes specific evaluations of complex reasoning through human preference ratings.",
+                "analysis_tips": [
+                    "Pay special attention to the Hard Prompts metrics which test complex reasoning.",
+                    "Consider Multi-Turn performance for extended reasoning chains.",
+                    "Look for models that maintain logical consistency across longer responses.",
+                    "Compare how models handle both structured and open-ended reasoning tasks."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2403.04132"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Hard Prompts (Overall)",
+                        "metric_measures": "Evaluates performance on complex, multi-step reasoning challenges.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests logical deduction",
+                            "Evaluates causal reasoning",
+                            "Assesses problem decomposition",
+                            "Measures argument analysis",
+                            "Tests hypothesis generation",
+                            "Evaluates evidence evaluation"
+                        ],
+                        "ex_questions": [
+                            "Analyze the potential long-term consequences of implementing a universal basic income system.",
+                            "Design a solution for reducing urban traffic that considers economic, social, and environmental factors.",
+                            "Evaluate three competing theories about dark matter and explain which has the strongest evidence."
+                        ]
+                    },
+                    {
+                        "metric_name": "Multi-Turn Reasoning",
+                        "metric_measures": "Tests ability to maintain logical consistency across extended reasoning chains.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests reasoning continuity",
+                            "Evaluates premise tracking",
+                            "Assesses logical flow",
+                            "Measures assumption consistency",
+                            "Tests inferential accuracy",
+                            "Evaluates conclusion validity"
+                        ],
+                        "ex_questions": [
+                            "Let's solve a complex murder mystery, step by step, evaluating each piece of evidence.",
+                            "Help me diagnose a system failure by analyzing multiple potential causes and their interactions.",
+                            "Guide me through designing a renewable energy system, considering multiple interconnected factors."
+                        ]
+                    },
+                    {
+                        "metric_name": "Complex Problem Solving",
+                        "metric_measures": "Assesses ability to solve problems requiring multiple steps and consideration of various factors.",
+                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
+                        "metric_origin": "LMSYS Org, UC Berkeley",
+                        "metric_details": [
+                            "Tests strategic thinking",
+                            "Evaluates trade-off analysis",
+                            "Assesses solution optimization",
+                            "Measures constraint handling",
+                            "Tests scenario planning",
+                            "Evaluates decision justification"
+                        ],
+                        "ex_questions": [
+                            "Develop a strategy for a company to expand internationally while minimizing environmental impact.",
+                            "Create a plan for evacuating a large city during a natural disaster, considering all critical factors.",
+                            "Design an ethical framework for deploying autonomous vehicles in urban environments."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+                },
+                "tooltip": "The Hugging Face leaderboard includes several benchmarks specifically designed to test complex reasoning capabilities.",
+                "analysis_tips": [
+                    "This leaderboard only includes open models, so you won't find proprietary models here.",
+                    "Consider both raw and processed scores for reasoning benchmarks.",
+                    "Pay attention to performance on multi-step reasoning tasks.",
+                    "Look for models that excel at both structured and open-ended reasoning."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "BBH (BIG-bench Hard)",
+                        "metric_measures": "Evaluates performance on challenging prompts requiring complex reasoning.",
+                        "score_interpretation": "Higher scores indicate better complex reasoning capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests multi-step reasoning",
+                            "Evaluates novel problem-solving",
+                            "Assesses abstract thinking",
+                            "Measures strategic planning",
+                            "Tests cognitive flexibility",
+                            "Evaluates creative solutions"
+                        ],
+                        "ex_questions": [
+                            "If all zorbs are plips, and no plips are woops, what can we conclude about zorbs and woops? Explain your reasoning.",
+                            "Design a system that sorts objects by both color and size, handling edge cases like partially colored items.",
+                            "Given these rules for a new board game, identify the optimal winning strategy."
+                        ]
+                    },
+                    {
+                        "metric_name": "BBH Raw",
+                        "metric_measures": "Provides unprocessed scores from the BIG-bench Hard dataset evaluation.",
+                        "score_interpretation": "Higher scores reflect better raw performance on complex reasoning tasks.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Shows unmodified scores",
+                            "Tests pure reasoning ability",
+                            "Assesses raw performance",
+                            "Measures direct responses",
+                            "Tests unadjusted accuracy",
+                            "Evaluates baseline capabilities"
+                        ],
+                        "ex_questions": [
+                            "Solve this logic puzzle without any hints or formatting adjustments.",
+                            "Complete this pattern sequence using only first-principles reasoning.",
+                            "Determine the next steps in this complex scenario without additional context."
+                        ]
+                    },
+                    {
+                        "metric_name": "MUSR",
+                        "metric_measures": "Evaluates performance on multi-step reasoning tasks.",
+                        "score_interpretation": "Higher scores indicate better sequential reasoning ability.",
+                        "metric_origin": "HuggingFace Research Team",
+                        "metric_details": [
+                            "Tests step-by-step logic",
+                            "Evaluates reasoning chains",
+                            "Assesses intermediate steps",
+                            "Measures solution pathways",
+                            "Tests premise tracking",
+                            "Evaluates conclusion validity"
+                        ],
+                        "ex_questions": [
+                            "Plan a city's public transportation system, considering population growth, budget constraints, and environmental impact.",
+                            "Develop a strategy for reducing food waste across a supply chain, addressing each stage systematically.",
+                            "Analyze the potential effects of a new technology on different sectors of society, tracking interdependencies."
+                        ]
+                    },
+                    {
+                        "metric_name": "MUSR Raw",
+                        "metric_measures": "Provides raw scores from multi-step reasoning evaluations.",
+                        "score_interpretation": "Higher scores indicate better raw performance in sequential reasoning.",
+                        "metric_origin": "HuggingFace Research Team",
+                        "metric_details": [
+                            "Records unprocessed results",
+                            "Tests baseline reasoning",
+                            "Assesses raw step accuracy",
+                            "Measures direct performance",
+                            "Tests sequential thinking",
+                            "Evaluates pure logic"
+                        ],
+                        "ex_questions": [
+                            "Break down this complex business problem into its component parts without guidance.",
+                            "Trace the cause-and-effect relationships in this historical event using only available facts.",
+                            "Map out the decision tree for this strategic planning scenario from first principles."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "BIG-bench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
+                },
+                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-bench) includes extensive evaluations of complex reasoning capabilities.",
+                "analysis_tips": [
+                    "Focus on tasks that require multi-step reasoning processes.",
+                    "Consider performance across different types of logical challenges.",
+                    "Pay attention to both accuracy and explanation quality.",
+                    "Look for models that can handle novel reasoning scenarios."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2206.04615"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Logical Deduction",
+                        "metric_measures": "Tests ability to draw valid conclusions from given premises.",
+                        "score_interpretation": "Higher scores indicate better logical reasoning capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests formal logic application",
+                            "Evaluates deductive reasoning",
+                            "Assesses syllogistic logic",
+                            "Measures inference validity",
+                            "Tests premise analysis",
+                            "Evaluates conclusion soundness"
+                        ],
+                        "ex_questions": [
+                            "Given that no cats are dogs and all pets in this house are cats, what can we conclude about dogs in this house?",
+                            "If event A causes B, and B causes C, but C prevents A, analyze the logical paradox.",
+                            "Using these three rules about a fictional society, determine which statements must be true."
+                        ]
+                    },
+                    {
+                        "metric_name": "Strategy QA",
+                        "metric_measures": "Evaluates strategic thinking and multi-step planning abilities.",
+                        "score_interpretation": "Higher scores indicate better strategic reasoning capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests strategic planning",
+                            "Evaluates resource allocation",
+                            "Assesses outcome prediction",
+                            "Measures decision optimization",
+                            "Tests contingency planning",
+                            "Evaluates trade-off analysis"
+                        ],
+                        "ex_questions": [
+                            "Design a strategy to maximize crop yield with limited water resources over five years.",
+                            "Plan the most efficient way to evacuate a large building given specific constraints.",
+                            "Develop a market entry strategy considering multiple competing factors."
+                        ]
+                    },
+                    {
+                        "metric_name": "Causal Reasoning",
+                        "metric_measures": "Tests understanding of cause-and-effect relationships in complex systems.",
+                        "score_interpretation": "Higher scores indicate better causal reasoning abilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests causality identification",
+                            "Evaluates intervention effects",
+                            "Assesses confounding factors",
+                            "Measures chain reactions",
+                            "Tests counterfactual thinking",
+                            "Evaluates causal networks"
+                        ],
+                        "ex_questions": [
+                            "Analyze how a change in interest rates affects different sectors of the economy.",
+                            "Determine the likely root cause of multiple overlapping system failures.",
+                            "Predict the cascading effects of removing a keystone species from an ecosystem."
+                        ]
+                    },
+                    {
+                        "metric_name": "Analogical Reasoning",
+                        "metric_measures": "Assesses ability to transfer knowledge between different domains using analogies.",
+                        "score_interpretation": "Higher scores indicate better analogical thinking capabilities.",
+                        "metric_origin": "Google Research",
+                        "metric_details": [
+                            "Tests pattern matching",
+                            "Evaluates conceptual mapping",
+                            "Assesses structural similarity",
+                            "Measures abstraction skills",
+                            "Tests knowledge transfer",
+                            "Evaluates analogy creation"
+                        ],
+                        "ex_questions": [
+                            "Explain how the human immune system is like a country's defense system.",
+                            "Compare the structure of a corporate hierarchy to another complex system.",
+                            "Find analogous solutions between biological and technological systems."
+                        ]
+                    }
+                ]
+            },
+            {
+               "Leaderboard": "oobabooga",
+               "Link": {
+                   "text": "View leaderboard",
+                   "url": "https://oobabooga.github.io/benchmark.html"
+               },
+               # ChatGPT thread: https://chatgpt.com/c/67589536-ab04-8002-8b22-b844466bc6af
+            },
+        ],
+        "Generate code": [
             {
                 "leaderboard": "BigCodeBench Leaderboard",
                 "leaderboard_link": {
@@ -1304,85 +1624,10 @@ RECOMMENDATIONS = {
                     }
                 ]
             },
-            {
-                "leaderboard": "APPS Benchmark",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/dataset/apps"
-                },
-                "tooltip": "The APPS benchmark evaluates coding ability using real-world programming problems from sites like Codeforces, focusing on problem-solving and functional correctness rather than just code completion.",
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2105.09938"
-                },
-                "analysis_tips": [
-                    "At the time of writing, APPS is only incorporated into the Papers with Code leaderboard, so you'll need to navigate to the leaderboard to see the latest results. Most of the leaderboards use OpenAI's HumanEval benchmark for code generation. I only included it because it's very comprehensive and can be useful in picking models for coding tasks.",
-                    "Problems are categorized by difficulty (introductory, interview, competition).",
-                    "Focus on the pass rates that match your use case - strict pass rates matter more for production code.",
-                    "The benchmark includes extensive test cases, making it more rigorous than simpler code generation metrics."
-                ],
-                "metrics": [
-                    {
-                        "metric_name": "Strict Accuracy",
-                        "metric_measures": "Evaluates whether generated code passes all test cases exactly as specified",
-                        "score_interpretation": "Higher percentages indicate better performance (0-100%)",
-                        "metric_origin": "Hendrycks et al., UC Berkeley",
-                        "metric_details": [
-                            "Requires passing all test cases",
-                            "Tests edge cases comprehensively",
-                            "Evaluates time complexity requirements",
-                            "Checks memory usage constraints",
-                            "Assesses output format accuracy",
-                            "Verifies input handling"
-                        ],
-                        "ex_questions": [
-                            "Implement a function to find the longest increasing subsequence in O(n log n) time",
-                            "Create a memory-efficient solution for finding all prime numbers up to n",
-                            "Write a program that handles multiple edge cases in matrix multiplication"
-                        ]
-                    },
-                    {
-                        "metric_name": "Relaxed Accuracy",
-                        "metric_measures": "Evaluates code that passes most test cases with minor formatting or non-critical differences",
-                        "score_interpretation": "Higher percentages indicate better performance (0-100%)",
-                        "metric_origin": "Hendrycks et al., UC Berkeley",
-                        "metric_details": [
-                            "Allows minor formatting differences",
-                            "Considers partial test case success",
-                            "Evaluates functional correctness",
-                            "Assesses algorithmic approach",
-                            "Tests core logic implementation",
-                            "Measures problem-solving ability"
-                        ],
-                        "ex_questions": [
-                            "Write a function to check if a string is a palindrome, ignoring case and punctuation",
-                            "Implement a basic calculator that handles addition and multiplication",
-                            "Create a function that finds common elements in two sorted arrays"
-                        ]
-                    },
-                    {
-                        "metric_name": "Problem-Solving Score",
-                        "metric_measures": "Evaluates the model's ability to understand and approach complex programming problems",
-                        "score_interpretation": "Higher scores indicate better problem-solving capabilities",
-                        "metric_origin": "Hendrycks et al., UC Berkeley",
-                        "metric_details": [
-                            "Assesses problem understanding",
-                            "Evaluates solution approach",
-                            "Tests algorithmic thinking",
-                            "Measures optimization skills",
-                            "Considers solution elegance",
-                            "Evaluates code organization"
-                        ],
-                        "ex_questions": [
-                            "Design an efficient algorithm for finding the k most frequent elements in an array.",
-                            "Create a system for managing concurrent database connections with a connection pool.",
-                            "Implement a solution for the traveling salesman problem with time constraints."
-                        ]
-                    }
-                ]
-            }
         ],
-        "Creative Writing": [
+        "Generate images": [
+            ],
+        "Generate text": [
             {
                 "leaderboard": "Chatbot Arena",
                 "leaderboard_link": {
@@ -1612,296 +1857,8 @@ RECOMMENDATIONS = {
                 ]
             }    
         ], # End of Creative Writing array
-        "Analyze data": [
-            {
-                "leaderboard": "Chatbot Arena",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://lmarena.ai/?leaderboard"
-                },
-                "tooltip": "While primarily a general chatbot leaderboard, Chatbot Arena includes specific evaluations of data analysis capabilities.",
-                "analysis_tips": [
-                    "Pay attention to how models perform on data interpretation tasks.",
-                    "The Longer Query metric is particularly relevant for complex data analysis tasks.",
-                    "Consider models' ability to maintain accuracy when analyzing large datasets.",
-                    "Look for models that excel at both pattern recognition and clear data explanation."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/pdf/2403.04132"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Data Interpretation",
-                        "metric_measures": "Evaluates the model's ability to analyze and explain patterns in structured data.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
-                        "metric_origin": "LMSYS Org, UC Berkeley",
-                        "metric_details": [
-                            "Tests pattern recognition",
-                            "Evaluates trend identification",
-                            "Assesses anomaly detection",
-                            "Measures data summarization",
-                            "Tests correlation identification",
-                            "Evaluates insight extraction"
-                        ],
-                        "ex_questions": [
-                            "Analyze this sales dataset to identify seasonal patterns and explain their significance.",
-                            "Review this customer feedback data and identify the main themes and sentiment trends.",
-                            "Examine this website traffic data and identify unusual patterns or anomalies."
-                        ]
-                    },
-                    {
-                        "metric_name": "Data Visualization Analysis",
-                        "metric_measures": "Tests ability to interpret and explain various data visualizations.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
-                        "metric_origin": "LMSYS Org, UC Berkeley",
-                        "metric_details": [
-                            "Tests chart interpretation",
-                            "Evaluates graph analysis",
-                            "Assesses visual pattern recognition",
-                            "Measures insight communication",
-                            "Tests multiple visualization types",
-                            "Evaluates statistical understanding"
-                        ],
-                        "ex_questions": [
-                            "Interpret this heatmap showing user engagement patterns across different times and days.",
-                            "Analyze this scatter plot of customer lifetime value versus acquisition cost.",
-                            "Explain the trends shown in this time series visualization of market data."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "Artificial Analysis includes specific metrics for evaluating data analysis capabilities.",
-                "analysis_tips": [
-                    "Higher scores indicate better performance across all metrics.",
-                    "Focus on models that maintain accuracy while providing clear explanations.",
-                    "Consider both speed and accuracy for large dataset analysis.",
-                    "Look for models that excel at identifying complex patterns."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Pattern Recognition",
-                        "metric_measures": "Assesses ability to identify and explain patterns in complex datasets.",
-                        "score_interpretation": "Higher scores indicate better pattern recognition capabilities.",
-                        "metric_origin": "Artificial Analysis Research Team",
-                        "metric_details": [
-                            "Tests pattern identification",
-                            "Evaluates trend analysis",
-                            "Assesses correlation detection",
-                            "Measures outlier identification",
-                            "Tests temporal pattern recognition",
-                            "Evaluates multivariate analysis"
-                        ],
-                        "ex_questions": [
-                            "Identify recurring patterns in this customer purchase behavior dataset.",
-                            "Analyze this environmental data to find correlations between different variables.",
-                            "Detect and explain anomalies in this network traffic data."
-                        ]
-                    }
-                ]
-            },
-            # Add to the Analyze data array:
-            {
-                "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
-                },
-                "tooltip": "The Hugging Face leaderboard includes metrics specifically focused on data analysis capabilities.",
-                "analysis_tips": [
-                    "This leaderboard only includes open models, so you won't find proprietary models here.",
-                    "Consider how models perform on both structured and unstructured data analysis.",
-                    "Pay attention to models that maintain accuracy with larger datasets.",
-                    "Look for models that excel at both numerical and categorical data analysis."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Statistical Analysis",
-                        "metric_measures": "Evaluates ability to perform and explain statistical analyses of datasets.",
-                        "score_interpretation": "Higher scores indicate better statistical analysis capabilities.",
-                        "metric_origin": "Hugging Face Research Team",
-                        "metric_details": [
-                            "Tests descriptive statistics",
-                            "Evaluates distribution analysis",
-                            "Assesses sampling understanding",
-                            "Measures hypothesis testing",
-                            "Tests confidence interval calculation",
-                            "Evaluates statistical inference"
-                        ],
-                        "ex_questions": [
-                            "Analyze this dataset for normality and explain your findings with appropriate statistics.",
-                            "Determine if there's a significant difference between these two customer segments.",
-                            "Explain what the skewness of this distribution tells us about our data."
-                        ]
-                    },
-                    {
-                        "metric_name": "Data Quality Analysis",
-                        "metric_measures": "Assesses ability to evaluate and explain data quality issues.",
-                        "score_interpretation": "Higher scores indicate better data quality assessment capabilities.",
-                        "metric_origin": "Hugging Face Research Team",
-                        "metric_details": [
-                            "Tests missing data detection",
-                            "Evaluates outlier identification",
-                            "Assesses data consistency",
-                            "Measures data completeness",
-                            "Tests data validity",
-                            "Evaluates bias detection"
-                        ],
-                        "ex_questions": [
-                            "Identify potential data quality issues in this customer database.",
-                            "Analyze this survey data for potential response biases.",
-                            "Evaluate the completeness and consistency of this time series data."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum leaderboard includes simplified but comprehensive metrics for data analysis tasks.",
-                "analysis_tips": [
-                    "The primary value is in comparing two models directly.",
-                    "Check the last updated date at the bottom of the page.",
-                    "Consider how models handle both exploratory and confirmatory analysis.",
-                    "Look for models that excel at translating analysis into clear insights."
-                ],
-                "metrics": [
-                    {
-                        "metric_name": "Data Insight Generation",
-                        "metric_measures": "Evaluates ability to generate meaningful insights from data analysis.",
-                        "score_interpretation": "Higher scores indicate better insight generation capabilities.",
-                        "metric_origin": "Vellum AI Research Team",
-                        "metric_details": [
-                            "Tests insight relevance",
-                            "Evaluates business impact",
-                            "Assesses actionability",
-                            "Measures insight clarity",
-                            "Tests insight prioritization",
-                            "Evaluates recommendation quality"
-                        ],
-                        "ex_questions": [
-                            "Analyze this e-commerce data and provide actionable recommendations for improving sales.",
-                            "Review this customer churn data and identify the most important factors driving attrition.",
-                            "Examine this marketing campaign data and suggest optimization strategies."
-                        ]
-                    },
-                    {
-                        "metric_name": "Time Series Analysis",
-                        "metric_measures": "Tests ability to analyze and interpret temporal data patterns.",
-                        "score_interpretation": "Higher scores indicate better time series analysis capabilities.",
-                        "metric_origin": "Vellum AI Research Team",
-                        "metric_details": [
-                            "Tests trend identification",
-                            "Evaluates seasonality detection",
-                            "Assesses cyclical patterns",
-                            "Measures forecasting accuracy",
-                            "Tests temporal dependencies",
-                            "Evaluates change point detection"
-                        ],
-                        "ex_questions": [
-                            "Analyze these monthly sales figures to identify underlying trends and seasonal patterns.",
-                            "Detect and explain any significant shifts in this website traffic data over time.",
-                            "Identify leading indicators in this economic data time series."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "BIG-bench",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
-                },
-                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-bench) includes specific tasks for evaluating data analysis capabilities.",
-                "analysis_tips": [
-                    "Focus on the data interpretation and analysis subtasks.",
-                    "Consider performance across different data complexity levels.",
-                    "Pay attention to models that maintain accuracy with novel data formats.",
-                    "Look at both accuracy and explanation quality in analysis tasks."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2206.04615"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Data Extraction",
-                        "metric_measures": "Evaluates ability to extract relevant information from complex data structures.",
-                        "score_interpretation": "Higher scores indicate better data extraction and interpretation capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests structured data parsing",
-                            "Evaluates information retrieval",
-                            "Assesses data transformation",
-                            "Measures accuracy of extraction",
-                            "Tests handling of nested data",
-                            "Evaluates format adaptation"
-                        ],
-                        "ex_questions": [
-                            "Extract all customer complaints from this JSON dataset that mention delivery delays.",
-                            "Identify key performance metrics from this nested XML report structure.",
-                            "Parse this semi-structured log file to extract error patterns."
-                        ]
-                    },
-                    {
-                        "metric_name": "Comparative Analysis",
-                        "metric_measures": "Tests ability to compare and contrast different datasets or time periods.",
-                        "score_interpretation": "Higher scores indicate better comparative analysis capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests dataset comparison",
-                            "Evaluates change analysis",
-                            "Assesses performance metrics",
-                            "Measures trend differences",
-                            "Tests cohort analysis",
-                            "Evaluates variance explanation"
-                        ],
-                        "ex_questions": [
-                            "Compare performance metrics between these two business quarters and explain significant changes.",
-                            "Analyze how customer behavior differs between these two market segments.",
-                            "Identify key differences in product performance across different regions."
-                        ]
-                    },
-                    {
-                        "metric_name": "Dataset Understanding",
-                        "metric_measures": "Assesses comprehension of dataset structure, relationships, and limitations.",
-                        "score_interpretation": "Higher scores indicate better dataset comprehension capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests schema understanding",
-                            "Evaluates relationship mapping",
-                            "Assesses metadata comprehension",
-                            "Measures constraint recognition",
-                            "Tests data lineage tracking",
-                            "Evaluates limitation identification"
-                        ],
-                        "ex_questions": [
-                            "Explain the relationships between different tables in this database schema.",
-                            "Identify potential limitations and biases in this survey dataset.",
-                            "Map the data flow and transformations in this analytics pipeline."
-                        ]
-                    }
-                ]
-            }  
-        ], # End of Analyze data array
-        "Math": [
+        "Generate video": [],      
+        "Solve math problems": [
             {
                 "leaderboard": "Chatbot Arena",
                 "leaderboard_link": {
@@ -2134,838 +2091,21 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                "leaderboard": "BIG-bench",
+                "leaderboard": "MathEval",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
+                    "url": "https://matheval.ai/en/leaderboard/"
                 },
-                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-bench) includes several mathematics-specific tasks designed to test different aspects of mathematical reasoning.",
-                "analysis_tips": [
-                    "Pay attention to performance across different mathematical domains.",
-                    "Consider both accuracy and reasoning quality in solutions.",
-                    "Look for models that can explain their mathematical thinking.",
-                    "Compare performance on both straightforward and multi-step problems."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2206.04615"
+            },
+            {
+                "leaderboard": "Papers with Code",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/sota/math-word-problem-solving-on-math"
                 },
-                "metrics": [
-                    {
-                        "metric_name": "Mathematical Induction",
-                        "metric_measures": "Tests ability to understand and apply mathematical induction principles.",
-                        "score_interpretation": "Higher scores indicate better mathematical reasoning capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests proof construction",
-                            "Evaluates logical reasoning",
-                            "Assesses pattern recognition",
-                            "Measures proof verification",
-                            "Tests base case analysis",
-                            "Evaluates inductive steps"
-                        ],
-                        "ex_questions": [
-                            "Prove by induction that 1 + 2 + ... + n = n(n+1)/2 for all positive integers n.",
-                            "Show that 2^n > n^2 for n ≥ 5 using mathematical induction.",
-                            "Prove that 3 divides n^3 + 2n for all non-negative integers n."
-                        ]
-                    },
-                    {
-                        "metric_name": "Abstract Algebra",
-                        "metric_measures": "Evaluates understanding of abstract mathematical structures and proofs.",
-                        "score_interpretation": "Higher scores indicate better abstract mathematical reasoning.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests group theory",
-                            "Evaluates ring properties",
-                            "Assesses algebraic structures",
-                            "Measures proof techniques",
-                            "Tests isomorphism understanding",
-                            "Evaluates abstract reasoning"
-                        ],
-                        "ex_questions": [
-                            "Prove that the set of 2x2 invertible matrices forms a group under matrix multiplication.",
-                            "Show that if G is a group of order 8, then G must have an element of order 2.",
-                            "Determine all homomorphisms from Z6 to Z8."
-                        ]
-                    },
-                    {
-                        "metric_name": "Mathematical Logic",
-                        "metric_measures": "Assesses capability in formal logic and mathematical reasoning.",
-                        "score_interpretation": "Higher scores indicate better logical reasoning abilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests logical deduction",
-                            "Evaluates formal proofs",
-                            "Assesses truth tables",
-                            "Measures predicate logic",
-                            "Tests quantifier usage",
-                            "Evaluates logical equivalence"
-                        ],
-                        "ex_questions": [
-                            "Prove that if (p → q) and (q → r) are true, then (p → r) must be true.",
-                            "Show that these two logical statements are equivalent using a truth table.",
-                            "Convert this English statement into predicate logic: 'Every even number greater than 2 is the sum of two primes.'"
-                        ]
-                    },
-                    {
-                        "metric_name": "Word Problems",
-                        "metric_measures": "Tests ability to translate real-world scenarios into mathematical solutions.",
-                        "score_interpretation": "Higher scores indicate better applied mathematical problem-solving.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests problem interpretation",
-                            "Evaluates mathematical modeling",
-                            "Assesses solution strategies",
-                            "Measures practical application",
-                            "Tests unit conversion",
-                            "Evaluates answer validation"
-                        ],
-                        "ex_questions": [
-                            "A train travels 60km north, then 80km east. Calculate the shortest distance back to the starting point.",
-                            "Three pipes fill a pool at different rates. Find how long it takes to fill the pool using all three.",
-                            "Calculate the compound interest on a loan given various payment schedules."
-                        ]
-                    }
-                ]
-            }   
+             },
         ],
-        "Complex reasoning": [
-            {
-                "leaderboard": "Chatbot Arena",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://lmarena.ai/?leaderboard"
-                },
-                "tooltip": "The Chatbot Arena leaderboard includes specific evaluations of complex reasoning through human preference ratings.",
-                "analysis_tips": [
-                    "Pay special attention to the Hard Prompts metrics which test complex reasoning.",
-                    "Consider Multi-Turn performance for extended reasoning chains.",
-                    "Look for models that maintain logical consistency across longer responses.",
-                    "Compare how models handle both structured and open-ended reasoning tasks."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/pdf/2403.04132"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Hard Prompts (Overall)",
-                        "metric_measures": "Evaluates performance on complex, multi-step reasoning challenges.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
-                        "metric_origin": "LMSYS Org, UC Berkeley",
-                        "metric_details": [
-                            "Tests logical deduction",
-                            "Evaluates causal reasoning",
-                            "Assesses problem decomposition",
-                            "Measures argument analysis",
-                            "Tests hypothesis generation",
-                            "Evaluates evidence evaluation"
-                        ],
-                        "ex_questions": [
-                            "Analyze the potential long-term consequences of implementing a universal basic income system.",
-                            "Design a solution for reducing urban traffic that considers economic, social, and environmental factors.",
-                            "Evaluate three competing theories about dark matter and explain which has the strongest evidence."
-                        ]
-                    },
-                    {
-                        "metric_name": "Multi-Turn Reasoning",
-                        "metric_measures": "Tests ability to maintain logical consistency across extended reasoning chains.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
-                        "metric_origin": "LMSYS Org, UC Berkeley",
-                        "metric_details": [
-                            "Tests reasoning continuity",
-                            "Evaluates premise tracking",
-                            "Assesses logical flow",
-                            "Measures assumption consistency",
-                            "Tests inferential accuracy",
-                            "Evaluates conclusion validity"
-                        ],
-                        "ex_questions": [
-                            "Let's solve a complex murder mystery, step by step, evaluating each piece of evidence.",
-                            "Help me diagnose a system failure by analyzing multiple potential causes and their interactions.",
-                            "Guide me through designing a renewable energy system, considering multiple interconnected factors."
-                        ]
-                    },
-                    {
-                        "metric_name": "Complex Problem Solving",
-                        "metric_measures": "Assesses ability to solve problems requiring multiple steps and consideration of various factors.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better).",
-                        "metric_origin": "LMSYS Org, UC Berkeley",
-                        "metric_details": [
-                            "Tests strategic thinking",
-                            "Evaluates trade-off analysis",
-                            "Assesses solution optimization",
-                            "Measures constraint handling",
-                            "Tests scenario planning",
-                            "Evaluates decision justification"
-                        ],
-                        "ex_questions": [
-                            "Develop a strategy for a company to expand internationally while minimizing environmental impact.",
-                            "Create a plan for evacuating a large city during a natural disaster, considering all critical factors.",
-                            "Design an ethical framework for deploying autonomous vehicles in urban environments."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
-                },
-                "tooltip": "The Hugging Face leaderboard includes several benchmarks specifically designed to test complex reasoning capabilities.",
-                "analysis_tips": [
-                    "This leaderboard only includes open models, so you won't find proprietary models here.",
-                    "Consider both raw and processed scores for reasoning benchmarks.",
-                    "Pay attention to performance on multi-step reasoning tasks.",
-                    "Look for models that excel at both structured and open-ended reasoning."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "BBH (BIG-bench Hard)",
-                        "metric_measures": "Evaluates performance on challenging prompts requiring complex reasoning.",
-                        "score_interpretation": "Higher scores indicate better complex reasoning capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests multi-step reasoning",
-                            "Evaluates novel problem-solving",
-                            "Assesses abstract thinking",
-                            "Measures strategic planning",
-                            "Tests cognitive flexibility",
-                            "Evaluates creative solutions"
-                        ],
-                        "ex_questions": [
-                            "If all zorbs are plips, and no plips are woops, what can we conclude about zorbs and woops? Explain your reasoning.",
-                            "Design a system that sorts objects by both color and size, handling edge cases like partially colored items.",
-                            "Given these rules for a new board game, identify the optimal winning strategy."
-                        ]
-                    },
-                    {
-                        "metric_name": "BBH Raw",
-                        "metric_measures": "Provides unprocessed scores from the BIG-bench Hard dataset evaluation.",
-                        "score_interpretation": "Higher scores reflect better raw performance on complex reasoning tasks.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Shows unmodified scores",
-                            "Tests pure reasoning ability",
-                            "Assesses raw performance",
-                            "Measures direct responses",
-                            "Tests unadjusted accuracy",
-                            "Evaluates baseline capabilities"
-                        ],
-                        "ex_questions": [
-                            "Solve this logic puzzle without any hints or formatting adjustments.",
-                            "Complete this pattern sequence using only first-principles reasoning.",
-                            "Determine the next steps in this complex scenario without additional context."
-                        ]
-                    },
-                    {
-                        "metric_name": "MUSR",
-                        "metric_measures": "Evaluates performance on multi-step reasoning tasks.",
-                        "score_interpretation": "Higher scores indicate better sequential reasoning ability.",
-                        "metric_origin": "HuggingFace Research Team",
-                        "metric_details": [
-                            "Tests step-by-step logic",
-                            "Evaluates reasoning chains",
-                            "Assesses intermediate steps",
-                            "Measures solution pathways",
-                            "Tests premise tracking",
-                            "Evaluates conclusion validity"
-                        ],
-                        "ex_questions": [
-                            "Plan a city's public transportation system, considering population growth, budget constraints, and environmental impact.",
-                            "Develop a strategy for reducing food waste across a supply chain, addressing each stage systematically.",
-                            "Analyze the potential effects of a new technology on different sectors of society, tracking interdependencies."
-                        ]
-                    },
-                    {
-                        "metric_name": "MUSR Raw",
-                        "metric_measures": "Provides raw scores from multi-step reasoning evaluations.",
-                        "score_interpretation": "Higher scores indicate better raw performance in sequential reasoning.",
-                        "metric_origin": "HuggingFace Research Team",
-                        "metric_details": [
-                            "Records unprocessed results",
-                            "Tests baseline reasoning",
-                            "Assesses raw step accuracy",
-                            "Measures direct performance",
-                            "Tests sequential thinking",
-                            "Evaluates pure logic"
-                        ],
-                        "ex_questions": [
-                            "Break down this complex business problem into its component parts without guidance.",
-                            "Trace the cause-and-effect relationships in this historical event using only available facts.",
-                            "Map out the decision tree for this strategic planning scenario from first principles."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "BIG-bench",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks"
-                },
-                "tooltip": "The Beyond the Imitation Game Benchmark (BIG-bench) includes extensive evaluations of complex reasoning capabilities.",
-                "analysis_tips": [
-                    "Focus on tasks that require multi-step reasoning processes.",
-                    "Consider performance across different types of logical challenges.",
-                    "Pay attention to both accuracy and explanation quality.",
-                    "Look for models that can handle novel reasoning scenarios."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2206.04615"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Logical Deduction",
-                        "metric_measures": "Tests ability to draw valid conclusions from given premises.",
-                        "score_interpretation": "Higher scores indicate better logical reasoning capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests formal logic application",
-                            "Evaluates deductive reasoning",
-                            "Assesses syllogistic logic",
-                            "Measures inference validity",
-                            "Tests premise analysis",
-                            "Evaluates conclusion soundness"
-                        ],
-                        "ex_questions": [
-                            "Given that no cats are dogs and all pets in this house are cats, what can we conclude about dogs in this house?",
-                            "If event A causes B, and B causes C, but C prevents A, analyze the logical paradox.",
-                            "Using these three rules about a fictional society, determine which statements must be true."
-                        ]
-                    },
-                    {
-                        "metric_name": "Strategy QA",
-                        "metric_measures": "Evaluates strategic thinking and multi-step planning abilities.",
-                        "score_interpretation": "Higher scores indicate better strategic reasoning capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests strategic planning",
-                            "Evaluates resource allocation",
-                            "Assesses outcome prediction",
-                            "Measures decision optimization",
-                            "Tests contingency planning",
-                            "Evaluates trade-off analysis"
-                        ],
-                        "ex_questions": [
-                            "Design a strategy to maximize crop yield with limited water resources over five years.",
-                            "Plan the most efficient way to evacuate a large building given specific constraints.",
-                            "Develop a market entry strategy considering multiple competing factors."
-                        ]
-                    },
-                    {
-                        "metric_name": "Causal Reasoning",
-                        "metric_measures": "Tests understanding of cause-and-effect relationships in complex systems.",
-                        "score_interpretation": "Higher scores indicate better causal reasoning abilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests causality identification",
-                            "Evaluates intervention effects",
-                            "Assesses confounding factors",
-                            "Measures chain reactions",
-                            "Tests counterfactual thinking",
-                            "Evaluates causal networks"
-                        ],
-                        "ex_questions": [
-                            "Analyze how a change in interest rates affects different sectors of the economy.",
-                            "Determine the likely root cause of multiple overlapping system failures.",
-                            "Predict the cascading effects of removing a keystone species from an ecosystem."
-                        ]
-                    },
-                    {
-                        "metric_name": "Analogical Reasoning",
-                        "metric_measures": "Assesses ability to transfer knowledge between different domains using analogies.",
-                        "score_interpretation": "Higher scores indicate better analogical thinking capabilities.",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests pattern matching",
-                            "Evaluates conceptual mapping",
-                            "Assesses structural similarity",
-                            "Measures abstraction skills",
-                            "Tests knowledge transfer",
-                            "Evaluates analogy creation"
-                        ],
-                        "ex_questions": [
-                            "Explain how the human immune system is like a country's defense system.",
-                            "Compare the structure of a corporate hierarchy to another complex system.",
-                            "Find analogous solutions between biological and technological systems."
-                        ]
-                    }
-                ]
-            }
-        ],
-         "Text to speech": [
-            {
-                "leaderboard": "Artificial Analysis TTS",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/text-to-speech"
-                },
-                "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
-                "analysis_tips": [
-                    "Higher scores indicate better performance across all metrics.",
-                    "Consider both quality and speed metrics for production use.",
-                    "Pay attention to cost implications alongside performance.",
-                    "Compare performance between real-time and non-real-time models.",
-                    "Use their interactive visualizations to compare models directly."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Voice Naturalness",
-                        "metric_measures": "Evaluates how natural and human-like the synthesized speech sounds.",
-                        "score_interpretation": "Higher scores indicate more natural-sounding speech.",
-                        "metric_origin": "Artificial Analysis Research Team",
-                        "metric_details": [
-                            "Tests human-likeness",
-                            "Evaluates prosody quality",
-                            "Assesses voice consistency",
-                            "Measures emotional expression",
-                            "Tests accent authenticity",
-                            "Evaluates speaking rhythm"
-                        ],
-                        "ex_questions": [
-                            "Compare naturalness between emotional and neutral speech synthesis.",
-                            "Evaluate prosody in questions versus statements.",
-                            "Assess the authenticity of different speaking styles."
-                        ]
-                    },
-                    {
-                        "metric_name": "Voice Clarity",
-                        "metric_measures": "Assesses the clarity and intelligibility of synthesized speech.",
-                        "score_interpretation": "Higher scores indicate clearer speech output.",
-                        "metric_origin": "Artificial Analysis Research Team",
-                        "metric_details": [
-                            "Tests pronunciation clarity",
-                            "Evaluates articulation",
-                            "Assesses audio quality",
-                            "Measures word boundaries",
-                            "Tests phoneme accuracy",
-                            "Evaluates speaker consistency"
-                        ],
-                        "ex_questions": [
-                            "Compare clarity in fast versus normal speech rates.",
-                            "Evaluate pronunciation of technical terms.",
-                            "Assess intelligibility in different acoustic contexts."
-                        ]
-                    },
-                    {
-                        "metric_name": "Processing Speed",
-                        "metric_measures": "Evaluates the time taken to generate speech from text input.",
-                        "score_interpretation": "Higher scores indicate faster processing.",
-                        "metric_origin": "Artificial Analysis Research Team",
-                        "metric_details": [
-                            "Tests generation speed",
-                            "Evaluates latency",
-                            "Assesses real-time capability",
-                            "Measures throughput",
-                            "Tests batch processing",
-                            "Evaluates resource efficiency"
-                        ],
-                        "ex_questions": [
-                            "Compare processing speed for different text lengths.",
-                            "Evaluate real-time performance under varying loads.",
-                            "Assess scalability with batch processing."
-                        ]
-                    },
-                    {
-                        "metric_name": "Speaker Consistency",
-                        "metric_measures": "Evaluates the model's ability to maintain consistent voice characteristics.",
-                        "score_interpretation": "Higher scores indicate better consistency.",
-                        "metric_origin": "Artificial Analysis Research Team",
-                        "metric_details": [
-                            "Tests voice stability",
-                            "Evaluates accent maintenance",
-                            "Assesses style preservation",
-                            "Measures tonal consistency",
-                            "Tests character retention",
-                            "Evaluates speaker identity"
-                        ],
-                        "ex_questions": [
-                            "Compare voice consistency across long passages.",
-                            "Evaluate maintenance of speaking style in different contexts.",
-                            "Assess stability of voice characteristics over time."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "Papers with Code TTS",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/task/text-to-speech-synthesis"
-                },
-                "tooltip": "Papers with Code maintains a comprehensive leaderboard for text-to-speech synthesis across various benchmarks and datasets.",
-                "analysis_tips": [
-                    "Lower MOS (Mean Opinion Score) and WER (Word Error Rate) scores indicate better performance.",
-                    "Consider both objective metrics and subjective human evaluations.",
-                    "Pay attention to the specific dataset used for each evaluation.",
-                    "Look for models tested on multiple languages if multilingual support is needed."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://paperswithcode.com/methods/category/text-to-speech-synthesis"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Mean Opinion Score (MOS)",
-                        "metric_measures": "Evaluates perceived naturalness and quality of synthesized speech through human ratings.",
-                        "score_interpretation": "Scores range from 1-5 (higher is better).",
-                        "metric_origin": "ITU-T Recommendation P.800",
-                        "metric_details": [
-                            "Tests overall speech quality",
-                            "Evaluates naturalness",
-                            "Assesses voice clarity",
-                            "Measures pronunciation accuracy",
-                            "Tests speaker similarity",
-                            "Evaluates prosody quality"
-                        ],
-                        "ex_questions": [
-                            "Rate the naturalness of this synthesized voice passage.",
-                            "Compare the quality of emotional expression in these two speech samples.",
-                            "Evaluate how well this voice matches the target speaker."
-                        ]
-                    },
-                    {
-                        "metric_name": "Word Error Rate (WER)",
-                        "metric_measures": "Assesses accuracy of speech synthesis by measuring word-level errors.",
-                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
-                        "metric_origin": "Speech Recognition Research",
-                        "metric_details": [
-                            "Tests word accuracy",
-                            "Evaluates pronunciation errors",
-                            "Assesses word insertions",
-                            "Measures word deletions",
-                            "Tests word substitutions",
-                            "Evaluates sequence accuracy"
-                        ],
-                        "ex_questions": [
-                            "Compare the transcribed text with the original input to identify errors.",
-                            "Analyze pronunciation accuracy in technical terms and proper nouns.",
-                            "Evaluate word sequence preservation in long sentences."
-                        ]
-                    },
-                    {
-                        "metric_name": "Character Error Rate (CER)",
-                        "metric_measures": "Evaluates accuracy at the character level rather than word level.",
-                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
-                        "metric_origin": "Speech Recognition Research",
-                        "metric_details": [
-                            "Tests character accuracy",
-                            "Evaluates phoneme correctness",
-                            "Assesses character insertions",
-                            "Measures character deletions",
-                            "Tests character substitutions",
-                            "Evaluates pronunciation details"
-                        ],
-                        "ex_questions": [
-                            "Analyze character-level accuracy in complex proper nouns.",
-                            "Compare phoneme accuracy between different accent variations.",
-                            "Evaluate detailed pronunciation in multilingual text."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "ASR Research Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/sota/speech-recognition-on-librispeech-test-clean"
-                },
-                "tooltip": "While primarily focused on speech recognition, the ASR leaderboard includes crucial metrics for evaluating text-to-speech quality through recognition accuracy.",
-                "analysis_tips": [
-                    "Lower PESQ and STOI scores indicate better speech quality.",
-                    "Consider real-time factor (RTF) for production deployment.",
-                    "Pay attention to performance across different speaking rates.",
-                    "Look for models tested in noisy conditions if robustness is important."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2303.01037"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "PESQ (Perceptual Evaluation of Speech Quality)",
-                        "metric_measures": "Evaluates the quality of synthesized speech using an ITU standard for audio quality assessment.",
-                        "score_interpretation": "Scores range from -0.5 to 4.5 (higher is better).",
-                        "metric_origin": "ITU-T P.862",
-                        "metric_details": [
-                            "Tests perceptual quality",
-                            "Evaluates audio distortion",
-                            "Assesses noise levels",
-                            "Measures frequency response",
-                            "Tests temporal degradation",
-                            "Evaluates artifact presence"
-                        ],
-                        "ex_questions": [
-                            "Compare the PESQ scores between clear and noisy conditions.",
-                            "Evaluate the quality degradation in different bandwidth conditions.",
-                            "Assess the impact of compression on speech quality."
-                        ]
-                    },
-                    {
-                        "metric_name": "STOI (Short-Time Objective Intelligibility)",
-                        "metric_measures": "Assesses the intelligibility of synthesized speech through objective measurements.",
-                        "score_interpretation": "Scores range from 0 to 1 (higher is better).",
-                        "metric_origin": "Technical University of Denmark",
-                        "metric_details": [
-                            "Tests speech intelligibility",
-                            "Evaluates temporal patterns",
-                            "Assesses spectral clarity",
-                            "Measures phonetic preservation",
-                            "Tests modulation accuracy",
-                            "Evaluates speech coherence"
-                        ],
-                        "ex_questions": [
-                            "Analyze intelligibility preservation in fast speech synthesis.",
-                            "Compare STOI scores across different speaker styles.",
-                            "Evaluate intelligibility in challenging acoustic conditions."
-                        ]
-                    },
-                    {
-                        "metric_name": "Real-Time Factor (RTF)",
-                        "metric_measures": "Evaluates the speed of speech synthesis relative to the duration of generated audio.",
-                        "score_interpretation": "Lower values indicate faster synthesis (RTF < 1 means faster than real-time).",
-                        "metric_origin": "Speech Synthesis Research",
-                        "metric_details": [
-                            "Tests processing speed",
-                            "Evaluates computational efficiency",
-                            "Assesses latency",
-                            "Measures throughput",
-                            "Tests resource usage",
-                            "Evaluates scalability"
-                        ],
-                        "ex_questions": [
-                            "Calculate RTF for generating a 10-minute speech sample.",
-                            "Compare synthesis speed across different model sizes.",
-                            "Evaluate real-time performance under varying loads."
-                        ]
-                    },
-                    {
-                        "metric_name": "F0 RMSE",
-                        "metric_measures": "Measures accuracy of fundamental frequency (pitch) reproduction in synthesized speech.",
-                        "score_interpretation": "Lower values indicate better pitch accuracy (0 is perfect).",
-                        "metric_origin": "Speech Synthesis Research",
-                        "metric_details": [
-                            "Tests pitch accuracy",
-                            "Evaluates intonation patterns",
-                            "Assesses prosody matching",
-                            "Measures pitch range",
-                            "Tests pitch stability",
-                            "Evaluates stress patterns"
-                        ],
-                        "ex_questions": [
-                            "Compare pitch accuracy between emotional and neutral speech.",
-                            "Evaluate intonation preservation in questions versus statements.",
-                            "Assess pitch variation in expressive speech synthesis."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "LJSpeech Benchmark",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/sota/text-to-speech-synthesis-on-ljspeech"
-                },
-                "tooltip": "LJSpeech is a widely-used benchmark for evaluating English text-to-speech systems, focusing on single-speaker synthesis quality.",
-                "analysis_tips": [
-                    "Compare MOS scores across different speaking styles.",
-                    "Consider both objective metrics and subjective listener ratings.",
-                    "Pay attention to prosody and naturalness scores.",
-                    "Look for models that maintain quality across longer utterances."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/1905.08459"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Mel Cepstral Distortion (MCD)",
-                        "metric_measures": "Evaluates the spectral distance between synthesized and reference speech.",
-                        "score_interpretation": "Lower values indicate better quality (measured in dB).",
-                        "metric_origin": "Speech Synthesis Research Community",
-                        "metric_details": [
-                            "Tests spectral accuracy",
-                            "Evaluates acoustic similarity",
-                            "Assesses voice characteristics",
-                            "Measures timbre accuracy",
-                            "Tests frequency response",
-                            "Evaluates spectral envelope"
-                        ],
-                        "ex_questions": [
-                            "Compare MCD scores between fast and normal speech synthesis.",
-                            "Evaluate spectral accuracy in different frequency ranges.",
-                            "Assess voice characteristic preservation across utterances."
-                        ]
-                    },
-                    {
-                        "metric_name": "Prosody L2 Error",
-                        "metric_measures": "Assesses accuracy of rhythm, stress, and intonation patterns.",
-                        "score_interpretation": "Lower values indicate better prosodic accuracy (0 is perfect).",
-                        "metric_origin": "LJSpeech Research Team",
-                        "metric_details": [
-                            "Tests rhythm accuracy",
-                            "Evaluates stress patterns",
-                            "Assesses intonation curves",
-                            "Measures pause timing",
-                            "Tests emphasis accuracy",
-                            "Evaluates speaking rate"
-                        ],
-                        "ex_questions": [
-                            "Analyze prosodic accuracy in emotional speech synthesis.",
-                            "Compare stress patterns between synthesized and natural speech.",
-                            "Evaluate the timing of pauses in long sentences."
-                        ]
-                    },
-                    {
-                        "metric_name": "Voice Consistency Score",
-                        "metric_measures": "Evaluates consistency of voice characteristics across different utterances.",
-                        "score_interpretation": "Higher scores indicate better consistency (0-100).",
-                        "metric_origin": "LJSpeech Research Team",
-                        "metric_details": [
-                            "Tests speaker identity",
-                            "Evaluates voice stability",
-                            "Assesses timbre consistency",
-                            "Measures style preservation",
-                            "Tests acoustic coherence",
-                            "Evaluates character maintenance"
-                        ],
-                        "ex_questions": [
-                            "Compare voice consistency across different sentence lengths.",
-                            "Evaluate speaker identity preservation in varying emotional contexts.",
-                            "Assess timbre stability across different phonetic contexts."
-                        ]
-                    },
-                    {
-                        "metric_name": "Naturalness MOS",
-                        "metric_measures": "Specific Mean Opinion Score focusing on speech naturalness.",
-                        "score_interpretation": "Scores range from 1-5 (higher is better).",
-                        "metric_origin": "LJSpeech Research Team",
-                        "metric_details": [
-                            "Tests human-likeness",
-                            "Evaluates natural flow",
-                            "Assesses pronunciation",
-                            "Measures fluency",
-                            "Tests natural timing",
-                            "Evaluates expression quality"
-                        ],
-                        "ex_questions": [
-                            "Rate the naturalness of conversational speech synthesis.",
-                            "Compare naturalness between different speaking styles.",
-                            "Evaluate the human-likeness of emotional expressions."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "Nvidia NeMo Framework",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://catalog.ngc.nvidia.com/models?filters=&orderBy=weightPopularDESC&query=nemo-tts"
-                },
-                "tooltip": "Nvidia's NeMo framework provides standardized benchmarks for evaluating text-to-speech models, with particular focus on production-ready metrics.",
-                "analysis_tips": [
-                    "Consider both quality and speed metrics for production deployment.",
-                    "Pay attention to multi-speaker adaptation scores if relevant.",
-                    "Look at performance across different speech durations.",
-                    "Compare resource requirements alongside quality metrics."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2104.05557"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Multi-Speaker Similarity",
-                        "metric_measures": "Evaluates how well the model adapts to and maintains different speaker identities.",
-                        "score_interpretation": "Higher scores indicate better speaker adaptation (0-100).",
-                        "metric_origin": "Nvidia Research",
-                        "metric_details": [
-                            "Tests speaker adaptation",
-                            "Evaluates voice cloning accuracy",
-                            "Assesses identity preservation",
-                            "Measures cross-speaker consistency",
-                            "Tests accent preservation",
-                            "Evaluates style transfer"
-                        ],
-                        "ex_questions": [
-                            "Compare voice similarity scores across different speaker demographics.",
-                            "Evaluate accent preservation in multi-speaker synthesis.",
-                            "Assess identity maintenance across different speaking styles."
-                        ]
-                    },
-                    {
-                        "metric_name": "FastPitch Score",
-                        "metric_measures": "Assesses the model's ability to control speech rhythm and pitch accurately.",
-                        "score_interpretation": "Lower scores indicate better pitch and rhythm control (0 is perfect).",
-                        "metric_origin": "Nvidia Research",
-                        "metric_details": [
-                            "Tests pitch accuracy",
-                            "Evaluates rhythm control",
-                            "Assesses duration modeling",
-                            "Measures energy control",
-                            "Tests prosody transfer",
-                            "Evaluates style preservation"
-                        ],
-                        "ex_questions": [
-                            "Analyze pitch accuracy in expressive speech synthesis.",
-                            "Compare rhythm control in different languages.",
-                            "Evaluate energy contour preservation in emotional speech."
-                        ]
-                    },
-                    {
-                        "metric_name": "Inference Latency",
-                        "metric_measures": "Evaluates the speed of speech generation in a production environment.",
-                        "score_interpretation": "Lower values indicate faster generation (measured in milliseconds).",
-                        "metric_origin": "Nvidia Research",
-                        "metric_details": [
-                            "Tests generation speed",
-                            "Evaluates batch processing",
-                            "Assesses GPU utilization",
-                            "Measures memory usage",
-                            "Tests throughput capacity",
-                            "Evaluates scaling efficiency"
-                        ],
-                        "ex_questions": [
-                            "Measure generation time for different text lengths.",
-                            "Compare latency across different hardware configurations.",
-                            "Evaluate performance under varying batch sizes."
-                        ]
-                    },
-                    {
-                        "metric_name": "Cross-Language Quality",
-                        "metric_measures": "Assesses speech quality across different languages and accents.",
-                        "score_interpretation": "Higher scores indicate better multilingual capability (0-100).",
-                        "metric_origin": "Nvidia Research",
-                        "metric_details": [
-                            "Tests language adaptation",
-                            "Evaluates accent handling",
-                            "Assesses phoneme accuracy",
-                            "Measures pronunciation quality",
-                            "Tests language switching",
-                            "Evaluates cultural markers"
-                        ],
-                        "ex_questions": [
-                            "Compare quality scores across different language families.",
-                            "Evaluate code-switching performance in multilingual text.",
-                            "Assess pronunciation accuracy in non-native accents."
-                        ]
-                    }
-                ]
-            }
-        ], # End of Text to Speech (TTS) tasks
-        "Speech to text": [
+        "Convert speech to text": [
             {
                 "leaderboard": "Artificial Analysis STT",
                 "leaderboard_link": {
@@ -3430,374 +2570,518 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Text to image": [
+        "Convert text to speech": [
             {
-                "leaderboard": "LAION LIED",
+                "leaderboard": "Artificial Analysis TTS",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://laion.ai/blog/lied/"
+                    "url": "https://artificialanalysis.ai/text-to-speech"
                 },
-                "tooltip": "The LAION Image Evaluation Dashboard (LIED) provides standardized metrics for comparing text-to-image models.",
+                "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher CLIP scores indicate better text-image alignment.",
-                    "Consider both automated metrics and human evaluations.",
-                    "Pay attention to aesthetic quality alongside accuracy.",
-                    "Look for models that maintain consistency across different prompt types."
+                    "Higher scores indicate better performance across all metrics.",
+                    "Consider both quality and speed metrics for production use.",
+                    "Pay attention to cost implications alongside performance.",
+                    "Compare performance between real-time and non-real-time models.",
+                    "Use their interactive visualizations to compare models directly."
                 ],
                 "paper": {
                     "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2306.09400"
+                    "url": "https://artificialanalysis.ai/methodology"
                 },
                 "metrics": [
                     {
-                        "metric_name": "CLIP Score",
-                        "metric_measures": "Evaluates how well generated images align with their text descriptions.",
-                        "score_interpretation": "Higher scores indicate better text-image alignment (0-100).",
-                        "metric_origin": "OpenAI Research",
+                        "metric_name": "Voice Naturalness",
+                        "metric_measures": "Evaluates how natural and human-like the synthesized speech sounds.",
+                        "score_interpretation": "Higher scores indicate more natural-sounding speech.",
+                        "metric_origin": "Artificial Analysis Research Team",
                         "metric_details": [
-                            "Tests semantic matching",
-                            "Evaluates concept accuracy",
-                            "Assesses attribute fidelity",
-                            "Measures style adherence",
-                            "Tests compositional understanding",
-                            "Evaluates visual accuracy"
+                            "Tests human-likeness",
+                            "Evaluates prosody quality",
+                            "Assesses voice consistency",
+                            "Measures emotional expression",
+                            "Tests accent authenticity",
+                            "Evaluates speaking rhythm"
                         ],
                         "ex_questions": [
-                            "Compare CLIP scores between simple and complex prompts.",
-                            "Evaluate alignment accuracy for abstract versus concrete concepts.",
-                            "Assess how well specific attributes are preserved in generation."
+                            "Compare naturalness between emotional and neutral speech synthesis.",
+                            "Evaluate prosody in questions versus statements.",
+                            "Assess the authenticity of different speaking styles."
                         ]
                     },
                     {
-                        "metric_name": "Aesthetic Score",
-                        "metric_measures": "Assesses the visual quality and appeal of generated images.",
-                        "score_interpretation": "Higher scores indicate better aesthetic quality (0-10).",
-                        "metric_origin": "LAION Research Team",
+                        "metric_name": "Voice Clarity",
+                        "metric_measures": "Assesses the clarity and intelligibility of synthesized speech.",
+                        "score_interpretation": "Higher scores indicate clearer speech output.",
+                        "metric_origin": "Artificial Analysis Research Team",
                         "metric_details": [
-                            "Tests visual appeal",
-                            "Evaluates composition",
-                            "Assesses color harmony",
-                            "Measures technical quality",
-                            "Tests artistic merit",
-                            "Evaluates overall impact"
+                            "Tests pronunciation clarity",
+                            "Evaluates articulation",
+                            "Assesses audio quality",
+                            "Measures word boundaries",
+                            "Tests phoneme accuracy",
+                            "Evaluates speaker consistency"
                         ],
                         "ex_questions": [
-                            "Compare aesthetic quality across different artistic styles.",
-                            "Evaluate composition quality in landscape versus portrait orientations.",
-                            "Assess color harmony in different lighting conditions."
+                            "Compare clarity in fast versus normal speech rates.",
+                            "Evaluate pronunciation of technical terms.",
+                            "Assess intelligibility in different acoustic contexts."
                         ]
                     },
                     {
-                        "metric_name": "Prompt Fidelity",
-                        "metric_measures": "Evaluates how accurately the image captures specific details from the prompt.",
-                        "score_interpretation": "Higher scores indicate better prompt adherence (0-100).",
-                        "metric_origin": "LAION Research Team",
+                        "metric_name": "Processing Speed",
+                        "metric_measures": "Evaluates the time taken to generate speech from text input.",
+                        "score_interpretation": "Higher scores indicate faster processing.",
+                        "metric_origin": "Artificial Analysis Research Team",
                         "metric_details": [
-                            "Tests detail accuracy",
-                            "Evaluates object placement",
-                            "Assesses attribute matching",
-                            "Measures spatial relations",
-                            "Tests color accuracy",
-                            "Evaluates consistency"
+                            "Tests generation speed",
+                            "Evaluates latency",
+                            "Assesses real-time capability",
+                            "Measures throughput",
+                            "Tests batch processing",
+                            "Evaluates resource efficiency"
                         ],
                         "ex_questions": [
-                            "Analyze accuracy of specific object placement from prompt descriptions.",
-                            "Compare fidelity of simple versus complex spatial relationships.",
-                            "Evaluate preservation of specific colors and textures."
+                            "Compare processing speed for different text lengths.",
+                            "Evaluate real-time performance under varying loads.",
+                            "Assess scalability with batch processing."
+                        ]
+                    },
+                    {
+                        "metric_name": "Speaker Consistency",
+                        "metric_measures": "Evaluates the model's ability to maintain consistent voice characteristics.",
+                        "score_interpretation": "Higher scores indicate better consistency.",
+                        "metric_origin": "Artificial Analysis Research Team",
+                        "metric_details": [
+                            "Tests voice stability",
+                            "Evaluates accent maintenance",
+                            "Assesses style preservation",
+                            "Measures tonal consistency",
+                            "Tests character retention",
+                            "Evaluates speaker identity"
+                        ],
+                        "ex_questions": [
+                            "Compare voice consistency across long passages.",
+                            "Evaluate maintenance of speaking style in different contexts.",
+                            "Assess stability of voice characteristics over time."
                         ]
                     }
                 ]
             },
             {
-                "leaderboard": "PartiPrompts",
+                "leaderboard": "Papers with Code TTS",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/paper/scaling-autoregressive-models-for-content-rich"
+                    "url": "https://paperswithcode.com/task/text-to-speech-synthesis"
                 },
-                "tooltip": "PartiPrompts is a comprehensive benchmark focusing on challenging aspects of text-to-image generation, including compositionality and fine-grained details.",
+                "tooltip": "Papers with Code maintains a comprehensive leaderboard for text-to-speech synthesis across various benchmarks and datasets.",
                 "analysis_tips": [
-                    "Pay attention to performance on compositional prompts.",
-                    "Consider both object accuracy and spatial relationship handling.",
-                    "Look for models that maintain consistency across different prompt types.",
-                    "Compare performance on counting and numerical prompts."
+                    "Lower MOS (Mean Opinion Score) and WER (Word Error Rate) scores indicate better performance.",
+                    "Consider both objective metrics and subjective human evaluations.",
+                    "Pay attention to the specific dataset used for each evaluation.",
+                    "Look for models tested on multiple languages if multilingual support is needed."
                 ],
                 "paper": {
                     "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2206.10789"
+                    "url": "https://paperswithcode.com/methods/category/text-to-speech-synthesis"
                 },
                 "metrics": [
                     {
-                        "metric_name": "Compositional Accuracy",
-                        "metric_measures": "Evaluates ability to correctly compose multiple objects and attributes in a single image.",
-                        "score_interpretation": "Higher scores indicate better compositional generation (0-100).",
-                        "metric_origin": "Google Research",
+                        "metric_name": "Mean Opinion Score (MOS)",
+                        "metric_measures": "Evaluates perceived naturalness and quality of synthesized speech through human ratings.",
+                        "score_interpretation": "Scores range from 1-5 (higher is better).",
+                        "metric_origin": "ITU-T Recommendation P.800",
                         "metric_details": [
-                            "Tests object relationships",
-                            "Evaluates attribute binding",
-                            "Assesses spatial layout",
-                            "Measures object interaction",
-                            "Tests scene complexity",
-                            "Evaluates contextual coherence"
+                            "Tests overall speech quality",
+                            "Evaluates naturalness",
+                            "Assesses voice clarity",
+                            "Measures pronunciation accuracy",
+                            "Tests speaker similarity",
+                            "Evaluates prosody quality"
                         ],
                         "ex_questions": [
-                            "Generate an image of a red cube on top of a blue sphere next to a yellow pyramid.",
-                            "Create a scene with three dogs playing fetch, one holding a frisbee.",
-                            "Show a garden with blooming roses behind a white picket fence."
+                            "Rate the naturalness of this synthesized voice passage.",
+                            "Compare the quality of emotional expression in these two speech samples.",
+                            "Evaluate how well this voice matches the target speaker."
                         ]
                     },
                     {
-                        "metric_name": "Numerical Understanding",
-                        "metric_measures": "Assesses ability to handle prompts with specific quantities and counting.",
-                        "score_interpretation": "Higher scores indicate better numerical accuracy (0-100).",
-                        "metric_origin": "Google Research",
+                        "metric_name": "Word Error Rate (WER)",
+                        "metric_measures": "Assesses accuracy of speech synthesis by measuring word-level errors.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "Speech Recognition Research",
                         "metric_details": [
-                            "Tests quantity accuracy",
-                            "Evaluates counting precision",
-                            "Assesses numerical arrangements",
-                            "Measures pattern repetition",
-                            "Tests sequential ordering",
-                            "Evaluates group composition"
+                            "Tests word accuracy",
+                            "Evaluates pronunciation errors",
+                            "Assesses word insertions",
+                            "Measures word deletions",
+                            "Tests word substitutions",
+                            "Evaluates sequence accuracy"
                         ],
                         "ex_questions": [
-                            "Generate exactly five red balloons floating in a blue sky.",
-                            "Create an image of three pairs of matching socks.",
-                            "Show a grid of four rows and three columns of identical apples."
+                            "Compare the transcribed text with the original input to identify errors.",
+                            "Analyze pronunciation accuracy in technical terms and proper nouns.",
+                            "Evaluate word sequence preservation in long sentences."
                         ]
                     },
                     {
-                        "metric_name": "Attribute Binding",
-                        "metric_measures": "Tests accuracy in applying specific attributes to correct objects.",
-                        "score_interpretation": "Higher scores indicate better attribute association (0-100).",
-                        "metric_origin": "Google Research",
+                        "metric_name": "Character Error Rate (CER)",
+                        "metric_measures": "Evaluates accuracy at the character level rather than word level.",
+                        "score_interpretation": "Lower percentages indicate better accuracy (0% is perfect).",
+                        "metric_origin": "Speech Recognition Research",
                         "metric_details": [
-                            "Tests color assignment",
-                            "Evaluates size relationships",
-                            "Assesses texture application",
-                            "Measures style consistency",
-                            "Tests material rendering",
-                            "Evaluates detail preservation"
+                            "Tests character accuracy",
+                            "Evaluates phoneme correctness",
+                            "Assesses character insertions",
+                            "Measures character deletions",
+                            "Tests character substitutions",
+                            "Evaluates pronunciation details"
                         ],
                         "ex_questions": [
-                            "Generate a large red car next to a small blue bicycle.",
-                            "Create a wooden chair with a velvet cushion.",
-                            "Show a shiny metal sphere next to a matte plastic cube."
-                        ]
-                    },
-                    {
-                        "metric_name": "Spatial Understanding",
-                        "metric_measures": "Evaluates comprehension and execution of spatial relationships in prompts.",
-                        "score_interpretation": "Higher scores indicate better spatial reasoning (0-100).",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests positional accuracy",
-                            "Evaluates relative placement",
-                            "Assesses depth perception",
-                            "Measures perspective handling",
-                            "Tests distance relationships",
-                            "Evaluates orientation accuracy"
-                        ],
-                        "ex_questions": [
-                            "Place a coffee cup between two books, with the handle facing right.",
-                            "Show a bird flying above three trees of increasing height.",
-                            "Create an image with a cat sitting behind a glass of water."
+                            "Analyze character-level accuracy in complex proper nouns.",
+                            "Compare phoneme accuracy between different accent variations.",
+                            "Evaluate detailed pronunciation in multilingual text."
                         ]
                     }
                 ]
             },
             {
-                "leaderboard": "DrawBench",
+                "leaderboard": "ASR Research Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/paper/photorealistic-text-to-image-diffusion-models"
+                    "url": "https://paperswithcode.com/sota/speech-recognition-on-librispeech-test-clean"
                 },
-                "tooltip": "DrawBench provides a systematic evaluation framework focusing on challenging aspects of text-to-image generation, particularly photorealism and complex prompts.",
+                "tooltip": "While primarily focused on speech recognition, the ASR leaderboard includes crucial metrics for evaluating text-to-speech quality through recognition accuracy.",
                 "analysis_tips": [
-                    "Consider performance across all prompt categories.",
-                    "Pay attention to both automated metrics and human evaluations.",
-                    "Compare models' handling of abstract versus concrete concepts.",
-                    "Look for consistent performance across different complexity levels."
+                    "Lower PESQ and STOI scores indicate better speech quality.",
+                    "Consider real-time factor (RTF) for production deployment.",
+                    "Pay attention to performance across different speaking rates.",
+                    "Look for models tested in noisy conditions if robustness is important."
                 ],
                 "paper": {
                     "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2205.11487"
+                    "url": "https://arxiv.org/abs/2303.01037"
                 },
                 "metrics": [
                     {
-                        "metric_name": "Photorealism",
-                        "metric_measures": "Evaluates the visual realism and fidelity of generated images.",
-                        "score_interpretation": "Higher scores indicate more photorealistic output (0-100).",
-                        "metric_origin": "Google Research",
+                        "metric_name": "PESQ (Perceptual Evaluation of Speech Quality)",
+                        "metric_measures": "Evaluates the quality of synthesized speech using an ITU standard for audio quality assessment.",
+                        "score_interpretation": "Scores range from -0.5 to 4.5 (higher is better).",
+                        "metric_origin": "ITU-T P.862",
                         "metric_details": [
-                            "Tests visual authenticity",
-                            "Evaluates lighting accuracy",
-                            "Assesses shadow rendering",
-                            "Measures texture detail",
-                            "Tests perspective accuracy",
-                            "Evaluates material properties"
-                        ],
-                        "ex_questions": [
-                            "Generate a photorealistic portrait in natural outdoor lighting.",
-                            "Create a detailed image of water droplets on a leaf.",
-                            "Show a realistic interior scene with proper lighting and shadows."
-                        ]
-                    },
-                    {
-                        "metric_name": "COLOR Score",
-                        "metric_measures": "Assesses accuracy and consistency of color handling in generated images.",
-                        "score_interpretation": "Higher scores indicate better color fidelity (0-100).",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests color accuracy",
-                            "Evaluates color relationships",
-                            "Assesses color harmony",
-                            "Measures color consistency",
-                            "Tests lighting impact",
-                            "Evaluates color context"
-                        ],
-                        "ex_questions": [
-                            "Create an image with specific Pantone color combinations.",
-                            "Generate a sunset scene with accurate color gradients.",
-                            "Show a color wheel with precise hue transitions."
-                        ]
-                    },
-                    {
-                        "metric_name": "Complex Description Score",
-                        "metric_measures": "Evaluates ability to handle detailed and complex text descriptions.",
-                        "score_interpretation": "Higher scores indicate better handling of complex prompts (0-100).",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests prompt comprehension",
-                            "Evaluates detail inclusion",
-                            "Assesses scene complexity",
-                            "Measures coherence",
-                            "Tests abstract concepts",
-                            "Evaluates narrative elements"
-                        ],
-                        "ex_questions": [
-                            "Generate a bustling city street during rush hour with various types of vehicles and pedestrians.",
-                            "Create a detailed fantasy landscape combining elements of different biomes.",
-                            "Show a complex mechanical device with multiple moving parts."
-                        ]
-                    },
-                    {
-                        "metric_name": "DRAW Score",
-                        "metric_measures": "Assesses overall drawing quality and artistic execution.",
-                        "score_interpretation": "Higher scores indicate better artistic quality (0-100).",
-                        "metric_origin": "Google Research",
-                        "metric_details": [
-                            "Tests artistic coherence",
-                            "Evaluates style consistency",
-                            "Assesses composition",
-                            "Measures technical skill",
-                            "Tests creative interpretation",
-                            "Evaluates aesthetic appeal"
-                        ],
-                        "ex_questions": [
-                            "Create a Renaissance-style portrait with appropriate technique and lighting.",
-                            "Generate an impressionist landscape with characteristic brushwork.",
-                            "Show a comic book scene with proper stylistic elements."
-                        ]
-                    }
-                ]
-            },
-            {
-                "leaderboard": "ImagenHub",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://paperswithcode.com/paper/imagenhub-photorealistic-text-to-image"
-                },
-                "tooltip": "ImagenHub provides comprehensive evaluation metrics focusing on photorealism, creativity, and technical quality across diverse generation scenarios.",
-                "analysis_tips": [
-                    "Consider both technical and perceptual quality metrics.",
-                    "Look at performance across different image types and styles.",
-                    "Pay attention to both aesthetic and accuracy scores.",
-                    "Compare models' ability to handle diverse prompt types."
-                ],
-                "paper": {
-                    "text": "Nerdy details 🤓",
-                    "url": "https://arxiv.org/abs/2306.01873"
-                },
-                "metrics": [
-                    {
-                        "metric_name": "Image Fidelity (IF)",
-                        "metric_measures": "Evaluates the technical quality and accuracy of generated images.",
-                        "score_interpretation": "Higher scores indicate better image fidelity (0-100).",
-                        "metric_origin": "ImagenHub Research Team",
-                        "metric_details": [
-                            "Tests image resolution",
-                            "Evaluates detail preservation",
+                            "Tests perceptual quality",
+                            "Evaluates audio distortion",
                             "Assesses noise levels",
-                            "Measures artifact presence",
-                            "Tests edge clarity",
-                            "Evaluates texture quality"
+                            "Measures frequency response",
+                            "Tests temporal degradation",
+                            "Evaluates artifact presence"
                         ],
                         "ex_questions": [
-                            "Compare image quality at different resolution scales.",
-                            "Evaluate detail preservation in complex textures.",
-                            "Assess the presence of generation artifacts in different scenarios."
+                            "Compare the PESQ scores between clear and noisy conditions.",
+                            "Evaluate the quality degradation in different bandwidth conditions.",
+                            "Assess the impact of compression on speech quality."
                         ]
                     },
                     {
-                        "metric_name": "Semantic Consistency",
-                        "metric_measures": "Assesses how well the generated image matches the semantic content of the prompt.",
-                        "score_interpretation": "Higher scores indicate better semantic alignment (0-100).",
-                        "metric_origin": "ImagenHub Research Team",
+                        "metric_name": "STOI (Short-Time Objective Intelligibility)",
+                        "metric_measures": "Assesses the intelligibility of synthesized speech through objective measurements.",
+                        "score_interpretation": "Scores range from 0 to 1 (higher is better).",
+                        "metric_origin": "Technical University of Denmark",
                         "metric_details": [
-                            "Tests concept accuracy",
-                            "Evaluates semantic matching",
-                            "Assesses contextual relevance",
-                            "Measures prompt adherence",
-                            "Tests subject recognition",
-                            "Evaluates theme consistency"
+                            "Tests speech intelligibility",
+                            "Evaluates temporal patterns",
+                            "Assesses spectral clarity",
+                            "Measures phonetic preservation",
+                            "Tests modulation accuracy",
+                            "Evaluates speech coherence"
                         ],
                         "ex_questions": [
-                            "Generate an image that matches multiple semantic concepts simultaneously.",
-                            "Create a scene that accurately reflects abstract descriptions.",
-                            "Show proper interpretation of metaphorical language in prompts."
+                            "Analyze intelligibility preservation in fast speech synthesis.",
+                            "Compare STOI scores across different speaker styles.",
+                            "Evaluate intelligibility in challenging acoustic conditions."
                         ]
                     },
                     {
-                        "metric_name": "Creative Interpretation",
-                        "metric_measures": "Evaluates the model's ability to handle creative and artistic prompts.",
-                        "score_interpretation": "Higher scores indicate better creative execution (0-100).",
-                        "metric_origin": "ImagenHub Research Team",
+                        "metric_name": "Real-Time Factor (RTF)",
+                        "metric_measures": "Evaluates the speed of speech synthesis relative to the duration of generated audio.",
+                        "score_interpretation": "Lower values indicate faster synthesis (RTF < 1 means faster than real-time).",
+                        "metric_origin": "Speech Synthesis Research",
                         "metric_details": [
-                            "Tests style adaptation",
-                            "Evaluates artistic quality",
-                            "Assesses creative freedom",
-                            "Measures stylistic accuracy",
-                            "Tests artistic coherence",
-                            "Evaluates aesthetic choices"
+                            "Tests processing speed",
+                            "Evaluates computational efficiency",
+                            "Assesses latency",
+                            "Measures throughput",
+                            "Tests resource usage",
+                            "Evaluates scalability"
                         ],
                         "ex_questions": [
-                            "Create an image combining multiple artistic styles cohesively.",
-                            "Generate an abstract interpretation of an emotional concept.",
-                            "Show a creative reinterpretation of a classical artwork."
+                            "Calculate RTF for generating a 10-minute speech sample.",
+                            "Compare synthesis speed across different model sizes.",
+                            "Evaluate real-time performance under varying loads."
                         ]
                     },
                     {
-                        "metric_name": "Technical Robustness",
-                        "metric_measures": "Assesses consistency and reliability across different generation scenarios.",
-                        "score_interpretation": "Higher scores indicate better technical stability (0-100).",
-                        "metric_origin": "ImagenHub Research Team",
+                        "metric_name": "F0 RMSE",
+                        "metric_measures": "Measures accuracy of fundamental frequency (pitch) reproduction in synthesized speech.",
+                        "score_interpretation": "Lower values indicate better pitch accuracy (0 is perfect).",
+                        "metric_origin": "Speech Synthesis Research",
                         "metric_details": [
-                            "Tests generation stability",
-                            "Evaluates consistency",
-                            "Assesses reproducibility",
-                            "Measures error handling",
-                            "Tests edge cases",
-                            "Evaluates failure modes"
+                            "Tests pitch accuracy",
+                            "Evaluates intonation patterns",
+                            "Assesses prosody matching",
+                            "Measures pitch range",
+                            "Tests pitch stability",
+                            "Evaluates stress patterns"
                         ],
                         "ex_questions": [
-                            "Generate multiple variations of the same prompt to test consistency.",
-                            "Evaluate handling of edge case scenarios and unusual prompts.",
-                            "Assess stability with increasingly complex requirements."
+                            "Compare pitch accuracy between emotional and neutral speech.",
+                            "Evaluate intonation preservation in questions versus statements.",
+                            "Assess pitch variation in expressive speech synthesis."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "LJSpeech Benchmark",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://paperswithcode.com/sota/text-to-speech-synthesis-on-ljspeech"
+                },
+                "tooltip": "LJSpeech is a widely-used benchmark for evaluating English text-to-speech systems, focusing on single-speaker synthesis quality.",
+                "analysis_tips": [
+                    "Compare MOS scores across different speaking styles.",
+                    "Consider both objective metrics and subjective listener ratings.",
+                    "Pay attention to prosody and naturalness scores.",
+                    "Look for models that maintain quality across longer utterances."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/1905.08459"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Mel Cepstral Distortion (MCD)",
+                        "metric_measures": "Evaluates the spectral distance between synthesized and reference speech.",
+                        "score_interpretation": "Lower values indicate better quality (measured in dB).",
+                        "metric_origin": "Speech Synthesis Research Community",
+                        "metric_details": [
+                            "Tests spectral accuracy",
+                            "Evaluates acoustic similarity",
+                            "Assesses voice characteristics",
+                            "Measures timbre accuracy",
+                            "Tests frequency response",
+                            "Evaluates spectral envelope"
+                        ],
+                        "ex_questions": [
+                            "Compare MCD scores between fast and normal speech synthesis.",
+                            "Evaluate spectral accuracy in different frequency ranges.",
+                            "Assess voice characteristic preservation across utterances."
+                        ]
+                    },
+                    {
+                        "metric_name": "Prosody L2 Error",
+                        "metric_measures": "Assesses accuracy of rhythm, stress, and intonation patterns.",
+                        "score_interpretation": "Lower values indicate better prosodic accuracy (0 is perfect).",
+                        "metric_origin": "LJSpeech Research Team",
+                        "metric_details": [
+                            "Tests rhythm accuracy",
+                            "Evaluates stress patterns",
+                            "Assesses intonation curves",
+                            "Measures pause timing",
+                            "Tests emphasis accuracy",
+                            "Evaluates speaking rate"
+                        ],
+                        "ex_questions": [
+                            "Analyze prosodic accuracy in emotional speech synthesis.",
+                            "Compare stress patterns between synthesized and natural speech.",
+                            "Evaluate the timing of pauses in long sentences."
+                        ]
+                    },
+                    {
+                        "metric_name": "Voice Consistency Score",
+                        "metric_measures": "Evaluates consistency of voice characteristics across different utterances.",
+                        "score_interpretation": "Higher scores indicate better consistency (0-100).",
+                        "metric_origin": "LJSpeech Research Team",
+                        "metric_details": [
+                            "Tests speaker identity",
+                            "Evaluates voice stability",
+                            "Assesses timbre consistency",
+                            "Measures style preservation",
+                            "Tests acoustic coherence",
+                            "Evaluates character maintenance"
+                        ],
+                        "ex_questions": [
+                            "Compare voice consistency across different sentence lengths.",
+                            "Evaluate speaker identity preservation in varying emotional contexts.",
+                            "Assess timbre stability across different phonetic contexts."
+                        ]
+                    },
+                    {
+                        "metric_name": "Naturalness MOS",
+                        "metric_measures": "Specific Mean Opinion Score focusing on speech naturalness.",
+                        "score_interpretation": "Scores range from 1-5 (higher is better).",
+                        "metric_origin": "LJSpeech Research Team",
+                        "metric_details": [
+                            "Tests human-likeness",
+                            "Evaluates natural flow",
+                            "Assesses pronunciation",
+                            "Measures fluency",
+                            "Tests natural timing",
+                            "Evaluates expression quality"
+                        ],
+                        "ex_questions": [
+                            "Rate the naturalness of conversational speech synthesis.",
+                            "Compare naturalness between different speaking styles.",
+                            "Evaluate the human-likeness of emotional expressions."
+                        ]
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Nvidia NeMo Framework",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://catalog.ngc.nvidia.com/models?filters=&orderBy=weightPopularDESC&query=nemo-tts"
+                },
+                "tooltip": "Nvidia's NeMo framework provides standardized benchmarks for evaluating text-to-speech models, with particular focus on production-ready metrics.",
+                "analysis_tips": [
+                    "Consider both quality and speed metrics for production deployment.",
+                    "Pay attention to multi-speaker adaptation scores if relevant.",
+                    "Look at performance across different speech durations.",
+                    "Compare resource requirements alongside quality metrics."
+                ],
+                "paper": {
+                    "text": "Nerdy details 🤓",
+                    "url": "https://arxiv.org/abs/2104.05557"
+                },
+                "metrics": [
+                    {
+                        "metric_name": "Multi-Speaker Similarity",
+                        "metric_measures": "Evaluates how well the model adapts to and maintains different speaker identities.",
+                        "score_interpretation": "Higher scores indicate better speaker adaptation (0-100).",
+                        "metric_origin": "Nvidia Research",
+                        "metric_details": [
+                            "Tests speaker adaptation",
+                            "Evaluates voice cloning accuracy",
+                            "Assesses identity preservation",
+                            "Measures cross-speaker consistency",
+                            "Tests accent preservation",
+                            "Evaluates style transfer"
+                        ],
+                        "ex_questions": [
+                            "Compare voice similarity scores across different speaker demographics.",
+                            "Evaluate accent preservation in multi-speaker synthesis.",
+                            "Assess identity maintenance across different speaking styles."
+                        ]
+                    },
+                    {
+                        "metric_name": "FastPitch Score",
+                        "metric_measures": "Assesses the model's ability to control speech rhythm and pitch accurately.",
+                        "score_interpretation": "Lower scores indicate better pitch and rhythm control (0 is perfect).",
+                        "metric_origin": "Nvidia Research",
+                        "metric_details": [
+                            "Tests pitch accuracy",
+                            "Evaluates rhythm control",
+                            "Assesses duration modeling",
+                            "Measures energy control",
+                            "Tests prosody transfer",
+                            "Evaluates style preservation"
+                        ],
+                        "ex_questions": [
+                            "Analyze pitch accuracy in expressive speech synthesis.",
+                            "Compare rhythm control in different languages.",
+                            "Evaluate energy contour preservation in emotional speech."
+                        ]
+                    },
+                    {
+                        "metric_name": "Inference Latency",
+                        "metric_measures": "Evaluates the speed of speech generation in a production environment.",
+                        "score_interpretation": "Lower values indicate faster generation (measured in milliseconds).",
+                        "metric_origin": "Nvidia Research",
+                        "metric_details": [
+                            "Tests generation speed",
+                            "Evaluates batch processing",
+                            "Assesses GPU utilization",
+                            "Measures memory usage",
+                            "Tests throughput capacity",
+                            "Evaluates scaling efficiency"
+                        ],
+                        "ex_questions": [
+                            "Measure generation time for different text lengths.",
+                            "Compare latency across different hardware configurations.",
+                            "Evaluate performance under varying batch sizes."
+                        ]
+                    },
+                    {
+                        "metric_name": "Cross-Language Quality",
+                        "metric_measures": "Assesses speech quality across different languages and accents.",
+                        "score_interpretation": "Higher scores indicate better multilingual capability (0-100).",
+                        "metric_origin": "Nvidia Research",
+                        "metric_details": [
+                            "Tests language adaptation",
+                            "Evaluates accent handling",
+                            "Assesses phoneme accuracy",
+                            "Measures pronunciation quality",
+                            "Tests language switching",
+                            "Evaluates cultural markers"
+                        ],
+                        "ex_questions": [
+                            "Compare quality scores across different language families.",
+                            "Evaluate code-switching performance in multilingual text.",
+                            "Assess pronunciation accuracy in non-native accents."
                         ]
                     }
                 ]
             }
-        ]
-        # LEFT OFF
+        ], # End of Text to Speech (TTS) tasks
+    },
+    "Speed": {
+        "Analyze data", 
+        "Chat", 
+        "Complex reasoning",  
+        "Generate code", 
+        "Generate images", 
+        "Generate text", 
+        "Generate video"
+        "Math", 
+        "Speech to text", 
+        "Text to speech" 
+    },
+    "Latency": {
+        "Analyze data", 
+        "Chat", 
+        "Complex reasoning",  
+        "Generate code", 
+        "Generate images", 
+        "Generate text", 
+        "Generate video"
+        "Math", 
+        "Speech to text", 
+        "Text to speech" 
+    },
+    "Cost": {
+        "Analyze data", 
+        "Chat", 
+        "Complex reasoning",  
+        "Generate code", 
+        "Generate images", 
+        "Generate text", 
+        "Generate video"
+        "Math", 
+        "Speech to text", 
+        "Text to speech" 
+    },
+    "Context Window": {
+        "Analyze data", 
+        "Chat", 
+        "Complex reasoning",  
+        "Generate code", 
+        "Generate images", 
+        "Generate text", 
+        "Generate video"
+        "Math", 
+        "Speech to text", 
+        "Text to speech" 
     }
 }
 
