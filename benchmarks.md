@@ -1,0 +1,158 @@
+*CHAIN AGENTS*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*CHAT*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*SOLVE COMPLEX PROBLEMS*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*GENERATE CODE*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*GENERATE IMAGES*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*GENERATE TEXT*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*GENERATE VIDEO*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*SOLVE MATH PROBLEMS*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+
+*CONVERT SPEECH TO TEXT*
+
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
+
+*CONVERT TEXT TO SPEECH*
+**QUALITY**
+
+
+**SPEED**
+
+
+**LATENCY**
+
+
+**COST**
+
+
+**CONTEXT WINDOW**
