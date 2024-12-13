@@ -70,7 +70,6 @@ QUESTIONS = {
 
 # Recommendations with detailed benchmark information
 RECOMMENDATIONS = {
-    # Evaluate: Quality
     "Quality": {
         "Chain agents": [
             {
@@ -187,7 +186,7 @@ RECOMMENDATIONS = {
                         "benchmark_name": "Communication (LMSys Chatbot Arena ELO Score)",
                         "benchmark_measures": "Measures the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
                         "score_interpretation": "Higher Arena Scores and lower Rank indicate superior conversational ability, as judged by one-to-one comparisons."
-                    }
+                    },
                 ]
             },
             {
@@ -448,6 +447,36 @@ RECOMMENDATIONS = {
         ],
         "Generate code": [
             {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models#quality"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "Higher is better across all of their metrics sans Price.",
+                    "The only chart relevant to coding in their 'Quality Evaluations' section is 'Coding (HumanEval)' (at the time of writing).",
+                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
+                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
+                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
+                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
+                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
+                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Coding (HumanEval)",
+                        "benchmark_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
+                        "score_interpretation": "Higher Arena Scores and lower Rank indicate greater coding proficiency and correctness.",
+                    },
+                ]
+            },
+            {
                 "leaderboard": "BigCodeBench Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -458,21 +487,21 @@ RECOMMENDATIONS = {
                     "url": "https://arxiv.org/abs/2406.15877"
                 },
                 "analysis_tips": [
-                    "Use Calibrated Pass@1 when evaluating models for practical scenarios where minor code fixes are acceptable.",
-                    "Compare raw Pass@1 with Calibrated Pass@1 to assess the model's strict correctness versus its usability.",
-                    "Pass@k metrics are helpful when determining how often models produce at least one correct solution in multiple attempts.",
-                    "Calibrated Pass@1 adjusts the raw Pass@1 metric to account for common errors or omissions that might not necessarily indicate the model's inability to solve the task. It is designed to provide a fairer comparison by considering the model's intent and coding capabilities, even when the output is incomplete or imperfect.", 
-                    "I find it helpful to think of Calibrated Pass@1 in terms of human developers. When developers write code, we may miss certain details like importing a library, defining helper functions, or adding boilerplate code. These omissions don't necessarily reflect poor coding skills but might stem from assumptions about the environment or the context. Similarly, LLMs sometimes generate code that is functionally correct but incomplete, such as forgetting imports or minor details that can easily be inferred.",
-                    "Click 'base' or 'instructed' to remove them from the chart. This feature can be buggy. If all the models disappear, click 'Instruct' or 'Average' and return to 'Complete'.",
-                    "Hard vs Full: The 'Hard' option evaluates models on more challenging or complex datasets, while 'Full' includes all datasets, providing a broader overview of model performance.",
-                    "Complete, Instruct, Average: These toggles control the evaluation focus. 'Complete' assesses the model's ability to handle complete tasks, 'Instruct' focuses on instruction-following capabilities, and 'Average' represents an aggregate score across both types.",
+                    "This leaderboard is a thick-and-chewy cookie, but I'll break it down as much as possible.",
+                    "Pass@1 vs Calibrated Pass@k...What the heck? Okay Pass@1 calculates the percentage of times the model completed the coding task on the first attempt like some kinda showoff. Calibrated Pass@k calculates the percentage of times the model completed the task within the top k attempts. You know...like actual humans. Basically, Pass@k is designed to provide a fairer measurement by considering the model's intent and coding capabilities, even when the output is incomplete or imperfect. The leaderboard uses calibrated Pass@1.", 
+                    "Now Complete vs Instruct vs Average: Complete evaluates code completion based on detailed docstrings, testing a model's coding proficiency. Instruct assesses code generation from brief natural language instructions, examining a model's ability to understand human intent. So a Complete task might ask a model to complete the function 'def calculate_area(length, width'):' using the provided docstring while an instruct task might prompt might just prompt it to write a Python function to calculate the area of a rectangle. Average represents the mean (aka average)of a model's performance across both the Complete and Instruct tasks.", 
+                    "If you select the Average filter, you'll see what looks like a dot plot with the average node being the darker dot. If you have multiple models with the same number of parameters they'll line up along the same point on the vertical axis (e.g.,like Llama 3.1-70B-Instruct and Athene-70B).",
+                    "Base vs Instructed: With Base, you give the model an instruction like write an API call for a weather API that returns the temperature for NYC. Now let's say you provide it with examples of how you want it to be structured, the export format (csv instead of json), and how you want to handle errors. That's Instructed.",
+                    "This toggle may seem buggy, but it's actually pretty intuitive. If all the models disappear, just keep clicking...just keep clicking...What do we like to d—. Just kidding. You need to make sure you don't have the Instruct filter active while having base models (green) selected because, by definition, base models aren't instructed. Complete and Average will show both.",
                     "Show Models with Unknown Sizes: Enables or disables the inclusion of models whose parameter sizes or details are not disclosed. Useful for filtering out incomplete data.",
-                    "Base vs Instructed: The color coding distinguishes between 'base' models (green) and 'instructed' models (gray), highlighting whether the model has undergone fine-tuning or instruction-based training."
+                    "Base vs Instructed: Base evaluates the model's performance in its default, pre-trained state, without fine-tuning for specific instructions. Instructed evaluates a model fine-tuned or trained to follow natural language instructions. The color coding distinguishes between 'base' models (green) and 'instructed' models (gray), highlighting whether the model has undergone fine-tuning or instruction-based training.",
+                    "Show Models with Unknown Size: I don't recommend toggling this on. It's a hot mess.",
+                    "Emoji gude: ✨ marks models evaluated using a chat setting; 💤 indicates the models having at least a difference of 1 pct between the Pass@1 and Calibrated Pass@k; 💚 means open weights and open data, 💙 means open weights and open SFT data (Supervised Fine-Tuning = training a model using a dataset of input-output pairs), but the base model is not data-open. 💚💙 models open-source the data."
                 ],
                 "benchmarks": [
                     {
                         "benchmark_name": "Calibrated Pass@1",
-                        "benchmark_measures": "Adjusts the raw Pass@1 metric by accounting for common omissions or minor errors in code, such as missing imports or boilerplate. It measures the likelihood of a model generating code that solves a task correctly with slight, acceptable deviations.",
+                        "benchmark_measures": "Adjusts the raw Pass@1 metric by accounting for common omissions or minor errors in code, such as missing imports or boilerplate. It measures the likelihood of a model generating code that solves a task correctly with slight, acceptable deviations. This is what is shown on the leaderboard.",
                         "score_interpretation": "Higher scores indicate better performance, emphasizing usability and real-world applicability over strict correctness.",
                     },
                     {
@@ -480,10 +509,31 @@ RECOMMENDATIONS = {
                         "benchmark_measures": "The percentage of tasks solved correctly by the first attempt, without calibration for omissions or partial correctness.",
                         "score_interpretation": "Higher scores indicate stricter correctness with no allowance for omissions.",
                     },
+                ]
+            },
+            {
+                "leaderboard": "Chatbot Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://lmarena.ai/?leaderboard"
+                },
+                "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
+                "analysis_tips": [
+                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "You can sort the table by each column.",
+                    "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
+                    "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
+                    "Large Model Systems (LMSYS) renamed their 'Elo rating' column to 'Arena Score' in June 2024. Nothing changed but the label (source: https://lmsys.org/blog/2024-06-27-multimodal/)."
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/pdf/2403.04132"
+                },
+                "benchmarks": [
                     {
-                        "benchmark_name": "Pass@k (k=5, 10)",
-                        "benchmark_measures": "The percentage of tasks for which at least one of the top-k generated solutions is correct.",
-                        "score_interpretation": "Higher scores indicate better overall task-solving ability across multiple attempts.",
+                        "benchmark_name": "Coding",
+                        "benchmark_measures": "Model's ability to understand and generate code effectively.",
+                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better.",
                     }
                 ]
             },
@@ -499,10 +549,10 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "CodeXGLUE is a benchmark suite for code intelligence developed by Microsoft Research. It includes multiple tasks focused on code understanding and generation across various programming languages.",
                 "analysis_tips": [
-                    "The leaderboard is divided into different tasks. Check which specific task is most relevant to your needs.",
-                    "Pay attention to the programming languages covered in each task.",
-                    "Consider both accuracy and efficiency metrics when comparing models.",
-                    "Note that some tasks focus on code understanding while others test code generation."
+                    "The leaderboard is divided into different tasks: clone detection, defect detection, cloze test, code completion, code refinement, code translation, type prediction, natural language code search, code generation, code summarization, and documentation translation. Because Microsoft, amirite? Check which specific task is most relevant to your needs.",
+                    "Because the guidelines for submitting models are so stringent and the datasets often require significant preprocessing, not many models participate so keep that in mind when considering this leaderboard.",
+                    "One advantage to CodeXGLUE is it's more representative of programming languages besides Python.",
+                    "If a column is cut off, hover over a column border and drag it to the left to make room for the obstructed column."
                 ],
                 "benchmarks": [
                         {
@@ -568,63 +618,6 @@ RECOMMENDATIONS = {
                     ]  
             },
             {
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "The only chart relevant to coding in their 'Quality Evaluations' section is 'Coding (HumanEval)' (at the time of writing).",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Coding (HumanEval)",
-                        "benchmark_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
-                        "score_interpretation": "Higher Arena Scores and lower Rank indicate greater coding proficiency and correctness.",
-                    },
-                ]
-            },
-            {
-                "leaderboard": "Chatbot Arena",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://lmarena.ai/?leaderboard"
-                },
-                "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
-                "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
-                    "You can sort the table by each column.",
-                    "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
-                    "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
-                    "Large Model Systems (LMSYS) renamed their 'Elo rating' column to 'Arena Score' in June 2024. Nothing changed but the label (source: https://lmsys.org/blog/2024-06-27-multimodal/)."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://arxiv.org/pdf/2403.04132"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Coding",
-                        "benchmark_measures": "Model's ability to understand and generate code effectively.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better.",
-                    }
-                ]
-            },
-            {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -652,10 +645,67 @@ RECOMMENDATIONS = {
             },
         ],
         "Generate images": [
-            ],
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/text-to-image"
+                },
+                "tooltip": "The Artificial Analysis Text to Image leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "The Quality vs Price bubble chart is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "Midjourney does not have an API. They approximate it using ImagineAPI, which serves as a tool to access the Midjourney Discord.",
+                    "If you click on a datapiont in the charts or the Details button in the summary table at the bottom of the dashboard, you'll filter the dashboard to that model.",
+                    "If a model is missing from a scatter/bubble chart, use the filter in the upper-right corner to add to it or switch out models. It'll say something like 'x out of y models'. You can also just start typing the model name when the filter is open to shave valuable seconds off your analysis time. (I'm all about efficiency. 😎)",
+                    "Their tooltips include the x and y values but not the z value (size), but it's not hard to tell DALLE3 HD and Ideogram v2 (at the time of writing) are infinitely slower (and more expensive) than FLUX.1[schnell].",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Generation Time, Variance' chart, a box that's positioned lower along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "I like that they use median generation time in the table at the bottom of the dashboard over mean (average). This is because it's a better metric any time you have outliers, and outliers are common with image-generation data. (I see you, DALLE3, Midjourney, and Ideogram. 🧐). With median, you return the middle value. This is why home prices are typically expressed as median. It's so a celeb's mansion doesn't distort the aggregated home values of a neighborhood/metro area.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of images generated by different models in response to the same prompt. Participants select the image they believe best matches the prompt, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, these platforms provide a transparent and continuously updated measure of model performance, reflecting the evolving landscape of AI-generated image quality.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Quality Elo",
+                        "benchmark_measures": "Relative ELO score of the models as determined by >100,000 responses from users in Artificial Analysis' Image Arena. Some models may not be shown due to not yet having enough votes.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "imgsys",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://imgsys.org/rankings" 
+                },
+                "tooltip": "Developed by fal.ai, this platform presents a generative image model arena where users can compare models by selecting preferred images based on prompt adherence, semantics, and aesthetics.",
+                "analysis_tips": [
+                    "As an open-source initiative itself, imgsys.org focuses on evaluating and ranking models that are publicly accessible, so you won't be able to compare proprietary models here.",
+                    "This leaderboard looks like a simple rank table, but it's actually a treasure trove of information. The 'Stats' button in each row allows you to compare that model against any other model in the leaderboard. It shows you the percentage of times your selected model won, lost, and tied. It's pretty clever.",
+                    "There's also a Playground button in each row. Clicking it will take you to the playground page for that model, where you can actually take it for a test drive.",
+                    "Next to the Playground tab is an API tab, which lets you test the API without having to root around for the documentation.",
+                    "Next to each model name is an information icon. Clicking it will open a modal with summary information, e.g., model id, link to the playground, number of parameters, image size, and safety tolerance.",
+                    "There are other image leaderboards, but some like Labelbox's leaderboard just have so few models, it's not worth the time to break it all down. But you can check it out at https://labelbox.com/leaderboards/image-generation/. (There were only five models at the time of writing.)",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Elo Score",
+                        "benchmark_measures": "Relative ELO score of the models. imgsys has made its calculate_elo module public, if you're so inclined to check it out: https://github.com/fal-ai/imgsys-public/blob/main/src/calculate_elo.py.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+        ],
         "Generate text": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -749,7 +799,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -775,7 +824,83 @@ RECOMMENDATIONS = {
                 ]
             },
         ], 
-        "Generate video": [],      
+        "Generate video": [
+            {
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Leaderboard"
+                },
+                "tooltip": "This leaderboard shows the results of all votes on Video Generation Model Arena. Results are released in batches of 30 and are updated every hour.",
+                "analysis_tips": [
+                    "It's not apparent what the colors on the edges of the rows indicate because there's no legend at the time of writing (sigh), but ChatGPT says that black is for OpenAI (Sora), Red represents models from Kuaishou, pink represents models from MiniMax, blue represents models from Tencent, and green represents all other models.",
+                    "At the time of writing the model names are clickable links, but they all 404.",
+                    "All videos are converted to 720p for consistency.",
+                    " ",
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Arena Elo",
+                        "benchmark_measures": "Ranking metric that quantifies a model's performance based on user preferences in head-to-head comparisons. It adjusts dynamically, awarding higher gains for defeating stronger models and stabilizing with more comparisons.",
+                        "score_interpretation": "Higher is better.",
+                    },
+                    {
+                        "benchmark_name": "Number of Appearances",
+                        "benchmark_measures": "Measures the number of times a model's generated videos have been evaluated in head-to-head comparisons.",
+                        "score_interpretation": "Higher is better.",
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Eval Crafter",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://evalcrafter.github.io/"
+                },
+                "tooltip": "This leaderboard shows the results of all votes on Video Generation Model Arena. Results are released in batches of 30 and are updated every hour.",
+                "analysis_tips": [
+                    "It's not apparent what the colors on the edges of the rows indicate because there's no legend at the time of writing (sigh), but ChatGPT says that black is for OpenAI (Sora), Red represents models from Kuaishou, pink represents models from MiniMax, blue represents models from Tencent, and green represents all other models.",
+                    "At the time of writing the model names are clickable links, but they all 404.",
+                    "All videos are converted to 720p for consistency.",
+                    " ",
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Visual Quality",
+                        "benchmark_measures": "Assesses the overall visual appeal of the generated video, including clarity, color accuracy, and aesthetic value.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Text-Video Alignment",
+                        "benchmark_measures": "Evaluates how accurately the video content reflects the given text prompt, ensuring semantic consistency between the description and the visual output.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Motion Quality",
+                        "benchmark_measures": "Analyzes the smoothness and realism of movements within the video, focusing on natural motion portrayal.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Temporal Consistency",
+                        "benchmark_measures": "Examines the coherence of visual elements over time, ensuring that objects and scenes remain consistent throughout the video.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Final Sum Score",
+                        "benchmark_measures": "A weighted aggregate of all benchmark metrics.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+        ],      
         "Solve math problems": [
             {
                 # VERIFIED
@@ -1001,7 +1126,7 @@ RECOMMENDATIONS = {
                         "benchmark_name": "Speed",
                         "benchmark_measures": "Output tokens per second",
                         "score_interpretation": "Higher is better."
-                    }
+                    },
                 ]
             },
             {
@@ -1342,9 +1467,9 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Speed",
-                        "benchmark_measures": "Output tokens per second",
-                        "score_interpretation": "Higher is better."
+                        "benchmark_name": "Generation Time",
+                        "benchmark_measures": "Seconds to generate 1 image",
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -2120,38 +2245,6 @@ RECOMMENDATIONS = {
             },
         ], 
         "Generate images": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/text-to-image"
-                },
-                "tooltip": "The Artificial Analysis Text to Image leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "The Quality vs Price bubble chart is eye opening. I highly recommend spending time analyzing it before investing in a model.",
-                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
-                    "Midjourney does not have an API. They approximate it using ImagineAPI, which serves as a tool to access the Midjourney Discord.",
-                    "If you click on a datapiont in the charts or the Details button in the summary table at the bottom of the dashboard, you'll filter the dashboard to that model.",
-                    "If a model is missing from a scatter/bubble chart, use the filter in the upper-right corner to add to it or switch out models. It'll say something like 'x out of y models'. You can also just start typing the model name when the filter is open to shave valuable seconds off your analysis time. (I'm all about efficiency. 😎)",
-                    "Their tooltips include the x and y values but not the z value (size), but it's not hard to tell DALLE3 HD and Ideogram v2 (at the time of writing) are infinitely slower (and more expensive) than FLUX.1[schnell].",
-                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Generation Time, Variance' chart, a box that's positioned lower along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
-                    "I like that they use median generation time in the table at the bottom of the dashboard over mean (average). This is because it's a better metric any time you have outliers, and outliers are common with image-generation data. (I see you, DALLE3, Midjourney, and Ideogram. 🧐). With median, you return the middle value. This is why home prices are typically expressed as median. It's so a celeb's mansion doesn't distort the aggregated home values of a neighborhood/metro area.",
-                    "Elo score is an evaluation method that involves presenting users with pairs of images generated by different models in response to the same prompt. Participants select the image they believe best matches the prompt, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, these platforms provide a transparent and continuously updated measure of model performance, reflecting the evolving landscape of AI-generated image quality.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Quality Elo",
-                        "benchmark_measures": "Relative ELO score of the models as determined by >100,000 responses from users in Artificial Analysis' Image Arena. Some models may not be shown due to not yet having enough votes.",
-                        "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
             {
                 # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
