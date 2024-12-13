@@ -73,7 +73,35 @@ RECOMMENDATIONS = {
     "Quality": {
         "Chain agents": [
             {
-                # VERIFIED
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://artificialanalysis.ai/models"
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "Higher is better across all of their metrics sans Price.",
+                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
+                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
+                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
+                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/methodology"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Quality Index",
+                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                    },
+                ]
+            },
+            {
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -83,7 +111,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -99,7 +126,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "SEAL",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -124,45 +150,13 @@ RECOMMENDATIONS = {
                     }
                 ]
             },
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
-                    },
-                ]
-            },
         ],
         "Chat": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 # TIPS FOR ARTIFICIAL ANALYSIS
@@ -171,9 +165,8 @@ RECOMMENDATIONS = {
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -190,7 +183,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -233,7 +225,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Hugging Face",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -263,21 +254,19 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -296,11 +285,10 @@ RECOMMENDATIONS = {
         ],
         "Solve complex problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -308,9 +296,8 @@ RECOMMENDATIONS = {
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -393,7 +380,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -403,7 +389,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -419,7 +404,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -450,18 +434,17 @@ RECOMMENDATIONS = {
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "The only chart relevant to coding in their 'Quality Evaluations' section is 'Coding (HumanEval)' (at the time of writing).",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -709,15 +692,14 @@ RECOMMENDATIONS = {
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                # TIPS FOR ARTIFICIAL ANALYSIS
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -808,7 +790,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -840,7 +821,7 @@ RECOMMENDATIONS = {
                 ],
                 "paper": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Arena"
                 },
                 "benchmarks": [
                     {
@@ -903,22 +884,20 @@ RECOMMENDATIONS = {
         ],      
         "Solve math problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 # TIPS FOR ARTIFICIAL ANALYSIS
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1017,37 +996,53 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "Artificial Analysis provides comprehensive metrics for speech-to-text capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher scores indicate better performance across all metrics.",
-                    "Consider both accuracy and speed metrics for production use.",
-                    "Compare performance across different audio quality levels.",
-                    "Look at real-world performance rather than just ideal conditions.",
-                    "Use their interactive visualizations to compare models directly."
+                    "The Word Error Rate vs. Price scatterplot is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "They shoehorn a lot of extra information in information icons in the table at the bottom of the chart.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Speed Factor, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "I like that they use median speed factor in the table at the bottom of the dashboard over mean (average). This is because it's a better metric any time you have outliers, and outliers are common with image-generation data. (I see you, DALLE3, Midjourney, and Ideogram. 🧐). With median, you return the middle value. This is why home prices are typically expressed as median. It's so a celeb's mansion doesn't distort the aggregated home values of a neighborhood/metro area.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of transcripts and prompts generated by different models in response to the same prompt. Participants select the transcription they believe best matches the prompt, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, these platforms provide a transparent and continuously updated measure of model performance, reflecting the evolving landscape of AI-generated image quality.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://artificialanalysis.ai/speech-to-text/methodology"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Transcription Accuracy",
-                        "benchmark_measures": "Evaluates overall accuracy of speech recognition across various conditions.",
-                        "score_interpretation": "Higher scores indicate better transcription accuracy.",
+                        "benchmark_name": "Word Error Rate",
+                        "benchmark_measures": "Percentage of words incorrect in the transcription.",
+                        "score_interpretation": "Lower is better.",
                     },
+                ]
+            },
+            {
+                "leaderboard": "Open ASR",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard"
+                },
+                "tooltip": "The Open ASR Leaderboard ranks and evaluates speech recognition models on the Hugging Face Hub.",
+                "analysis_tips": [
+                    "At the time of writing the leaderboard only includes English speech recognition, but they plan to expand to multilingual evaluation in later versions.",
+                    "Clicking on a model opens a page with detailed information about how it was tested. You can also find out useful information about the model, such as how many languages it supports, with a click-to-reveal toggle to view the supported languages.",
+                    "Other important details in the model page are its sampling rate, license type, GitHub repo link (as Hugging Face focuses on open models), MMS checkpoints, etc.",
+                    "The only two benchmarks in the table are Word Error Rate (WER) and Inverse Real-Time Factor (RTFx). The additional columns (e.g., AMI, Earnings22, Gigaspeech, etc.) correspond to benchmark datasets used to evaluate model performance. They reference the WER achieved by the model on that dataset. You can also sort the table by these scores.",
+                    "There's a Metrics tab where you can learn more about the benchmark metrics the leaderboard uses.",
+                    "At the bottom of the Metrics tab there is a table with more information about each of the datasets used to test models, e.g., speaking style, license info, types of audio it transcribes (i.e., its domain), etc.",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/speech-to-text/methodology"
+                },
+                "benchmarks": [
                     {
-                        "benchmark_name": "Real-World Robustness",
-                        "benchmark_measures": "Assesses performance in challenging real-world conditions.",
-                        "score_interpretation": "Higher scores indicate better handling of real-world scenarios.",
+                        "benchmark_name": "Word Error Rate",
+                        "benchmark_measures": "Percentage of words incorrect in the transcription.",
+                        "score_interpretation": "Lower is better.",
                     },
-                    {
-                        "benchmark_name": "Processing Efficiency",
-                        "benchmark_measures": "Evaluates the speed and resource usage of speech recognition.",
-                        "score_interpretation": "Higher scores indicate more efficient processing.",
-                    },
-                    {
-                        "benchmark_name": "Specialized Content",
-                        "benchmark_measures": "Tests accuracy on domain-specific and technical content.",
-                        "score_interpretation": "Higher scores indicate better specialized content handling.",
-                    }
                 ]
             },
     ],
@@ -1060,11 +1055,12 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher scores indicate better performance across all metrics.",
-                    "Consider both quality and speed metrics for production use.",
-                    "Pay attention to cost implications alongside performance.",
-                    "Compare performance between real-time and non-real-time models.",
-                    "Use their interactive visualizations to compare models directly."
+                    "The Quality vs Price bubble chart (which uses speed to size) is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "The table at the bottom of the dashboard has a column that lets you know if the model supports streaming. Streaming support is very important if you need to generate speech in real time. A model might be very fast (e.g., 'Studio, Google Cloud TTS' coming in hot at 283.3 characters per second at the time of writing) and at quite the premium ($160 per 1m characters), but if it doesn't support streaming, it's not going to be useful for real-time applications. Meanwhile, the 'Turbo v2.5, ElevenLabs' is cheaper, faster, has a higher Elo score, and supports streaming, illustrating why these leaderboards are so important.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Characters Per Second, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of audio samples generated by different text-to-speech models from the same text input. Participants select the sample they believe is more natural or aligns better with the text, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, this leaderboard provides a transparent and continuously updated measure of model performance, reflecting advancements in AI-generated speech quality.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                 ],
                 "methodology": {
                     "text": "Methodology",
@@ -1072,37 +1068,50 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Voice Naturalness",
-                        "benchmark_measures": "Evaluates how natural and human-like the synthesized speech sounds.",
-                        "score_interpretation": "Higher scores indicate more natural-sounding speech.",
+                    "benchmark_name": "Quality ELO",
+                    "benchmark_measures": "Assesses the naturalness and overall quality of the generated speech based on user preferences in pairwise comparisons.",
+                    "score_interpretation": "Higher is better."
                     },
-                    {
-                        "benchmark_name": "Voice Clarity",
-                        "benchmark_measures": "Assesses the clarity and intelligibility of synthesized speech.",
-                        "score_interpretation": "Higher scores indicate clearer speech output.",
-                    },
-                    {
-                        "benchmark_name": "Processing Speed",
-                        "benchmark_measures": "Evaluates the time taken to generate speech from text input.",
-                        "score_interpretation": "Higher scores indicate faster processing.",
-                    },
-                    {
-                        "benchmark_name": "Speaker Consistency",
-                        "benchmark_measures": "Evaluates the model's ability to maintain consistent voice characteristics.",
-                        "score_interpretation": "Higher scores indicate better consistency.",
-                    }
                 ]
             },
-            ], # End of Text to Speech (TTS) tasks
+            {
+                "leaderboard": "TTS Arena",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/blog/arena-tts"
+                },
+                "tooltip": "TTS Arena is a community-driven platform where users can listen to audio samples generated by different TTS models and vote on their preferences. It then displays models in descending order of how natural they sound (based on votes cast by the community).",
+                "analysis_tips": [
+                    "They selected several SOTA (State of the Art) models for their leaderboard. While most are open-source models, they also included several proprietary models to allow developers to compare the state of open-source development with proprietary models.",
+                    "In order to help keep results fair, the leaderboard hides results by default until the number of votes passes a threshold.",
+                    "Click the 'Reveal preliminary results' toggle to show models without sufficient votes.",
+                    "You can also exclude votes obtained through Battle Mode by selecting the 'Hide Battle Mode votes' toggle.",
+                    "The only two benchmarks in the table are Word Error Rate (WER) and Inverse Real-Time Factor (RTFx). The additional columns (e.g., AMI, Earnings22, Gigaspeech, etc.) correspond to benchmark datasets used to evaluate model performance. They reference the WER achieved by the model on that dataset. You can also sort the table by these scores.",
+                    "There's a Metrics tab where you can learn more about the benchmark metrics the leaderboard uses.",
+                    "At the bottom of the Metrics tab there is a table with more information about each of the datasets used to test models, e.g., speaking style, license info, types of audio it transcribes (i.e., its domain), etc.",
+                    "The impetus for this leaderboard is metrics like WER (word error rate) are often unreliable measures of model quality as a model can have a low WER but still sound unnatural. This platform aims to provide a more human-centric evaluation of TTS models.",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://huggingface.co/spaces/TTS-AGI/TTS-Arena"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Score",
+                        "benchmark_measures": "A model's Elo rating, determined by how frequently a model's audio outputs are preferred in direct user comparisons, factoring in the difficulty of its competition",
+                        "score_interpretation": "Higher is better.",
+                    },
+                ]
+            },
+        ], # End of Text to Speech (TTS) tasks
     },
     "Speed": {
         "Chain agents": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1113,13 +1122,13 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://artificialanalysis.ai/speech-to-text/methodology"
                 },
                 "benchmarks": [
                     {
@@ -1130,7 +1139,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1156,7 +1164,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1184,11 +1191,10 @@ RECOMMENDATIONS = {
         ], 
         "Chat": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1199,7 +1205,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1216,7 +1222,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1242,7 +1247,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1270,11 +1274,10 @@ RECOMMENDATIONS = {
         ], 
         "Solve complex problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1285,7 +1288,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1302,7 +1305,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1328,7 +1330,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1356,11 +1357,10 @@ RECOMMENDATIONS = {
         ], 
         "Generate code": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1371,7 +1371,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1388,7 +1388,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1414,7 +1413,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1442,11 +1440,10 @@ RECOMMENDATIONS = {
         ], 
         "Generate images": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1457,7 +1454,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1474,7 +1471,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1500,7 +1496,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1528,11 +1523,10 @@ RECOMMENDATIONS = {
         ], 
         "Generate text": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1543,7 +1537,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1560,7 +1554,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1586,7 +1579,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1614,11 +1606,10 @@ RECOMMENDATIONS = {
         ], 
         "Generate video": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1629,7 +1620,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1646,7 +1637,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1672,7 +1662,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1699,13 +1688,11 @@ RECOMMENDATIONS = {
             },
         ], 
         "Solve math problems": [
-            # LEFT OFF 
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -1717,7 +1704,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -1739,7 +1726,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1771,7 +1757,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -1805,110 +1790,51 @@ RECOMMENDATIONS = {
         ], 
         "Convert speech to text": [
             {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
+                "leaderboard": "Artificial Analysis STT",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/speech-to-text"
                 },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "tooltip": "Artificial Analysis provides comprehensive metrics for speech-to-text capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
+                    "The Word Error Rate vs. Price scatterplot is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "They shoehorn a lot of extra information in information icons in the table at the bottom of the chart.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Speed Factor, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "I like that they use median speed factor in the table at the bottom of the dashboard over mean (average). This is because it's a better metric any time you have outliers, and outliers are common with image-generation data. (I see you, DALLE3, Midjourney, and Ideogram. 🧐). With median, you return the middle value. This is why home prices are typically expressed as median. It's so a celeb's mansion doesn't distort the aggregated home values of a neighborhood/metro area.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of transcripts and prompts generated by different models in response to the same prompt. Participants select the transcription they believe best matches the prompt, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, these platforms provide a transparent and continuously updated measure of model performance, reflecting the evolving landscape of AI-generated image quality.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://artificialanalysis.ai/speech-to-text/methodology"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Speed",
-                        "benchmark_measures": "Output tokens per second",
+                        "benchmark_name": "Speed Factor",
+                        "benchmark_measures": "The ratio of audio duration to the time taken for transcription; a Speed Factor above 1 indicates faster-than-real-time transcription (e.g., a factor of 2.0 means a 10-minute audio file is transcribed in 5 minutes).",
                         "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "KLU",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://klu.ai/llm-leaderboard"
-                },
-                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
                     },
                 ]
             },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Throughput",
-                        "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
-                    }
-                ],
-            },
-        ], 
+    ],
         "Convert text to speech": [
             {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
+                "leaderboard": "Artificial Analysis TTS",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/text-to-speech"
                 },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "The Quality vs Price bubble chart (which uses speed to size) is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "The table at the bottom of the dashboard has a column that lets you know if the model supports streaming. Streaming support is very important if you need to generate speech in real time. A model might be very fast (e.g., 'Studio, Google Cloud TTS' coming in hot at 283.3 characters per second at the time of writing) and at quite the premium ($160 per 1m characters), but if it doesn't support streaming, it's not going to be useful for real-time applications. Meanwhile, the 'Turbo v2.5, ElevenLabs' is cheaper, faster, has a higher Elo score, and supports streaming, illustrating why these leaderboards are so important.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Characters Per Second, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of audio samples generated by different text-to-speech models from the same text input. Participants select the sample they believe is more natural or aligns better with the text, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, this leaderboard provides a transparent and continuously updated measure of model performance, reflecting advancements in AI-generated speech quality.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                 ],
                 "methodology": {
                     "text": "Methodology",
@@ -1916,85 +1842,31 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Speed",
-                        "benchmark_measures": "Output tokens per second",
+                        "benchmark_name": "Characters per Second",
+                        "benchmark_measures": "Evaluates the processing speed by measuring the number of text characters converted to speech per second during generation.",
                         "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "KLU",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://klu.ai/llm-leaderboard"
-                },
-                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
                     },
                 ]
             },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Throughput",
-                        "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
-                    }
-                ],
-            },
-        ], 
+        ], # End of Text to Speech (TTS) tasks
     },
     "Latency": {
         "Chain agents": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2011,7 +1883,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2039,22 +1910,20 @@ RECOMMENDATIONS = {
         ], 
         "Chat": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2071,7 +1940,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2099,22 +1967,20 @@ RECOMMENDATIONS = {
         ], 
         "Solve complex problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2131,7 +1997,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2159,11 +2024,10 @@ RECOMMENDATIONS = {
         ], 
         "Generate code": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
@@ -2173,7 +2037,7 @@ RECOMMENDATIONS = {
                     "While the HumanEval benchmark is Python-specific, extensions like HumanEval-X or MultiPLE have been developed to support additional programming languages, such as JavaScript, Java, C, C#, C++, PHP, Ruby, and Go.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -2189,7 +2053,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2215,7 +2078,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2246,7 +2108,6 @@ RECOMMENDATIONS = {
         ], 
         "Generate images": [
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2274,22 +2135,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate text": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2306,7 +2165,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2334,22 +2192,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate video": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2366,7 +2222,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2394,22 +2249,20 @@ RECOMMENDATIONS = {
         ], 
         "Solve math problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2426,7 +2279,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2452,146 +2304,24 @@ RECOMMENDATIONS = {
                 ],
             },
         ], 
-        "Convert speech to text": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Latency",
-                        "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent. For models which do not support streaming, this represents time to receive the completion.",
-                        "score_interpretation": "Lower is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Latency",
-                        "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent.",
-                        "score_interpretation": "Lower is better."
-                    }
-                ],
-            },
-        ], 
-        "Convert text to speech": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Latency",
-                        "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent. For models which do not support streaming, this represents time to receive the completion.",
-                        "score_interpretation": "Lower is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Latency",
-                        "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent.",
-                        "score_interpretation": "Lower is better."
-                    }
-                ],
-            },
-        ], 
-    },
+   },
     "Cost": {
         "Chain agents": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2608,7 +2338,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2619,7 +2348,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -2635,7 +2363,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2668,22 +2395,20 @@ RECOMMENDATIONS = {
         ], 
         "Chat": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2700,7 +2425,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2711,7 +2435,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -2727,7 +2450,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2760,22 +2482,20 @@ RECOMMENDATIONS = {
         ], 
         "Solve complex problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2792,7 +2512,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2803,7 +2522,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -2819,7 +2537,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2852,22 +2569,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate code": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2884,7 +2599,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2895,7 +2609,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -2911,7 +2624,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2944,22 +2656,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate images": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2976,7 +2686,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -2987,7 +2696,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3003,7 +2711,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3036,22 +2743,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate text": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3068,7 +2773,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3079,7 +2783,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3095,7 +2798,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3128,22 +2830,20 @@ RECOMMENDATIONS = {
         ], 
         "Generate video": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3160,7 +2860,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3171,7 +2870,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3187,7 +2885,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3220,22 +2917,20 @@ RECOMMENDATIONS = {
         ], 
         "Solve math problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3252,7 +2947,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3263,7 +2957,6 @@ RECOMMENDATIONS = {
                     "Cost can vary from one API provider to another."
                     "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3279,7 +2972,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3312,116 +3004,51 @@ RECOMMENDATIONS = {
         ], 
         "Convert speech to text": [
             {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
+                "leaderboard": "Artificial Analysis STT",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/speech-to-text"
                 },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "tooltip": "Artificial Analysis provides comprehensive metrics for speech-to-text capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
+                    "The Word Error Rate vs. Price scatterplot is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "They shoehorn a lot of extra information in information icons in the table at the bottom of the chart.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Speed Factor, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "I like that they use median speed factor in the table at the bottom of the dashboard over mean (average). This is because it's a better metric any time you have outliers, and outliers are common with image-generation data. (I see you, DALLE3, Midjourney, and Ideogram. 🧐). With median, you return the middle value. This is why home prices are typically expressed as median. It's so a celeb's mansion doesn't distort the aggregated home values of a neighborhood/metro area.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of transcripts and prompts generated by different models in response to the same prompt. Participants select the transcription they believe best matches the prompt, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, these platforms provide a transparent and continuously updated measure of model performance, reflecting the evolving landscape of AI-generated image quality.",
+                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://artificialanalysis.ai/speech-to-text/methodology"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Price",
-                        "benchmark_measures": "Price per token, represented as USD per million Tokens. Price is a blend of Input & Output token prices (3:1 ratio).",
-                        "score_interpretation": "Lower is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "KLU",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://klu.ai/llm-leaderboard"
-                },
-                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Cost can vary from one API provider to another."
-                    "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Cost / 1m tokens",
-                        "benchmark_measures": "The leaderboard does not specify whether these costs are calculated based on input tokens, output tokens, or a combination of both.",
+                        "benchmark_name": "Price per 1,000 Minutes",
+                        "benchmark_measures": "The cost in USD to transcribe 1,000 minutes of audio, based on real-time audio duration; for providers charging by processing time, costs are estimated accordingly.",
                         "score_interpretation": "Lower is better."
                     },
                 ]
             },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Input cost",
-                        "benchmark_measures": "Measured per million tokens",
-                        "score_interpretation": "Lower is better."
-                    },
-                    {
-                        "benchmark_name": "Output cost",
-                        "benchmark_measures": "Measured per million tokens",
-                        "score_interpretation": "Lower is better."
-                    },
-                ],
-            },
-        ], 
+    ],
         "Convert text to speech": [
             {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
+                "leaderboard": "Artificial Analysis TTS",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/text-to-speech"
                 },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "tooltip": "Artificial Analysis provides comprehensive metrics for text-to-speech capabilities, focusing on production-ready models.",
                 "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "The Quality vs Price bubble chart (which uses speed to size) is eye opening. I highly recommend spending time analyzing it before investing in a model.",
+                    "The scatter/bubble charts highlight the ideal quadrant in green and the least desirable quadrant in gray, which is brilliant.",
+                    "The table at the bottom of the dashboard has a column that lets you know if the model supports streaming. Streaming support is very important if you need to generate speech in real time. A model might be very fast (e.g., 'Studio, Google Cloud TTS' coming in hot at 283.3 characters per second at the time of writing) and at quite the premium ($160 per 1m characters), but if it doesn't support streaming, it's not going to be useful for real-time applications. Meanwhile, the 'Turbo v2.5, ElevenLabs' is cheaper, faster, has a higher Elo score, and supports streaming, illustrating why these leaderboards are so important.",
+                    "I 💚 that they include a boxplot, but they can be harder to interpret for neophytes. Essentially, the line in the middle of the box indicates the mean (average); the tails the spread (sans outliers); and the height variance. So in the 'Characters Per Second, Variance' chart, a box that's positioned higher along the y axis is faster, and a short box indicates it's consistent in its performance, whereas a tall box indicates there's a lot of variance from test to test. Think of it like the kid who consistently gets good (or bad) grades on tests versus a kid whose performance can vary wildly from test to test. They are an unsung hero of statistical analysis, but once you get used to them, it's hard to go back to pie and bar charts.",
+                    "Elo score is an evaluation method that involves presenting users with pairs of audio samples generated by different text-to-speech models from the same text input. Participants select the sample they believe is more natural or aligns better with the text, and these choices are used to calculate each model's Elo score. By adopting the Elo rating system, this leaderboard provides a transparent and continuously updated measure of model performance, reflecting advancements in AI-generated speech quality.",
+                    "Next to their charts is a model filter. They only show 15 of the available 19 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                 ],
                 "methodology": {
                     "text": "Methodology",
@@ -3429,91 +3056,31 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Price",
-                        "benchmark_measures": "Price per token, represented as USD per million Tokens. Price is a blend of Input & Output token prices (3:1 ratio).",
+                        "benchmark_name": "Price per 1M Characters",
+                        "benchmark_measures": "Indicates the cost associated with generating speech for one million characters of text.",
                         "score_interpretation": "Lower is better."
-                    }
+                    },  
                 ]
             },
-            {
-                # VERIFIED
-                "leaderboard": "KLU",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://klu.ai/llm-leaderboard"
-                },
-                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Cost can vary from one API provider to another."
-                    "It's risky to compare cost from one leaderboard to another because they may calculate cost differently. For example, Artificial Analysis calculates cost based on a blend of input and output tokens, while it's not clear how KLU calculates cost. They don't disclose how this benchmark is calculated on their leaderboard at time of writing.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Cost / 1m tokens",
-                        "benchmark_measures": "The leaderboard does not specify whether these costs are calculated based on input tokens, output tokens, or a combination of both.",
-                        "score_interpretation": "Lower is better."
-                    },
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Input cost",
-                        "benchmark_measures": "Measured per million tokens",
-                        "score_interpretation": "Lower is better."
-                    },
-                    {
-                        "benchmark_name": "Output cost",
-                        "benchmark_measures": "Measured per million tokens",
-                        "score_interpretation": "Lower is better."
-                    },
-                ],
-            },
-        ], 
+        ], # End of Text to Speech (TTS) tasks
     },
     "Context Window": {
         "Chain agents": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3530,7 +3097,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3558,22 +3124,20 @@ RECOMMENDATIONS = {
         ],   
         "Chat": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3590,7 +3154,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3618,22 +3181,20 @@ RECOMMENDATIONS = {
         ],   
         "Solve complex problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3650,7 +3211,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3678,22 +3238,20 @@ RECOMMENDATIONS = {
         ],   
         "Generate code": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3710,7 +3268,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3738,22 +3295,20 @@ RECOMMENDATIONS = {
         ],   
         "Generate images": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3770,7 +3325,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3798,22 +3352,20 @@ RECOMMENDATIONS = {
         ],   
         "Generate text": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
                     "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -3830,67 +3382,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    },
-                ],
-            },
-        ],   
-        "Generate video": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -3918,23 +3409,19 @@ RECOMMENDATIONS = {
         ],   
         "Solve math problems": [
             {
-                # VERIFIED
                 "leaderboard": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
+                    "url": "https://artificialanalysis.ai/models"
                 },
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
+                    "I 💚 their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
+                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
+                    "Search the dashboard for 'context window' to jump to the charts that include it as a metric. At the time of writing, Google is crushing the competition. They're the only models in the green quadrant of the 'Quality vs. Context Window, Input Token Price' chart and they crush the other bars in the 'Content Window' bar chart.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3950,127 +3437,6 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    },
-                ],
-            },
-        ],   
-        "Convert speech to text": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
-                "leaderboard": "Vellum LLM Leaderboard",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "tooltip": "The Vellum LLM leaderboard isn't updated as frequently as most, but it's simplicity defined, which could be a good place to cut your teeth on leaderboards.",
-                "analysis_tips": [
-                    "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
-                    "The last updated date is at the bottom of the page. A lot can change in a few months' time, so keep that in mind, if the leaderboard hasn't been updated recently.",
-                    "I really like that this leaderboard includes cutoff dates. Most do not. But given how infrequently it's updated, you need to verify these dates.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://www.vellum.ai/llm-leaderboard"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    },
-                ],
-            },
-        ],   
-        "Convert text to speech": [
-            {
-                # VERIFIED
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models#quality"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "Higher is better across all of their metrics sans Price.",
-                    "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.", 
-                    "Under their 'Quality Evaluations' section, they only show 15 of the available 81 models (at the time of writing). You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Context Window",
-                        "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
-                        "score_interpretation": "Higher is better."
-                    }
-                ]
-            },
-            {
-                # VERIFIED
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_link": {
                     "text": "View leaderboard",
@@ -4100,6 +3466,9 @@ RECOMMENDATIONS = {
 }
 
 
+# ========================================================================
+#   Routes
+# ======================================================================== 
 
 
 
