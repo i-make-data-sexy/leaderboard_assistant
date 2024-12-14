@@ -11,25 +11,25 @@ QUESTIONS = {
         "options": [
             "Chain agents",
             "Chat",
-            "Solve complex problems",
+            "Convert speech to text",
+            "Convert text to speech"
             "Generate code",
             "Generate images",
             "Generate text",
             "Generate video",
+            "Solve complex problems",
             "Solve math problems",
-            "Convert speech to text",
-            "Convert text to speech"
         ],
         "next": "goal"
     },
     "goal": {
-        "question": "What aspect do you want to evaluate?",
-        "tooltip": "There are many metrics leaderboards provide. The answer to this question will help whittle down the list of benchmarks to choose from.",
+        "question": "What do you want to evaluate?",
+        "tooltip": "There are many benchmarks leaderboards provide. The answer to this question will help whittle down the list of benchmarks to choose from.",
         "options": [
             "Quality",
+            "Cost",
             "Speed",
             "Latency",
-            "Cost",
             "Context Window"
         ],
         "next": "recommendation"
