@@ -1,33 +1,26 @@
 # ========================================================================
 #   Imports
-# ========================================================================
+# ======================================================================== 
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify 
 from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField
 import logging
 import os
 from recommendations_engine import QUESTIONS, RECOMMENDATIONS
 
-# ========================================================================
-#   Logging
-# ========================================================================
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
-logger = logging.getLogger(__name__)
+# From NH 
+import pandas as pd
+from pyvis.network import Network
+from processing import build_network
+from bs4 import BeautifulSoup
 
 # ========================================================================
-#   App Config
-# ========================================================================
+#   Set Up App
+# ======================================================================== 
 
-# Initialize Flask app
-app = Flask(__name__, static_folder='static')
-
-# Configure secret key
-app.secret_key = os.getenv('AI_LEAD_FLASK_SECRET_KEY', 'default_secret_key')  
-
-app.config['SESSION_TYPE'] = 'filesystem'
+# Initialize the Flask app
+app = Flask(__name__)
 
 # ========================================================================
 #   Routes
@@ -36,8 +29,69 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # Home Route
 @app.route('/')
 def index():
-    session.clear()  # Clear previous session data
-    return render_template('index.html')
+    # Read the CSV file
+    df = pd.read_csv('input/airtable_20241115.csv')
+    
+    # Convert df to JSON-safe format
+    df = df.fillna('')
+    data = df.to_dict(orient='records')
+    
+    # Build the network graph
+    net = build_network(df)
+    net.cdn_resources = 'remote'
+    
+    # Generate the network graph HTML
+    graph_html = net.generate_html(notebook=False)
+    soup = BeautifulSoup(graph_html, 'html.parser')
+    
+    # Clean up canvas
+    canvas = soup.find('canvas')
+    if canvas:
+        for attr in ['width', 'height', 'style']:
+            if attr in canvas.attrs:
+                del canvas[attr]
+                
+    # Clean up divs
+    for div in soup.find_all('div'):
+        if 'style' in div.attrs:
+            del div['style']
+            
+    # Extract scripts and modify network initialization
+    scripts = soup.find_all('script')
+    for script in scripts:
+        if script.string and 'var network = new vis.Network' in script.string:
+            # Move network initialization to a global function
+            script.string = '''
+                function initNetwork() {
+                    window.network = new vis.Network(
+                        document.getElementById("mynetwork"),
+                        {nodes: new vis.DataSet(%s), edges: new vis.DataSet(%s)},
+                        %s
+                    );
+                    
+                    network.once('stabilizationIterationsDone', function() {
+                        network.setOptions({physics: false});
+                    });
+                }
+                
+                // Call initNetwork after document is ready
+                document.addEventListener('DOMContentLoaded', initNetwork);
+            ''' % (
+                net._nodes.to_json(),
+                net._edges.to_json(),
+                json.dumps(net.options)
+            )
+    
+    # Extract body and scripts
+    graph_body = str(soup.body)
+    graph_scripts = ''.join([str(script) for script in scripts])
+    
+    return render_template(
+        'network.html',
+        graph_body=graph_body,
+        graph_scripts=graph_scripts,
+        initialData=json.dumps(data)  # Serialize data to JSON string
+    )
 
 # Question Route
 @app.route('/question/<key>', methods=['GET', 'POST'])
@@ -84,6 +138,3 @@ def recommendation():
         task=task,
         goal=goal
     )
-
-if __name__ == '__main__':
-    app.run(debug=True)

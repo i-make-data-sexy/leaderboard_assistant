@@ -1,0 +1,853 @@
+/* ========================================================================
+   General Styles
+   ======================================================================== */
+
+body {
+    font-family: 'Ek Mukta', sans-serif;
+    color: #333;
+    font-size: 0.9em;
+}
+
+body, html {
+    overflow-x: hidden;
+    padding-bottom: 2rem;  /* Added for bottom spacing */
+}
+
+/* ========================================================================
+   Layout for App Containers
+   ======================================================================== */
+
+.container {
+    margin: 2em;
+    margin-top: 30px !important;
+    position: relative;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+}
+
+.network-container {
+    position: relative;
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+}
+
+.table-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+}
+
+/* ========================================================================
+   Header Styles
+   ======================================================================== */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 4em;
+}
+
+h2 {
+    margin: 0;
+    color: #0273be;
+    font-size: 2.2em;
+    margin-bottom: 0.5em;
+}
+
+/* ========================================================================
+   Logo Styles
+   ======================================================================== */
+
+.logo-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.logo-container img {
+    width: 200px;
+}
+
+.header-logo {
+    height: 60px;
+}
+
+
+
+/* ========================================================================
+   Model Picker Form Styles
+   ======================================================================== */
+
+.wizard-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+    margin-bottom: 2rem;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ffa500;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-option {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-option:hover {
+    border-color: #8bb42d;
+}
+
+.checkbox-option.selected {
+    border-color: #0273be;
+    background-color: rgba(2, 115, 190, 0.05);
+}
+
+/* ========================================================================
+   Table Styles
+   ======================================================================== */
+
+#recommendations-table {
+    width: 100% !important;
+    font-size: 1.3em;
+    border: 1px solid #ddd;
+    min-width: 800px;
+}
+
+#recommendations-table th {
+    background-color: rgba(255, 165, 0, 0.7);
+    color: #000;
+    font-weight: 500;
+    padding: 12px 8px;
+}
+
+#recommendations-table td {
+    padding: 10px 8px;
+    line-height: 1.4;
+    vertical-align: top;
+}
+
+/* Link icon cell alignment */
+#recommendations-table td:nth-child(5),
+#recommendations-table td:nth-child(6) {
+    text-align: center;
+    vertical-align: top;
+}
+
+.link-icon {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-icon:hover {
+    color: #0273be;
+}
+
+/* Selected row styling */
+#recommendations-table tr.selected {
+    background-color: rgba(2, 115, 190, 0.05);
+    border-left: 3px solid #ffa500;
+}
+
+/* ========================================================================
+   Network Graph Styles
+   ======================================================================== */
+
+.vis-network {
+    width: 100% !important;
+    height: 500px !important;
+    border: none !important;
+}
+
+.vis-network .vis-node {
+    cursor: pointer;
+}
+
+.vis-network .vis-node.selected {
+    border-color: #ffa500 !important;
+    border-width: 3px !important;
+}
+
+/* ========================================================================
+   Tooltip Styles
+   ======================================================================== */
+
+.info-icon {
+    cursor: help;
+    position: relative;
+    display: inline-block;
+    vertical-align: super;
+    font-size: 0.6em;
+    font-family: 'Ek Mukta', sans-serif;
+    font-weight: normal;
+    color: #8bb42d;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.info-icon[data-tooltip]:before {
+    content: attr(data-tooltip);
+    white-space: pre-wrap;
+    position: absolute;
+    top: -20px;
+    left: 100%;
+    transform: translate(5px, -5%);
+    background: rgba(255, 165, 0, 0.9);
+    color: #444;
+    padding: 8px 12px;
+    border-radius: 10px;
+    width: max-content;
+    max-width: 400px;
+    font-size: 1em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 9999;
+    line-height: 1.4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ========================================================================
+   Responsive Design
+   ======================================================================== */
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .wizard-container {
+        padding: 1rem;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-container,
+    .network-container {
+        min-width: 100%;
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .header-title {
+        font-size: 3em;
+    }
+}
+
+
+
+
+/* ========================================================================
+   NXTHumans Custom Styles
+   ======================================================================== */
+
+   html, body {
+    height: 100%;
+    margin: .5rem;
+    /* overflow: auto; */
+    padding-bottom: 2rem;  /* Added for bottom spacing */
+}
+
+
+/* ========================================================================
+   Layout for App Containers
+   ======================================================================== */
+
+/* Ensure all parent containers fill height */
+.card, .card-body, #mynetwork {
+    height: 100%;
+}
+   
+
+/* Ensure the container-fluid also uses full width without max constraints */
+.container-fluid {
+    width: 100%;
+    max-width: 100%;
+    /* Removed min-height: 100%; to allow scrolling */
+}
+
+/* Flex container for header */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.overview-section {
+    flex: 1;
+}
+
+.header-container p {
+    font-family: 'Ek Mukta', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    /* max-width: 900px; */
+    line-height: 1.5;
+}
+
+/* Slider container styling */
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+/* Set up app-container as the parent */
+#app-container {
+    min-height: calc(100vh - 150px);  /* Changed from height to min-height */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Network container - fixed height instead of percentage */
+#network-container {
+    width: 100%;
+    height: 500px;  /* Changed from 50% to fixed height */
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+/* Table container - remove fixed height constraint */
+.table-container {
+    width: 100%;
+    /* Removed height: 50% to allow natural expansion */
+    overflow: visible;  /* Changed from auto to visible */
+}
+
+
+/* ========================================================================
+   Logo Styles
+   ======================================================================== */
+   .logo {
+    max-width: 450px;   /* Restricts the logo's maximum width */
+    width: 100%;        /* Allows the logo to scale down on smaller screens */
+    height: auto;       /* Maintains the logo's aspect ratio */
+}
+
+
+/* ========================================================================
+   Network Graph Styles (PyVis)
+   ======================================================================== */
+
+/* Network graph dimensions */
+.vis-network {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.vis-network canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+/* Customize pointer to be a more traditional cursor */
+.vis-network .vis-node {
+    cursor: pointer;
+}
+
+/* Tooltip styling for PyVis */
+.vis-tooltip {
+    position: absolute;
+    visibility: hidden;
+    padding: 5px;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.8);           /* Used rgba to add transparency */
+    color: white;
+    border-radius: 5px;
+}
+
+.vis-tooltip.visible {
+    visibility: visible;
+}
+
+/* Ensure labels are visible */
+.vis-network .vis-label {
+    cursor: pointer;
+    font-family: 'Ek Mukta', sans-serif;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);     /* Used rgba to add transparency */
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #333333;
+    text-align: center;
+}
+
+
+/* ========================================================================
+   Table Styles
+   ======================================================================== */
+
+   
+/* ======================
+   Standard
+   ====================== */
+
+.table-container {
+width: 100%;
+overflow: auto;
+}
+
+
+#model-table {
+    font-family: 'Ek Mukta', sans-serif;
+}
+
+.dataTables_wrapper {
+    width: 100%;
+}
+
+/* Align cells vertically to top */
+#ai-plan-table tbody td {
+    vertical-align: top;
+}
+
+#ai-plan-table thead th {
+    vertical-align: top;
+}
+
+/* ======================
+   Cat & Subcat Rows
+   ====================== */
+
+
+#ai-plan-table > tbody > tr.category-row {
+    /* background-color: #e6e9eb !important; */
+    background-color: rgba(230,233,235,0.8) !important;         /* Used rgba to add transparency */
+    font-family: 'Ek Mukta Medium', sans-serif !important;
+}
+
+/* Darken inside borders of category rows */
+#ai-plan-table > tbody > tr.category-row > td {
+    /* Darken right border of each cell in category rows */
+    border-right: 2px solid rgba(170, 170, 170, 0.7) !important; /* Used rgba to add transparency */
+}
+
+/* Subcategory row styling */
+/* #ai-plan-table > tbody > tr.subcategory-row {
+    background-color: white !important;
+    font-family: 'Ek Mukta Medium', sans-serif !important;
+} */
+
+
+/* ========================================================================
+   Button Styles
+   ======================================================================== */
+.custom-button {
+    background-color: #ffa500;
+    border-color: #ffa500;
+    max-width: 200px;
+    width: 100%;
+    color: #FFFFFF;
+    margin-right: 10px;
+}
+
+.custom-button:hover {
+    background-color: #8bb42d;
+    border-color: #D900D9;
+}
+
+
+/* ========================================================================
+   Typography - Custom Fonts
+   ======================================================================== */
+
+/* Import custom fonts */
+@font-face {
+    font-family: 'Ek Mukta';
+    src: url('../fonts/EkMukta-Regular.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ek Mukta Bold';
+    src: url('..static/fonts/EkMukta-Bold.ttf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ek Mukta Medium';
+    src: url('..static/fonts/EkMukta-Medium.ttf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Apply Bebas Kai to all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Kai', sans-serif;
+    margin-top: 1rem !important; 
+    margin-bottom: 1rem !important;
+    color: #333333;
+}
+
+h1 {
+    font-size: 3rem;
+    color:#8bb42d;
+}
+
+/* Centered alignment for specific headings */
+.text-center {
+    text-align: center;
+}
+
+/* ========================================================================
+   Form Container Styles
+   ======================================================================== */
+
+/* Style for the form container */
+#modelPickerForm {
+    max-width: 600px;                           /* Restrict form width */
+    margin: 0 auto;                             /* Center align the form */
+    padding: 20px;
+    background-color: #f9f9f9;                /* Optional: Add a light background */
+    border: 1px solid #ddd;                   /* Optional: Add a border */
+    border-radius: 8px;                         /* Optional: Add rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Style for the section headers */
+#modelPickerForm h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style for the checkbox group */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px;                                  /* Add space between checkboxes */
+    margin-bottom: 20px;                        /* Add spacing after each group */
+}
+
+/* Style for each checkbox option */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    margin-right: 80px;                         /* Space to the right of each checkbox */
+    margin-bottom: 15px;                        /* Space below each checkbox */
+    gap: 25px;                                  /* Add space between the checkbox and text */
+    font-size: 1rem;
+    color: #555;
+    min-width: 180px;                           /* Ensure uniform width for options */
+}
+
+/* Style for the checkbox input */
+.checkbox-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Style for the submit button */
+.submit-button {
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #8bb42d;
+    border: none;
+    border-radius: 4px;
+    margin: 20px auto 0;                        /* Center align and add top margin */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #025a93;
+}
+
+
+
+
+/* ========================================================================
+   Tooltip Styles
+   ======================================================================== */
+ 
+   .info-icon {
+    cursor: help;
+    position: relative;
+    display: inline-block;
+    vertical-align: super;
+    font-size: 0.8em;
+    color: #ffa500;
+    padding: 2px 6px;
+    border-radius: 50%;
+ }
+ 
+ .info-icon[data-tooltip]:before {
+    content: attr(data-tooltip);
+    white-space: pre-wrap;
+    position: absolute;
+    top: -20px;
+    left: 100%;                                          /* Start right after the icon */
+    transform: translate(5px, -5%);                      /* Offset 5px to the right and center vertically */
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: max-content;
+    max-width: 400px;
+    font-size: 14px;
+    font-family: 'Ek Mukta', sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 9999;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+ 
+.info-icon[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+ 
+/* Position arrow appropriately */
+.info-icon[data-tooltip]:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(252, 0, 255, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.info-icon[data-tooltip]:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+ 
+ /* Adjust position if tooltip would go off screen to the right */
+@media (max-width: 1200px) {
+    .info-icon[data-tooltip]:before {
+        left: auto;
+        right: 0;
+        transform: translateY(-100%);
+    }
+
+    .info-icon[data-tooltip]:after {
+        left: auto;
+        right: 10px;
+        transform: translateY(0) rotate(90deg);
+    }
+}
+
+/* Smaller screen adjustment */
+@media (max-width: 768px) {
+    .info-icon[data-tooltip]:before {
+        max-width: 300px;
+        right: -50px;
+    }
+}
+
+/* ========================================================================
+   Slider Styles
+   ======================================================================== */
+
+/* Slider label */
+.slider-container label {
+    font-family: 'Ek Mukta', sans-serif;
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #000000;
+}
+
+/* Slider track */
+#node-spacing-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 5px;
+    background: #ccc;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
+
+/* Colored track before the thumb */
+#node-spacing-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #ffa500 0%, #ffa500 var(--value, 50%), #ccc var(--value, 50%), #ccc 100%);
+    height: 5px;
+    border-radius: 2.5px;
+}
+
+#node-spacing-slider::-moz-range-track {
+    background: #ccc;
+    height: 5px;
+    border-radius: 2.5px;
+}
+
+#node-spacing-slider::-moz-range-progress {
+    background: #ffa500;
+    height: 5px;
+    border-radius: 2.5px;
+}
+
+#node-spacing-slider:hover {
+    opacity: 1;
+}
+
+/* Add + and - signs to the slider */
+.slider-with-signs {
+    display: flex;
+    flex-direction: column;
+    width: 200px;  /* Match the slider width */
+}
+
+.signs-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4px;  /* Space between signs and slider */
+}
+
+/* Styling for the + and - signs */
+.zoom-sign {
+    font-family: 'Ek Mukta', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    user-select: none;
+}
+
+/* Adjust the slider margins to remove any default spacing */
+#node-spacing-slider {
+    margin: 0;
+}
+
+/* Slider thumb for WebKit browsers */
+#node-spacing-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #ffa500;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    margin-top: -5px;
+}
+
+/* Slider thumb for Firefox */
+#node-spacing-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #ffa500;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+/* Slider thumb for IE */
+#node-spacing-slider::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    background: #ffa500;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+/* Remove default focus outline */
+#node-spacing-slider:focus {
+    outline: none;
+}
+
+/* Optional: Active state */
+#node-spacing-slider:active::-webkit-slider-thumb {
+    background: #d600d6;
+}
+
+#node-spacing-slider:active::-moz-range-thumb {
+    background: #d600d6;
+}
+
+#node-spacing-slider:active::-ms-thumb {
+    background: #d600d6;
+}
+
+/* ========================================================================
+   Keyword Highlighting Styles
+   ======================================================================== */
+
+/* Highlighted keyword styling */
+.highlighted-keyword {
+    /* font-family: 'Ek Mukta Bold', sans-serif !important;
+    font-weight: bold; */
+    color: #ffa500 !important;
+}

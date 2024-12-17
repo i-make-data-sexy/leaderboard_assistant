@@ -42,6 +42,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -70,6 +71,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -87,13 +89,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "QUAKE",
-                        "benchmark_measures": "Assesses practical, multi-step problem-solving, which is fundamental for chain agents orchestrating tasks across different tools.",
+                        "benchmark_measures": "Evaluates practical, multi-step problem-solving, which is fundamental for chain agents orchestrating tasks across different tools.",
                         "score_interpretation": "Higher scores are better."
                     }
                 ]
             },
             {
                 "leaderboard": "SEAL",
+                "leaderboard_abbrev": "SEAL",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://scale.com/leaderboard/tool_use"
@@ -121,6 +124,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -151,6 +155,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -176,6 +181,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -203,6 +209,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -232,6 +239,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -259,6 +267,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -288,6 +297,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -312,6 +322,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -344,6 +355,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -373,6 +385,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -402,6 +415,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -423,13 +437,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Communication (LMSys Chatbot Arena ELO Score)",
-                        "benchmark_measures": "Measures the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
+                        "benchmark_measures": "Evaluates the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
                         "score_interpretation": "Higher Arena Scores and lower Rank indicate superior conversational ability, as judged by one-to-one comparisons."
                     }
                 ]
             },
             {
                 "leaderboard": "Chatbot Arena",
+                "leaderboard_abbrev": "CBA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -450,28 +465,29 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Instruction Following",
-                        "benchmark_measures": "How well the model follows explicit user instructions.",
+                        "benchmark_measures": "Evaluates how well the model follows explicit user instructions.",
                         "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
                     },
                     {
                         "benchmark_name": "Multi-Turn",
-                        "benchmark_measures": "Model's performance in multi-turn conversations, reflecting conversational consistency and coherence.",
+                        "benchmark_measures": "Evaluates model's performance in multi-turn conversations, reflecting conversational consistency and coherence.",
                         "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
                     },
                     {
                         "benchmark_name": "Longer Query",
-                        "benchmark_measures": "Effectiveness in handling and responding accurately to longer, more complex queries.",
+                        "benchmark_measures": "Evaluates the model's effectiveness in handling and responding accurately to longer, more complex queries.",
                         "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
                     },
                     {
                         "benchmark_name": "Arena Score",
-                        "benchmark_measures": "Ranks based on LLM performance in head-to-head comparisons. This score is derived using the Elo rating system, a method traditionally employed in chess and other competitive games to assess the relative skill levels of players.",
+                        "benchmark_measures": "Ranks models based on performance in head-to-head comparisons. This score is derived using the Elo rating system, a method traditionally employed in chess and other competitive games to assess the relative skill levels of players.",
                         "score_interpretation": "Score ranges from 1 \u2013 thousands (higher is better)."
                     }
                 ]
             },
             {
-                "leaderboard": "Hugging Face",
+                "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_abbrev": "HF",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -489,7 +505,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "IFEval",
-                        "benchmark_measures": "Tests model's ability to follow explicit formatting instructions.",
+                        "benchmark_measures": "Evaluates model's ability to follow explicit formatting instructions.",
                         "score_interpretation": "Higher scores indicate better adherence to instructions."
                     },
                     {
@@ -501,6 +517,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -531,6 +548,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -561,6 +579,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -586,6 +605,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -613,6 +633,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -642,6 +663,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -669,6 +691,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -698,6 +721,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -722,6 +746,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -754,6 +779,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -783,6 +809,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -812,6 +839,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -833,13 +861,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Scientific Reasoning & Knowledge (GPQA Diamond) ",
-                        "benchmark_measures": "Assesses graduate-level reasoning and problem-solving.",
+                        "benchmark_measures": "Evaluates graduate-level reasoning and problem-solving.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Chatbot Arena",
+                "leaderboard_abbrev": "CBA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -864,18 +893,19 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Multi-Turn Reasoning",
-                        "benchmark_measures": "Tests ability to maintain logical consistency across extended reasoning chains.",
+                        "benchmark_measures": "Evaluates ability to maintain logical consistency across extended reasoning chains.",
                         "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
                     },
                     {
                         "benchmark_name": "Complex Problem Solving",
-                        "benchmark_measures": "Assesses ability to solve problems requiring multiple steps and consideration of various factors.",
+                        "benchmark_measures": "Evaluates ability to solve problems requiring multiple steps and consideration of various factors.",
                         "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_abbrev": "HF",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -906,6 +936,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -923,13 +954,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "QUAKE",
-                        "benchmark_measures": "Assesses challenging, multi-step problem-solving.",
+                        "benchmark_measures": "Evaluates challenging, multi-step problem-solving.",
                         "score_interpretation": "Higher scores are better."
                     }
                 ]
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -957,6 +989,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -987,6 +1020,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1012,6 +1046,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1039,6 +1074,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1068,6 +1104,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1095,6 +1132,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1124,6 +1162,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1148,6 +1187,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1180,6 +1220,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1209,6 +1250,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1238,6 +1280,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1266,6 +1309,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "BigCodeBench Leaderboard",
+                "leaderboard_abbrev": "BCB",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://bigcode-bench.github.io/"
@@ -1301,6 +1345,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
+                "leaderboard_abbrev": "CBA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -1320,13 +1365,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Coding",
-                        "benchmark_measures": "Model's ability to understand and generate code effectively.",
+                        "benchmark_measures": "Evaluates the model's ability to understand and generate code effectively.",
                         "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "CodeXGLUE Leaderboard",
+                "leaderboard_abbrev": "CXG",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://microsoft.github.io/CodeXGLUE/"
@@ -1360,12 +1406,12 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Cloze Test (Code-Code)",
-                        "benchmark_measures": "Tests understanding of code context by predicting masked tokens in code sequences",
+                        "benchmark_measures": "Evaluates understanding of code context by predicting masked tokens in code sequences",
                         "score_interpretation": "Higher accuracy scores indicate better token prediction ability"
                     },
                     {
                         "benchmark_name": "Code Completion (Code-Code)",
-                        "benchmark_measures": "Measures ability to autocomplete partial code snippets with contextually appropriate suggestions",
+                        "benchmark_measures": "Evaluates ability to autocomplete partial code snippets with contextually appropriate suggestions",
                         "score_interpretation": "Higher accuracy and BLEU scores indicate better completion quality"
                     },
                     {
@@ -1375,7 +1421,7 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Code Translation (Code-Code)",
-                        "benchmark_measures": "Tests ability to convert code between different programming languages while preserving functionality",
+                        "benchmark_measures": "Evaluates ability to convert code between different programming languages while preserving functionality",
                         "score_interpretation": "Higher functional equivalence scores indicate better translation accuracy"
                     },
                     {
@@ -1395,18 +1441,19 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Code Summarization (Code-Text)",
-                        "benchmark_measures": "Tests capacity to generate concise natural language descriptions of code functionality",
+                        "benchmark_measures": "Evaluates capacity to generate concise natural language descriptions of code functionality",
                         "score_interpretation": "Higher BLEU and ROUGE scores indicate better summarization quality"
                     },
                     {
                         "benchmark_name": "Documentation Translation (Text-Text)",
-                        "benchmark_measures": "Measures accuracy in translating technical documentation between different human languages",
+                        "benchmark_measures": "Evaluates accuracy in translating technical documentation between different human languages",
                         "score_interpretation": "Higher BLEU scores indicate better translation quality"
                     }
                 ]
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1421,12 +1468,12 @@ RECOMMENDATIONS = {
                     "The primary value in Vellum's leaderboard is its ability to select two models and compare them. If you don't need the most current models or happen to use it after it's been updated, this could be a great resource.",
                     "The last updated date is at the bottom of the page.",
                     "I really like that this leaderboard includes cutoff dates. Most do not.",
-                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'."
+                    "I also like that they simplify the metrics and provide the official, super-geeky name in a tooltip. So 'MMLU Benchmark' becomes 'Multiple choice Qs' and 'BBHard Benchmark' becomes 'Future Capabilities'.",
                 ],
                 "benchmarks": [
                     {
                         "benchmark_name": "Python coding",
-                        "benchmark_measures": "Vellum's label for the HumanEval Benchmark. Evaluates the model's ability to generate correct Python code from problem statements.",
+                        "benchmark_measures": "Evaluates the model's ability to generate correct Python code from problem statements.",
                         "score_interpretation": "Higher scores reflect greater proficiency in coding tasks."
                     }
                 ]
@@ -1435,6 +1482,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1465,6 +1513,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1490,6 +1539,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1517,6 +1567,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1538,13 +1589,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Coding (HumanEval)",
-                        "benchmark_measures": "Assesses the Python generation capabilities of LLMs. It comprises 164 handcrafted programming challenges, each featuring a function signature, a descriptive docstring, and accompanying unit tests. These tasks are comparable to simple software interview questions and evaluate a model's proficiency in understanding programming concepts, algorithms, and basic mathematics.",
+                        "benchmark_measures": "Evaluates the Python generation capabilities of LLMs. It comprises 164 handcrafted programming challenges, each featuring a function signature, a descriptive docstring, and accompanying unit tests. These tasks are comparable to simple software interview questions and evaluate a model's proficiency in understanding programming concepts, algorithms, and basic mathematics.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1563,13 +1615,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "BCB Coding (BigCodeBench)",
-                        "benchmark_measures": "Assesses the Python generation capabilities of an LLM by its performance in realistic programming scenarios. It's comprised of 1,140 function-level tasks that challenge models to utilize multiple function calls from 139 libraries across seven domains, including data analysis and web development. The tasks feature complex instructions and diverse function calls, aiming to assess models' abilities to understand intricate requirements and generate appropriate code solutions.",
+                        "benchmark_measures": "Evaluates the Python generation capabilities of an LLM by its performance in realistic programming scenarios. It's comprised of 1,140 function-level tasks that challenge models to utilize multiple function calls from 139 libraries across seven domains, including data analysis and web development. The tasks feature complex instructions and diverse function calls, aiming to assess models' abilities to understand intricate requirements and generate appropriate code solutions.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1591,7 +1644,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Python Coding",
-                        "benchmark_measures": "It uses the HumanEval benchmark to assess the Python generation capabilities of LLMs. It comprises 164 handcrafted programming challenges, each featuring a function signature, a descriptive docstring, and accompanying unit tests. These tasks are comparable to simple software interview questions and evaluate a model's proficiency in understanding programming concepts, algorithms, and basic mathematics.",
+                        "benchmark_measures": "Evaluates the Python generation capabilities of LLMs. It comprises 164 handcrafted programming challenges, each featuring a function signature, a descriptive docstring, and accompanying unit tests. These tasks are comparable to simple software interview questions and evaluate a model's proficiency in understanding programming concepts, algorithms, and basic mathematics.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -1600,6 +1653,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1629,6 +1683,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1653,6 +1708,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1685,6 +1741,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1714,6 +1771,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1743,6 +1801,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-image"
@@ -1774,6 +1833,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "imgsys",
+                "leaderboard_abbrev": "imgsys",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://imgsys.org/rankings"
@@ -1803,6 +1863,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1833,6 +1894,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1858,6 +1920,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1885,6 +1948,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1912,6 +1976,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1941,6 +2006,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -1965,6 +2031,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -1997,6 +2064,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2026,6 +2094,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2055,6 +2124,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2074,7 +2144,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Communication",
-                        "benchmark_measures": "Assesses effectiveness in conveying ideas and maintaining audience engagement.",
+                        "benchmark_measures": "Evaluates effectiveness in conveying ideas and maintaining audience engagement.",
                         "score_interpretation": "Higher is better."
                     },
                     {
@@ -2091,6 +2161,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
+                "leaderboard_abbrev": "CBA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -2115,13 +2186,14 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Longer Query",
-                        "benchmark_measures": "Tests ability to maintain creative coherence and style in longer compositions.",
+                        "benchmark_measures": "Evaluates ability to maintain creative coherence and style in longer compositions.",
                         "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_abbrev": "HF",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -2146,6 +2218,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2163,7 +2236,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "QUAKE",
-                        "benchmark_measures": "Assesses ability to summarize and draft content in a coherent and engaging manner.",
+                        "benchmark_measures": "Evaluates ability to summarize and draft content in a coherent and engaging manner.",
                         "score_interpretation": "Higher scores are better."
                     }
                 ]
@@ -2172,6 +2245,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2202,6 +2276,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2227,6 +2302,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2254,6 +2330,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2283,6 +2360,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2310,6 +2388,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2339,6 +2418,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2363,6 +2443,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2395,6 +2476,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2424,6 +2506,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2452,7 +2535,61 @@ RECOMMENDATIONS = {
     "Generate video": {
         "Quality": [
             {
+                "leaderboard": "ApolloBench",
+                "leaderboard_abbrev": "AB",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://huggingface.co/spaces/Apollo-LMMs/ApolloBench"
+                },
+                "tooltip": "ApolloBench evaluates video-language models on tasks like reasoning, perception, and text recognition to measure their ability to understand and analyze video content accurately.",
+                "analysis_tips": [
+                    "By default, the leaderboard only shows the Overall score. You can click to reveal the other benchmark scores, which I recommend doing.",
+                    "The Notes column indicates max frames but only for a few models at the time of writing.",
+                    "This is the only leaderboard at the time of writing that measures a model's ability to run OCR (Optical Character Recognition) on videos.",
+                    "At the time of writing the model names are clickable links, but they all 404.",
+                    "You can sort the table by any column.",
+                    "If model size isn't included it's because the provider doesn't disclose it."
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Arena"
+                },
+                "benchmarks": [
+                    {
+                    "benchmark_name": "Overall Accuracy",
+                    "benchmark_measures": "Calculates the model's overall performance across all ApolloBench tasks, including reasoning, perception, and spatial understanding.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Egocentric",
+                    "benchmark_measures": "Evaluates the model's ability to process and understand first-person perspective videos.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Spatial",
+                    "benchmark_measures": "Evaluates how well the model understands spatial relationships and positioning within the video content.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "OCR (Optical Character Recognition)",
+                    "benchmark_measures": "Evaluates the model's accuracy in detecting and interpreting text from videos.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Perception",
+                    "benchmark_measures": "Evaluates the model's ability to recognize and understand objects, scenes, and other visual information within the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Reasoning",
+                    "benchmark_measures": "Evaluates the model's logical reasoning capabilities based on visual and contextual cues in videos.",
+                    "score_interpretation": "Higher is better."
+                    }
+                ],
+            },
+            {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Leaderboard"
@@ -2476,13 +2613,14 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Number of Appearances",
-                        "benchmark_measures": "Measures the number of times a model's generated videos have been evaluated in head-to-head comparisons.",
+                        "benchmark_measures": "Calculates the number of times a model's generated videos have been evaluated in head-to-head comparisons.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Eval Crafter",
+                "leaderboard_abbrev": "EC",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://evalcrafter.github.io/"
@@ -2501,7 +2639,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Visual Quality",
-                        "benchmark_measures": "Assesses the overall visual appeal of the generated video, including clarity, color accuracy, and aesthetic value.",
+                        "benchmark_measures": "Evaluates the overall visual appeal of the generated video, including clarity, color accuracy, and aesthetic value.",
                         "score_interpretation": "Higher is better."
                     },
                     {
@@ -2511,12 +2649,12 @@ RECOMMENDATIONS = {
                     },
                     {
                         "benchmark_name": "Motion Quality",
-                        "benchmark_measures": "Analyzes the smoothness and realism of movements within the video, focusing on natural motion portrayal.",
+                        "benchmark_measures": "Evaluates the smoothness and realism of movements within the video, focusing on natural motion portrayal.",
                         "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Temporal Consistency",
-                        "benchmark_measures": "Examines the coherence of visual elements over time, ensuring that objects and scenes remain consistent throughout the video.",
+                        "benchmark_measures": "Evaluates the coherence of visual elements over time, ensuring that objects and scenes remain consistent throughout the video.",
                         "score_interpretation": "Higher is better."
                     },
                     {
@@ -2525,11 +2663,207 @@ RECOMMENDATIONS = {
                         "score_interpretation": "Higher is better."
                     }
                 ]
-            }
+            },
+            {
+                "leaderboard": "LongVideoBench",
+                "leaderboard_abbrev": "LVB",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://longvideobench.github.io/index.html#leaderboard"
+                },
+                "tooltip": "This leaderboard segments video performance by video length, breaking them into four categories.",
+                "analysis_tips": [
+                    "The leaderboard has a column that identifies if the model is open-source or proprietary.",
+                    "This leaderboard segments performance by video length, which is helpful for understanding how models perform on different types of content.",
+                    "The Test Total represents the model's cumulative performance across all test subsets (e.g., 8s-15s, 15s-60s, 180s-600s, and 900s-3600s) whereas the Val Total represents the model's performance on a separate validation set.",
+                    "Think of the Val Total score as a practice test score before taking the SAT. Developers can run these practice tests before submitting their model to be evaluated. The Test Total score is the actual SAT score. The validation videos are similar to the test videos but slightly different, so they don’t give away answers for the final test.",
+                    "The max_frames value next to the model name indicates the maximum number of video frames the model can process or generate at one time. Models with higher max_frames can handle longer or more complex videos in one pass. This value is important for tasks like video comprehension or generation, as it reflects how much content a model can analyze or produce at once.",
+                    "At the time of writing the table isn't dynamic, so you can't sort by columns or filter. If you want to have that functionality, just select the entire table and paste it into Excel or a Google Sheet (by typing 'sheet.new' in a browser).",
+                    'An example question: "At the beginning of the video (0:19 - 0:22), a woman with a headband tied to her head, wearing a red top, carrying a black backpack, when the woman comes down from a hill with tall rocks (3:34 - 3:40), what changes occur to her backpack?" The model must choose from 4 options.',
+                    "Click a model's name to learn more about it. It will either take you to the model's homepage, Hugging Face page, or GitHub repository.",
+                    "You can view example questions on the LongVideoBench Hugging Face page: https://huggingface.co/datasets/longvideobench/LongVideoBench.",
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/abs/2407.15754"
+                },
+                "benchmarks": [
+                    {
+                    "benchmark_name": "Test Total",
+                    "benchmark_measures": "Calculates the model's overall performance across all evaluated test clips of varying lengths, combining scores from all test subsets.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Test 8s-15s",
+                    "benchmark_measures": "Evaluates the model's performance specifically on short video clips lasting between 8 to 15 seconds.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Test 15s-60s",
+                    "benchmark_measures": "Evaluates how well the model performs on medium-length videos ranging from 15 to 60 seconds.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Test 180s-600s",
+                    "benchmark_measures": "Evaluates the model's ability to process and understand longer videos between 3 to 10 minutes.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Test 900s-3600s",
+                    "benchmark_measures": "Evaluates the model's performance on very long videos, lasting between 15 to 60 minutes, reflecting its capacity for extended content understanding.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Val Total",
+                    "benchmark_measures": "Evaluates the model's performance on a separate validation set, used to ensure consistency and generalization across video lengths.",
+                    "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Multi-task Long Video Understanding Benchmark",
+                "leaderboard_abbrev": "MLVU",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://github.com/JUNJIE99/MLVU"
+                },
+                "tooltip": "This leaderboard features a very granular approach to evaluating video generation and understanding tasks.",
+                "analysis_tips": [
+                    "The Mini-Leaderboard summarizes the performance of the models by including the maximum number of video frames a model can process at once ('Input'), the model size ('Size'), the mean average of its scores ('M-Avg'), and the geometic average of its scores ('G-Avg').",
+                    "The geometric average is a robust measure of performance because it accounts for the variance in scores across different benchmarks. It's calculated by multiplying all the scores together, then taking a root.",
+                    "Long Video Understanding requires longer context windows.",
+                    "At the time of writing the table isn't dynamic, so you can't sort by columns or filter. If you want to have that functionality, just select the entire table and paste it into Excel or a Google Sheet (by typing 'sheet.new' in a browser).",
+                    "Click a model's name to learn more about it. It will either take you to the model's homepage, Hugging Face page, or GitHub repository.",
+                    "In the Introduction they provide three charts. Chart 1 shows the distribution of video lengths in the dataset, with most videos falling between 5-8 minutes and 8-11 minutes, while very long videos (120+ minutes) are the least common. This ensures models are evaluated on a mix of short, medium, and long durations.",
+                    "Chart 2 shows a breakdown of video content types, with Surveillance (26%) and Movies (22%) being the largest categories, followed by smaller groups like Egocentric (13%) and TV Series (12%).",
+                    "Chart 3 displays the distribution of tasks used to evaluate the models, split into multi-choice and generation-based tasks, with a focus on Plot QA (539 tasks), Needle QA (355 tasks), and tasks like Action Counting and Video Summarization.",
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/abs/2406.04264"
+                },
+                "benchmarks": [
+                    {
+                    "benchmark_name": "TR (Text Retrieval)",
+                    "benchmark_measures": "Evaluates the model's ability to retrieve correct text content or captions associated with the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "AR (Action Recognition)",
+                    "benchmark_measures": "Evaluates how accurately the model identifies and classifies actions occurring in the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "NQA (Natural Question Answering)",
+                    "benchmark_measures": "Evaluates the model's ability to answer natural language questions based on the video's content.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "ER (Event Recognition)",
+                    "benchmark_measures": "Evaluates the model's performance in identifying events or activities within the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "PQA (Programmatic Question Answering)",
+                    "benchmark_measures": "Evaluates the model's ability to answer structured or programmatically generated questions about the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "SQA (Spatial Question Answering)",
+                    "benchmark_measures": "Evaluates the model's ability to answer questions requiring spatial understanding of video content.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "AO (Attribute Object Recognition)",
+                    "benchmark_measures": "Evaluates how well the model recognizes specific objects and their attributes within the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "AC (Action Counting)",
+                    "benchmark_measures": "Evaluates the model's accuracy in counting specific actions performed within the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "TQA (Temporal Question Answering)",
+                    "benchmark_measures": "Evaluates the model's ability to answer questions that require understanding of time-based events in the video.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "M-AVG (Mean Average)",
+                    "benchmark_measures": "Calculates the average score across all major metrics, providing a general measure of performance.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "SSC (Scene Switch Consistency)",
+                    "benchmark_measures": "Evaluates the model's ability to maintain consistent understanding across scene transitions.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "VS (Video Segmentation)",
+                    "benchmark_measures": "Evaluates the model's ability to correctly segment video content into meaningful parts.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "G-Avg (Geometric Average)",
+                    "benchmark_measures": "Calculates the geometric mean of selected benchmark scores to provide a robust overall performance score.",
+                    "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "Video-MME",
+                "leaderboard_abbrev": "V-MME",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://video-mme.github.io/home_page.html#leaderboard"
+                },
+                "tooltip": "This leaderboard evaluates video understanding models across tasks like action recognition, question answering, and temporal reasoning, providing comprehensive scores for performance on diverse video comprehension benchmarks.",
+                "analysis_tips": [
+                    "The leaderboard underscores the importance of including subtitles for higher performance in video-comprehension tasks.",
+                    "The leaderboard breaks scores down by video length, which is helpful for understanding how models perform on different types of content.",
+                    "Short videos are < 2 min, medium videos are 4-15 min, and long videos are 30-60 min.",
+                    "By default, the leaderboard is sorted by results with subtitles. To sort by another column, click its column header. Because the sort columns are regrettably the same color as the background, it's not immediately clear that they're clickable.",
+                    "Click a model's name to learn more about it. It will either take you to the model's homepage, Hugging Face page, or GitHub repository.",
+                    "When the LLM Params (Large Language Model Parameters) field is empty, it typically means that the model's developers have chosen not to disclose the number of parameters.",
+                    "The Date column represents the date when the model's performance was evaluated and added to the leaderboard. Green font indicates the most recent evaluations.",
+                    'An example question: "On what date did the individual in the video leave a place that Simon thought was very important to him?" The model must choose from 4 options.',
+                    "Video-MME consists of 6 key domains and 30 subcategories of video types. Search the leaderboard for 'benchmark statistics' to view the categories and subcategories.",
+                    "There's also a distribution of video length. At the time of writing the segment with the most videos was 90 sec to 2 min.",
+                    "There's also a chart with a distribution by task type.",
+                    "Interestingly, they took four models and created a radar chart of their scores across question types. Search the leaderboard for 'different question types' to view it.",
+                ],
+                "paper": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/pdf/2405.21075"
+                },
+                "benchmarks": [
+                    {
+                    "benchmark_name": "Overall Accuracy (%)",
+                    "benchmark_measures": "Calculates the model's overall performance on videos of all lengths, both with and without subtitles.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Short Video Accuracy (%)",
+                    "benchmark_measures": "Evaluates how accurately the model performs on short videos, under 2 minutes, both with and without subtitles.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Medium Video Accuracy (%)",
+                    "benchmark_measures": "Evaluates the model's performance on videos ranging from 4 to 15 minutes, with and without subtitles.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Long Video Accuracy (%)",
+                    "benchmark_measures": "Evaluates how well the model understands long videos, between 30 to 60 minutes, with and without subtitles.",
+                    "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
         ],
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2560,6 +2894,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2585,6 +2920,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2612,6 +2948,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2641,6 +2978,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2668,6 +3006,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2697,6 +3036,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2721,6 +3061,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2755,6 +3096,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2776,7 +3118,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Quantitative Reasoning (MATH)",
-                        "benchmark_measures": "Tests mathematical reasoning and problem-solving skills across various domains.",
+                        "benchmark_measures": "Evaluates mathematical reasoning and problem-solving skills across various domains.",
                         "score_interpretation": "Higher is better."
                     },
                     {
@@ -2788,6 +3130,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
+                "leaderboard_abbrev": "CBA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -2814,6 +3157,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
+                "leaderboard_abbrev": "HF",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -2849,6 +3193,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "MathEval",
+                "leaderboard_abbrev": "ME",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://matheval.ai/en/leaderboard/"
@@ -2858,6 +3203,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2894,6 +3240,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -2925,6 +3272,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -2958,6 +3306,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2987,6 +3336,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -3014,6 +3364,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3043,6 +3394,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://klu.ai/llm-leaderboard"
@@ -3067,6 +3419,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -3099,6 +3452,7 @@ RECOMMENDATIONS = {
         "Context Window": [
             {
                 "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3126,6 +3480,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
+                "leaderboard_abbrev": "Vellum",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://www.vellum.ai/llm-leaderboard"
@@ -3154,7 +3509,8 @@ RECOMMENDATIONS = {
     "Convert speech to text": {
         "Quality": [
             {
-                "leaderboard": "Artificial Analysis STT",
+                "leaderboard": "Artificial Analysis",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3184,7 +3540,8 @@ RECOMMENDATIONS = {
                 ]
             },
             {
-                "leaderboard": "Open ASR",
+                "leaderboard": "Open ASR (Hugging Face)",
+                "leaderboard_abbrev": "HF",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard"
@@ -3214,6 +3571,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis STT",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3246,6 +3604,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis STT",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3280,6 +3639,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis TTS",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"
@@ -3300,13 +3660,14 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Quality ELO",
-                        "benchmark_measures": "Assesses the naturalness and overall quality of the generated speech based on user preferences in pairwise comparisons.",
+                        "benchmark_measures": "Evaluates the naturalness and overall quality of the generated speech based on user preferences in pairwise comparisons.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "TTS Arena",
+                "leaderboard_abbrev": "TTS Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/blog/arena-tts"
@@ -3338,6 +3699,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis TTS",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"
@@ -3367,6 +3729,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis TTS",
+                "leaderboard_abbrev": "AA",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"
