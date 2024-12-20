@@ -46,7 +46,7 @@ def build_network(recommendations):
                 font=label_font
             )
             added_tasks.add(task)
-            net.add_edge('start', f'task_{task}', color='#999999')
+            net.add_edge('start', f'task_{task}', color='#999')
 
         # Add goals under each task
         for goal, leaderboards in goals_dict.items():
@@ -61,7 +61,7 @@ def build_network(recommendations):
                     font=label_font
                 )
                 added_goals.add(goal_id)
-                net.add_edge(f'task_{task}', goal_id, color='#999999')
+                net.add_edge(f'task_{task}', goal_id, color='#999')
 
             # Add leaderboards under each goal
             for lb_data in leaderboards:
@@ -79,35 +79,52 @@ def build_network(recommendations):
                         size=40,
                         font={
                             'size': 20,
-                            'color': '#333333',
+                            'color': '#333',
                             'face': 'Ek Mukta',
                             'background': 'rgba(255, 255, 255, 0.8)'
                         }
                     )
                     added_leaderboards.add(lb_id)
-                    net.add_edge(goal_id, lb_id, color='#999999')
+                    net.add_edge(goal_id, lb_id, color='#999')
                 
+
                 # Add benchmark nodes
+                            # Add benchmark nodes
                 benchmarks = lb_data.get('benchmarks', [])
                 for benchmark in benchmarks:
-                    # Create a unique ID for the benchmark
-                    benchmark_id = f'benchmark_{task}_{goal}_{lb_name}_{benchmark}'
-                    # Add benchmark node
+                    # benchmark is a dict, e.g.:
+                    # {
+                    #    "benchmark_name": "Quality Index",
+                    #    "benchmark_measures": "Evaluates the model's overall ability ...",
+                    #    "score_interpretation": "Higher is better."
+                    # }
+
+                    # NEW: Extract the benchmark name to use as label
+                    benchmark_name = benchmark.get('benchmark_name', 'Unknown Benchmark')  # Using get() to avoid errors if key doesn't exist
+                    # NEW: Extract measures for the tooltip/title
+                    benchmark_measures = benchmark.get('benchmark_measures', '')
+
+                    # NEW: Adjusting the benchmark_id to include benchmark_name
+                    # Replace spaces in benchmark_name with underscores to avoid ID issues
+                    benchmark_id = f"benchmark_{task}_{goal}_{lb_name}_{benchmark_name.replace(' ', '_')}"
+
+                    # NEW: Use benchmark_name for label, benchmark_measures for title
                     net.add_node(
                         benchmark_id,
-                        label=benchmark,
-                        title=benchmark,
-                        color='#999999',   # You can pick another color
+                        label=benchmark_name,               # Changed from 'benchmark' to 'benchmark_name'
+                        title=benchmark_measures,           # Added to provide tooltip with measures
+                        color='#999999',
                         size=30,
                         font={
                             'size': 18,
-                            'color': '#b8c1c7',                             # Gray
+                            'color': '#b8c1c7',
                             'face': 'Ek Mukta',
                             'background': 'rgba(255, 255, 255, 0.8)'
                         }
                     )
-                    # Link from leaderboard node to benchmark node
                     net.add_edge(lb_id, benchmark_id, color='#999999')
+
+
 
     # Network styling options
     options = {
