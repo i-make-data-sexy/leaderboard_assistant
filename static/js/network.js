@@ -78,7 +78,7 @@ function initializeNetwork() {
                     }
                 },
                 autoResize: true,
-                height: '1000px',                               // Set container height
+                // height: '100%',                               // Set container height
                 width: '100%',
                 physics: {
                     enabled: false
@@ -116,7 +116,7 @@ function initializeNetwork() {
             }
         );
         console.log('Network creation successful');
-        resizeCanvas();
+        // resizeCanvas();
 
         // Ensure network fills the space initially
         network.fit();                                      
@@ -125,7 +125,7 @@ function initializeNetwork() {
     
     } catch (error) {
         console.error('Error initializing network:', error);
-        
+
         // Re-throw to be caught by initializeNetworkWithRetry
         throw error; 
     }
