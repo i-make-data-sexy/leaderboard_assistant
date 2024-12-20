@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annielytics Model Picker for AI Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========================================================================
+          From NXTHumans network graph
+          ======================================================================== -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- VIS Network CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/vis-network.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+
+    <!-- My Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- jQuery and DataTables -->
+    <!-- Load jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Load DataTables after jQuery -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/vis-network.min.js"></script>
+
+    <!-- Initialize data before network scripts -->
+    <script type="text/javascript">
+        // Ensure data is available globally
+        window.initialData = {% if initialData %}{{ initialData | safe }}{% else %}null{% endif %};
+        
+        // Initialize network when document is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window.initialData) {
+                console.error("initialData is undefined.");
+                return;
+            }
+            
+            // Initialize network once the DOM is ready
+            if (typeof initNetwork === 'function') {
+                initNetwork();
+            }
+        });
+    </script>
+
+    <!-- Include the graph scripts (PyVis) -->
+    {{ graph_scripts | safe }}
+
+    <!-- Include the custom network.js file (after all dependencies) -->
+    <script src="{{ url_for('static', filename='js/network.js') }}"></script>
+
+    <!-- Embed initial data for the DataTable as a JSON script tag -->
+    {% if initialData %}
+        <script type="application/json" id="initialData">
+            {{ initialData | tojson }}
+        </script>
+    {% else %}
+        <script>console.error("initialData is undefined.");</script>
+    {% endif %}
+
+    <!-- End NXTHumans code -->  
+
+    <!-- ===============================
+            Mark.js
+          ============================== -->
+
+
+    <!-- I prefer mark.js for keyword highlighting -->    
+
+    <!-- mark.js jQuery Integration -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+
+    <!-- DataTables Mark.js Integration -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.mark.js/2.0.0/datatables.mark.min.js"></script>
+
+</head>
+<body>
+    <!-- ===============================
+         App Container
+         =============================== -->
+    <div class="container-fluid"> 
+        <!-- Header Container -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="header-title">Model Picker for AI Projects</h1>
+            <img src="{{ url_for('static', filename='img/annielytics-logo.png') }}" alt="Annielytics Logo" class="header-logo">
+        </div>
+
+        <!-- ===============================
+             Step indicators
+             =============================== 
+        <div class="step-indicator">
+            <div class="step">
+                <div class="step-number">1</div>
+                <span>Tasks</span>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <span>Goals</span>
+            </div>
+        </div>
+        -->
+
+        <!-- ===============================
+             Model Picker Form
+             =============================== -->
+        <form id="modelPickerForm">
+            <!-- <section id="task-section" class="form-section"> -->
+            <section class="form-section">
+
+                <!-- ===============================
+                     Tasks
+                     =============================== -->
+
+                <h2>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h2>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="chain_agents">
+                        <span class="checkbox-text">Chain agents</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="chat">
+                        <span class="checkbox-text">Chat</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="stt">
+                        <span class="checkbox-text">Convert speech to text</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="tts">
+                        <span class="checkbox-text">Convert text to speech</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="generate_code">
+                        <span class="checkbox-text">Generate code</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="generate_images">
+                        <span class="checkbox-text">Generate images</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="generate_text">
+                        <span class="checkbox-text">Generate text</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="generate_video">
+                        <span class="checkbox-text">Generate video</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="solve_complex_problems">
+                        <span class="checkbox-text">Solve complex problems</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="tasks" value="solve_math_problems">
+                        <span class="checkbox-text">Solve math problems</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- ===============================
+                 Goals
+                 =============================== -->
+
+            <section id="goalsSection" class="form-section">
+                <h2>What benchmarks do you want to compare?</h2>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="goals" value="quality">
+                        <span class="checkbox-text">Quality</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="goals" value="cost">
+                        <span class="checkbox-text">Cost</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="goals" value="speed">
+                        <span class="checkbox-text">Speed</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="goals" value="latency">
+                        <span class="checkbox-text">Latency</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="goals" value="context_window">
+                        <span class="checkbox-text">Context window</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- ===============================
+                 Model Picker Form
+                 =============================== -->
+            <button type="submit" class="submit-button">Compare models</button>
+        </form>
+    </div>
+
+    <!-- ===================================================================
+         Network Graph & Table Container
+         =================================================================== -->
+
+    <div id="results" class="results-container hidden">
+
+        <!-- ===============================
+         Slider Container
+         =============================== -->
+        
+        <div class="slider-container">
+            <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
+            <div class="slider-with-signs">
+                <div class="signs-container">
+                    <span class="zoom-sign minus">−</span>
+                    <span class="zoom-sign plus">+</span>
+                </div>
+                <input type="range" id="node-spacing-slider" min="100" max="1000" value="200" step="50">
+            </div>
+        </div>
+
+        <!-- ===============================
+             Network Graph Container
+             =============================== -->
+
+        <h2>Model Strategy <span class="info-icon" data-tooltip="OVERVIEW: &#10;• To help you wrap your mind around the resources available to you that aid in choosing the best model for your app task, we broke the process down by task you want to accomplish, benchmarks you want to compare models with, and leaderboards that you can use to compare model performance. &#10;&#10;• More detail is provided in the table below, including tips and links to the leaderboard and its methodology page (if one exists). &#10;&#10;&#10; TIPS:&#10;• The table below can be filtered by clicking on any node/datapoint.&#10;&#10;• To navigate the graph, click and drag the canvas to reposition it. &#10;&#10;• You can also adjust the zoom using the slider above the graph. If a node disappears when you zoom out, just hover over where it should be and it will magically appear. 🪄🐇 &#10;&#10;• If there's overlap between labels in your current view, you can drag a node horizontally to reposition it. &#10;&#10;• The labels in the tasks (gray nodes) were too long to include in the graph, but you can view them by hovering over a node or clicking on it to filter the table.">ⓘ</span></h2>
+
+        <div id="network-container">
+            <!-- Network Graph Body (from app.py) -->
+            {{ graph_body | safe }}
+        </div>
+
+        <!-- ===============================
+            Card Container 
+            =============================== -->
+
+        <div id="leaderboard-info" class="card-container hidden">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 id="leaderboard-title"></h3>
+                        <p id="leaderboard-summary"></p>
+                        <p id="methodology-link"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Tips for working with this leaderboard</h4>
+                        <ul id="analysis-tips"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

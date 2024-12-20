@@ -5,71 +5,21 @@
     <title>Annielytics Model Picker for AI Projects</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ========================================================================
-          From NXTHumans network graph
-          ======================================================================== -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
 
-    <!-- Bootstrap CSS for styling -->
+    <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- VIS Network CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/vis-network.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
-
-    <!-- My Custom CSS -->
+    <!-- Load the vis-network CSS from unpkg -->
+    <link rel="stylesheet" href="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-    <!-- jQuery and DataTables -->
-    <!-- Load jQuery first -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Load DataTables after jQuery -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/vis-network.min.js"></script>
-
-    <!-- Include the graph scripts (PyVis) -->
-    {{ graph_scripts | safe }}
-
-    <!-- Include the custom network.js file (after all dependencies) -->
-    <script src="{{ url_for('static', filename='js/network.js') }}"></script>
-
-    <!-- Embed initial data for the DataTable as a JSON script tag -->
-    {% if initialData %}
-        <script type="application/json" id="initialData">
-            {{ initialData | tojson }}
-        </script>
-    {% else %}
-        <script>console.error("initialData is undefined.");</script>
-    {% endif %}
-
-    <!-- End NXTHumans code -->  
-
-    /<!-- ===============================
-            Mark.js
-          ============================== -->
-
-
-    <!-- I prefer mark.js for keyword highlighting -->    
-
-    <!-- mark.js jQuery Integration -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
-
-    <!-- DataTables Mark.js Integration -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.mark.js/2.0.0/datatables.mark.min.js"></script>
-
+    <!-- Initialize network data -->
+    <script>
+        window.networkData = {% if network_data %}{{ network_data | safe }}{% else %}null{% endif %};
+    </script>
 </head>
 <body>
-    <!-- ===============================
-         App Container
-         =============================== -->
     <div class="container-fluid"> 
         <!-- Header Container -->
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -77,31 +27,11 @@
             <img src="{{ url_for('static', filename='img/annielytics-logo.png') }}" alt="Annielytics Logo" class="header-logo">
         </div>
 
-        <!-- ===============================
-             Step indicators
-             =============================== -->
-        <div class="step-indicator">
-            <div class="step">
-                <div class="step-number">1</div>
-                <span>Tasks</span>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <span>Goals</span>
-            </div>
-        </div>
-
-        <!-- ===============================
-             Model Picker Form
-             =============================== -->
+        <!-- Model Picker Form -->
         <form id="modelPickerForm">
-            <section id="taskSection" class="form-section">
-
-                <!-- ===============================
-                     Tasks
-                     =============================== -->
-
-                <h2>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h2>
+            <section class="form-section">
+                <!-- Tasks -->
+                <h3>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h3>
                 <div class="checkbox-group">
                     <label class="checkbox-option">
                         <input type="checkbox" name="tasks" value="chain_agents">
@@ -146,12 +76,9 @@
                 </div>
             </section>
 
-            <!-- ===============================
-                 Goals
-                 =============================== -->
-
+            <!-- Goals Section -->
             <section id="goalsSection" class="form-section">
-                <h2>What benchmarks do you want to compare?</h2>
+                <h3>What benchmarks do you want to compare?</h3>
                 <div class="checkbox-group">
                     <label class="checkbox-option">
                         <input type="checkbox" name="goals" value="quality">
@@ -176,23 +103,13 @@
                 </div>
             </section>
 
-            <!-- ===============================
-                 Model Picker Form
-                 =============================== -->
             <button type="submit" class="submit-button">Compare models</button>
         </form>
     </div>
 
-    <!-- ===================================================================
-         Network Graph & Table Container
-         =================================================================== -->
-
+    <!-- Results Container -->
     <div id="results" class="results-container hidden">
-
-        <!-- ===============================
-         Slider Container
-         =============================== -->
-        
+        <!-- Slider Container -->
         <div class="slider-container">
             <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
             <div class="slider-with-signs">
@@ -204,42 +121,163 @@
             </div>
         </div>
 
-        <!-- ===============================
-             Network Graph Container
-             =============================== -->
+        <!-- Network Graph Section -->
+        <h2>Model Strategy <span class="info-icon" data-tooltip="...long tooltip text...">ⓘ</span></h2>
 
-        <h2>Model Strategy <span class="info-icon" data-tooltip="OVERVIEW: &#10;• To help you wrap your mind around the resources available to you that aid in choosing the best model for your app task, we broke the process down by task you want to accomplish, benchmarks you want to compare models with, and leaderboards that you can use to compare model performance. &#10;&#10;• More detail is provided in the table below, including tips and links to the leaderboard and its methodology page (if one exists). &#10;&#10;&#10; TIPS:&#10;• The table below can be filtered by clicking on any node/datapoint.&#10;&#10;• To navigate the graph, click and drag the canvas to reposition it. &#10;&#10;• You can also adjust the zoom using the slider above the graph. If a node disappears when you zoom out, just hover over where it should be and it will magically appear. 🪄🐇 &#10;&#10;• If there's overlap between labels in your current view, you can drag a node horizontally to reposition it. &#10;&#10;• The labels in the tasks (gray nodes) were too long to include in the graph, but you can view them by hovering over a node or clicking on it to filter the table.">ⓘ</span></h2>
-
-        <div id="network-container">
-            <!-- Network Graph Body (from app.py) -->
+        <!-- Network Container -->
+        <div id="network-container" class="w-full h-96 border rounded-lg bg-white shadow-sm">
             {{ graph_body | safe }}
         </div>
 
-        <!-- ===============================
-            Table Container 
-            =============================== -->
+        <!-- React Component Container -->
+        <div id="card-root"></div>
 
-        <!-- Table Container -->
-        <h2>Model Details <span class="info-icon" data-tooltip="TIPS: &#10;• You can filter the table by either clicking on a node in the network graph above or by using the search box in the upper-right corner. So let's say you want to see each task that uses predictive analytics. You can search the entire project by selecting the top node to see references across the project in view or click a sub/category node to restrict references to that node.&#10;&#10;• The query you enter will be highlighted in the rows that are returned to aid in scanning. &#10;&#10;• Rows can also be sorted by clicking on arrows in any column. &#10;&#10;• If you want to filter the table to only see tasks that will require AI or machine learning (ML), you can just search for 'yes'. &#10;&#10;UPDATES:&#10;If there's anything in the table you have a question about or think we should change (e.g., the data source included in the Data Needs column is misaligned), just let us know and we'll adjust accordingly.">ⓘ</span></h2>
+        <!-- Load dependencies in correct order -->
 
-        <div id="results" class="table-container">
-            <table id="model-table" class="display table table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <!-- Removing Start Here column -->
-                        <th>Tasks</th> 
-                        <th>Goals</th>
-                        <th>Leaderboards</th>
-                        <th>Benchmarks</th>
-                        <th>Tips</th>
-                        <th>Source</th>
-                        <th>Methodology</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+        <!-- 1. jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="{{ url_for('static', filename='js/network.js') }}"></script>
+        <!-- 2. vis-network JavaScript -->
+        <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+
+        <!-- 3. Check if vis is loaded -->
+        <script>
+            console.log('After loading vis-network, vis is:', typeof vis);
+        </script>
+
+        <!-- 4. Your network.js (which uses vis) -->
+        <script src="{{ url_for('static', filename='js/network.js') }}"></script>
+
+        <!-- 5. React and Babel -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <!-- 6. Your React component code -->
+        {% raw %}
+        <script type="text/babel">
+            const LeaderboardModal = () => {
+                const [leaderboardData, setLeaderboardData] = React.useState(null);
+                const [showModal, setShowModal] = React.useState(false);
+
+                React.useEffect(() => {
+                    const handleLeaderboardClick = async (event) => {
+                        try {
+                            const response = await fetch('/filter_data', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ node_id: event.detail.nodeId })
+                            });
+                            const data = await response.json();
+                            setLeaderboardData(data);
+                            setShowModal(true);
+                        } catch (error) {
+                            console.error('Error fetching leaderboard data:', error);
+                        }
+                    };
+
+                    window.addEventListener('leaderboardClick', handleLeaderboardClick);
+                    return () => window.removeEventListener('leaderboardClick', handleLeaderboardClick);
+                }, []);
+
+                if (!leaderboardData) return null;
+
+                const closeModal = () => {
+                    setShowModal(false);
+                };
+
+                return (
+                    <div>
+                        {/* Bootstrap Modal Structure */}
+                        {showModal && (
+                            <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                                <div className="modal-dialog modal-lg">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title">
+                                                {leaderboardData.leaderboard}
+                                            </h5>
+                                            <button type="button" className="close" onClick={closeModal}>
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <div className="row">
+                                                {/* Left Column */}
+                                                <div className="col-md-6 mb-3">
+                                                    <a
+                                                        href={leaderboardData.source}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-blue-600 hover:text-blue-800"
+                                                    >
+                                                        Visit Leaderboard ↗
+                                                    </a>
+                                                    <p className="mt-3">{leaderboardData.tooltip}</p>
+                                                    {leaderboardData.methodology && (
+                                                        <a
+                                                            href={leaderboardData.methodology}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-blue-600 hover:text-blue-800"
+                                                        >
+                                                            View Methodology ↗
+                                                        </a>
+                                                    )}
+                                                </div>
+
+                                                {/* Right Column */}
+                                                <div className="col-md-6">
+                                                    <h5>Tips for using this leaderboard</h5>
+                                                    <ul className="list-unstyled mt-3">
+                                                        {leaderboardData.analysis_tips?.map((tip, index) => (
+                                                            <li key={index} className="mb-2">
+                                                                • {tip}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                );
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const container = document.getElementById('card-root');
+                const root = ReactDOM.createRoot(container);
+                root.render(<LeaderboardModal />);
+            });
+        </script>
+        {% endraw %}
+
+    <!-- Submit form -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('modelPickerForm');
+            const resultsContainer = document.getElementById('results');
+    
+            // If the URL has parameters, show results and initialize the network
+            if (window.location.search) {
+                resultsContainer.classList.remove('hidden');
+                initializeNetwork();
+            }
+    
+            form.addEventListener('submit', function() {
+                resultsContainer.classList.remove('hidden');
+                // Slight delay to ensure UI updates before initializing
+                setTimeout(initializeNetwork, 100);
+            });
+        });
+    </script>      
 </body>
 </html>

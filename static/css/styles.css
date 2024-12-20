@@ -93,12 +93,82 @@ h2 {
    Model Picker Form Styles
    ======================================================================== */
 
-.wizard-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+/* Style for the form container */
+#modelPickerForm {
+    width: 80%;              /* Make it wider so it's not too small */
+    /* max-width: 1000px;       Optional: limit how wide it can get */
+    margin: 0 auto;          /* Center it horizontally */
+    font-size: 1.8rem;       /* Increase base font size for better readability */
+    padding: 2rem;           /* Add more internal spacing */
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* Style for the section headers */
+#modelPickerForm h2 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style for the checkbox group */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    width: 100%;
     margin-bottom: 2rem;
+}
+
+.checkbox-text {
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: 500;  /* Optional: Adjust weight for emphasis */
+}
+
+/* Ensure checkbox text aligns vertically */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem; /* Optional: Make text size proportional */
+}
+
+/* Removed at 1:55pm Optional: If the checkboxes are still too large and wrapping, you can reduce margins and padding on .checkbox-option 
+.checkbox-option {
+    margin: 0;      
+    padding: 0;     
+    border: none;    
+    background: none;
+*/
+
+
+/* Style for the checkbox input */
+.checkbox-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Add spacing between checkbox and label */
+}
+
+/* Style for the submit button */
+.submit-button {
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #8bb42d;
+    border: none;
+    border-radius: 10px;
+    margin: 20px auto 0;                        /* Center align and add top margin */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+}
+
+.submit-button:hover {
+    background-color: #025a93;
 }
 
 .step-indicator {
@@ -106,6 +176,7 @@ h2 {
     justify-content: center;
     gap: 2rem;
     margin-bottom: 2rem;
+    font-size: 2em;
 }
 
 .step {
@@ -115,8 +186,8 @@ h2 {
 }
 
 .step-number {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: #ffa500;
     color: white;
@@ -126,77 +197,6 @@ h2 {
     font-weight: bold;
 }
 
-.checkbox-group {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.checkbox-option {
-    background: white;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-}
-
-.checkbox-option:hover {
-    border-color: #8bb42d;
-}
-
-.checkbox-option.selected {
-    border-color: #0273be;
-    background-color: rgba(2, 115, 190, 0.05);
-}
-
-/* ========================================================================
-   Table Styles
-   ======================================================================== */
-
-#recommendations-table {
-    width: 100% !important;
-    font-size: 1.3em;
-    border: 1px solid #ddd;
-    min-width: 800px;
-}
-
-#recommendations-table th {
-    background-color: rgba(255, 165, 0, 0.7);
-    color: #000;
-    font-weight: 500;
-    padding: 12px 8px;
-}
-
-#recommendations-table td {
-    padding: 10px 8px;
-    line-height: 1.4;
-    vertical-align: top;
-}
-
-/* Link icon cell alignment */
-#recommendations-table td:nth-child(5),
-#recommendations-table td:nth-child(6) {
-    text-align: center;
-    vertical-align: top;
-}
-
-.link-icon {
-    text-decoration: none;
-    color: inherit;
-}
-
-.link-icon:hover {
-    color: #0273be;
-}
-
-/* Selected row styling */
-#recommendations-table tr.selected {
-    background-color: rgba(2, 115, 190, 0.05);
-    border-left: 3px solid #ffa500;
-}
 
 /* ========================================================================
    Network Graph Styles
@@ -204,7 +204,7 @@ h2 {
 
 .vis-network {
     width: 100% !important;
-    height: 500px !important;
+    height: 800px !important;
     border: none !important;
 }
 
@@ -216,6 +216,38 @@ h2 {
     border-color: #ffa500 !important;
     border-width: 3px !important;
 }
+
+/* Ensure labels are visible */
+.vis-network .vis-label {
+    cursor: pointer;
+    font-family: 'Ek', sans-serif;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);     /* Used rgba to add transparency */
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #333333;
+    text-align: center;
+}
+
+/* ========================================================================
+   Modal Styles
+   ======================================================================== */
+
+.modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-header,
+.modal-footer {
+    background: #f4f4f4;
+}
+
+.modal-title {
+    font-family: 'Bebas Kai', sans-serif;
+    font-size: 1.5rem;
+}
+
 
 /* ========================================================================
    Tooltip Styles
@@ -312,9 +344,9 @@ h2 {
    ======================================================================== */
 
 /* Ensure all parent containers fill height */
-.card, .card-body, #mynetwork {
+/* .card, .card-body, #mynetwork {
     height: 100%;
-}
+} */
    
 
 /* Ensure the container-fluid also uses full width without max constraints */
@@ -363,7 +395,7 @@ h2 {
 /* Network container - fixed height instead of percentage */
 #network-container {
     width: 100%;
-    height: 500px;  /* Changed from 50% to fixed height */
+    height: 800px;  /* Changed from 50% to fixed height */
     margin-top: 5px;
     overflow: hidden;
 }
@@ -436,61 +468,69 @@ h2 {
     text-align: center;
 }
 
+/* Customize pointer to be a more traditional cursor */
+.vis-network .vis-node {
+    cursor: pointer;
+}
+
 
 /* ========================================================================
-   Table Styles
+   Card Styles
    ======================================================================== */
+.card-container {
+   margin-top: 2rem;
+   padding: 0 1rem;
+}
 
-   
-/* ======================
-   Standard
-   ====================== */
+.card {
+   background: white;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   padding: 2rem;
+}
 
-.table-container {
-width: 100%;
-overflow: auto;
+.card h3 {
+   color: #0273be;
+   margin-bottom: 1rem;
+}
+
+.card h4 {
+   color: #333;
+   margin-bottom: 1rem;
+}
+
+.card ul {
+   list-style-type: none;
+   padding-left: 0;
+}
+
+.card ul li {
+   margin-bottom: 0.5rem;
+   padding-left: 1.5rem;
+   position: relative;
+}
+
+.card ul li:before {
+   content: "•";
+   color: #2196F3;
+   position: absolute;
+   left: 0;
+}
+
+.hidden {
+   display: none;
+}  
+
+#task-section .form-section {
+    width: 100% !important; /* Ensure the section fills the parent width */
+    max-width: 100% !important; /* Remove any constraints from parent styles */
+    padding: 1rem; /* Optional: Add padding for better spacing */
+    margin: 0 auto; /* Center it if necessary */
+    box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
 
 
-#model-table {
-    font-family: 'Ek Mukta', sans-serif;
-}
 
-.dataTables_wrapper {
-    width: 100%;
-}
-
-/* Align cells vertically to top */
-#ai-plan-table tbody td {
-    vertical-align: top;
-}
-
-#ai-plan-table thead th {
-    vertical-align: top;
-}
-
-/* ======================
-   Cat & Subcat Rows
-   ====================== */
-
-
-#ai-plan-table > tbody > tr.category-row {
-    /* background-color: #e6e9eb !important; */
-    background-color: rgba(230,233,235,0.8) !important;         /* Used rgba to add transparency */
-    font-family: 'Ek Mukta Medium', sans-serif !important;
-}
-
-/* Darken inside borders of category rows */
-#ai-plan-table > tbody > tr.category-row > td {
-    /* Darken right border of each cell in category rows */
-    border-right: 2px solid rgba(170, 170, 170, 0.7) !important; /* Used rgba to add transparency */
-}
-
-/* Subcategory row styling */
-/* #ai-plan-table > tbody > tr.subcategory-row {
-    background-color: white !important;
-    font-family: 'Ek Mukta Medium', sans-serif !important;
-} */
 
 
 /* ========================================================================
@@ -537,9 +577,9 @@ overflow: auto;
     font-style: normal;
 }
 
-/* Apply Bebas Kai to all headings */
+/* Apply Ek Mukta to all headings */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bebas Kai', sans-serif;
+    font-family: 'Ek Mukta Bold', sans-serif;
     margin-top: 1rem !important; 
     margin-bottom: 1rem !important;
     color: #333333;
@@ -550,77 +590,15 @@ h1 {
     color:#8bb42d;
 }
 
+h3 {
+    color: #0273be;
+}
+
 /* Centered alignment for specific headings */
 .text-center {
     text-align: center;
 }
 
-/* ========================================================================
-   Form Container Styles
-   ======================================================================== */
-
-/* Style for the form container */
-#modelPickerForm {
-    max-width: 600px;                           /* Restrict form width */
-    margin: 0 auto;                             /* Center align the form */
-    padding: 20px;
-    background-color: #f9f9f9;                /* Optional: Add a light background */
-    border: 1px solid #ddd;                   /* Optional: Add a border */
-    border-radius: 8px;                         /* Optional: Add rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-}
-
-/* Style for the section headers */
-#modelPickerForm h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Style for the checkbox group */
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 55px;                                  /* Add space between checkboxes */
-    margin-bottom: 20px;                        /* Add spacing after each group */
-}
-
-/* Style for each checkbox option */
-.checkbox-option {
-    display: flex;
-    align-items: center;
-    margin-right: 80px;                         /* Space to the right of each checkbox */
-    margin-bottom: 15px;                        /* Space below each checkbox */
-    gap: 25px;                                  /* Add space between the checkbox and text */
-    font-size: 1rem;
-    color: #555;
-    min-width: 180px;                           /* Ensure uniform width for options */
-}
-
-/* Style for the checkbox input */
-.checkbox-option input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-}
-
-/* Style for the submit button */
-.submit-button {
-    display: block;
-    width: fit-content;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #8bb42d;
-    border: none;
-    border-radius: 4px;
-    margin: 20px auto 0;                        /* Center align and add top margin */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #025a93;
-}
 
 
 

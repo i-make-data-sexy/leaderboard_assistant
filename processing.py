@@ -1,133 +1,140 @@
-# ========================================================================
-#   Imports
-# ======================================================================== 
-
-import pandas as pd
 import json
 from pyvis.network import Network
 
-# ========================================================================
-#   Functions
-# ======================================================================== 
+def build_network(recommendations):
+    # Adjust height of network graph here
+    net = Network(height='1000px', width='100%', directed=True)
 
-def build_network(df):
-    # Initialize the network with predefined size and undirected graph type
-    net = Network(height='500px', width='100%', directed=False)
-    
-    # Define font settings once to ensure consistency
+    # Define a common font style
     label_font = {
         'size': 30,
         'color': '#333333',
         'face': 'Ek Mukta',
         'background': 'rgba(255, 255, 255, 0.8)'
     }
-    
-    # Retrieve the project name from the DataFrame (fallback to default if missing)
-    project_name = 'Start Here'
-    
-    # Add the central "Project" node to the network
+
+    # Add the "Start here" node
     net.add_node(
-        f'project_{project_name}',                  # Unique node ID   
-        label=project_name,                         # Displayed label
-        title=project_name,                         # Tooltip
-        color='#8bb42d',                            # Green
-        size=80,                                    # Custom size   
-        font=label_font                             # Custom font settings
+        'start',
+        label='Start here',
+        title='Start here',
+        color='#E90555',
+        size=65,
+        font=label_font
     )
-    
-    # Use sets to track added nodes and avoid duplicates
-    added_tasks = set()                       
-    added_goals = set()                    
-    added_leaderboards = set()                            
-    
-    # Iterate over each row in the DataFrame
-    for _, row in df.iterrows():
-        task = row['Task']                  # Retrieve Task value
-        goal = row['Goal']                  # Retrieve Goal value
-        leaderboard = row['Leaderboard']    # Retrieve Leaderboard value
-        
-        # Add a Task node if it hasn't been added already
+
+    # Keep track of what we've added to avoid duplicates
+    added_tasks = set()
+    added_goals = set()
+    added_leaderboards = set()
+
+    # Build the network from the dictionary
+    for task, goals_dict in recommendations.items():
+        # Add task node
         if task not in added_tasks:
             net.add_node(
-                f'task_{task}',             # Unique node ID for task
-                label=task,                 # Displayed label
-                title=task,                 # Tooltip text
-                color='#0273be',            # Orange
-                size=60,                    # Custom size
-                font=label_font             # Custom font settings
-            )
-            added_tasks.add(task)           # Add task to the set
-            
-            # Connect the Task node to the Project node
-            net.add_edge(f'project_{project_name}', f'task_{task}', color='#999999')
-        
-        # Add Goal node if it hasn't been added already
-        if goal and goal not in added_goals:
-            net.add_node(
-                f'goal_{goal}',
-                label=goal,
-                title=goal,
-                color='#ffa500',              # Orange
-                size=50,
+                f'task_{task}',
+                label=task,
+                title=task,
+                color='#ffa500',                                       # Orange
+                size=60,
                 font=label_font
             )
-            added_goals.add(goal)
-            
-            # Link to parent task node
-            net.add_edge(f'task_{task}', f'goal_{goal}', color='#999999')
-        
-        # Add T@sk node with explicitly empty label and font settings
-        if leaderboard and leaderboard not in added_leaderboards:
-            net.add_node(
-                f'leaderboard_{leaderboard}',
-            label='',                                   # Empty string for label
-                title=leaderboard,                      # Keep tooltip
-                color='#b8c1c7',                        # Made lighter to add contrast to outline   
-                size=40,
-                font=label_font
-            )
-            # Add edge to parent goal or task
-            added_leaderboards.add(leaderboard)
-            
-            # Determine parent node ID based on presence of goal
-            parent_id = f'goal_{goal}' if goal else f'task_{task}'
-            
-            # Link to parent node
-            net.add_edge(parent_id, f'leaderboard_{leaderboard}', color='#999999')
+            added_tasks.add(task)
+            net.add_edge('start', f'task_{task}', color='#999999')
 
-    # Network options
+        # Add goals under each task
+        for goal, leaderboards in goals_dict.items():
+            goal_id = f'goal_{task}_{goal}'
+            if goal_id not in added_goals:
+                net.add_node(
+                    goal_id,
+                    label=goal,
+                    title=goal,
+                    color='#0273be',                                    # Blue
+                    size=50,
+                    font=label_font
+                )
+                added_goals.add(goal_id)
+                net.add_edge(f'task_{task}', goal_id, color='#999999')
+
+            # Add leaderboards under each goal
+            for lb_data in leaderboards:
+                lb_name = lb_data["leaderboard"]
+                # Use abbreviated name if available
+                # lb_label = lb_name
+                lb_label = lb_data.get("leaderboard_abbrev", lb_name)
+                lb_id = f'leaderboard_{task}_{goal}_{lb_name}'
+                if lb_id not in added_leaderboards:
+                    net.add_node(
+                        lb_id,
+                        label=lb_label,
+                        title=lb_data.get("tooltip", lb_name),
+                        color='#8bb42d',                                    # Green
+                        size=40,
+                        font={
+                            'size': 20,
+                            'color': '#333333',
+                            'face': 'Ek Mukta',
+                            'background': 'rgba(255, 255, 255, 0.8)'
+                        }
+                    )
+                    added_leaderboards.add(lb_id)
+                    net.add_edge(goal_id, lb_id, color='#999999')
+                
+                # Add benchmark nodes
+                benchmarks = lb_data.get('benchmarks', [])
+                for benchmark in benchmarks:
+                    # Create a unique ID for the benchmark
+                    benchmark_id = f'benchmark_{task}_{goal}_{lb_name}_{benchmark}'
+                    # Add benchmark node
+                    net.add_node(
+                        benchmark_id,
+                        label=benchmark,
+                        title=benchmark,
+                        color='#999999',   # You can pick another color
+                        size=30,
+                        font={
+                            'size': 18,
+                            'color': '#b8c1c7',                             # Gray
+                            'face': 'Ek Mukta',
+                            'background': 'rgba(255, 255, 255, 0.8)'
+                        }
+                    )
+                    # Link from leaderboard node to benchmark node
+                    net.add_edge(lb_id, benchmark_id, color='#999999')
+
+    # Network styling options
     options = {
         'layout': {
             'hierarchical': {
-                'enabled': True,                        # Enable hierarchical layout
-                'levelSeparation': 200,                 # Vertical spacing between levels
-                'nodeSpacing': 150,                     # Horizontal spacing between nodes
-                'treeSpacing': 200,                     # Spacing between trees
-                'direction': 'UD',                      # Top to bottom direction
-                'sortMethod': 'directed'                # Sort based on edge direction
+                'enabled': True,
+                'levelSeparation': 300,
+                'nodeSpacing': 150,
+                'treeSpacing': 200,
+                'direction': 'UD',
+                'sortMethod': 'directed'
             }
         },
         'nodes': {
-            'font': label_font,                         # Apply font settings to all nodes
-            'shape': 'dot',                             # Circular node shape
-            'borderWidth': 2,                           # Border width
-            'borderWidthSelected': 4                    # Border width when selected
+            'font': label_font,
+            'shape': 'dot',
+            'borderWidth': 2,
+            'borderWidthSelected': 4
         },
         'edges': {
-            'smooth': False,                            # Disable edge smoothing
-            'width': 1,                                 # Edge width
-            'color': '#999999'                          # Default edge color
+            'smooth': False,
+            'width': 1,
+            'color': '#999999'
         },
         'physics': {
-            'enabled': False                            # Disable physics-based layout
+            'enabled': False
         },
         'interaction': {
-            'hover': True                               # Enable hover interactions for tooltips
+            'hover': True
         }
     }
-    
-    # Apply options to the network
+
+    # Apply the options to the network
     net.set_options(json.dumps(options))
-    
-    # Return the network
     return net

@@ -30,7 +30,7 @@ QUESTIONS = {
             "Cost",
             "Speed",
             "Latency",
-            "Context Window"
+            "Context window"
         ],
         "next": "recommendation"
     }
@@ -42,7 +42,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -65,7 +65,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -78,7 +78,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -90,7 +89,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "QUAKE",
                         "benchmark_measures": "Evaluates practical, multi-step problem-solving, which is fundamental for chain agents orchestrating tasks across different tools.",
-                        "score_interpretation": "Higher scores are better."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -124,7 +123,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -162,7 +161,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -175,7 +173,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -201,7 +199,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -209,7 +207,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -267,7 +265,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -352,10 +350,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -377,7 +375,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -403,7 +401,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -415,7 +413,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -438,13 +436,13 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Communication (LMSys Chatbot Arena ELO Score)",
                         "benchmark_measures": "Evaluates the model's performance in conversational settings, evaluating communication skills, coherence, and engagement based on user feedback.",
-                        "score_interpretation": "Higher Arena Scores and lower Rank indicate superior conversational ability, as judged by one-to-one comparisons."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Chatbot Arena",
-                "leaderboard_abbrev": "CBA",
+                "leaderboard_abbrev": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -481,13 +479,42 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Arena Score",
                         "benchmark_measures": "Ranks models based on performance in head-to-head comparisons. This score is derived using the Elo rating system, a method traditionally employed in chess and other competitive games to assess the relative skill levels of players.",
-                        "score_interpretation": "Score ranges from 1 \u2013 thousands (higher is better)."
+                        "score_interpretation": "Score ranges from 1 - thousands (higher is better)."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "FACTS Grounding Leaderboard",
+                "leaderboard_abbrev": "FACTS",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.kaggle.com/facts-leaderboard/leaderboard"
+                },
+                "tooltip": "FACTS is a novel benchmark from Google DeepMind and Google Research designed to evaluate the factual accuracy and grounding of AI models.",
+                "analysis_tips": [
+                    "Each prompt includes a user request and a full document, with a maximum length of 32k tokens, requiring long-form responses. The long-form responses are required to be fully grounded in the provided context document while fulfilling the user request.",
+                    "A response is labeled accurate if all its claims are directly supported or don't require support from the context; otherwise, it's marked inaccurate.",
+                    'The eval tool uses automated LLM judge models for evaluation. In an effort to make scoring as fair as possible, they use a "range of frontier LLMs" and average the score outputs.',
+                    "Where you might thinking clicking on the Factuality Score column heading would sort the column, it actually is a jump link to 'Step 4: Ensembling' lower on the page...which is unusual. That section discusses how Factuality is calculated, so I can kind of understand what they were thinking, but it's still a bit jarring from a usability standpoint.",
+                    "I personally love any time a leaderboard includes a knowledge cutoff date. But since most of these models have gone agentic, it's not as essential as it used to be as they frequently search the web for answers and synthesize that information into their responses.",
+                    "The full FACTS Grounding benchmark is comprised of 1,719 examples. This includes 860 public examples available in the FACTS Grounding Public Examples Dataset. The remaining 859 examples comprise a private set that will be held out to mitigate risks of benchmark contamination (i.e., model creators cheating by training their models on the test questions to boost their scores).",
+                    "There are charts below the leaderboard that show the distribution of tasks (e.g., fact finding, summarizing, concept comparison, etc.) and domains (e.g., medical, legal, etc.).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_grounding_paper.pdf"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Factuality",
+                        "benchmark_measures": "Evaluates ability to generate factually accurate responses in information-seeking scenarios.",
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_abbrev": "HF",
+                "leaderboard_abbrev": "Hugging Face",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -506,49 +533,20 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "IFEval",
                         "benchmark_measures": "Evaluates model's ability to follow explicit formatting instructions.",
-                        "score_interpretation": "Higher scores indicate better adherence to instructions."
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "MUSR",
                         "benchmark_measures": "Evaluates performance on multi-step reasoning tasks.",
-                        "score_interpretation": "Higher scores reflect better ability to perform chained reasoning."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
-            {
-                "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
-                "leaderboard_link": {
-                    "text": "View leaderboard",
-                    "url": "https://artificialanalysis.ai/models"
-                },
-                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
-                "analysis_tips": [
-                    "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
-                    "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Their breakdown of context windows is very helpful. At the time of writing Google is crushing the competition.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
-                ],
-                "methodology": {
-                    "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
-                },
-                "benchmarks": [
-                    {
-                        "benchmark_name": "Quality",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
-                    }
-                ]
-            }
         ],
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -586,7 +584,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -599,7 +596,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -625,7 +622,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -633,7 +630,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -691,7 +688,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -776,10 +773,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -801,7 +798,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -827,7 +824,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -839,7 +836,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -868,7 +865,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
-                "leaderboard_abbrev": "CBA",
+                "leaderboard_abbrev": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -905,7 +902,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_abbrev": "HF",
+                "leaderboard_abbrev": "Hugging Face",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -925,12 +922,12 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "BBH (BIG-bench Hard)",
                         "benchmark_measures": "Evaluates performance on challenging prompts requiring complex reasoning.",
-                        "score_interpretation": "Higher scores indicate better complex reasoning capabilities."
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "MUSR",
                         "benchmark_measures": "Evaluates performance on multi-step reasoning tasks.",
-                        "score_interpretation": "Higher scores indicate better sequential reasoning ability."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -943,7 +940,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -955,7 +951,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "QUAKE",
                         "benchmark_measures": "Evaluates challenging, multi-step problem-solving.",
-                        "score_interpretation": "Higher scores are better."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -981,7 +977,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Reasoning",
                         "benchmark_measures": "What Vellum simplifies to 'Reasoning' is actually the Graduate-Level Google-Proof Question Answering (GPQA) benchmark. It is a challenging dataset designed to evaluate the capabilities of LLMs and scalable oversight mechanisms. It comprises 448 multiple-choice questions meticulously crafted by domain experts in biology, physics, and chemistry. These questions are intentionally designed to be high-quality and extremely difficult, ensuring that even experts who have or are pursuing PhDs in the corresponding domains achieve only 65 pct accuracy. The questions are also 'Google-proof', meaning that highly skilled non-expert validators, despite having unrestricted access to the web and spending over 30 minutes per question, only reach 34 pct accuracy. State-of-the-art AI systems, including GPT-4 based models, achieve around 39 pct accuracy on this dataset. The difficulty of GPQA for both skilled non-experts and advanced AI systems makes it an excellent resource for conducting realistic scalable oversight experiments, aiming to explore ways for human experts to reliably obtain truthful information from AI systems that surpass human capabilities.",
-                        "score_interpretation": "Scores range from 0\u2013100 pct (higher is better), with a score of 65 pct or greater being classified as equivalent to a human expert."
+                        "score_interpretation": "Scores range from 0-100 pct (higher is better), with a score of 65 pct or greater being classified as equivalent to a human expert."
                     }
                 ]
             }
@@ -989,7 +985,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1027,7 +1023,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -1040,7 +1035,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -1066,7 +1061,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -1074,7 +1069,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1132,7 +1127,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1217,10 +1212,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1242,7 +1237,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -1268,7 +1263,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -1280,7 +1275,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1303,13 +1298,13 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Coding (HumanEval)",
                         "benchmark_measures": "Evaluates the model's ability to generate syntactically correct and functional code based on problem statements.",
-                        "score_interpretation": "Higher Arena Scores and lower Rank indicate greater coding proficiency and correctness."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "BigCodeBench Leaderboard",
-                "leaderboard_abbrev": "BCB",
+                "leaderboard_abbrev": "BigCodeBench",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://bigcode-bench.github.io/"
@@ -1334,18 +1329,18 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Calibrated Pass@1",
                         "benchmark_measures": "Adjusts the raw Pass@1 metric by accounting for common omissions or minor errors in code, such as missing imports or boilerplate. It measures the likelihood of a model generating code that solves a task correctly with slight, acceptable deviations. This is what is shown on the leaderboard.",
-                        "score_interpretation": "Higher scores indicate better performance, emphasizing usability and real-world applicability over strict correctness."
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Pass@1 (Raw)",
                         "benchmark_measures": "The percentage of tasks solved correctly by the first attempt, without calibration for omissions or partial correctness.",
-                        "score_interpretation": "Higher scores indicate stricter correctness with no allowance for omissions."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
             {
                 "leaderboard": "Chatbot Arena",
-                "leaderboard_abbrev": "CBA",
+                "leaderboard_abbrev": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -1372,7 +1367,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "CodeXGLUE Leaderboard",
-                "leaderboard_abbrev": "CXG",
+                "leaderboard_abbrev": "CodeXGLUE",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://microsoft.github.io/CodeXGLUE/"
@@ -1392,63 +1387,135 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Overall",
                         "benchmark_measures": "Aggregates performance across all CodeXGLUE tasks to evaluate general code intelligence capabilities",
-                        "score_interpretation": "Higher scores indicate better overall performance across all benchmarks"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Clone Detection (Code-Code)",
                         "benchmark_measures": "Identifies semantically equivalent code snippets despite syntactic differences",
-                        "score_interpretation": "Higher F1 scores indicate better clone detection accuracy"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Defect Detection (Code-Code)",
                         "benchmark_measures": "Evaluates ability to identify bugs and potential defects in code",
-                        "score_interpretation": "Higher accuracy indicates better defect detection"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Cloze Test (Code-Code)",
                         "benchmark_measures": "Evaluates understanding of code context by predicting masked tokens in code sequences",
-                        "score_interpretation": "Higher accuracy scores indicate better token prediction ability"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Code Completion (Code-Code)",
                         "benchmark_measures": "Evaluates ability to autocomplete partial code snippets with contextually appropriate suggestions",
-                        "score_interpretation": "Higher accuracy and BLEU scores indicate better completion quality"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Code Refinement (Code-Code)",
                         "benchmark_measures": "Evaluates capacity to improve code quality through bug fixes and optimizations",
-                        "score_interpretation": "Higher accuracy and lower error rates indicate better refinement capabilities"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Code Translation (Code-Code)",
                         "benchmark_measures": "Evaluates ability to convert code between different programming languages while preserving functionality",
-                        "score_interpretation": "Higher functional equivalence scores indicate better translation accuracy"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Type Prediction (Code-Code)",
                         "benchmark_measures": "Predicts variable and function types in dynamically typed languages",
-                        "score_interpretation": "Higher accuracy indicates better type inference capabilities"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Natural Language Code Search (Text-Code)",
                         "benchmark_measures": "Evaluates effectiveness in finding relevant code snippets based on natural language queries",
-                        "score_interpretation": "Higher MRR and NDCG scores indicate better search accuracy"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Code Generation (Text-Code)",
                         "benchmark_measures": "Evaluates ability to create executable code from natural language descriptions",
-                        "score_interpretation": "Higher BLEU and exact match scores indicate better generation accuracy"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Code Summarization (Code-Text)",
                         "benchmark_measures": "Evaluates capacity to generate concise natural language descriptions of code functionality",
-                        "score_interpretation": "Higher BLEU and ROUGE scores indicate better summarization quality"
+                        "score_interpretation": "Higher is better."
                     },
                     {
                         "benchmark_name": "Documentation Translation (Text-Text)",
                         "benchmark_measures": "Evaluates accuracy in translating technical documentation between different human languages",
-                        "score_interpretation": "Higher BLEU scores indicate better translation quality"
+                        "score_interpretation": "Higher is better."
                     }
+                ]
+            },
+            {
+                "leaderboard": "LiveCodeBench",
+                "leaderboard_abbrev": "LiveCodeBench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://livecodebench.github.io/leaderboard.html"
+                },
+                "tooltip": "LiveCodeBench evaluates models on various coding tasks, including code generation, self-repair, code execution, and test output prediction. It collects new problems over time from coding competition platforms like LeetCode, AtCoder, and CodeForces, in an attempt to prevent contamination.",
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/abs/2403.07974"
+                },
+                "analysis_tips": [
+                    "At the time of writing SWE-Bench only tests models on Python code.",
+                    "The leaderboard provides a slider that allows you to filter by start and end date. You can use this slider to focus on specific periods. Moving the start and end dates changes which coding problems are included in the scores. For example, setting March-April 2024 only shows how models performed on problems published in those months. The number in the first paragraph will dynamically update to show the number of problems in the selected range.",
+                    "Models highlighted in red are flagged for data contamination (i.e., evidence of exposure to problems before testing), meaning there is suspicion they may have been exposed to the evaluation problems during training. This is determined by checking if the model's training data overlaps with the time the problems were publicly released or its solutions have unusually high accuracy or training artifacts to identify exact or near-duplicate solutions. These models are not assigned ranks. Think of it like LiveCodeBench's Hall of Shame. 🧐",
+                    "To check for contamination yourself, look at how models perform on problems published before their release. If a model has unusually high scores on problems that were public during its training period, it will be highlighted in red. This suggests the model may have been exposed to those problems or solutions during training. Imo, this slider would be more usesful if the leaderboard explicitly included the date the model was evaluated, like many of the other leaderboards.",          
+                ],
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Pass@1",
+                        "benchmark_measures": "Evaluates the percentage of tasks where the model produces a correct solution on the first attempt.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Easy-Pass@1",
+                        "benchmark_measures": "Evaluates the percentage of correctly solved 'easy' tasks on the first attempt.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Medium-Pass@1",
+                        "benchmark_measures": "Evaluates the percentage of correct solutions for 'medium' difficulty tasks on the first attempt.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "Hard-Pass@1",
+                        "benchmark_measures": "Evaluates the percentage of correct solutions for 'hard' difficulty tasks on the first attempt.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "SWE-bench",
+                "leaderboard_abbrev": "SWE-bench",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.swebench.com/"
+                },
+                "tooltip": "The SWE-bench leaderboard assesses how well language models can resolve real-world software issues sourced from GitHub. For each sample in SWE-bench, agents are provided with the original text from the GitHub issue, known as the problem statement, and are given access to the codebase. Given these, agents must edit the files in the codebase to resolve the issue.",
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/abs/2310.06770"
+                },
+                "analysis_tips": [
+                    "The leaderboard has Lite and Verified alternatives. The Lite leaderboard features a subset of SWE-bench that's been curated to make evaluation less costly and more accessible, and the Verified leaderboard features a human annotator-filtered subset that has been deemed to have a ceiling of 100 pct resolution rate.",
+                    "At time of writing SWE-Bench only tests models on Python code.",
+                    "The benchmark involves giving agents a code repository and issue description, and challenging them to generate a patch that resolves the problem described by the issue.",
+                    "The leaderboard uses emojis to indicate status, e.g., models they checked for reproducibility, models with open-source code, etc. The legend is below the leaderboard.",
+                    "The leaderboard is updated once a week on Mondays.",
+                    "The % Resolved metric refers to the percentage of SWE-bench instances (2294 for test, 500 for verified, 300 for lite) that were resolved by the model.",
+                    "The Logs column indicates whether detailed logs of the model's task resolution are available for analysis.",
+                    "The Trajs column Indicates whether task execution trajectories are provided for deeper insights into the model's resolution process (i.e., if step-by-step details of how the model solved tasks are available for review).",
+                    "Columns can't be sorted.",
+                ],
+                "benchmarks": [
+                    {
+                        "benchmark_name": "% Resolved",
+                        "benchmark_measures": "Evaluates the percentage of tasks or issues successfully resolved by the model.",
+                        "score_interpretation": "Higher is better."
+                    },
                 ]
             },
             {
@@ -1474,15 +1541,15 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Python coding",
                         "benchmark_measures": "Evaluates the model's ability to generate correct Python code from problem statements.",
-                        "score_interpretation": "Higher scores reflect greater proficiency in coding tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
-            }
+            },
         ],
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1520,7 +1587,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -1533,7 +1599,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -1559,7 +1625,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -1567,7 +1633,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1653,7 +1719,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1738,10 +1804,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1763,7 +1829,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -1789,7 +1855,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -1801,7 +1867,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-image"
@@ -1863,7 +1929,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -1901,7 +1967,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -1914,7 +1979,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -1940,7 +2005,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -1976,7 +2041,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2061,10 +2126,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2086,7 +2151,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -2112,7 +2177,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -2124,7 +2189,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2161,7 +2226,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
-                "leaderboard_abbrev": "CBA",
+                "leaderboard_abbrev": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -2192,8 +2257,37 @@ RECOMMENDATIONS = {
                 ]
             },
             {
+                "leaderboard": "FACTS Grounding Leaderboard",
+                "leaderboard_abbrev": "FACTS",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://www.kaggle.com/facts-leaderboard/leaderboard"
+                },
+                "tooltip": "FACTS is a novel benchmark from Google DeepMind and Google Research designed to evaluate the factual accuracy and grounding of AI models.",
+                "analysis_tips": [
+                    "Each prompt includes a user request and a full document, with a maximum length of 32k tokens, requiring long-form responses. The long-form responses are required to be fully grounded in the provided context document while fulfilling the user request.",
+                    "A response is labeled accurate if all its claims are directly supported or don't require support from the context; otherwise, it's marked inaccurate.",
+                    'The eval tool uses automated LLM judge models for evaluation. In an effort to make scoring as fair as possible, they use a "range of frontier LLMs" and average the score outputs.',
+                    "Where you might thinking clicking on the Factuality Score column heading would sort the column, it actually is a jump link to 'Step 4: Ensembling' lower on the page...which is unusual. That section discusses how Factuality is calculated, so I can kind of understand what they were thinking, but it's still a bit jarring from a usability standpoint.",
+                    "I personally love any time a leaderboard includes a knowledge cutoff date. But since most of these models have gone agentic, it's not as essential as it used to be as they frequently search the web for answers and synthesize that information into their responses.",
+                    "The full FACTS Grounding benchmark is comprised of 1,719 examples. This includes 860 public examples available in the FACTS Grounding Public Examples Dataset. The remaining 859 examples comprise a private set that will be held out to mitigate risks of benchmark contamination (i.e., model creators cheating by training their models on the test questions to boost their scores).",
+                    "There are charts below the leaderboard that show the distribution of tasks (e.g., fact finding, summarizing, concept comparison, etc.) and domains (e.g., medical, legal, etc.).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_grounding_paper.pdf"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Factuality",
+                        "benchmark_measures": "Evaluates ability to generate factually accurate responses in information-seeking scenarios.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
+            {
                 "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_abbrev": "HF",
+                "leaderboard_abbrev": "Hugging Face",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
@@ -2212,7 +2306,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "TruthfulQA - Writing",
                         "benchmark_measures": "Evaluates ability to generate accurate and engaging narrative content.",
-                        "score_interpretation": "Higher scores indicate better writing accuracy and quality."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -2225,7 +2319,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
@@ -2237,7 +2330,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "QUAKE",
                         "benchmark_measures": "Evaluates ability to summarize and draft content in a coherent and engaging manner.",
-                        "score_interpretation": "Higher scores are better."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -2245,7 +2338,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2283,7 +2376,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -2296,7 +2388,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -2322,7 +2414,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -2330,7 +2422,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2388,7 +2480,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2473,10 +2565,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2498,7 +2590,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -2524,7 +2616,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -2535,13 +2627,14 @@ RECOMMENDATIONS = {
     "Generate video": {
         "Quality": [
             {
+                # TO DO: CHECK IF IT'S STILL DOWN (404'd 12/18)
                 "leaderboard": "ApolloBench",
-                "leaderboard_abbrev": "AB",
+                "leaderboard_abbrev": "ApolloBench",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/Apollo-LMMs/ApolloBench"
                 },
-                "tooltip": "ApolloBench evaluates video-language models on tasks like reasoning, perception, and text recognition to measure their ability to understand and analyze video content accurately.",
+                "tooltip": "ApolloBench is a leaderboard put out by Meta and evaluates video-language models on tasks like reasoning, perception, and text recognition to measure their ability to understand and analyze video content accurately.",
                 "analysis_tips": [
                     "By default, the leaderboard only shows the Overall score. You can click to reveal the other benchmark scores, which I recommend doing.",
                     "The Notes column indicates max frames but only for a few models at the time of writing.",
@@ -2552,7 +2645,7 @@ RECOMMENDATIONS = {
                 ],
                 "paper": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Arena"
+                    "url": "https://arxiv.org/html/2412.10360"
                 },
                 "benchmarks": [
                     {
@@ -2589,7 +2682,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Leaderboard"
@@ -2620,7 +2713,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Eval Crafter",
-                "leaderboard_abbrev": "EC",
+                "leaderboard_abbrev": "Eval Crafter",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://evalcrafter.github.io/"
@@ -2666,7 +2759,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "LongVideoBench",
-                "leaderboard_abbrev": "LVB",
+                "leaderboard_abbrev": "LongVideoBench",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://longvideobench.github.io/index.html#leaderboard"
@@ -2722,7 +2815,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Multi-task Long Video Understanding Benchmark",
-                "leaderboard_abbrev": "MLVU",
+                "leaderboard_abbrev": "Multi-task Long Video",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://github.com/JUNJIE99/MLVU"
@@ -2812,7 +2905,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Video-MME",
-                "leaderboard_abbrev": "V-MME",
+                "leaderboard_abbrev": "Video-MME",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://video-mme.github.io/home_page.html#leaderboard"
@@ -2863,7 +2956,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -2901,7 +2994,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
@@ -2914,7 +3006,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Quality Index",
                         "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
-                        "score_interpretation": "Higher scores indicate better overall performance in reasoning, coherence, and content generation across various tasks."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             },
@@ -2940,7 +3032,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Throughput",
                         "benchmark_measures": "The number of tokens the model can generate per second ('t/s')",
-                        "score_interpretation": "Higher is better as it signifies better performance."
+                        "score_interpretation": "Higher is better."
                     }
                 ]
             }
@@ -2948,7 +3040,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3006,7 +3098,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3096,7 +3188,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3130,7 +3222,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Chatbot Arena",
-                "leaderboard_abbrev": "CBA",
+                "leaderboard_abbrev": "Chatbot Arena",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://lmarena.ai/?leaderboard"
@@ -3157,53 +3249,291 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Hugging Face Open LLM",
-                "leaderboard_abbrev": "HF",
+                "leaderboard_abbrev": "Hugging Face",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
                 },
-                "tooltip": "The Hugging Face leaderboard includes several mathematics-specific benchmarks, focusing particularly on grade school and advanced mathematics.",
+                "tooltip": "The Hugging Face Open LLM leaderboard includes several benchmarks that include math problems, but the only dedicated math benchmark is the MATH benchmark. I include it though because some of its advanced filtering options that other math leaderboards don't provide.",
                 "analysis_tips": [
+                    "The only benchmark that measures math exclusively is the MATH benchmark. It evaluates the model's ability to solve high school-level math problems. However, BBH, GPQA, and MMLU-PRO also include math problems in their evaluations.",
                     "This leaderboard only includes open models, so you won't find proprietary models here.",
-                    "Pay attention to both raw and processed scores for math benchmarks.",
-                    "Consider performance across different difficulty levels.",
-                    "Look for models that excel at both computation and mathematical reasoning."
+                    "The leaderboard has a number of quick filters. At the time of writing, these include For Edge Devices, For Consumers, Mid-range, For the GPU-rich, and Only Official Providers.",
+                    "The Type column uses emojis, but there's no legend. You can view what each emoji represents by hovering over it. For example, the orange diamond represents 'fine-tuned on domain-specific datasets', the speech bubble represents chat models, the pink flower represents multimodal, and the green circle represents pretrained models.",
+                    "",
+                    "You can remove benchmarks from the table by clicking the 'column visibility' link above the table.",
+                    "The leaderboard also has a number of customization options you can choose from by clicking the 'table options' link above the table. One especially cool option is to show the rank of each model for only the columns you choose to display. You can do this by toggling Ranking Mode to Dynamic. I'd recommend filtering the table for just the MATH benchmark, and then compare the results to the table filtered for all benchmarks that include math problems (i.e., BBH, GPQA, and MMLU-PRO).",
+                    "Clicking a model's name will take you to its Hugging Face page.",
                 ],
                 "methodology": {
                     "text": "Methodology",
                     "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/about"
                 },
                 "benchmarks": [
-                    {
-                        "benchmark_name": "MATH Lvl 5",
-                        "benchmark_measures": "Evaluates performance on advanced mathematical problems at a high difficulty level.",
-                        "score_interpretation": "Higher scores indicate better advanced mathematical capabilities."
+                   {
+                    "benchmark_name": "Average",
+                    "benchmark_measures": "Evaluates the overall performance of a model by calculating the weighted average of normalized scores from all benchmarks",
+                    "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "MATH Lvl 5 Raw",
-                        "benchmark_measures": "Provides unprocessed scores from Level 5 MATH dataset evaluations.",
-                        "score_interpretation": "Higher scores reflect better raw performance on advanced mathematics."
+                    "benchmark_name": "IFEval",
+                    "benchmark_measures": "Evaluates the model's performance on instruction-following tasks, testing its ability to respond accurately to structured prompts.",
+                    "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "GSM8K",
-                        "benchmark_measures": "Evaluates ability to solve grade school math word problems.",
-                        "score_interpretation": "Higher scores indicate better practical math problem-solving ability."
-                    }
+                    "benchmark_name": "BBH (BigBench-Hard)",
+                    "benchmark_measures": "Evaluates the model's ability to handle challenging tasks requiring advanced reasoning and knowledge.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MATH",
+                    "benchmark_measures": "Evaluates the model's ability to solve challenging high school-level math problems that require step-by-step reasoning.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "GPQA (Graduate-Level Google-Proof Q&A)",
+                    "benchmark_measures": "Tests the model's ability to answer PhD-level multiple choice questions.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MUSR (Multistep Soft Reasoning)",
+                    "benchmark_measures": "Evaluates the model's performance on multi-step reasoning tasks with longer problems, requiring logical and methodical problem-solving.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MMLU-PRO (Massive Multitask Language Understanding - Professional)",
+                    "benchmark_measures": "Tests the model's knowledge and reasoning abilities across expertly reviewed multichoice questions across domains",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "CO₂ Cost",
+                    "benchmark_measures": "Measures the estimated carbon emissions (in kilograms) generated during the model's evaluation process.",
+                    "score_interpretation": "Lower is better."
+                    }, 
                 ]
             },
             {
                 "leaderboard": "MathEval",
-                "leaderboard_abbrev": "ME",
+                "leaderboard_abbrev": "MathEval",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://matheval.ai/en/leaderboard/"
-                }
-            }
+                },
+                "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "A feature that sets this leaderboard apart is its segmentation feature. You can segment by language (English and Chinese at time of writing), ability (math world problems & arithmetic), grade (elementary, middle, and high school+), and shots (i.e., 'zero', 'few').",
+                    "The leaderboard uses data from 20 mathematical evaluation datasets. You can view a summary of each dataset as well as example questions from each dataset on its Datasets page: https://matheval.ai/en/dataset/. Click the dataset's card to view example questions.",
+                    "The leaderboard includes three aggregated metrics: Ability Average, Overall Average, and Weighted Average. The Ability Average measures the model’s accuracy on application problems and arithmetics, averaging the two for a final score. The Overall Average calculates a simple average of the model's scores across all datasets. The Weighted Average accounts for the total number of correct answers relative to the total number of questions, giving more weight to larger datasets.",
+                    "So let's say Microsoft submits its math model, Phi-4, for evaluation. The Ability Average will first combine its scores across all word problems it answers, then rinse and repeat for arithmetic problems, then calculate the average of those two average scores. The Overall Average adds up its scores from all the tests—without segmenting into word and arithmetic problems—and calculates the average. The 20 datasets used to evaluate math models vary wildly in the number of questions asked, so the Weighted Average first adds up all the correct answers, then divides by the total number of questions. So a test with more questions will have a greater impact on a model's Weighted Average score.",
+                    "The 'Model version date' is the official release date for each model version.",
+                    "You can sort the table by any column except the 'Model version date' column.",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://matheval.ai/en/leaderboard/evaluation-experiment-settings/"
+                },
+                "benchmarks": [
+                    {
+                    "benchmark_name": "Ability Average",
+                    "benchmark_measures": "Calculates the model's average accuracy on application problems and arithmetic types, then averages the two as the final proficiency score.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Overall Average",
+                    "benchmark_measures": "Calculates the simple average accuracy of the model across all datasets.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Weighted Average",
+                    "benchmark_measures": "Divides the total number of correct answers by the total number of questions across all datasets.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "TAL-SCQ5K-EN",
+                    "benchmark_measures": "Evaluates the model's ability to solve math questions in English from the TAL-SCQ5K dataset.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "TAL-SCQ5K-CN",
+                    "benchmark_measures": "Evaluates the model's ability to solve math questions in Chinese from the TAL-SCQ5K dataset.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MAWPS",
+                    "benchmark_measures": "Evaluates the model's performance on math word problems requiring arithmetic and reasoning skills.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "GAOKAO(Math)",
+                    "benchmark_measures": "Evaluates the model's ability to solve math questions similar to China's Gaokao exam.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "GAOKAO(2023)",
+                    "benchmark_measures": "Measures performance on math problems from the 2023 Gaokao math exam.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "ASDiv-A",
+                    "benchmark_measures": "Evaluates accuracy on arithmetic word problems from the ASDiv-A dataset.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "CMMLU(Math)",
+                    "benchmark_measures": "Tests the model’s math skills on questions from the Chinese Massive Multitask Language Understanding (CMMLU) benchmark.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MATH",
+                    "benchmark_measures": "Assesses the model's ability to solve challenging high school-level math problems.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "GSM8K",
+                    "benchmark_measures": "Measures performance on grade-school-level math word problems requiring step-by-step reasoning.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "MMLU(Math)",
+                    "benchmark_measures": "Evaluates performance on math-related questions from the MMLU benchmark.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "SVAMP",
+                    "benchmark_measures": "Tests the model’s ability to solve simple arithmetic math problems with subtle variations.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "mathQA",
+                    "benchmark_measures": "Evaluates accuracy on multiple-choice math reasoning problems from the MathQA dataset.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "math23K",
+                    "benchmark_measures": "Measures performance on Chinese elementary math problems requiring reasoning.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Dolphin1878",
+                    "benchmark_measures": "Tests problem-solving accuracy on the Dolphin dataset of math word problems.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Ape210K",
+                    "benchmark_measures": "Evaluates performance on arithmetic problems from the Ape210K dataset.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Big-Bench-Hard(Math)",
+                    "benchmark_measures": "Assesses math-related questions from the BigBench-Hard benchmark, requiring advanced reasoning.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "AGIEval",
+                    "benchmark_measures": "Measures performance on math problems from AGIEval, designed to test models in academic settings.",
+                    "score_interpretation": "Higher is better."
+                    },
+                    {
+                    "benchmark_name": "Arith3K",
+                    "benchmark_measures": "Evaluates accuracy on arithmetic questions requiring precise numerical reasoning.",
+                    "score_interpretation": "Higher is better."
+                    }
+                ],
+            },
+            {
+                "leaderboard": "MathVista",
+                "leaderboard_abbrev": "MathVista",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://mathvista.github.io/"
+                },
+                "tooltip": "MathVista is a benchmark designed to combine challenges from diverse mathematical and visual tasks. It consists of 6,141 examples, derived from 28 existing multimodal datasets involving mathematics and three newly created datasets (i.e., IQTest, FunctionQA, and PaperQA).",
+                "analysis_tips": [
+                    "The dashboard is broken into two leaderboards, 'testmini' and 'test' leaderboard. The testmini leaderboard includes 1,000 examples, while the test leaderboard includes all 5,141 examples.",
+                    "The Human Performance row at the top indicates the average human performance by Amazon Mechanical Turk workers who were recruited to evaluate and solve the benchmark problems. They were required to at least a high school diploma to participate.",
+                    "MathVista combines visual and math challenges, including puzzles, graphs, and diagrams from academic papers that test logical, algebraic, and scientific reasoning.",
+                    "It also includes 9 math question datasets and 19 visual question datasets, offering 6,141 problems that combine visuals and math reasoning for a more diverse and complex evaluation.",
+                    "The leaderboard includes a 'Method types' column that indicates the type of method used. These include Mixture of Experts (MoE), Large Multimodal Models (LMM), and Tool-augmented LLM (Tool). With MoE the model uses multiple specialized sub-models, LMMs process both text and images, and Tool models use external tools to solve problems, like calculators or agents.",
+                    "The benchmarks are divided into two categories: Task and Math Reasoning types. The tasks include figure QA (FQA), geometry problem solving (GPS), math word problem (MWP), textbook QA (TQA), and visual QA (VQA). The Math Reasoning types include algebraic (ALG), arithmetic (ARI), geometry (GEO), logical (LOG), numeric (NUM), scientific (SCI), and statistal (STA).",
+                    "The dashboard has a cool feature called the MathVista Visualizer. There are a number of filters in the left rail and example problems in the canvas.",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://arxiv.org/pdf/2310.02255"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "ALL",
+                        "benchmark_measures": "Calculates the model's overall performance by averaging scores across all individual categories.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "FQA",
+                        "benchmark_measures": "Evaluates the model's accuracy on factual question answering tasks.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "GPS",
+                        "benchmark_measures": "Evaluates the model's ability to solve geometry problems involving spatial reasoning.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "MWP",
+                        "benchmark_measures": "Evaluates the model's accuracy on math word problems.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "TQA",
+                        "benchmark_measures": "Evaluates the model's performance on tasks involving textual quantitative analysis.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "VQA",
+                        "benchmark_measures": "Evaluates the model's ability to solve visual question answering tasks.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "ALG",
+                        "benchmark_measures": "Evaluates the model's ability to solve algebra-related problems.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "ARI",
+                        "benchmark_measures": "Evaluates the model's accuracy on arithmetic-based reasoning problems.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "GEO",
+                        "benchmark_measures": "Evaluates the model's performance on general geometry problems.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "LOG",
+                        "benchmark_measures": "Evaluates the model's logical reasoning abilities on tasks requiring deductive logic.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "NUM",
+                        "benchmark_measures": "Evaluates the model's numerical computation and problem-solving abilities.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "SCI",
+                        "benchmark_measures": "Evaluates the model's performance on science-related reasoning and problem-solving tasks.",
+                        "score_interpretation": "Higher is better."
+                    },
+                    {
+                        "benchmark_name": "STA",
+                        "benchmark_measures": "Evaluates the model's ability to solve problems involving statistical analysis.",
+                        "score_interpretation": "Higher is better."
+                    }
+                ]
+            },
         ],
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3247,7 +3577,6 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "Higher is better.",
                     "The math-leaning benchmarks from least to most difficult: 'GSM8K' (KLU/Vellum): grade school word problems; 'MATH' (KLU/Vellum): high school math (algebra, geometry, intro calculus); MATH-500 (Artificial Analysis): university-level math problems. I didn't include Chat Arena's MT-Bench benchmark (which it labels 'Math') because its focus is on assessing multi-turn conversation, which has some math overlap. It would be good to look at to see maybe a hybrid of chat and math (think Khan Academy's chatbot, Khanmigo), but since it's not a pure math benchmark, I left it out.",
                     "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
@@ -3306,7 +3635,7 @@ RECOMMENDATIONS = {
         "Latency": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3364,7 +3693,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3449,10 +3778,10 @@ RECOMMENDATIONS = {
                 ]
             }
         ],
-        "Context Window": [
+        "Context window": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/models"
@@ -3463,7 +3792,7 @@ RECOMMENDATIONS = {
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "I \ud83d\udc9a their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
                     "Each of their charts comes equipped with a model filter. You can switch out those models for other models, especially as you inch your way closer to a decision on a model.",
-                    "Search the dashboard for 'context window' to jump to the charts that include it as a metric. At the time of writing, Google is crushing the competition. They're the only models in the green quadrant of the 'Quality vs. Context Window, Input Token Price' chart and they crush the other bars in the 'Content Window' bar chart.",
+                    "Search the dashboard for 'context window' to jump to the charts that include it as a metric. At the time of writing, Google is crushing the competition. They're the only models in the green quadrant of the 'Quality vs. Context window, Input Token Price' chart and they crush the other bars in the 'Content Window' bar chart.",
                     "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
                 ],
                 "methodology": {
@@ -3472,7 +3801,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -3498,7 +3827,7 @@ RECOMMENDATIONS = {
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Context Window",
+                        "benchmark_name": "Context window",
                         "benchmark_measures": "Maximum number of combined input & output tokens. Output tokens commonly have a significantly lower limit (varies by model).",
                         "score_interpretation": "Higher is better."
                     }
@@ -3510,7 +3839,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3541,7 +3870,7 @@ RECOMMENDATIONS = {
             },
             {
                 "leaderboard": "Open ASR (Hugging Face)",
-                "leaderboard_abbrev": "HF",
+                "leaderboard_abbrev": "Open ASR",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard"
@@ -3571,7 +3900,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis STT",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3604,7 +3933,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis STT",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/speech-to-text"
@@ -3639,7 +3968,7 @@ RECOMMENDATIONS = {
         "Quality": [
             {
                 "leaderboard": "Artificial Analysis TTS",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"
@@ -3699,7 +4028,7 @@ RECOMMENDATIONS = {
         "Speed": [
             {
                 "leaderboard": "Artificial Analysis TTS",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"
@@ -3729,7 +4058,7 @@ RECOMMENDATIONS = {
         "Cost": [
             {
                 "leaderboard": "Artificial Analysis TTS",
-                "leaderboard_abbrev": "AA",
+                "leaderboard_abbrev": "Artificial Analysis",
                 "leaderboard_link": {
                     "text": "View leaderboard",
                     "url": "https://artificialanalysis.ai/text-to-speech"

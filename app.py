@@ -1,140 +1,104 @@
-# ========================================================================
-#   Imports
-# ======================================================================== 
-
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify 
-from flask_wtf import FlaskForm
-from wtforms import RadioField, SubmitField
+from flask import Flask, render_template, request, jsonify 
 import logging
 import os
+import json
 from recommendations_engine import QUESTIONS, RECOMMENDATIONS
-
-# From NH 
-import pandas as pd
-from pyvis.network import Network
 from processing import build_network
+import pandas as pd
 from bs4 import BeautifulSoup
 
-# ========================================================================
-#   Set Up App
-# ======================================================================== 
-
-# Initialize the Flask app
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
-# ========================================================================
-#   Routes
-# ========================================================================
-
-# Home Route
 @app.route('/')
 def index():
-    # Read the CSV file
-    df = pd.read_csv('input/airtable_20241115.csv')
-    
-    # Convert df to JSON-safe format
-    df = df.fillna('')
-    data = df.to_dict(orient='records')
-    
-    # Build the network graph
-    net = build_network(df)
-    net.cdn_resources = 'remote'
-    
-    # Generate the network graph HTML
-    graph_html = net.generate_html(notebook=False)
-    soup = BeautifulSoup(graph_html, 'html.parser')
-    
-    # Clean up canvas
-    canvas = soup.find('canvas')
-    if canvas:
-        for attr in ['width', 'height', 'style']:
-            if attr in canvas.attrs:
-                del canvas[attr]
-                
-    # Clean up divs
-    for div in soup.find_all('div'):
-        if 'style' in div.attrs:
-            del div['style']
-            
-    # Extract scripts and modify network initialization
-    scripts = soup.find_all('script')
-    for script in scripts:
-        if script.string and 'var network = new vis.Network' in script.string:
-            # Move network initialization to a global function
-            script.string = '''
-                function initNetwork() {
-                    window.network = new vis.Network(
-                        document.getElementById("mynetwork"),
-                        {nodes: new vis.DataSet(%s), edges: new vis.DataSet(%s)},
-                        %s
-                    );
-                    
-                    network.once('stabilizationIterationsDone', function() {
-                        network.setOptions({physics: false});
-                    });
-                }
-                
-                // Call initNetwork after document is ready
-                document.addEventListener('DOMContentLoaded', initNetwork);
-            ''' % (
-                net._nodes.to_json(),
-                net._edges.to_json(),
-                json.dumps(net.options)
-            )
-    
-    # Extract body and scripts
-    graph_body = str(soup.body)
-    graph_scripts = ''.join([str(script) for script in scripts])
-    
-    return render_template(
-        'network.html',
-        graph_body=graph_body,
-        graph_scripts=graph_scripts,
-        initialData=json.dumps(data)  # Serialize data to JSON string
-    )
+    try:
+        # Process QUESTIONS and RECOMMENDATIONS data into a "processed_data" format
+        processed_data = []
+        for task, goals in RECOMMENDATIONS.items():
+            for goal, leaderboards in goals.items():
+                for leaderboard_info in leaderboards:
+                    for benchmark in leaderboard_info.get('benchmarks', []):
+                        row = {
+                            'Task': task,
+                            'Goal': goal,
+                            'Leaderboard': leaderboard_info['leaderboard'],
+                            'Tips': "\n".join(leaderboard_info.get('analysis_tips', [])),
+                            'Source': leaderboard_info['leaderboard_link']['url'],
+                            'Tooltip': leaderboard_info.get('tooltip', ''),
+                            'Methodology': leaderboard_info.get('methodology', {}).get('url', '')
+                        }
+                        processed_data.append(row)
+        
+        # Build the PyVis network
+        net = build_network(RECOMMENDATIONS)
+        
+        # Generate the HTML representation of the network
+        graph_html = net.generate_html()
 
-# Question Route
-@app.route('/question/<key>', methods=['GET', 'POST'])
-def question(key):
-    # Check if key exists in QUESTIONS
-    if key not in QUESTIONS:
-        return redirect(url_for('index'))
-
-    question_data = QUESTIONS[key]
-
-    # Form for the current question
-    class QuestionForm(FlaskForm):
-        choice = RadioField(
-            question_data["question"],
-            choices=[(option, option) for option in question_data["options"]],
-            render_kw={"class": "form-check-input"}
+        # Render the template, passing in the graph HTML and processed_data
+        return render_template(
+            'index.html',
+            graph_body=graph_html,
+            initial_data=json.dumps(processed_data)
         )
-        submit = SubmitField('Next')
+       
+    except Exception as e:
+        logging.error(f"Error in index route: {str(e)}")
+        return render_template(
+            'index.html',
+            error=str(e),
+            graph_body='',   # If we have an error, just pass an empty graph_body
+            initial_data='[]'
+        )
 
-    form = QuestionForm()
+@app.route('/filter_data', methods=['POST'])
+def filter_data():
+    try:
+        node_id = request.json.get('node_id')
+        if not node_id:
+            return jsonify({"error": "No node ID provided"}), 400
+        
+        # Find the matching leaderboard data
+        # Remember, the nodes in PyVis have IDs like "leaderboard_task_goal_lbname"
+        # So we need to parse node_id or find a suitable way to match it.
+        # Assuming node_id is something like "leaderboard_<task>_<goal>_<leaderboard>"
+        # we can reconstruct the original leaderboard name from node_id if needed.
+        
+        # However, the code below attempts a direct match. If that doesn't work because of the updated IDs,
+        # you might need to parse the node_id to extract leaderboard name.
+        
+        # Extracting leaderboard name from node_id
+        # node_id format: leaderboard_<task>_<goal>_<leaderboard_name>
+        # We can split by '_' and rejoin for leaderboard name if it has spaces
+        # e.g., node_id = "leaderboard_chain_agents_quality_Artificial Analysis"
+        
+        if node_id.startswith('leaderboard_'):
+            parts = node_id.split('_', 3)  # split into 4 parts: [leaderboard, task, goal, lbname...]
+            if len(parts) == 4:
+                # The fourth part is the leaderboard name
+                lb_name = parts[3]
+            else:
+                return jsonify({"error": "Invalid leaderboard node ID format"}), 400
 
-    # Handle form submission
-    if form.validate_on_submit():
-        session[key] = form.choice.data  # Save the choice in the session
-        next_key = question_data.get("next")
-        if next_key == "recommendation":
-            return redirect(url_for('recommendation'))
-        return redirect(url_for('question', key=next_key))
+            # Now search in RECOMMENDATIONS for that leaderboard name
+            for task, goals in RECOMMENDATIONS.items():
+                for goal, leaderboards in goals.items():
+                    for leaderboard in leaderboards:
+                        if leaderboard['leaderboard'] == lb_name:
+                            return jsonify({
+                                'leaderboard': leaderboard['leaderboard'],
+                                'tooltip': leaderboard.get('tooltip', ''),
+                                'source': leaderboard['leaderboard_link']['url'],
+                                'methodology': leaderboard.get('methodology', {}).get('url', ''),
+                                'analysis_tips': leaderboard.get('analysis_tips', [])
+                            })
 
-    return render_template('question.html', form=form, key=key, question_data=question_data)
+        return jsonify({"error": "Leaderboard not found"}), 404
+        
+    except Exception as e:
+        logging.error(f"Error in filter_data route: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
-# Recommendation Route
-@app.route('/recommendation')
-def recommendation():
-    task = session.get("task")
-    goal = session.get("goal")
-    if not task or not goal:
-        return redirect(url_for('index'))
-
-    recommendations = RECOMMENDATIONS.get(task, {}).get(goal, [])
-    return render_template(
-        'recommendation.html',
-        recommendations=recommendations,
-        task=task,
-        goal=goal
-    )
+if __name__ == '__main__':
+    app.run(debug=True)
