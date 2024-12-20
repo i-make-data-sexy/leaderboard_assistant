@@ -3,30 +3,66 @@
    ======================================================================== */
 
 // Initialize network object at global scope
-let network;
+var network = null;
 
-function initializeNetwork() {
-    console.log('Initializing network:', {
-        'vis available': typeof vis !== 'undefined',
-        'network data exists': !!window.networkData,
-        'container exists': !!document.getElementById('network-container')
-    });
-    
-    if (typeof vis === 'undefined') {
-        console.error('Error: vis-network library not available');
-        return;
-    }
-    
+// Update canvas size to match container
+function resizeCanvas() {
     const container = document.getElementById('network-container');
-    if (!container) {
-        console.error('Error: network-container element not found');
-        return;
+    if (container) {
+        const canvas = container.querySelector('canvas');
+        if (canvas) {
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';                             // Container height set in CSS
+        }
     }
-    
-    const spacingValue = $('#node-spacing-slider').val() || 200;
-    const networkData = window.networkData || { nodes: [], edges: [] };
-    
+}
+
+// Add resize event listener
+window.addEventListener('resize', function() {
+    resizeCanvas();
+    if (network) {
+        network.fit(); // This ensures the network fills the available space
+    }
+});
+
+// Key functionality of network graph
+function initializeNetwork() {
     try {
+        console.log('Initializing network:', {
+            'vis available': typeof vis !== 'undefined',
+            'network data exists': !!window.networkData,
+            'container exists': !!document.getElementById('network-container')
+        });
+        
+        // Check for vis-network library
+        if (typeof vis === 'undefined') {
+            throw new Error('vis-network library not available');
+        }
+        
+        // Check for container
+        const container = document.getElementById('network-container');
+        if (!container) {
+            throw new Error('network-container element not found');
+        }
+        
+        // Check for network data
+        if (!window.networkData) {
+            throw new Error('Network data not available');
+        }
+        
+        // Clear any existing content in the container
+        container.innerHTML = '';
+        
+        // Create a loading indicator
+        const loadingDiv = document.createElement('div');
+        loadingDiv.textContent = 'Loading network...';
+        loadingDiv.style.textAlign = 'center';
+        loadingDiv.style.padding = '20px';
+        container.appendChild(loadingDiv);
+    
+        const zoomLevel = $('#node-spacing-slider').val() || 1;
+        const networkData = window.networkData || { nodes: [], edges: [] };
+    
         network = new vis.Network(
             container,
             {
@@ -37,21 +73,25 @@ function initializeNetwork() {
                 layout: {
                     hierarchical: {
                         enabled: true,
-                        levelSeparation: parseInt(spacingValue),
-                        nodeSpacing: parseInt(spacingValue),
-                        treeSpacing: 200,
                         direction: 'UD',
                         sortMethod: 'directed'
                     }
                 },
+                autoResize: true,
+                height: '1000px',                               // Set container height
+                width: '100%',
                 physics: {
                     enabled: false
                 },
                 edges: {
-                    smooth: false
+                    smooth: false,
+                    arrows: {
+                        to: false                                   // Removes arrows from edges
+                    }
                 },
                 interaction: {
-                    zoomView: false,
+                    zoomView: false,                                // Disable mouse zoom
+                    zoomSpeed: 0,                                   // Disable mouse wheel zoom
                     dragNodes: true,
                     zoomSpeed: 0
                 },
@@ -60,9 +100,15 @@ function initializeNetwork() {
                     font: {
                         face: 'Ek Mukta',
                         size: 14,
-                        background: '#ffffffCC', // white with slight transparency
+                        background: '#ffffffCC',
                         color: '#333333',
-                        strokeWidth: 0
+                        strokeWidth: 0,
+                        multi: true,  // Enable multi-font support
+                        bold: {  // Define bold font style
+                            color: '#333333',
+                            size: 16,
+                            face: 'Ek Mukta'
+                        }
                     },
                     borderWidth: 1,
                     borderWidthSelected: 2
@@ -70,14 +116,21 @@ function initializeNetwork() {
             }
         );
         console.log('Network creation successful');
-        
-        setupSlider();
-        setupNetworkClickHandler();
         resizeCanvas();
+
+        // Ensure network fills the space initially
+        network.fit();                                      
+        setupZoomSlider();
+        setupNetworkClickHandler();
+    
     } catch (error) {
         console.error('Error initializing network:', error);
+        
+        // Re-throw to be caught by initializeNetworkWithRetry
+        throw error; 
     }
 }
+
 
 // Setup when document is ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -98,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function() {
             // Form submission will naturally update URL
             resultsContainer.classList.remove('hidden');
-            setTimeout(initializeNetwork, 100); // Give DOM time to update
+        setTimeout(initializeNetwork, 100);                         // Give DOM time to update
         });
     }
 });
@@ -107,51 +160,65 @@ document.addEventListener('DOMContentLoaded', function() {
    Slider Configuration and Event Handling
    ======================================================================== */
 
-// Initialize slider controls and event listeners
-function setupSlider() {
+// Initialize slider controls for zoom
+function setupZoomSlider() {
     $('#node-spacing-slider').on('input', function() {
-        var spacingValue = $(this).val();
-        updateSliderTrack(this, spacingValue);
-        updateNetworkSpacing(spacingValue);
+        var zoomValue = parseFloat($(this).val());
+        updateSliderTrack(this, zoomValue);
+        updateNetworkZoom(zoomValue);
     });
 
     setSliderTrackValue();
 }
 
 // Update the slider's visual filled track
-function updateSliderTrack(slider, spacingValue) {
-    const min = slider.min || 0;
-    const max = slider.max || 100;
-    const percentage = ((spacingValue - min) / (max - min)) * 100;
+function updateSliderTrack(slider, value) {
+    const min = parseFloat(slider.min) || 0;
+    const max = parseFloat(slider.max) || 2;
+    const percentage = ((value - min) / (max - min)) * 100;
     slider.style.setProperty('--value', `${percentage}%`);
 }
 
-// Apply new spacing values to network layout
-function updateNetworkSpacing(spacingValue) {
+// Apply zoom value to network
+function updateNetworkZoom(zoomValue) {
     if (network) {
-        network.setOptions({
-            layout: {
-                hierarchical: {
-                    enabled: true,
-                    levelSeparation: parseInt(spacingValue),
-                    nodeSpacing: parseInt(spacingValue),
-                    treeSpacing: 200,
-                    direction: 'UD',
-                    sortMethod: 'directed',
-                }
-            },
-            // Disable physics engine to prevent node movement
-            physics: {
-                enabled: false
-            },
-            // Disable zoom interactions for better UX
-            interaction: {
-                zoomView: false,
-                zoomSpeed: 0
+        network.moveTo({
+            scale: zoomValue,
+            animation: {
+                duration: 1000,
+                easingFunction: 'easeInOutQuad'
             }
         });
     }
 }
+
+// Handling now with updateNetworkZoom function 
+// Apply new spacing values to network layout
+// function updateNetworkSpacing(spacingValue) {
+//     if (network) {
+//         network.setOptions({
+//             layout: {
+//                 hierarchical: {
+//                     enabled: true,
+//                     levelSeparation: parseInt(spacingValue),
+//                     nodeSpacing: parseInt(spacingValue),
+//                     treeSpacing: 200,
+//                     direction: 'UD',
+//                     sortMethod: 'directed',
+//                 }
+//             },
+//             // Disable physics engine to prevent node movement
+//             physics: {
+//                 enabled: false
+//             },
+//             // Disable zoom interactions for better UX
+//             interaction: {
+//                 zoomView: false,
+//                 zoomSpeed: 0
+//             }
+//         });
+//     }
+// }
 
 // Initialize slider track value on page load
 function setSliderTrackValue() {
@@ -199,15 +266,22 @@ function handleLeaderboardNodeClick(nodeId) {
    Window Event Handling and UI Updates
    ======================================================================== */
 
-// Update canvas size to match container
-function resizeCanvas() {
-    $('#network-container canvas').css({
-        width: '100%',
-        height: '100%'
-    });
-}
 
 // Handle window resize events
 $(window).on('resize', function() {
     resizeCanvas();
 });
+
+
+/* ========================================================================
+   Set Styling for Benchmark Labels
+   ======================================================================== */
+
+// For benchmark nodes, apply custom label formatting
+function formatBenchmarkLabel(label) {
+    // Assuming benchmark labels have a specific format like "Benchmark: Value"
+    if (label.includes('Benchmark')) {
+        return `<b>${label}</b>`;  // This will use the bold font style we defined
+    }
+    return label;
+}

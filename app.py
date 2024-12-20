@@ -33,13 +33,19 @@ def index():
         # Build the PyVis network
         net = build_network(RECOMMENDATIONS)
         
+        #  Get network data for vis.js
+        network_data = {
+            'nodes': net.nodes,
+            'edges': net.edges
+        }
+        
         # Generate the HTML representation of the network
-        graph_html = net.generate_html()
+        # graph_html = net.generate_html()
 
         # Render the template, passing in the graph HTML and processed_data
         return render_template(
             'index.html',
-            graph_body=graph_html,
+            network_data=json.dumps(network_data),
             initial_data=json.dumps(processed_data)
         )
        

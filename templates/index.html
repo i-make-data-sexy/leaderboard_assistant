@@ -23,11 +23,12 @@
     <div class="container-fluid"> 
         <!-- Header Container -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1 class="header-title">Model Picker for AI Projects</h1>
+            <h1>Model Picker for AI Projects</h1>
             <img src="{{ url_for('static', filename='img/annielytics-logo.png') }}" alt="Annielytics Logo" class="header-logo">
         </div>
 
         <!-- Model Picker Form -->
+        <h2> Step 1: Let's get some information about your model's purpose</h2>
         <form id="modelPickerForm">
             <section class="form-section">
                 <!-- Tasks -->
@@ -102,13 +103,12 @@
                     </label>
                 </div>
             </section>
-
             <button type="submit" class="submit-button">Compare models</button>
         </form>
-    </div>
 
-    <!-- Results Container -->
+        <!-- Results Container -->
     <div id="results" class="results-container hidden">
+        <h2>Step 2: Find benchmarks appropriate to compare models against <span class="info-icon" data-tooltip="...long tooltip text...">ⓘ</span></h2>
         <!-- Slider Container -->
         <div class="slider-container">
             <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
@@ -117,16 +117,14 @@
                     <span class="zoom-sign minus">−</span>
                     <span class="zoom-sign plus">+</span>
                 </div>
-                <input type="range" id="node-spacing-slider" min="100" max="1000" value="200" step="50">
+                <!-- Set Slider Range -->
+                <input type="range" id="node-spacing-slider" min="0.5" max="2" step="0.1" value="1">
             </div>
         </div>
 
-        <!-- Network Graph Section -->
-        <h2>Model Strategy <span class="info-icon" data-tooltip="...long tooltip text...">ⓘ</span></h2>
-
         <!-- Network Container -->
-        <div id="network-container" class="w-full h-96 border rounded-lg bg-white shadow-sm">
-            {{ graph_body | safe }}
+        <div id="network-container" class="w-full border rounded-lg bg-white shadow-sm">
+                {{ graph_body | safe }}
         </div>
 
         <!-- React Component Container -->
@@ -260,24 +258,78 @@
         </script>
         {% endraw %}
 
-    <!-- Submit form -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('modelPickerForm');
-            const resultsContainer = document.getElementById('results');
-    
-            // If the URL has parameters, show results and initialize the network
-            if (window.location.search) {
-                resultsContainer.classList.remove('hidden');
-                initializeNetwork();
-            }
-    
-            form.addEventListener('submit', function() {
-                resultsContainer.classList.remove('hidden');
-                // Slight delay to ensure UI updates before initializing
-                setTimeout(initializeNetwork, 100);
+        <!-- Submit form -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('modelPickerForm');
+                const resultsContainer = document.getElementById('results');
+                
+                let retryCount = 0;
+                const MAX_RETRIES = 5;
+                
+                // Function to handle network initialization
+                const initializeNetworkWithRetry = async () => {
+                    try {
+                        // Check if we've exceeded max retries
+                        if (retryCount >= MAX_RETRIES) {
+                            throw new Error('Maximum retry attempts reached. Please refresh the page.');
+                        }
+
+                        // Wait for vis-network to be available
+                        if (typeof vis === 'undefined') {
+                            throw new Error('Waiting for vis-network to load...');
+                        }
+                        
+                        // Check if we have network data
+                        if (!window.networkData) {
+                            throw new Error('Network data not available yet...');
+                        }
+                        
+                        // Initialize the network
+                        initializeNetwork();
+                        
+                        // Reset retry count on success
+                        retryCount = 0;
+                        
+                    } catch (error) {
+                        console.warn(`Network initialization attempt ${retryCount + 1} failed:`, error);
+                        
+                        // Show error message in the network container
+                        const container = document.getElementById('network-container');
+                        if (container) {
+                            container.innerHTML = `
+                                <div style="text-align: center; padding: 20px;">
+                                    <p>Network initialization failed. ${retryCount < MAX_RETRIES ? 'Retrying...' : 'Max retries reached.'}</p>
+                                    <p style="color: red;">${error.message}</p>
+                                </div>
+                            `;
+                        }
+                        
+                        // Increment retry count
+                        retryCount++;
+                        
+                        // Only retry if we haven't exceeded max retries
+                        if (retryCount < MAX_RETRIES) {
+                            setTimeout(initializeNetworkWithRetry, 1000);
+                        }
+                    }
+                };
+        
+                // If the URL has parameters, show results and initialize the network
+                if (window.location.search) {
+                    resultsContainer.classList.remove('hidden');
+                    initializeNetworkWithRetry();
+                }
+        
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Prevent default form submission
+                    resultsContainer.classList.remove('hidden');
+                    initializeNetworkWithRetry();
+                });
             });
-        });
-    </script>      
+        </script>
+    </div>
+
+    
 </body>
 </html>
