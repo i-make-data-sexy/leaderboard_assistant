@@ -198,34 +198,6 @@ function updateNetworkZoom(zoomValue) {
     }
 }
 
-// Handling now with updateNetworkZoom function 
-// Apply new spacing values to network layout
-// function updateNetworkSpacing(spacingValue) {
-//     if (network) {
-//         network.setOptions({
-//             layout: {
-//                 hierarchical: {
-//                     enabled: true,
-//                     levelSeparation: parseInt(spacingValue),
-//                     nodeSpacing: parseInt(spacingValue),
-//                     treeSpacing: 200,
-//                     direction: 'UD',
-//                     sortMethod: 'directed',
-//                 }
-//             },
-//             // Disable physics engine to prevent node movement
-//             physics: {
-//                 enabled: false
-//             },
-//             // Disable zoom interactions for better UX
-//             interaction: {
-//                 zoomView: false,
-//                 zoomSpeed: 0
-//             }
-//         });
-//     }
-// }
-
 // Initialize slider track value on page load
 function setSliderTrackValue() {
     const slider = document.getElementById('node-spacing-slider');

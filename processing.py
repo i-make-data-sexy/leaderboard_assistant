@@ -89,18 +89,12 @@ def build_network(recommendations):
                 
 
                 # Add benchmark nodes
-                            # Add benchmark nodes
                 benchmarks = lb_data.get('benchmarks', [])
                 for benchmark in benchmarks:
-                    # benchmark is a dict, e.g.:
-                    # {
-                    #    "benchmark_name": "Quality Index",
-                    #    "benchmark_measures": "Evaluates the model's overall ability ...",
-                    #    "score_interpretation": "Higher is better."
-                    # }
-
+                    
                     # NEW: Extract the benchmark name to use as label
                     benchmark_name = benchmark.get('benchmark_name', 'Unknown Benchmark')  # Using get() to avoid errors if key doesn't exist
+                    
                     # NEW: Extract measures for the tooltip/title
                     benchmark_measures = benchmark.get('benchmark_measures', '')
 
@@ -117,7 +111,7 @@ def build_network(recommendations):
                         size=30,
                         font={
                             'size': 18,
-                            'color': '#b8c1c7',
+                            'color': '#333',
                             'face': 'Ek Mukta',
                             'background': 'rgba(255, 255, 255, 0.8)'
                         }
@@ -130,13 +124,10 @@ def build_network(recommendations):
     options = {
         'layout': {
             'hierarchical': {
-                'enabled': True,
-                'levelSeparation': 300,
-                'nodeSpacing': 150,
-                'treeSpacing': 200,
-                'direction': 'UD',
-                'sortMethod': 'directed'
-            }
+                'enabled': False,        # CHANGED: Set hierarchical to false because we're using a physics-based layout for repulsion
+                # Remove or comment out hierarchical parameters if not needed
+            },
+            'improvedLayout': False     # Keep this false to see the physics in action
         },
         'nodes': {
             'font': label_font,
@@ -150,12 +141,57 @@ def build_network(recommendations):
             'color': '#999999'
         },
         'physics': {
-            'enabled': False
+            'enabled': True,            # NEW: Enable physics to allow for node repulsion
+            'solver': 'barnesHut',      # NEW: Use the barnesHut solver, which allows adjusting gravity and overlap
+            'barnesHut': {
+                'gravitationalConstant': -30000,  # NEW: Large negative value increases repulsion
+                'centralGravity': 0.3,            # Adjust as needed
+                'springLength': 95,               # Adjust if nodes are still too close
+                'springConstant': 0.04,
+                'damping': 0.09,
+                'avoidOverlap': 1                 # NEW: Ensures nodes don’t overlap by treating them as larger
+            },
+            'minVelocity': 0.75                   # Adjust to prevent nodes from settling too close
         },
         'interaction': {
             'hover': True
         }
     }
+
+    
+    
+    # options = {
+    #     'layout': {
+    #         'hierarchical': {
+    #             'enabled': True,
+    #             'levelSeparation': 800,
+    #             'nodeSpacing': 300,
+    #             'treeSpacing': 200,
+    #             'direction': 'UD',
+    #             'sortMethod': 'directed',
+    #             'blockShifting': False,   # NEW: Turning off blockShifting so it doesn't override spacing
+    #             'edgeMinimization': False # NEW: Turning off edgeMinimization for the same reason
+    #         },
+    #         'improvedLayout': False       # NEW: Disable improvedLayout to ensure hierarchical spacing takes effect
+    #     },
+    #     'nodes': {
+    #         'font': label_font,
+    #         'shape': 'dot',
+    #         'borderWidth': 2,
+    #         'borderWidthSelected': 4
+    #     },
+    #     'edges': {
+    #         'smooth': False,
+    #         'width': 1,
+    #         'color': '#999999'
+    #     },
+    #     'physics': {
+    #         'enabled': False
+    #     },
+    #     'interaction': {
+    #         'hover': True
+    #     }
+    # }
 
     # Apply the options to the network
     net.set_options(json.dumps(options))
