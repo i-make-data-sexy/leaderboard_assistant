@@ -14,8 +14,71 @@ app.secret_key = os.urandom(24)
 def index():
     try:
         # Process QUESTIONS and RECOMMENDATIONS data into a "processed_data" format
+        # Get query parameters for filtering tasks and goals
+        tasks_selected = request.args.getlist('tasks')   # Retrieves tasks from query params like ?tasks=chat&tasks=generate_text
+        goals_selected = request.args.getlist('goals')   # Retrieves goals from query params like ?goals=quality&goals=speed
+        
+        # ADD LOGGING: Print selected tasks and goals
+        logging.info(f"Tasks selected: {tasks_selected}")
+        logging.info(f"Goals selected: {goals_selected}")
+
+        # ADD LOGGING: Print all available tasks and goals from RECOMMENDATIONS
+        # This helps confirm that the keys you selected actually exist
+        all_tasks = list(RECOMMENDATIONS.keys())
+        # logging.info(f"All available tasks in RECOMMENDATIONS: {all_tasks}")
+        # # If needed, you can also log goals for each task
+        # for t, g_dict in RECOMMENDATIONS.items():
+        #     logging.info(f"Task: {t}, available goals: {list(g_dict.keys())}")
+        
+        # Add these lines right after you get RECOMMENDATIONS and before filtering logic:
+        # NEW: Logging to see what keys RECOMMENDATIONS has.
+        logging.info(f"Tasks available in RECOMMENDATIONS: {list(RECOMMENDATIONS.keys())}")
+        for t, g_dict in RECOMMENDATIONS.items():
+            logging.info(f"For task '{t}', goals available: {list(g_dict.keys())}")
+
+
+        
+        # If tasks and goals are specified, filter RECOMMENDATIONS
+        if tasks_selected and goals_selected:              
+            filtered_recs = {}
+            for task, goals in RECOMMENDATIONS.items():
+                if task not in tasks_selected:
+                    continue
+                filtered_goals = {}
+                for goal, leaderboards in goals.items():
+                    if goal not in goals_selected:
+                        continue
+                    filtered_goals[goal] = leaderboards
+                if filtered_goals:
+                    filtered_recs[task] = filtered_goals
+            
+            # ADD LOGGING: Show what's in filtered_recs when both tasks and goals are filtered
+            logging.info(f"Filtered recommendations (tasks & goals): {json.dumps(filtered_recs, indent=2)}")        
+                    
+        # If only tasks are selected, filter only by tasks
+        elif tasks_selected:
+            logging.info("Filtering by tasks only")
+            filtered_recs = {task: goals for task, goals in RECOMMENDATIONS.items() if task in tasks_selected}
+            # ADD LOGGING: Show filtered_recs for tasks only
+            logging.info(f"Filtered recommendations (tasks only): {json.dumps(filtered_recs, indent=2)}")
+            
+        # If only goals are selected, filter only by goals
+        elif goals_selected:
+            logging.info("Filtering by goals only")
+            filtered_recs = {}
+            for task, goals in RECOMMENDATIONS.items():
+                filtered_goals = {goal: leaderboards for goal, leaderboards in goals.items() if goal in goals_selected}
+                if filtered_goals:
+                    filtered_recs[task] = filtered_goals
+            # ADD LOGGING: Show filtered_recs for goals only
+            logging.info(f"Filtered recommendations (goals only): {json.dumps(filtered_recs, indent=2)}")
+            
+        else:
+            logging.info("No filters selected, using original RECOMMENDATIONS")
+            filtered_recs = RECOMMENDATIONS
+            
         processed_data = []
-        for task, goals in RECOMMENDATIONS.items():
+        for task, goals in filtered_recs.items():
             for goal, leaderboards in goals.items():
                 for leaderboard_info in leaderboards:
                     for benchmark in leaderboard_info.get('benchmarks', []):
@@ -30,17 +93,21 @@ def index():
                         }
                         processed_data.append(row)
         
+        # ADD LOGGING: Confirm how many tasks and goals ended up in filtered_recs before building network
+        logging.info(f"Final filtered_recs structure before build_network: {json.dumps(filtered_recs, indent=2)}")
+
         # Build the PyVis network
-        net = build_network(RECOMMENDATIONS)
+        net = build_network(filtered_recs)
+        
+        # If net is None or empty, that might indicate an empty filtered_recs
+        if net is None:
+            logging.warning("Network returned by build_network is None. filtered_recs might be empty.")
         
         #  Get network data for vis.js
         network_data = {
             'nodes': net.nodes,
             'edges': net.edges
         }
-        
-        # Generate the HTML representation of the network
-        # graph_html = net.generate_html()
 
         # Render the template, passing in the graph HTML and processed_data
         return render_template(
@@ -64,20 +131,6 @@ def filter_data():
         node_id = request.json.get('node_id')
         if not node_id:
             return jsonify({"error": "No node ID provided"}), 400
-        
-        # Find the matching leaderboard data
-        # Remember, the nodes in PyVis have IDs like "leaderboard_task_goal_lbname"
-        # So we need to parse node_id or find a suitable way to match it.
-        # Assuming node_id is something like "leaderboard_<task>_<goal>_<leaderboard>"
-        # we can reconstruct the original leaderboard name from node_id if needed.
-        
-        # However, the code below attempts a direct match. If that doesn't work because of the updated IDs,
-        # you might need to parse the node_id to extract leaderboard name.
-        
-        # Extracting leaderboard name from node_id
-        # node_id format: leaderboard_<task>_<goal>_<leaderboard_name>
-        # We can split by '_' and rejoin for leaderboard name if it has spaces
-        # e.g., node_id = "leaderboard_chain_agents_quality_Artificial Analysis"
         
         if node_id.startswith('leaderboard_'):
             parts = node_id.split('_', 3)  # split into 4 parts: [leaderboard, task, goal, lbname...]

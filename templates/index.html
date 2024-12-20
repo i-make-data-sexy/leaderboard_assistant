@@ -35,43 +35,43 @@
                 <h3>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h3>
                 <div class="checkbox-group">
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="chain_agents">
+                        <input type="checkbox" name="tasks" value="Chain agents">
                         <span class="checkbox-text">Chain agents</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="chat">
+                        <input type="checkbox" name="tasks" value="Chat">
                         <span class="checkbox-text">Chat</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="stt">
+                        <input type="checkbox" name="tasks" value="Convert speech to text">
                         <span class="checkbox-text">Convert speech to text</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="tts">
+                        <input type="checkbox" name="tasks" value="Convert text to speech">
                         <span class="checkbox-text">Convert text to speech</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="generate_code">
+                        <input type="checkbox" name="tasks" value="Generate code">
                         <span class="checkbox-text">Generate code</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="generate_images">
+                        <input type="checkbox" name="tasks" value="Generate images">
                         <span class="checkbox-text">Generate images</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="generate_text">
+                        <input type="checkbox" name="tasks" value="Generate text">
                         <span class="checkbox-text">Generate text</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="generate_video">
+                        <input type="checkbox" name="tasks" value="Generate video">
                         <span class="checkbox-text">Generate video</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="solve_complex_problems">
+                        <input type="checkbox" name="tasks" value="Solve complex problems">
                         <span class="checkbox-text">Solve complex problems</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="tasks" value="solve_math_problems">
+                        <input type="checkbox" name="tasks" value="Solve math problems">
                         <span class="checkbox-text">Solve math problems</span>
                     </label>
                 </div>
@@ -82,23 +82,23 @@
                 <h3>What benchmarks do you want to compare?</h3>
                 <div class="checkbox-group">
                     <label class="checkbox-option">
-                        <input type="checkbox" name="goals" value="quality">
+                        <input type="checkbox" name="goals" value="Quality">
                         <span class="checkbox-text">Quality</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="goals" value="cost">
+                        <input type="checkbox" name="goals" value="Cost">
                         <span class="checkbox-text">Cost</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="goals" value="speed">
+                        <input type="checkbox" name="goals" value="Speed">
                         <span class="checkbox-text">Speed</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="goals" value="latency">
+                        <input type="checkbox" name="goals" value="Latency">
                         <span class="checkbox-text">Latency</span>
                     </label>
                     <label class="checkbox-option">
-                        <input type="checkbox" name="goals" value="context_window">
+                        <input type="checkbox" name="goals" value="Context window">
                         <span class="checkbox-text">Context window</span>
                     </label>
                 </div>
@@ -264,6 +264,21 @@
                 const form = document.getElementById('modelPickerForm');
                 const resultsContainer = document.getElementById('results');
                 
+                // Set initial checkbox states based on URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                
+                // Set tasks checkboxes
+                const selectedTasks = urlParams.getAll('tasks');
+                document.querySelectorAll('input[name="tasks"]').forEach(checkbox => {
+                    checkbox.checked = selectedTasks.includes(checkbox.value);
+                });
+                
+                // Set goals checkboxes
+                const selectedGoals = urlParams.getAll('goals');
+                document.querySelectorAll('input[name="goals"]').forEach(checkbox => {
+                    checkbox.checked = selectedGoals.includes(checkbox.value);
+                });
+                
                 let retryCount = 0;
                 const MAX_RETRIES = 5;
                 
@@ -315,21 +330,66 @@
                     }
                 };
         
+                // Function to collect form data and build query string
+                function getFormQueryString() {
+                    const formData = new FormData(form);
+                    const params = new URLSearchParams();
+                    
+                    // Collect all selected tasks
+                    const tasks = formData.getAll('tasks');
+                    tasks.forEach(task => params.append('tasks', task));
+                    
+                    // Collect all selected goals
+                    const goals = formData.getAll('goals');
+                    goals.forEach(goal => params.append('goals', goal));
+                    
+                    return params.toString();
+                }
+
                 // If the URL has parameters, show results and initialize the network
                 if (window.location.search) {
                     resultsContainer.classList.remove('hidden');
                     initializeNetworkWithRetry();
                 }
         
+                // Add validation message container after the form
+                const validationMessage = document.createElement('div');
+                validationMessage.classList.add('alert', 'alert-danger', 'd-none');
+                validationMessage.style.marginTop = '1rem';
+                form.insertAdjacentElement('afterend', validationMessage);
+
                 form.addEventListener('submit', function(e) {
                     e.preventDefault(); // Prevent default form submission
+                    
+                    // Get selected tasks and goals
+                    const selectedTasks = form.querySelectorAll('input[name="tasks"]:checked');
+                    const selectedGoals = form.querySelectorAll('input[name="goals"]:checked');
+                    
+                    // Validate selections
+                    if (selectedTasks.length === 0 || selectedGoals.length === 0) {
+                        validationMessage.classList.remove('d-none');
+                        validationMessage.textContent = 'Please select at least one task and one benchmark to compare.';
+                        return;
+                    }
+                    
+                    // Hide validation message if it exists
+                    validationMessage.classList.add('d-none');
+                    
+                    // Build query string from form data
+                    const queryString = getFormQueryString();
+                    
+                    // Update URL with new parameters
+                    const newUrl = `${window.location.pathname}?${queryString}`;
+                    window.history.pushState({}, '', newUrl);
+                    
+                    // Show results and initialize network
                     resultsContainer.classList.remove('hidden');
-                    initializeNetworkWithRetry();
+                    
+                    // Reload the page to trigger Flask route with new parameters
+                    window.location.reload();
                 });
             });
         </script>
-    </div>
-
-    
+    </div>   
 </body>
 </html>

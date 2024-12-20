@@ -62,7 +62,13 @@ function initializeNetwork() {
     
         const zoomLevel = $('#node-spacing-slider').val() || 1;
         const networkData = window.networkData || { nodes: [], edges: [] };
-    
+        
+        console.log('Network data:', {
+            nodes: networkData.nodes.length,
+            edges: networkData.edges.length,
+            data: networkData
+        });
+
         network = new vis.Network(
             container,
             {

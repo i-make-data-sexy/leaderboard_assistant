@@ -2,8 +2,13 @@ import json
 from pyvis.network import Network
 
 def build_network(recommendations):
+    print(f"Building network with recommendations: {len(recommendations)} tasks")
+    if not recommendations:
+        print("Warning: Empty recommendations provided")
+        return None  # or handle appropriately
+
     # Adjust height of network graph here
-    net = Network(height='1000px', width='100%', directed=True)
+    net = Network(directed=False)
 
     # Define a common font style
     label_font = {

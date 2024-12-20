@@ -25,12 +25,13 @@ body, html {
 
 .container-fluid {
     margin: 2em;
-        /* Leave room for Annielytics header */
-        margin-top: 30px !important;                
-        position: relative;
-        padding: 58px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+    width: 98% !important;
+    /* Leave room for Annielytics header */
+    margin-top: 30px !important;                
+    position: relative;
+    padding: 58px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 }
 
 #network-container {
@@ -74,7 +75,7 @@ body, html {
 
 h1 {
     margin: 0;
-    font-size: 3em;
+    font-size: 3.3em;
 }
 
 h2 {
@@ -412,15 +413,15 @@ h3 {
 
 /* Optional: Active state */
 #node-spacing-slider:active::-webkit-slider-thumb {
-    background: #d600d6;
+    background: #ffa500;
 }
 
 #node-spacing-slider:active::-moz-range-thumb {
-    background: #d600d6;
+    background: #ffa500;
 }
 
 #node-spacing-slider:active::-ms-thumb {
-    background: #d600d6;
+    background: #ffa500;
 }
 
 
