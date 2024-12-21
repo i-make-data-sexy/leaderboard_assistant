@@ -11,7 +11,8 @@ function resizeCanvas() {
     if (container) {
         const canvas = container.querySelector('canvas');
         if (canvas) {
-            canvas.style.width = '100%';
+            // I commented this out as part of the refactoring effort
+            // canvas.style.width = '100%';
             canvas.style.height = '100%';                             // Container height set in CSS
         }
     }
@@ -76,30 +77,42 @@ function initializeNetwork() {
                 edges: new vis.DataSet(networkData.edges)
             },
             {
+                // CHANGED: Remove hierarchical layout or set enabled: false to rely on physics only.
+                // If you want a physics-based layout with repulsion:
                 layout: {
-                    hierarchical: {
-                        enabled: true,
-                        direction: 'UD',
-                        sortMethod: 'directed'
-                    }
+                    improvedLayout: false // CHANGED: Disables improvedLayout for a raw physics approach
                 },
-                autoResize: true,
-                // height: '100%',                               // Set container height
-                width: '100%',
+        
+                // CHANGED: Enable physics-based repulsion using barnesHut
                 physics: {
-                    enabled: false
+                    enabled: true,
+                    solver: 'barnesHut',
+                    barnesHut: {
+                        gravitationalConstant: -30000,
+                        centralGravity: 0.3,
+                        springLength: 95,
+                        springConstant: 0.04,
+                        damping: 0.09,
+                        avoidOverlap: 1
+                    },
+                    minVelocity: 0.75
                 },
+        
+                // CHANGED: Remove width: '100%' to avoid forcing width in code. Let CSS handle it.
+                // autoResize can stay true to adapt to container changes.
+                autoResize: true,
+        
                 edges: {
                     smooth: false,
                     arrows: {
-                        to: false                                   // Removes arrows from edges
+                        to: false
                     }
                 },
                 interaction: {
-                    zoomView: false,                                // Disable mouse zoom
-                    zoomSpeed: 0,                                   // Disable mouse wheel zoom
+                    zoomView: false,
+                    zoomSpeed: 0,
                     dragNodes: true,
-                    zoomSpeed: 0
+                    hover: true // Keep hover as you had
                 },
                 nodes: {
                     shape: 'dot',
@@ -109,8 +122,8 @@ function initializeNetwork() {
                         background: '#ffffffCC',
                         color: '#333333',
                         strokeWidth: 0,
-                        multi: true,  // Enable multi-font support
-                        bold: {  // Define bold font style
+                        multi: true,
+                        bold: {
                             color: '#333333',
                             size: 16,
                             face: 'Ek Mukta'
@@ -121,6 +134,60 @@ function initializeNetwork() {
                 }
             }
         );
+
+        // Commented out as part of refactoring effort
+        // network = new vis.Network(
+        //     container,
+        //     {
+        //         nodes: new vis.DataSet(networkData.nodes),
+        //         edges: new vis.DataSet(networkData.edges)
+        //     },
+        //     {
+        //         layout: {
+        //             hierarchical: {
+        //                 enabled: true,
+        //                 direction: 'UD',
+        //                 sortMethod: 'directed'
+        //             }
+        //         },
+        //         autoResize: true,
+        //         // height: '100%',                                 // Set container height
+        //         width: '100%',
+        //         physics: {
+        //             enabled: false
+        //         },
+        //         edges: {
+        //             smooth: false,
+        //             arrows: {
+        //                 to: false                                   // Removes arrows from edges
+        //             }
+        //         },
+        //         interaction: {
+        //             zoomView: false,                                // Disable mouse zoom
+        //             zoomSpeed: 0,                                   // Disable mouse wheel zoom
+        //             dragNodes: true,
+        //             zoomSpeed: 0
+        //         },
+        //         nodes: {
+        //             shape: 'dot',
+        //             font: {
+        //                 face: 'Ek Mukta',
+        //                 size: 14,
+        //                 background: '#ffffffCC',
+        //                 color: '#333333',
+        //                 strokeWidth: 0,
+        //                 multi: true,  // Enable multi-font support
+        //                 bold: {  // Define bold font style
+        //                     color: '#333333',
+        //                     size: 16,
+        //                     face: 'Ek Mukta'
+        //                 }
+        //             },
+        //             borderWidth: 1,
+        //             borderWidthSelected: 2
+        //         }
+        //     }
+        // );
         console.log('Network creation successful');
         // resizeCanvas();
 
@@ -263,3 +330,47 @@ function formatBenchmarkLabel(label) {
     }
     return label;
 }
+
+/* ========================================================================
+    Resize Visualization Container
+    ======================================================================== */
+
+document.addEventListener('DOMContentLoaded', function () {
+    const networkContainerWrapper = document.querySelector('.network-container');
+    const resizer = document.querySelector('#resizer');
+
+    let isDragging = false;
+
+    resizer.addEventListener('mousedown', () => {
+        isDragging = true;
+        document.body.style.cursor = 'row-resize';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        // Measure from the top of .network-container
+        const containerRect = networkContainerWrapper.getBoundingClientRect();
+        const newHeight = e.clientY - containerRect.top;
+
+        // Ensure minimum and maximum heights
+        if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
+            networkContainerWrapper.style.height = `${newHeight}px`;
+            if (window.network) {
+                network.fit({
+                    animation: {
+                        duration: 500,
+                        easingFunction: 'easeInOutQuad'
+                    }
+                });
+            }
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+        }
+    });
+});

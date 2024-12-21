@@ -122,10 +122,19 @@
             </div>
         </div>
 
-        <!-- Network Container -->
+        <!-- CHANGED: Wrap network container and resizer in a parent .network-container -->
+        <div class="network-container">
+            <div id="network-container">
+                {{ graph_body | safe }}
+            </div>
+            <div id="resizer"></div>  <!-- CHANGED: Just a handle with no inline styling -->
+        </div>
+
+
+        <!-- Network Container 
         <div id="network-container">
                 {{ graph_body | safe }}
-        </div>
+        </div> -->
 
         <!-- React Component Container -->
         <div id="card-root"></div>

@@ -34,9 +34,45 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 }
 
+/* NEW: Container wrapping the network graph and the resizer handle */
+.network-container {
+    position: relative;
+    width: 100%; /* Adjust as needed */
+    /* The height can initially be set using var(--network-height) if desired. */
+    height: var(--network-height);
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 2rem;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure the container restricts overflow */
+    padding: 2rem 2rem 0 2rem;        
+}
+
+/* Control to resize the network container */
+#resizer {
+    position: absolute;         /* CHANGED: Absolute position to sit at the bottom of .network-container */
+    bottom: 0;                  /* Align to bottom of container */
+    left: 0;
+    width: 100%;
+    height: 3px;                /* Same logic as your timeline resizer */
+    background-color: #ccc;
+    cursor: row-resize;
+    user-select: none;          /* Prevent text selection while dragging */
+}
+
+#network-container {
+    width: 100%;
+    height: calc(100% - 3px); /* Account for the resizer height if you like */
+    transition: height 0.2s ease;
+}
+
+/* 
 #network-container {
     position: relative;
     width: 100%;
+    height: calc(100% - 3px);  Account for the resizer height if you like 
     height: var(--network-height);
     background-color: #fff;
     border: 1px solid #ddd;
@@ -45,7 +81,9 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: height 0.2s ease;
 }
+*/
 
 .slider-container {
     display: flex;
