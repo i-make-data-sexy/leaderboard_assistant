@@ -314,6 +314,8 @@ canvas.vis-network-canvas:hover {
 }
 
 .vis-tooltip {
+    /* Hide empty tooltip before network graph is printed to the screen */
+    display: none; 
     position: absolute !important;
     visibility: visible;
     opacity: 1;
@@ -331,6 +333,11 @@ canvas.vis-network-canvas:hover {
     word-wrap: break-word;
     white-space: normal;
 }
+
+/* Make tooltips visible on hover (to prevent empty tooltip from printing to the screen) */
+.vis-tooltip[style*="visibility: visible"] {
+    display: block; /* or visibility: visible; */
+  }
 
 /* 
 .vis-tooltip {
