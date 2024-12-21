@@ -34,8 +34,6 @@ window.addEventListener('resize', function() {
     }
 });
 
-
-
 // Key functionality of network graph
 function initializeNetwork() {
     console.log('initializeNetwork called, document.readyState:', document.readyState);
@@ -192,16 +190,28 @@ function initializeNetwork() {
 
         // Function to set up tooltips
         function setupTooltips() {
-            // Create and append tooltip element if it doesn't exist
-            let tooltip = document.querySelector('.vis-tooltip');
-            if (!tooltip) {
-                tooltip = document.createElement('div');
-                tooltip.className = 'vis-tooltip';
-                document.body.appendChild(tooltip);
+            // Remove any existing tooltips first
+            const existingTooltips = document.querySelectorAll('.vis-tooltip');
+            existingTooltips.forEach(tooltip => tooltip.remove());
+            
+            // Create and append tooltip element
+            let tooltip = document.createElement('div');
+            tooltip.className = 'vis-tooltip';
+            document.body.appendChild(tooltip);
+
+            function hideTooltip() {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+                document.body.style.cursor = 'default';
             }
 
             // Handle node hover events
             network.on('hoverNode', function(params) {
+                // Don't show tooltip if modal is open
+                if (document.querySelector('.fixed.inset-0')) {
+                    return;
+                }
+
                 const nodeId = params.node;
                 const node = network.body.nodes[nodeId];
                 if (!node) return;
@@ -209,15 +219,12 @@ function initializeNetwork() {
                 const position = network.getPositions([nodeId])[nodeId];
                 const canvasPos = network.canvasToDOM(position);
                 
-                // Get container bounds
                 const container = document.getElementById('network-container');
                 const containerRect = container.getBoundingClientRect();
                 
-                // Calculate tooltip position
                 let left = canvasPos.x + containerRect.left;
                 let top = canvasPos.y + containerRect.top;
                 
-                // Adjust position to prevent tooltip from going off-screen
                 const tooltipRect = tooltip.getBoundingClientRect();
                 if (left + tooltipRect.width > window.innerWidth) {
                     left = window.innerWidth - tooltipRect.width - 10;
@@ -226,23 +233,18 @@ function initializeNetwork() {
                     top = window.innerHeight - tooltipRect.height - 10;
                 }
                 
-                // Update tooltip content and position
                 tooltip.textContent = node.options.title || '';
                 tooltip.style.left = `${left + 10}px`;
                 tooltip.style.top = `${top + 10}px`;
                 tooltip.style.visibility = 'visible';
                 tooltip.style.opacity = '1';
                 
-                // Update cursor
                 document.body.style.cursor = 'pointer';
             });
 
-            // Handle mouse leave events
-            network.on('blurNode', function() {
-                tooltip.style.visibility = 'hidden';
-                tooltip.style.opacity = '0';
-                document.body.style.cursor = 'default';
-            });
+            // Hide tooltip on blur and click
+            network.on('blurNode', hideTooltip);
+            network.on('click', hideTooltip);
         }
 
         // Call setupTooltips right after defining it

@@ -192,12 +192,19 @@
                 const [data, setData] = React.useState(null);
                 
                 console.log('LeaderboardModal rendered, isOpen:', isOpen, 'data:', data);
-    
+
                 React.useEffect(() => {
                     console.log('Adding leaderboardClick listener');
                     
                     function handleLeaderboardClick(event) {
                         console.log('LeaderboardClick event received in React:', event.detail);
+                        
+                        // Hide any visible tooltips when modal opens
+                        const tooltip = document.querySelector('.vis-tooltip');
+                        if (tooltip) {
+                            tooltip.style.visibility = 'hidden';
+                            tooltip.style.opacity = '0';
+                        }
                         
                         fetch('/filter_data', {
                             method: 'POST',
@@ -212,7 +219,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                     }
-    
+
                     window.addEventListener('leaderboardClick', handleLeaderboardClick);
                     console.log('Event listener added');
                     
@@ -221,36 +228,108 @@
                         console.log('Event listener removed');
                     };
                 }, []);
-    
+
                 if (!isOpen || !data) return null;
-    
+
+                // External link icon component
+                const ExternalLinkIcon = () => (
+                    <span className="inline-block ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" 
+                            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                    </span>
+                );
+
                 return (
                     <div 
                         className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
                         onClick={() => setIsOpen(false)}
                     >
                         <div 
-                            className="bg-white p-6 rounded-lg shadow-lg max-w-4xl max-h-[90vh] overflow-y-auto"
+                            className="bg-white p-6 rounded-lg shadow-lg max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-xl font-bold">{data.leaderboard}</h2>
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-2xl font-bold">{data.leaderboard}</h2>
                                 <button 
                                     onClick={() => setIsOpen(false)}
-                                    className="p-2 hover:bg-gray-100 rounded-full"
+                                    className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
                                 >
                                     ×
                                 </button>
                             </div>
-    
-                            <div className="grid grid-cols-3 gap-6">
-                                {/* Your columns here */}
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {/* Column 1: Basic Info */}
+                                <div className="space-y-4">
+                                    <div>
+                                        <h3 className="font-bold mb-2">Leaderboard</h3>
+                                        <p>{data.leaderboard}</p>
+                                        {data.leaderboard_link && (
+                                            <a 
+                                                href={data.leaderboard_link} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-blue-600 hover:text-blue-800 inline-flex items-center mt-2"
+                                            >
+                                                View leaderboard
+                                                <ExternalLinkIcon />
+                                            </a>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold mb-2">Summary</h3>
+                                        <p>{data.tooltip}</p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold mb-2">Methodology</h3>
+                                        {data.url && (
+                                            <a 
+                                                href={data.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-blue-600 hover:text-blue-800 inline-flex items-center"
+                                            >
+                                                View methodology
+                                                <ExternalLinkIcon />
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Column 2: Tips */}
+                                <div>
+                                    <h3 className="font-bold mb-2">Tips</h3>
+                                    {data.analysis_tips && (
+                                        <ul className="list-disc pl-4 space-y-2">
+                                            {data.analysis_tips.map((tip, index) => (
+                                                <li key={index}>{tip}</li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+
+                                {/* Column 3: Benchmarks */}
+                                <div>
+                                    <h3 className="font-bold mb-2">Benchmark(s)</h3>
+                                    <div className="space-y-4">
+                                        {data.benchmarks && Object.entries(data.benchmarks).map(([name, details], index) => (
+                                            <div key={index} className="pb-2 border-b border-gray-200 last:border-0">
+                                                <p className="font-semibold">{name}</p>
+                                                <p>{details.measures} <span className="text-gray-600">({details.score_interpretation})</span></p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 );
             }
-    
+
             // Wait for both DOM and React to be ready
             function initReact() {
                 console.log('Checking React initialization requirements');

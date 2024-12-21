@@ -115,7 +115,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Score",
                         "benchmark_measures": "Score calculates the mean of ToolComp-Enterprise and ToolComp-Chat. ToolComp-Enterprise assesses models on tasks requiring the use of 11 distinct tools, reflecting complex scenarios typical in enterprise settings. ToolComp-Chat evaluates models on tasks involving two common tools\u2014Google Search and Python Interpreter\u2014focusing on general-purpose chatbot capabilities.",
-                        "score_interpretation": "Score ranges from 1 to 100 (higher is better)."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             }
@@ -449,7 +449,7 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score (my personal preference) higher is better.",
                     "You can sort the table by each column.",
                     "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
                     "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
@@ -464,22 +464,22 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Instruction Following",
                         "benchmark_measures": "Evaluates how well the model follows explicit user instructions.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Multi-Turn",
                         "benchmark_measures": "Evaluates model's performance in multi-turn conversations, reflecting conversational consistency and coherence.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Longer Query",
                         "benchmark_measures": "Evaluates the model's effectiveness in handling and responding accurately to longer, more complex queries.",
-                        "score_interpretation": "Score ranges from 1 to the number of models (lower is better)."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Arena Score",
                         "benchmark_measures": "Ranks models based on performance in head-to-head comparisons. This score is derived using the Elo rating system, a method traditionally employed in chess and other competitive games to assess the relative skill levels of players.",
-                        "score_interpretation": "Score ranges from 1 - thousands (higher is better)."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -872,11 +872,11 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score (my personal preference) higher is better.",
                     "You can sort the table by each column.",
                     "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
                     "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
-                    "Large Model Systems (LMSYS) renamed their 'Elo rating' column to 'Arena Score' in June 2024. Nothing changed but the label (source: https://lmsys.org/blog/2024-06-27-multimodal/)."
+                    "Large Model Systems (LMSYS) renamed their 'Elo rating' column to 'Arena Score' in June 2024. Nothing changed but the label (source: https://lmsys.org/blog/2024-06-27-multimodal/).",
                 ],
                 "methodology": {
                     "text": "Methodology",
@@ -886,17 +886,17 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Hard Prompts (Overall)",
                         "benchmark_measures": "Evaluates performance on complex, multi-step reasoning challenges.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Multi-Turn Reasoning",
                         "benchmark_measures": "Evaluates ability to maintain logical consistency across extended reasoning chains.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Complex Problem Solving",
                         "benchmark_measures": "Evaluates ability to solve problems requiring multiple steps and consideration of various factors.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -1347,7 +1347,7 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score (my personal preference) higher is better.",
                     "You can sort the table by each column.",
                     "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
                     "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
@@ -1361,7 +1361,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Coding",
                         "benchmark_measures": "Evaluates the model's ability to understand and generate code effectively.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -2233,7 +2233,7 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score (my personal preference) higher is better.",
                     "You can sort the table by each column.",
                     "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
                     "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
@@ -2247,12 +2247,12 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Overall w/ Style Control",
                         "benchmark_measures": "Evaluates the model's ability to maintain consistent creative style and tone across responses.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     },
                     {
                         "benchmark_name": "Longer Query",
                         "benchmark_measures": "Evaluates ability to maintain creative coherence and style in longer compositions.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -3229,7 +3229,7 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The Chatbot Arena leaderboard is dedicated to evaluating AI through human preference. It was developed by researchers at UC Berkeley SkyLab and LMSYS. With more than 1,000,000 user votes, the platform ranks best LLM and AI chatbots using the Bradley-Terry model to generate live leaderboards.",
                 "analysis_tips": [
-                    "The table defaults to sorting by rank. I prefer to sort by Arena Score. (The 'Sort by Arena Score is a gray button above the table.)",
+                    "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score (my personal preference) higher is better.",
                     "You can sort the table by each column.",
                     "The Full Leaderboard tab includes columns for Organization and License [type]. This is handy for identifying models that are proprietary, non-commercial, MIT, etc.",
                     "The introduction of their Arxiv paper (https://arxiv.org/html/2406.11939v2#S1) includes a table summary of how they collect their data for each benchmark (e.g., automatic or human), if the questions are open-ended, how prompts are curated (e.g., automatically, manually, or crowdsourced), and the nature of the prompt source (e.g., configurable, fixed, or crowd).",
@@ -3243,7 +3243,7 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Math",
                         "benchmark_measures": "Evaluates the model's accuracy in solving mathematical problems.",
-                        "score_interpretation": "If you are sorting by rank (the default), the score ranges from 1 to the number of models and a lower score is better. If you sort by Arena Score higher is better."
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
