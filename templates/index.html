@@ -16,7 +16,11 @@
 
     <!-- Initialize network data -->
     <script>
+        // Expose network data to JavaScript to make it available in browser
         window.networkData = {% if network_data %}{{ network_data | safe }}{% else %}null{% endif %};
+
+        // Expose recommendations data to JavaScript to make it available in browser
+        window.recommendationsData = {% if recommendations_data %}{{ recommendations_data|tojson }}{% else %}{}{% endif %};
     </script>
 </head>
 <body>

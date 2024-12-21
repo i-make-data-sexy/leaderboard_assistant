@@ -113,7 +113,8 @@ def index():
         return render_template(
             'index.html',
             network_data=json.dumps(network_data),
-            initial_data=json.dumps(processed_data)
+            initial_data=json.dumps(processed_data),
+            recommendations_data=RECOMMENDATIONS
         )
        
     except Exception as e:
