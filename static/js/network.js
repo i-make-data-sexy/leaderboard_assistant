@@ -5,6 +5,14 @@
 // Initialize network object at global scope
 var network = null;
 
+// Add initialization state tracking
+const networkState = {
+    visLoaded: false,
+    containerReady: false,
+    dataLoaded: false,
+    initialized: false
+};
+
 // Update canvas size to match container
 function resizeCanvas() {
     const container = document.getElementById('network-container');
@@ -30,28 +38,65 @@ window.addEventListener('resize', function() {
 
 // Key functionality of network graph
 function initializeNetwork() {
+    console.log('initializeNetwork called, document.readyState:', document.readyState);
+    console.log('Current readyState:', document.readyState, 'Will wait?:', document.readyState !== 'complete');
+    if (document.readyState !== 'complete') {
+        window.addEventListener('load', initializeNetwork);
+        return;
+    }
+
+    // Log initial state
+    console.log('Starting network initialization with state:', {
+        visLoaded: typeof vis !== 'undefined',
+        containerExists: !!document.getElementById('network-container'),
+        networkDataExists: !!window.networkData,
+        previouslyInitialized: networkState.initialized
+    });
+
     try {
-        console.log('Initializing network:', {
-            'vis available': typeof vis !== 'undefined',
-            'network data exists': !!window.networkData,
-            'container exists': !!document.getElementById('network-container')
-        });
+        // console.log('Initializing network:', {
+        //     'vis available': typeof vis !== 'undefined',
+        //     'network data exists': !!window.networkData,
+        //     'container exists': !!document.getElementById('network-container')
+        // });
         
         // Check for vis-network library
         if (typeof vis === 'undefined') {
+            console.error('vis-network library not found');
             throw new Error('vis-network library not available');
         }
+        networkState.visLoaded = true;
         
         // Check for container
         const container = document.getElementById('network-container');
         if (!container) {
             throw new Error('network-container element not found');
         }
+        networkState.containerReady = true;
+
+        // Log container dimensions and visibility
+        const containerStyle = window.getComputedStyle(container);
+        console.log('Container dimensions:', {
+            width: containerStyle.width,
+            height: containerStyle.height,
+            display: containerStyle.display,
+            visibility: containerStyle.visibility,
+            position: containerStyle.position
+        });
         
         // Check for network data
         if (!window.networkData) {
+            console.error('Network data not available');
             throw new Error('Network data not available');
         }
+        networkState.dataLoaded = true;
+
+        // Log network data structure
+        console.log('Network data structure:', {
+            nodesCount: window.networkData.nodes.length,
+            edgesCount: window.networkData.edges.length,
+            sampleNode: window.networkData.nodes[0]
+        });
         
         // Clear any existing content in the container
         container.innerHTML = '';
@@ -66,11 +111,14 @@ function initializeNetwork() {
         const zoomLevel = $('#node-spacing-slider').val() || 1;
         const networkData = window.networkData || { nodes: [], edges: [] };
         
-        console.log('Network data:', {
-            nodes: networkData.nodes.length,
-            edges: networkData.edges.length,
-            data: networkData
-        });
+        // console.log('Network data:', {
+        //     nodes: networkData.nodes.length,
+        //     edges: networkData.edges.length,
+        //     data: networkData
+        // });
+
+        // Initialize network with detailed logging
+        console.log('Creating vis Network instance');
 
         network = new vis.Network(
             container,
@@ -79,8 +127,7 @@ function initializeNetwork() {
                 edges: new vis.DataSet(networkData.edges)
             },
             {
-                // CHANGED: Remove hierarchical layout or set enabled: false to rely on physics only.
-                // If you want a physics-based layout with repulsion:
+                // Use a physics-based layout with repulsion instead of hierarchical layout:
                 layout: {
                     improvedLayout: false // CHANGED: Disables improvedLayout for a raw physics approach
                 },
@@ -90,8 +137,8 @@ function initializeNetwork() {
                     enabled: true,
                     solver: 'barnesHut',
                     barnesHut: {
-                        gravitationalConstant: -30000,
-                        centralGravity: 0.3,
+                        gravitationalConstant: -20000,
+                        centralGravity: 0.2,
                         springLength: 95,
                         springConstant: 0.04,
                         damping: 0.09,
@@ -114,7 +161,6 @@ function initializeNetwork() {
                     tooltipDelay: 0,
                     hoverConnectedEdges: true,
                     keyboard: false,                        // Disable keyboard navigation
-                    hideEdgesOnDrag: true,                  // Improve performance
                 },
                 nodes: {
                     shape: 'dot',
@@ -144,19 +190,70 @@ function initializeNetwork() {
             }
         );
 
+        // Function to set up tooltips
+        function setupTooltips() {
+            // Create and append tooltip element if it doesn't exist
+            let tooltip = document.querySelector('.vis-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'vis-tooltip';
+                document.body.appendChild(tooltip);
+            }
+
+            // Handle node hover events
+            network.on('hoverNode', function(params) {
+                const nodeId = params.node;
+                const node = network.body.nodes[nodeId];
+                if (!node) return;
+
+                const position = network.getPositions([nodeId])[nodeId];
+                const canvasPos = network.canvasToDOM(position);
+                
+                // Get container bounds
+                const container = document.getElementById('network-container');
+                const containerRect = container.getBoundingClientRect();
+                
+                // Calculate tooltip position
+                let left = canvasPos.x + containerRect.left;
+                let top = canvasPos.y + containerRect.top;
+                
+                // Adjust position to prevent tooltip from going off-screen
+                const tooltipRect = tooltip.getBoundingClientRect();
+                if (left + tooltipRect.width > window.innerWidth) {
+                    left = window.innerWidth - tooltipRect.width - 10;
+                }
+                if (top + tooltipRect.height > window.innerHeight) {
+                    top = window.innerHeight - tooltipRect.height - 10;
+                }
+                
+                // Update tooltip content and position
+                tooltip.textContent = node.options.title || '';
+                tooltip.style.left = `${left + 10}px`;
+                tooltip.style.top = `${top + 10}px`;
+                tooltip.style.visibility = 'visible';
+                tooltip.style.opacity = '1';
+                
+                // Update cursor
+                document.body.style.cursor = 'pointer';
+            });
+
+            // Handle mouse leave events
+            network.on('blurNode', function() {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+                document.body.style.cursor = 'default';
+            });
+        }
+
+        // Call setupTooltips right after defining it
+        setupTooltips();
+
         // Add event listeners after initialization
         network.once('stabilized', function () {
             network.on('hoverNode', function (params) {
-                console.log('Hovered node:', params.node);
+                // console.log('Hovered node:', params.node);
             });
-            console.log('Event listeners are now attached.');
         });
-
-        console.log(networkData.nodes);
-        // console.log(networkData.edges);
-
-        console.log('Network creation successful');
-        // resizeCanvas();
 
         // Ensure network fills the space initially
         network.fit();                                      
@@ -165,23 +262,24 @@ function initializeNetwork() {
     
     } catch (error) {
         console.error('Error initializing network:', error);
-
-        // Re-throw to be caught by initializeNetworkWithRetry
         throw error; 
     }
 }
 
-
 // Setup when document is ready
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM ready in network.js');
     const resultsContainer = document.getElementById('results');
+    console.log('Results container found:', !!resultsContainer);
     if (!resultsContainer) {
         console.error('Results container not found');
         return;
     }
 
     // Initialize if container is already visible
+    console.log('Results container hidden?', resultsContainer.classList.contains('hidden'));
     if (!resultsContainer.classList.contains('hidden')) {
+        console.log('Attempting to initialize network');
         initializeNetwork();
     }
 
@@ -249,21 +347,42 @@ function setSliderTrackValue() {
    ======================================================================== */
 
 // Set up click handlers for network nodes
+// In your setupNetworkClickHandler function
 function setupNetworkClickHandler() {
-    if (!network) return;
+    console.log('Setting up network click handler');
+    
+    if (!network) {
+        console.error('Network is not initialized');
+        return;
+    }
 
     network.on('click', function(params) {
+        console.log('Network click detected:', params);
+        
         if (params.nodes.length > 0) {
             const nodeId = params.nodes[0];
+            console.log('Clicked node:', nodeId);
             
             if (nodeId.startsWith('leaderboard_')) {
-                handleLeaderboardNodeClick(nodeId);
+                console.log('Leaderboard node clicked, dispatching event');
+                const event = new CustomEvent('leaderboardClick', {
+                    detail: { nodeId: nodeId }
+                });
+                window.dispatchEvent(event);
+                console.log('Event dispatched');
+            } else {
+                console.log('Not a leaderboard node');
             }
+        } else {
+            console.log('No node clicked');
         }
     });
+
+    // Test click handler setup
+    console.log('Network click handler setup complete');
 }
 
-console.log('Network click handler setup complete');
+// console.log('Network click handler setup complete');
 
 // Handle clicks on leaderboard nodes
 function handleLeaderboardNodeClick(nodeId) {
@@ -340,61 +459,4 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.cursor = 'default';
         }
     });
-});
-
-
-/* ========================================================================
-    Tooltip Interactivity
-    ======================================================================== */
-
-// Create and append tooltip element if it doesn't exist
-let tooltip = document.querySelector('.vis-tooltip');
-if (!tooltip) {
-    tooltip = document.createElement('div');
-    tooltip.className = 'vis-tooltip';
-    document.body.appendChild(tooltip);
-}
-
-// Handle node hover events
-network.on('hoverNode', function(params) {
-    const nodeId = params.node;
-    const node = network.body.nodes[nodeId];
-    if (!node) return;
-
-    const position = network.getPositions([nodeId])[nodeId];
-    const canvasPos = network.canvasToDOM(position);
-    
-    // Get container bounds
-    const container = document.getElementById('network-container');
-    const containerRect = container.getBoundingClientRect();
-    
-    // Calculate tooltip position
-    let left = canvasPos.x + containerRect.left;
-    let top = canvasPos.y + containerRect.top;
-    
-    // Adjust position to prevent tooltip from going off-screen
-    const tooltipRect = tooltip.getBoundingClientRect();
-    if (left + tooltipRect.width > window.innerWidth) {
-        left = window.innerWidth - tooltipRect.width - 10;
-    }
-    if (top + tooltipRect.height > window.innerHeight) {
-        top = window.innerHeight - tooltipRect.height - 10;
-    }
-    
-    // Update tooltip content and position
-    tooltip.textContent = node.options.title || '';
-    tooltip.style.left = `${left + 10}px`;
-    tooltip.style.top = `${top + 10}px`;
-    tooltip.style.visibility = 'visible';
-    tooltip.style.opacity = '1';
-    
-    // Update cursor
-    document.body.style.cursor = 'pointer';
-});
-
-// Handle mouse leave events
-network.on('blurNode', function() {
-    tooltip.style.visibility = 'hidden';
-    tooltip.style.opacity = '0';
-    document.body.style.cursor = 'default';
 });

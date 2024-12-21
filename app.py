@@ -19,8 +19,8 @@ def index():
         goals_selected = request.args.getlist('goals')   # Retrieves goals from query params like ?goals=quality&goals=speed
         
         # ADD LOGGING: Print selected tasks and goals
-        logging.info(f"Tasks selected: {tasks_selected}")
-        logging.info(f"Goals selected: {goals_selected}")
+        # logging.info(f"Tasks selected: {tasks_selected}")
+        # logging.info(f"Goals selected: {goals_selected}")
 
         # ADD LOGGING: Print all available tasks and goals from RECOMMENDATIONS
         # This helps confirm that the keys you selected actually exist
@@ -32,9 +32,9 @@ def index():
         
         # Add these lines right after you get RECOMMENDATIONS and before filtering logic:
         # NEW: Logging to see what keys RECOMMENDATIONS has.
-        logging.info(f"Tasks available in RECOMMENDATIONS: {list(RECOMMENDATIONS.keys())}")
-        for t, g_dict in RECOMMENDATIONS.items():
-            logging.info(f"For task '{t}', goals available: {list(g_dict.keys())}")
+        # logging.info(f"Tasks available in RECOMMENDATIONS: {list(RECOMMENDATIONS.keys())}")
+        # for t, g_dict in RECOMMENDATIONS.items():
+            # logging.info(f"For task '{t}', goals available: {list(g_dict.keys())}")
 
 
         
@@ -53,28 +53,28 @@ def index():
                     filtered_recs[task] = filtered_goals
             
             # ADD LOGGING: Show what's in filtered_recs when both tasks and goals are filtered
-            logging.info(f"Filtered recommendations (tasks & goals): {json.dumps(filtered_recs, indent=2)}")        
+            # logging.info(f"Filtered recommendations (tasks & goals): {json.dumps(filtered_recs, indent=2)}")        
                     
         # If only tasks are selected, filter only by tasks
         elif tasks_selected:
-            logging.info("Filtering by tasks only")
+            # logging.info("Filtering by tasks only")
             filtered_recs = {task: goals for task, goals in RECOMMENDATIONS.items() if task in tasks_selected}
             # ADD LOGGING: Show filtered_recs for tasks only
-            logging.info(f"Filtered recommendations (tasks only): {json.dumps(filtered_recs, indent=2)}")
+            # logging.info(f"Filtered recommendations (tasks only): {json.dumps(filtered_recs, indent=2)}")
             
         # If only goals are selected, filter only by goals
         elif goals_selected:
-            logging.info("Filtering by goals only")
+            # logging.info("Filtering by goals only")
             filtered_recs = {}
             for task, goals in RECOMMENDATIONS.items():
                 filtered_goals = {goal: leaderboards for goal, leaderboards in goals.items() if goal in goals_selected}
                 if filtered_goals:
                     filtered_recs[task] = filtered_goals
             # ADD LOGGING: Show filtered_recs for goals only
-            logging.info(f"Filtered recommendations (goals only): {json.dumps(filtered_recs, indent=2)}")
+            # logging.info(f"Filtered recommendations (goals only): {json.dumps(filtered_recs, indent=2)}")
             
         else:
-            logging.info("No filters selected, using original RECOMMENDATIONS")
+            # logging.info("No filters selected, using original RECOMMENDATIONS")
             filtered_recs = RECOMMENDATIONS
             
         processed_data = []
@@ -94,14 +94,14 @@ def index():
                         processed_data.append(row)
         
         # ADD LOGGING: Confirm how many tasks and goals ended up in filtered_recs before building network
-        logging.info(f"Final filtered_recs structure before build_network: {json.dumps(filtered_recs, indent=2)}")
+        # logging.info(f"Final filtered_recs structure before build_network: {json.dumps(filtered_recs, indent=2)}")
 
         # Build the PyVis network
         net = build_network(filtered_recs)
         
         # If net is None or empty, that might indicate an empty filtered_recs
-        if net is None:
-            logging.warning("Network returned by build_network is None. filtered_recs might be empty.")
+        # if net is None:
+            # logging.warning("Network returned by build_network is None. filtered_recs might be empty.")
         
         #  Get network data for vis.js
         network_data = {

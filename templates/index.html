@@ -9,18 +9,38 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
 
     <!-- CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Load the vis-network CSS from unpkg -->
+
+    <!-- vis-network CSS from unpkg -->
     <link rel="stylesheet" href="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.css" />
+
+    <!-- Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- My CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
     <!-- Initialize network data -->
     <script>
         window.networkData = {% if network_data %}{{ network_data | safe }}{% else %}null{% endif %};
+
+        // Handle url parameters immediately
+        if (window.location.search) {
+            document.addEventListener('DOMContentLoaded', function() {
+                const resultsContainer = document.getElementById('results');
+                if (resultsContainer) {
+                    console.log('Showing results container due to URL parameters');
+                    resultsContainer.classList.remove('hidden');
+                }
+            });
+        }
     </script>
 </head>
+
 <body>
     <div class="container-fluid"> 
+
         <!-- Header Container -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>Model Picker for AI Projects</h1>
@@ -31,6 +51,7 @@
         <h2> Step 1: Let's get some information about your model's purpose</h2>
         <form id="modelPickerForm">
             <section class="form-section">
+
                 <!-- Tasks -->
                 <h3>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h3>
                 <div class="checkbox-group">
@@ -77,7 +98,7 @@
                 </div>
             </section>
 
-            <!-- Goals Section -->
+            <!-- Goals -->
             <section id="goalsSection" class="form-section">
                 <h3>What benchmarks do you want to compare?</h3>
                 <div class="checkbox-group">
@@ -106,9 +127,10 @@
             <button type="submit" class="submit-button">Compare models</button>
         </form>
 
-        <!-- Results Container -->
+    <!-- Results Container -->
     <div id="results" class="results-container hidden">
         <h2>Step 2: Find benchmarks appropriate to compare models against <span class="info-icon" data-tooltip="...long tooltip text...">ⓘ</span></h2>
+       
         <!-- Slider Container -->
         <div class="slider-container">
             <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
@@ -122,7 +144,7 @@
             </div>
         </div>
 
-        <!-- CHANGED: Wrap network container and resizer in a parent .network-container -->
+        <!-- Network Container -->
         <div class="network-container">
             <div id="network-container">
                 {{ graph_body | safe }}
@@ -130,140 +152,133 @@
             <div id="resizer"></div>  <!-- CHANGED: Just a handle with no inline styling -->
         </div>
 
+        <!-- Modal Container -->
+            <div id="leaderboard-container"></div>
 
-        <!-- Network Container 
-        <div id="network-container">
-                {{ graph_body | safe }}
-        </div> -->
+        <!-- Check if the leaderboard modal container exists -->
+        <script>console.log('Container exists:', !!document.getElementById('leaderboard-container'));</script>
 
-        <!-- React Component Container -->
-        <div id="card-root"></div>
+        <!-- Dependencies in order -->
 
-        <!-- Load dependencies in correct order -->
-
-        <!-- 1. jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        <!-- 2. vis-network JavaScript -->
-        <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
-
-        <!-- 3. Check if vis is loaded -->
-        <script>
-            console.log('After loading vis-network, vis is:', typeof vis);
-        </script>
-
-        <!-- 4. Your network.js (which uses vis) -->
-        <script src="{{ url_for('static', filename='js/network.js') }}"></script>
-
-        <!-- 5. React and Babel -->
+        <!-- 1. React and Babel -->
         <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-        <!-- 6. Your React component code -->
+        <!-- 2. jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- 3. vis-network JavaScript -->
+        <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+
+        <!-- Check if vis is loaded -->
+        <script>
+            console.log('After loading vis-network, vis is:', typeof vis);
+        </script>
+
+        <!-- 4. My network.js (which uses vis) -->
+        <script src="{{ url_for('static', filename='js/network.js') }}"></script>
+
+        <!-- 5. My leaderboard modal component (inline now)
+        <script type="text/babel" src="/static/js/components/leaderboard_modal.jsx"></script>  -->  
+
+        <!-- React Component Container -->
         {% raw %}
         <script type="text/babel">
-            const LeaderboardModal = () => {
-                const [leaderboardData, setLeaderboardData] = React.useState(null);
-                const [showModal, setShowModal] = React.useState(false);
-
+            console.log('Starting React initialization');
+            
+            function LeaderboardModal() {
+                const [isOpen, setIsOpen] = React.useState(false);
+                const [data, setData] = React.useState(null);
+                
+                console.log('LeaderboardModal rendered, isOpen:', isOpen, 'data:', data);
+    
                 React.useEffect(() => {
-                    const handleLeaderboardClick = async (event) => {
-                        try {
-                            const response = await fetch('/filter_data', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ node_id: event.detail.nodeId })
-                            });
-                            const data = await response.json();
-                            setLeaderboardData(data);
-                            setShowModal(true);
-                        } catch (error) {
-                            console.error('Error fetching leaderboard data:', error);
-                        }
-                    };
-
+                    console.log('Adding leaderboardClick listener');
+                    
+                    function handleLeaderboardClick(event) {
+                        console.log('LeaderboardClick event received in React:', event.detail);
+                        
+                        fetch('/filter_data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ node_id: event.detail.nodeId })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Received data:', data);
+                            setData(data);
+                            setIsOpen(true);
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+    
                     window.addEventListener('leaderboardClick', handleLeaderboardClick);
-                    return () => window.removeEventListener('leaderboardClick', handleLeaderboardClick);
+                    console.log('Event listener added');
+                    
+                    return () => {
+                        window.removeEventListener('leaderboardClick', handleLeaderboardClick);
+                        console.log('Event listener removed');
+                    };
                 }, []);
-
-                if (!leaderboardData) return null;
-
-                const closeModal = () => {
-                    setShowModal(false);
-                };
-
+    
+                if (!isOpen || !data) return null;
+    
                 return (
-                    <div>
-                        {/* Bootstrap Modal Structure */}
-                        {showModal && (
-                            <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                                <div className="modal-dialog modal-lg">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title">
-                                                {leaderboardData.leaderboard}
-                                            </h5>
-                                            <button type="button" className="close" onClick={closeModal}>
-                                                <span>&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <div className="row">
-                                                {/* Left Column */}
-                                                <div className="col-md-6 mb-3">
-                                                    <a
-                                                        href={leaderboardData.source}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-blue-600 hover:text-blue-800"
-                                                    >
-                                                        Visit Leaderboard ↗
-                                                    </a>
-                                                    <p className="mt-3">{leaderboardData.tooltip}</p>
-                                                    {leaderboardData.methodology && (
-                                                        <a
-                                                            href={leaderboardData.methodology}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="text-blue-600 hover:text-blue-800"
-                                                        >
-                                                            View Methodology ↗
-                                                        </a>
-                                                    )}
-                                                </div>
-
-                                                {/* Right Column */}
-                                                <div className="col-md-6">
-                                                    <h5>Tips for using this leaderboard</h5>
-                                                    <ul className="list-unstyled mt-3">
-                                                        {leaderboardData.analysis_tips?.map((tip, index) => (
-                                                            <li key={index} className="mb-2">
-                                                                • {tip}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div 
+                        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div 
+                            className="bg-white p-6 rounded-lg shadow-lg max-w-4xl max-h-[90vh] overflow-y-auto"
+                            onClick={e => e.stopPropagation()}
+                        >
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-xl font-bold">{data.leaderboard}</h2>
+                                <button 
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-2 hover:bg-gray-100 rounded-full"
+                                >
+                                    ×
+                                </button>
                             </div>
-                        )}
+    
+                            <div className="grid grid-cols-3 gap-6">
+                                {/* Your columns here */}
+                            </div>
+                        </div>
                     </div>
                 );
-            };
-
-            document.addEventListener('DOMContentLoaded', () => {
-                const container = document.getElementById('card-root');
+            }
+    
+            // Wait for both DOM and React to be ready
+            function initReact() {
+                console.log('Checking React initialization requirements');
+                
+                const container = document.getElementById('leaderboard-container');
+                if (!container) {
+                    console.error('Container not found!');
+                    return;
+                }
+                
+                if (!React || !ReactDOM) {
+                    console.error('React not loaded yet');
+                    setTimeout(initReact, 100);
+                    return;
+                }
+                
+                console.log('All requirements met, initializing React');
                 const root = ReactDOM.createRoot(container);
                 root.render(<LeaderboardModal />);
-            });
+                console.log('Component rendered');
+            }
+
+            // Start initialization when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initReact);
+            } else {
+                initReact();
+            }
         </script>
         {% endraw %}
 
@@ -357,7 +372,9 @@
 
                 // If the URL has parameters, show results and initialize the network
                 if (window.location.search) {
+                    console.log('URL parameters detected:', window.location.search);
                     resultsContainer.classList.remove('hidden');
+                    console.log('Hidden class removed from results container');
                     initializeNetworkWithRetry();
                 }
         
