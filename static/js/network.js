@@ -26,6 +26,8 @@ window.addEventListener('resize', function() {
     }
 });
 
+
+
 // Key functionality of network graph
 function initializeNetwork() {
     try {
@@ -83,7 +85,7 @@ function initializeNetwork() {
                     improvedLayout: false // CHANGED: Disables improvedLayout for a raw physics approach
                 },
         
-                // CHANGED: Enable physics-based repulsion using barnesHut
+                // Use physics-based repulsion 
                 physics: {
                     enabled: true,
                     solver: 'barnesHut',
@@ -97,22 +99,22 @@ function initializeNetwork() {
                     },
                     minVelocity: 0.75
                 },
-        
-                // CHANGED: Remove width: '100%' to avoid forcing width in code. Let CSS handle it.
-                // autoResize can stay true to adapt to container changes.
                 autoResize: true,
-        
                 edges: {
                     smooth: false,
                     arrows: {
-                        to: false
+                        to: false,
                     }
                 },
                 interaction: {
                     zoomView: false,
                     zoomSpeed: 0,
                     dragNodes: true,
-                    hover: true // Keep hover as you had
+                    hover: true, 
+                    tooltipDelay: 0,
+                    hoverConnectedEdges: true,
+                    keyboard: false,                        // Disable keyboard navigation
+                    hideEdgesOnDrag: true,                  // Improve performance
                 },
                 nodes: {
                     shape: 'dot',
@@ -130,64 +132,29 @@ function initializeNetwork() {
                         }
                     },
                     borderWidth: 1,
-                    borderWidthSelected: 2
+                    borderWidthSelected: 2,
+                    chosen: {
+                        node: function(values, id, selected, hovering) {
+                            if (hovering) {
+                                document.body.style.cursor = 'pointer';
+                            }
+                        }
+                    }
                 }
             }
         );
 
-        // Commented out as part of refactoring effort
-        // network = new vis.Network(
-        //     container,
-        //     {
-        //         nodes: new vis.DataSet(networkData.nodes),
-        //         edges: new vis.DataSet(networkData.edges)
-        //     },
-        //     {
-        //         layout: {
-        //             hierarchical: {
-        //                 enabled: true,
-        //                 direction: 'UD',
-        //                 sortMethod: 'directed'
-        //             }
-        //         },
-        //         autoResize: true,
-        //         // height: '100%',                                 // Set container height
-        //         width: '100%',
-        //         physics: {
-        //             enabled: false
-        //         },
-        //         edges: {
-        //             smooth: false,
-        //             arrows: {
-        //                 to: false                                   // Removes arrows from edges
-        //             }
-        //         },
-        //         interaction: {
-        //             zoomView: false,                                // Disable mouse zoom
-        //             zoomSpeed: 0,                                   // Disable mouse wheel zoom
-        //             dragNodes: true,
-        //             zoomSpeed: 0
-        //         },
-        //         nodes: {
-        //             shape: 'dot',
-        //             font: {
-        //                 face: 'Ek Mukta',
-        //                 size: 14,
-        //                 background: '#ffffffCC',
-        //                 color: '#333333',
-        //                 strokeWidth: 0,
-        //                 multi: true,  // Enable multi-font support
-        //                 bold: {  // Define bold font style
-        //                     color: '#333333',
-        //                     size: 16,
-        //                     face: 'Ek Mukta'
-        //                 }
-        //             },
-        //             borderWidth: 1,
-        //             borderWidthSelected: 2
-        //         }
-        //     }
-        // );
+        // Add event listeners after initialization
+        network.once('stabilized', function () {
+            network.on('hoverNode', function (params) {
+                console.log('Hovered node:', params.node);
+            });
+            console.log('Event listeners are now attached.');
+        });
+
+        console.log(networkData.nodes);
+        // console.log(networkData.edges);
+
         console.log('Network creation successful');
         // resizeCanvas();
 
@@ -373,4 +340,61 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.cursor = 'default';
         }
     });
+});
+
+
+/* ========================================================================
+    Tooltip Interactivity
+    ======================================================================== */
+
+// Create and append tooltip element if it doesn't exist
+let tooltip = document.querySelector('.vis-tooltip');
+if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.className = 'vis-tooltip';
+    document.body.appendChild(tooltip);
+}
+
+// Handle node hover events
+network.on('hoverNode', function(params) {
+    const nodeId = params.node;
+    const node = network.body.nodes[nodeId];
+    if (!node) return;
+
+    const position = network.getPositions([nodeId])[nodeId];
+    const canvasPos = network.canvasToDOM(position);
+    
+    // Get container bounds
+    const container = document.getElementById('network-container');
+    const containerRect = container.getBoundingClientRect();
+    
+    // Calculate tooltip position
+    let left = canvasPos.x + containerRect.left;
+    let top = canvasPos.y + containerRect.top;
+    
+    // Adjust position to prevent tooltip from going off-screen
+    const tooltipRect = tooltip.getBoundingClientRect();
+    if (left + tooltipRect.width > window.innerWidth) {
+        left = window.innerWidth - tooltipRect.width - 10;
+    }
+    if (top + tooltipRect.height > window.innerHeight) {
+        top = window.innerHeight - tooltipRect.height - 10;
+    }
+    
+    // Update tooltip content and position
+    tooltip.textContent = node.options.title || '';
+    tooltip.style.left = `${left + 10}px`;
+    tooltip.style.top = `${top + 10}px`;
+    tooltip.style.visibility = 'visible';
+    tooltip.style.opacity = '1';
+    
+    // Update cursor
+    document.body.style.cursor = 'pointer';
+});
+
+// Handle mouse leave events
+network.on('blurNode', function() {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    document.body.style.cursor = 'default';
 });

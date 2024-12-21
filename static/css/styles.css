@@ -287,7 +287,13 @@ h3 {
     object-fit: contain;
 }
 
+/* Customize cursor */
 .vis-network .vis-node {
+    cursor: pointer !important;
+}
+
+/* Add pointer cursor for canvas when hovering over nodes */
+canvas.vis-network-canvas:hover {
     cursor: pointer;
 }
 
@@ -306,6 +312,41 @@ h3 {
     color: #333333;
     text-align: center;
 }
+
+.vis-tooltip {
+    position: absolute !important;
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(255, 165, 0, 0.9);
+    color: #333;
+    font-family: 'Ek Mukta', sans-serif;
+    font-size: 1.4em;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 10000;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 1000px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* 
+.vis-tooltip {
+    visibility: visible !important; 
+    opacity: 1 !important; 
+    position: absolute !important; 
+    background-color: rgba(255, 165, 0, 0.8);
+    font-size: 1.4em;
+    padding: 0.5em 1em; 
+    border-radius: 5px; 
+    z-index: 1000; 
+    pointer-events: none; 
+    transition: opacity 0.2s ease; 
+}
+
+*/
 
 /* ========================================================================
    Form Styles

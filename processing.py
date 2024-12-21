@@ -24,7 +24,7 @@ def build_network(recommendations):
         label='Start here',
         title='Start here',
         color='#E90555',
-        size=65,
+        size=70,
         font=label_font
     )
 
@@ -40,7 +40,6 @@ def build_network(recommendations):
             net.add_node(
                 f'task_{task}',
                 label=task,
-                title=task,
                 color='#ffa500',                                       # Orange
                 size=60,
                 font=label_font
@@ -55,7 +54,6 @@ def build_network(recommendations):
                 net.add_node(
                     goal_id,
                     label=goal,
-                    title=goal,
                     color='#0273be',                                    # Blue
                     size=50,
                     font=label_font
@@ -66,15 +64,14 @@ def build_network(recommendations):
             # Add leaderboards under each goal
             for lb_data in leaderboards:
                 lb_name = lb_data["leaderboard"]
-                # Use abbreviated name if available
-                # lb_label = lb_name
                 lb_label = lb_data.get("leaderboard_abbrev", lb_name)
                 lb_id = f'leaderboard_{task}_{goal}_{lb_name}'
+                lb_tooltip = lb_data.get("tooltip", lb_name)
                 if lb_id not in added_leaderboards:
                     net.add_node(
                         lb_id,
                         label=lb_label,
-                        title=lb_data.get("tooltip", lb_name),
+                        title=lb_tooltip,
                         color='#8bb42d',                                    # Green
                         size=40,
                         font={
@@ -105,7 +102,7 @@ def build_network(recommendations):
                     # NEW: Use benchmark_name for label, benchmark_measures for title
                     net.add_node(
                         benchmark_id,
-                        label=benchmark_name,               # Changed from 'benchmark' to 'benchmark_name'
+                        label=benchmark_name,               
                         title=benchmark_measures,           # Added to provide tooltip with measures
                         color='#999999',
                         size=30,
