@@ -90,14 +90,22 @@ function initializeNetwork() {
                     enabled: true,
                     solver: 'barnesHut',
                     barnesHut: {
-                        gravitationalConstant: -30000,
-                        centralGravity: 1,
-                        springLength: 150,
-                        springConstant: 0.06,
+                        gravitationalConstant: -60000,
+                        centralGravity: 0,
+                        springLength: 200,
+                        springConstant: 0.04,
                         damping: 0.09,
-                        avoidOverlap: 0.5
+                        avoidOverlap: 1
                     },
-                    minVelocity: 0.75
+                    stabilization: {
+                        enabled: true,
+                        iterations: 1000,
+                        updateInterval: 50,
+                        onlyDynamicEdges: false,
+                        fit: true
+                    },
+                    minVelocity: 0.75,
+                    maxVelocity: 50,
                 },
                 autoResize: true,
                 edges: {
@@ -108,7 +116,7 @@ function initializeNetwork() {
                 },
                 interaction: {
                     zoomView: true,
-                    zoomSpeed: 0.03,
+                    zoomSpeed: 0.05,
                     dragNodes: true,
                     dragView: true,
                     hover: true, 
