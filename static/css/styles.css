@@ -4,6 +4,7 @@
 body {
     font-family: 'Ek Mukta', sans-serif;
     color: #333;
+    font-weight: 200;
 }
 
 body, html {
@@ -66,23 +67,6 @@ body, html {
     height: calc(100% - 3px); /* Account for the resizer height if you like */
     transition: height 0.2s ease;
 }
-
-/* 
-#network-container {
-    position: relative;
-    width: 100%;
-    height: calc(100% - 3px);  Account for the resizer height if you like 
-    height: var(--network-height);
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 2rem;
-    margin: 50px auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: height 0.2s ease;
-}
-*/
 
 .slider-container {
     display: flex;
@@ -162,6 +146,31 @@ h3 {
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
+.link-container {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+}
+
+.hire-me-link {
+    text-decoration: none;
+    color: #ffa500;
+    font-size: 1.3em;
+    /* display: inline-flex;
+    align-items: baseline;
+    position: relative;
+    top: 0.5em; */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.chess-piece {
+    display: inline-block;
+    font-size: 1.3em;
+    margin-left: 0.3em;
+    position: relative;
+    top: -0.1em; /* Fine-tune this value to align with text */
+}
+
 
 /* ========================================================================
    Tooltip Styles
@@ -222,6 +231,7 @@ h3 {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
+    margin-top: 0.7em !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -291,7 +301,7 @@ h3 {
     height: 100% !important;
     background-color: #fff;
     border: none !important;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.35em;
     margin-bottom: 0.8em;
 }
@@ -321,7 +331,7 @@ canvas.vis-network-canvas:hover {
     cursor: pointer;
     font-family: 'Ek Mukta', sans-serif;
     font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 2px 4px;
     border-radius: 4px;
     color: #333333;
@@ -528,6 +538,7 @@ canvas.vis-network-canvas:hover {
 }
 
 .modal-title {
-    font-family: 'Bebas Kai', sans-serif;
+    /* font-family: 'Bebas Kai', sans-serif; */
     font-size: 1.5rem;
+    text-transform: uppercase;
 }
