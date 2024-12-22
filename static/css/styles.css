@@ -44,22 +44,12 @@ body, html {
     background-color: #fff;
     padding: 2rem;
     margin: 50px auto;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     overflow: hidden; /* Ensure the container restricts overflow */
-    padding: 2rem 2rem 0 2rem;        
-}
-
-/* Control to resize the network container */
-#resizer {
-    position: absolute;         /* CHANGED: Absolute position to sit at the bottom of .network-container */
-    bottom: 0;                  /* Align to bottom of container */
-    left: 0;
-    width: 100%;
-    height: 5px;                /* Same logic as the AI timeline resizer */
-    background-color: #ccc;
-    cursor: row-resize;
-    user-select: none;          /* Prevent text selection while dragging */
+    padding: 2rem 2rem 0 2rem;       
 }
 
 #network-container {
@@ -318,11 +308,6 @@ h3 {
 }
 
 
-
-
-
-
-
 /* ========================================================================
    Model Picker Form Styles
    ======================================================================== */
@@ -335,9 +320,9 @@ h3 {
     font-size: 1.8rem;       /* Increase base font size for better readability */
     padding: 2rem;           /* Add more internal spacing */
     background: #fff;
+    margin-top: 0.7em !important;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-top: 0.7em !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -494,7 +479,69 @@ canvas.vis-network-canvas:hover {
 }
 
 /* ========================================================================
-   Slider Styles
+   Resizer
+   ======================================================================== */
+
+/* Control to resize the network container */
+#resizer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;  /* Slightly taller for better visibility */
+    background-color: #f0f0f0;
+    cursor: row-resize;
+    user-select: none;
+    transition: background-color 0.2s ease, height 0.2s ease;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Dots pattern for visual indication */
+#resizer::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 4px;
+    background-image: radial-gradient(circle, #999 1px, transparent 1.5px);
+    background-size: 8px 8px;
+    background-position: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+/* Hover state */
+#resizer:hover {
+    height: 10px;
+    background-color: #e8e8e8;
+}
+
+#resizer:hover::before {
+    opacity: 1;
+}
+
+/* Active state while dragging */
+#resizer:active {
+    background-color: #e0e0e0;
+    height: 12px;
+}
+
+/* Add subtle shadows for depth */
+#resizer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05), transparent 100%);
+}
+
+
+/* ========================================================================
+   Slider Styles - Removed for now
    ======================================================================== */
 
 /* Slider label */

@@ -93,9 +93,9 @@ function initializeNetwork() {
                         gravitationalConstant: -30000,
                         centralGravity: 1,
                         springLength: 150,
-                        springConstant: 0.04,
+                        springConstant: 0.06,
                         damping: 0.09,
-                        avoidOverlap: 2
+                        avoidOverlap: 0.5
                     },
                     minVelocity: 0.75
                 },
@@ -108,7 +108,7 @@ function initializeNetwork() {
                 },
                 interaction: {
                     zoomView: true,
-                    zoomSpeed: 0.1,
+                    zoomSpeed: 0.03,
                     dragNodes: true,
                     dragView: true,
                     hover: true, 
