@@ -3291,8 +3291,8 @@ RECOMMENDATIONS = {
                     "score_interpretation": "Higher is better."
                     },
                     {
-                    "benchmark_name": "GPQA (Graduate-Level Google-Proof Q&A)",
-                    "benchmark_measures": "Tests the model's ability to answer PhD-level multiple choice questions.",
+                    "benchmark_name": "GPQA",
+                    "benchmark_measures": "The Graduate-Level Google-Proof Q&A (GPQA) tests the model's ability to answer PhD-level multiple choice questions.",
                     "score_interpretation": "Higher is better."
                     },
                     {
@@ -3301,8 +3301,8 @@ RECOMMENDATIONS = {
                     "score_interpretation": "Higher is better."
                     },
                     {
-                    "benchmark_name": "MMLU-PRO (Massive Multitask Language Understanding - Professional)",
-                    "benchmark_measures": "Tests the model's knowledge and reasoning abilities across expertly reviewed multichoice questions across domains",
+                    "benchmark_name": "MMLU-PRO",
+                    "benchmark_measures": "The Massive Multitask Language Understanding - Professional (MMLU-PRO) tests the model's knowledge and reasoning abilities across expertly reviewed multichoice questions across domains",
                     "score_interpretation": "Higher is better."
                     },
                     {

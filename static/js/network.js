@@ -90,12 +90,12 @@ function initializeNetwork() {
                     enabled: true,
                     solver: 'barnesHut',
                     barnesHut: {
-                        gravitationalConstant: -30000,
-                        centralGravity: 0.3,
-                        springLength: 95,
+                        gravitationalConstant: -20000,
+                        centralGravity: 0.8,
+                        springLength: 150,
                         springConstant: 0.04,
                         damping: 0.09,
-                        avoidOverlap: 1
+                        avoidOverlap: 2
                     },
                     minVelocity: 0.75
                 },
@@ -329,70 +329,42 @@ function formatBenchmarkLabel(label) {
     Resize Visualization Container
     ======================================================================== */
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const networkContainerWrapper = document.querySelector('.network-container');
-        const resizer = document.querySelector('#resizer');
-        
-        let isDragging = false;
-        let startY;
-        let startHeight;
-    
-        resizer.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startY = e.clientY;
-            startHeight = parseInt(getComputedStyle(networkContainerWrapper).height, 10);
-            
-            document.body.style.cursor = 'row-resize';
-            // Prevent text selection during resize
-            document.body.style.userSelect = 'none';
-        });
-    
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-    
-            // Calculate height change based on mouse movement
-            const deltaY = e.clientY - startY;
-            const newHeight = startHeight + deltaY;
-    
-            // Set minimum and maximum heights (as percentages of viewport height)
-            const minHeight = Math.max(300, window.innerHeight * 0.2); // min 20% of viewport or 300px
-            const maxHeight = window.innerHeight * 0.9; // max 90% of viewport
-    
-            // Apply new height if within bounds
-            if (newHeight >= minHeight && newHeight <= maxHeight) {
-                networkContainerWrapper.style.height = `${newHeight}px`;
-                
-                // Fit network to new container size
-                if (window.network) {
-                    network.fit({
-                        animation: {
-                            duration: 200,  // Reduced for smoother resizing
-                            easingFunction: 'easeInOutQuad'
-                        }
-                    });
-                }
-            }
-        });
-    
-        document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                document.body.style.cursor = 'default';
-                document.body.style.userSelect = ''; // Restore text selection
-            }
-        });
-    
-        // Handle edge cases
-        window.addEventListener('resize', () => {
-            // Ensure container stays within bounds when window is resized
-            const currentHeight = parseInt(getComputedStyle(networkContainerWrapper).height, 10);
-            const maxHeight = window.innerHeight * 0.9;
-            
-            if (currentHeight > maxHeight) {
-                networkContainerWrapper.style.height = `${maxHeight}px`;
-                if (window.network) {
-                    network.fit();
-                }
-            }
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    const networkContainerWrapper = document.querySelector('.network-container');
+    const resizer = document.querySelector('#resizer');
+
+    let isDragging = false;
+
+    resizer.addEventListener('mousedown', () => {
+        isDragging = true;
+        document.body.style.cursor = 'row-resize';
     });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        // Measure from the top of .network-container
+        const containerRect = networkContainerWrapper.getBoundingClientRect();
+        const newHeight = e.clientY - containerRect.top;
+
+        // Ensure minimum and maximum heights
+        if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
+            networkContainerWrapper.style.height = `${newHeight}px`;
+            if (window.network) {
+                network.fit({
+                    animation: {
+                        duration: 500,
+                        easingFunction: 'easeInOutQuad'
+                    }
+                });
+            }
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+        }
+    });
+});
