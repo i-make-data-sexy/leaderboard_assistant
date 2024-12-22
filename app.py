@@ -132,30 +132,51 @@ def filter_data():
         node_id = request.json.get('node_id')
         if not node_id:
             return jsonify({"error": "No node ID provided"}), 400
-        
+
         if node_id.startswith('leaderboard_'):
-            parts = node_id.split('_', 3)  # split into 4 parts: [leaderboard, task, goal, lbname...]
-            if len(parts) == 4:
-                # The fourth part is the leaderboard name
-                lb_name = parts[3]
-            else:
+            # Example: nodeId is "leaderboard_Chat_Quality_Vellum LLM Leaderboard"
+            # We'll parse the nodeId but let's keep it simple:
+            parts = node_id.split('_', 3)  # e.g. ['leaderboard', 'Chat', 'Quality', 'Vellum LLM Leaderboard']
+            if len(parts) < 4:
                 return jsonify({"error": "Invalid leaderboard node ID format"}), 400
 
-            # Now search in RECOMMENDATIONS for that leaderboard name
+            lb_name = parts[3]  # "Vellum LLM Leaderboard"
+            
+            # Now search in RECOMMENDATIONS for that matching leaderboard name
             for task, goals in RECOMMENDATIONS.items():
                 for goal, leaderboards in goals.items():
-                    for leaderboard in leaderboards:
-                        if leaderboard['leaderboard'] == lb_name:
+                    for lb in leaderboards:
+                        if lb['leaderboard'] == lb_name:
+                            # Found the correct leaderboard object
+                            
+                            # Convert the 'benchmarks' list into an object
+                            # so React can do: Object.entries(data.benchmarks)
+                            bench_obj = {}
+                            if 'benchmarks' in lb:
+                                for bench in lb['benchmarks']:
+                                    name = bench.get('benchmark_name', 'Untitled Benchmark')
+                                    bench_obj[name] = {
+                                        'measures': bench.get('benchmark_measures', ''),
+                                        'score_interpretation': bench.get('score_interpretation', '')
+                                    }
+                            
+                            # Build final response
                             return jsonify({
-                                'leaderboard': leaderboard['leaderboard'],
-                                'tooltip': leaderboard.get('tooltip', ''),
-                                'source': leaderboard['leaderboard_link']['url'],
-                                'methodology': leaderboard.get('methodology', {}).get('url', ''),
-                                'analysis_tips': leaderboard.get('analysis_tips', [])
+                                'leaderboard': lb['leaderboard'],  # Full name
+                                'tooltip': lb.get('tooltip', ''),
+                                'analysis_tips': lb.get('analysis_tips', []),
+                                'benchmarks': bench_obj,
+                                'leaderboard_link': lb['leaderboard_link']['url'],
+                                # If you need text too, you can do: lb['leaderboard_link']['text']
+                                
+                                # The 'methodology' may be nested, so handle carefully
+                                'methodology_url': lb.get('methodology', {}).get('url', ''),
+                                # or if you want to call it 'methodology', do:
+                                # 'methodology': lb.get('methodology', {}).get('url', '')
                             })
 
         return jsonify({"error": "Leaderboard not found"}), 404
-        
+    
     except Exception as e:
         logging.error(f"Error in filter_data route: {str(e)}")
         return jsonify({"error": str(e)}), 500
