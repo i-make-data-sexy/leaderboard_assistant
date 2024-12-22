@@ -122,8 +122,8 @@
         </form>
 
         <!-- Results Container -->
-    <div id="results" class="results-container hidden">
-        <h2>Step 2: Find benchmarks appropriate to compare models against <span class="info-icon" data-tooltip="...long tooltip text...">ⓘ</span></h2>
+        <div id="results" class="results-container hidden">
+        <h2>Step 2: Find benchmarks appropriate to compare models against<span class="info-icon" data-tooltip="TIPS:&#10;• The more options you choose the more complex the visualization will become. I'd recommend selecting no more than three options from each group. &#10; &#10;• Benchmarks may have the same label but be calculated differently between leaderboards (e.g., speed). So make sure you understand how a leaderboard defines a benchmark/metric. You can click on any green node to open a pop-up with more information and source links for that leaderboard. &#10; &#10;• You can update your selection after generating the graph. Just click the 'Compare models' button to update the visualization. &#10; &#10;• 'Chain agents' is the same as 'agentic AI'. &#10; &#10;• Although there's some overlap between 'Chat' and 'Generate text', you can have an AI app that generates text without a chatbot component (e.g., AI-powered speech-to-text transcription service). Same with 'Solve complex problems' and 'Solve math problems. &#10; &#10;• Some leaderboards only report on speed, which combines speed and latency; others track them separately.">ⓘ</span></h2>
         <!-- Slider Container -->
         <div class="slider-container">
             <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
@@ -353,9 +353,24 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('modelPickerForm');
                 const resultsContainer = document.getElementById('results');
+
+                // Add this check to prevent errors
+                if (!form || !resultsContainer) {
+                    console.warn('Required elements not found. Form:', !!form, 'Results:', !!resultsContainer);
+                    return;
+                }
                 
                 // Set initial checkbox states based on URL parameters
                 const urlParams = new URLSearchParams(window.location.search);
+
+                // Show results container if URL has parameters
+                if (window.location.search) {
+                    resultsContainer.classList.remove('hidden');
+                    // Wrap in setTimeout to ensure DOM is ready
+                    setTimeout(() => {
+                        initializeNetworkWithRetry();
+                    }, 0);
+                }
                 
                 // Set tasks checkboxes
                 const selectedTasks = urlParams.getAll('tasks');
@@ -379,7 +394,12 @@
                         if (retryCount >= MAX_RETRIES) {
                             throw new Error('Maximum retry attempts reached. Please refresh the page.');
                         }
-
+                
+                        const resultsContainer = document.getElementById('results');
+                        if (!resultsContainer) {
+                            throw new Error('Results container not found, retrying...');
+                        }
+                
                         // Wait for vis-network to be available
                         if (typeof vis === 'undefined') {
                             throw new Error('Waiting for vis-network to load...');
@@ -398,22 +418,8 @@
                         
                     } catch (error) {
                         console.warn(`Network initialization attempt ${retryCount + 1} failed:`, error);
-                        
-                        // Show error message in the network container
-                        const container = document.getElementById('network-container');
-                        if (container) {
-                            container.innerHTML = `
-                                <div style="text-align: center; padding: 20px;">
-                                    <p>Network initialization failed. ${retryCount < MAX_RETRIES ? 'Retrying...' : 'Max retries reached.'}</p>
-                                    <p style="color: red;">${error.message}</p>
-                                </div>
-                            `;
-                        }
-                        
-                        // Increment retry count
                         retryCount++;
                         
-                        // Only retry if we haven't exceeded max retries
                         if (retryCount < MAX_RETRIES) {
                             setTimeout(initializeNetworkWithRetry, 1000);
                         }
