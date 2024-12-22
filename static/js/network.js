@@ -90,8 +90,8 @@ function initializeNetwork() {
                     enabled: true,
                     solver: 'barnesHut',
                     barnesHut: {
-                        gravitationalConstant: -20000,
-                        centralGravity: 0.8,
+                        gravitationalConstant: -30000,
+                        centralGravity: 1,
                         springLength: 150,
                         springConstant: 0.04,
                         damping: 0.09,
