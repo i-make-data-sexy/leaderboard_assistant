@@ -114,7 +114,7 @@ function initializeNetwork() {
                     tooltipDelay: 0,
                     hoverConnectedEdges: true,
                     keyboard: false,                        // Disable keyboard navigation
-                    hideEdgesOnDrag: true,                  // Improve performance
+                    hideEdgesOnDrag: false,                  // Improve performance
                 },
                 nodes: {
                     shape: 'dot',

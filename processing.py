@@ -72,7 +72,7 @@ def build_network(recommendations):
                 lb_title = (
                     f"Leaderboard: {lb_name}\n\n"
                     f"Overview: {lb_data.get('tooltip', '')}\n\n"
-                    f"💡: Select the node (dot) to learn more about this leaderboard."
+                    f"Learn more: Select the node (dot) to learn more about this leaderboard."
                 )
 
                 lb_id = f'leaderboard_{task}_{goal}_{lb_name}'
@@ -99,34 +99,6 @@ def build_network(recommendations):
                     )
                     added_leaderboards.add(lb_id)
                     net.add_edge(goal_id, lb_id, color='#999')
-
-            # for lb_data in leaderboards:
-            #     lb_name = lb_data["leaderboard"]
-            #     lb_label = lb_data.get("leaderboard_abbrev", lb_name)
-            #     lb_id = f'leaderboard_{task}_{goal}_{lb_name}'
-            #     lb_tooltip = lb_data.get("tooltip", lb_name)
-            #     if lb_id not in added_leaderboards:
-            #         net.add_node(
-            #             lb_id,
-            #             label=lb_label,
-            #             title=lb_tooltip,
-            #             color='#8bb42d',                                    # Green
-            #             size=40,
-            #             data={
-            #                 'type': 'leaderboard',
-            #                 'leaderboard': lb_data["leaderboard"], 
-            #                 'tooltip': lb_data.get("tooltip", "")
-            #             },
-            #             font={
-            #                 'size': 20,
-            #                 'color': '#333',
-            #                 'face': 'Ek Mukta',
-            #                 'background': 'rgba(255, 255, 255, 0.8)'
-            #             }
-            #         )
-            #         added_leaderboards.add(lb_id)
-            #         net.add_edge(goal_id, lb_id, color='#999')
-                
 
                 # Add benchmark nodes
                 benchmarks = lb_data.get('benchmarks', [])

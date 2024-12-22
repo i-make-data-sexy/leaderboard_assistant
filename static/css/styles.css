@@ -4,7 +4,6 @@
 body {
     font-family: 'Ek Mukta', sans-serif;
     color: #333;
-    font-size: 1.2em;
 }
 
 body, html {
@@ -56,7 +55,7 @@ body, html {
     bottom: 0;                  /* Align to bottom of container */
     left: 0;
     width: 100%;
-    height: 3px;                /* Same logic as your timeline resizer */
+    height: 5px;                /* Same logic as the AI timeline resizer */
     background-color: #ccc;
     cursor: row-resize;
     user-select: none;          /* Prevent text selection while dragging */
@@ -292,6 +291,9 @@ h3 {
     height: 100% !important;
     background-color: #fff;
     border: none !important;
+    font-size: 1.2em;
+    line-height: 1.35em;
+    margin-bottom: 0.8em;
 }
 
 .vis-network canvas {

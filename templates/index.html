@@ -219,6 +219,20 @@
                 
                 function closeModal() {
                     setIsOpen(false);
+                    // Re-enable tooltips by removing inline styles
+                    const tooltips = document.querySelectorAll('.vis-tooltip');
+                    tooltips.forEach(tooltip => {
+                        tooltip.removeAttribute('style');
+                    });
+                    // Re-enable tooltip interaction in vis-network
+                    if (window.network) {
+                        window.network.setOptions({
+                            interaction: {
+                                hover: true,
+                                tooltipDelay: 0
+                            }
+                        });
+                    }
                 }
             
             return (
