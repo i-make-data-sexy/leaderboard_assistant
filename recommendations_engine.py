@@ -2643,7 +2643,7 @@ RECOMMENDATIONS = {
                     "You can sort the table by any column.",
                     "If model size isn't included it's because the provider doesn't disclose it."
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://arxiv.org/html/2412.10360"
                 },
@@ -2694,7 +2694,7 @@ RECOMMENDATIONS = {
                     "All videos are converted to 720p for consistency.",
                     " "
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://artificialanalysis.ai/text-to-video/arena?tab=Arena"
                 },
@@ -2725,7 +2725,7 @@ RECOMMENDATIONS = {
                     "All videos are converted to 720p for consistency.",
                     " "
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://artificialanalysis.ai/methodology"
                 },
@@ -2776,7 +2776,7 @@ RECOMMENDATIONS = {
                     "Click a model's name to learn more about it. It will either take you to the model's homepage, Hugging Face page, or GitHub repository.",
                     "You can view example questions on the LongVideoBench Hugging Face page: https://huggingface.co/datasets/longvideobench/LongVideoBench.",
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://arxiv.org/abs/2407.15754"
                 },
@@ -2831,7 +2831,7 @@ RECOMMENDATIONS = {
                     "Chart 2 shows a breakdown of video content types, with Surveillance (26%) and Movies (22%) being the largest categories, followed by smaller groups like Egocentric (13%) and TV Series (12%).",
                     "Chart 3 displays the distribution of tasks used to evaluate the models, split into multi-choice and generation-based tasks, with a focus on Plot QA (539 tasks), Needle QA (355 tasks), and tasks like Action Counting and Video Summarization.",
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://arxiv.org/abs/2406.04264"
                 },
@@ -2925,7 +2925,7 @@ RECOMMENDATIONS = {
                     "There's also a chart with a distribution by task type.",
                     "Interestingly, they took four models and created a radar chart of their scores across question types. Search the leaderboard for 'different question types' to view it.",
                 ],
-                "paper": {
+                "methodology": {
                     "text": "Methodology",
                     "url": "https://arxiv.org/pdf/2405.21075"
                 },

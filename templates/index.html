@@ -215,96 +215,93 @@
                 return () => window.removeEventListener('leaderboardClick', handleLeaderboardClick);
             }, []);
             
-              if (!isOpen || !data) return null;
+                if (!isOpen || !data) return null;
+                
+                function closeModal() {
+                    setIsOpen(false);
+                }
             
-              function closeModal() {
-                setIsOpen(false);
-              }
-            
-              return (
+            return (
                 <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                    <div className="modal-dialog" style={{ maxWidth: '50vw', margin: '1.75rem auto' }}>
-                    <div className="modal-content">
-                      {/* Header */}
-                      <div className="modal-header">
-                        <h5 className="modal-title">{data.leaderboard}</h5>
-                        <button type="button" className="close" onClick={closeModal}>
-                          <span>&times;</span>
-                        </button>
-                      </div>
-            
-                      {/* Body */}
-                      <div className="modal-body">
-                        <div className="row">
-                          {/* Column 1 */}
-                          <div className="col-md-3">
-                            <h6>Leaderboard</h6>
-                            <p>{data.leaderboard}</p>
-                            {data.leaderboard_link && (
-                              <a 
-                                href={data.leaderboard_link} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="tool_hyperlink"
-                              >
-                                View leaderboard
-                              </a>
-                            )}
-            
-                            <h6 className="mt-3">Summary</h6>
-                            <p>{data.tooltip}</p>
-            
-                            <h6 className="mt-3">Methodology</h6>
-                            {data.methodology_url && (
-                              <a 
-                                href={data.methodology_url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="tool_hyperlink"
-                              >
-                                View methodology page
-                              </a>
-                            )}
-                          </div>
-            
-                          {/* Column 2 */}
-                          <div className="col-md-6">
-                            <h6>Tips</h6>
-                            <ul>
-                              {data.analysis_tips?.map((tip, i) => (
-                                <li key={i}>{tip}</li>
-                              ))}
-                            </ul>
-                          </div>
-            
-                          {/* Column 3 */}
-                          <div className="col-md-3">
-                            <h6>Benchmark(s)</h6>
-                            {data.benchmarks && (
-                              <div>
-                                {Object.entries(data.benchmarks).map(([name, details], idx) => (
-                                  <div key={idx} className="mb-3">
-                                    <strong>{name}</strong>
-                                    <p>
-                                      {details.measures}{' '}
-                                      <span style={{ color: '#666' }}>
-                                        ({details.score_interpretation})
-                                      </span>
-                                    </p>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
+                    <div className="modal-dialog" style={{ maxWidth: '50vw', maxHeight: '80vh', margin: '1.75rem auto' }}>
+                    <div className="modal-content" style={{ maxHeight: '80vh', overflow: 'hidden' }}>
+                        {/* Header */}
+                        <div className="modal-header">
+                            <h5 className="modal-title">{data.leaderboard}</h5>
+                            <button type="button" className="close" onClick={closeModal}>
+                            <span>&times;</span>
+                            </button>
                         </div>
-                      </div>
-            
-                      {/* Footer */}
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                          Close
-                        </button>
-                      </div>
+                
+                        {/* Body */}
+                        <div className="modal-body" style={{ maxHeight: 'calc(80vh - 120px)', overflowY: 'auto' }}>
+                            <div className="row">
+                            {/* Column 1 */}
+                            <div className="col-md-3">
+                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Leaderboard</h4>
+                            
+                                <h5 style={{ fontSize: '1.2em', marginBottom: '0.5rem' }}>Summary</h5>
+                                <p>{data.tooltip}</p>
+                            
+                                <h5 style={{ fontSize: '1.2em', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Sources</h5>
+                                {data.leaderboard_link && (
+                                <a 
+                                    href={data.leaderboard_link} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="tools-link d-block mb-2"
+                                >
+                                    Leaderboard
+                                </a>
+                                )}
+                                {(data.paper?.url || data.methodology_url) && (
+                                    <a 
+                                      href={data.paper?.url || data.methodology_url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="tools-link"
+                                    >
+                                      Methodology
+                                    </a>
+                                  )}
+                            </div>
+                
+                            {/* Column 2 */}
+                            <div className="col-md-6" style={{ paddingRight: '25px' }}>
+                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Tips</h4>
+                                <ul>
+                                {data.analysis_tips?.map((tip, i) => (
+                                    <li key={i}>{tip}</li>
+                                ))}
+                                </ul>
+                            </div>
+                
+                            {/* Column 3 */}
+                            <div className="col-md-3">
+                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Benchmark(s)</h4>
+                                {data.benchmarks && (
+                                <div>
+                                    {Object.entries(data.benchmarks).map(([name, details], idx) => (
+                                    <div key={idx} className="mb-3">
+                                        <h5>{name}</h5>
+                                        <p>
+                                        {details.measures}{' '}
+                                            ({details.score_interpretation})
+                                        </p>
+                                    </div>
+                                    ))}
+                                </div>
+                                )}
+                            </div>
+                            </div>
+                        </div>
+                
+                        {/* Footer */}
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                            Close
+                            </button>
+                        </div>
                     </div>
                   </div>
                 </div>

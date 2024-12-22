@@ -4,7 +4,7 @@
 body {
     font-family: 'Ek Mukta', sans-serif;
     color: #333;
-    font-size: 0.9em;
+    font-size: 1.2em;
 }
 
 body, html {
@@ -136,7 +136,7 @@ h3 {
    Logo Styles
    ======================================================================== */
 
-   .logo-container {
+.logo-container {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -148,6 +148,19 @@ h3 {
 
 .header-logo {
     height: 60px;
+}
+
+
+/* ========================================================================
+   Link Styles
+   ======================================================================== */
+
+.tools-link {
+    text-decoration: none;
+    color: #ffa500;
+    position: relative;
+    top: 0.5em;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 
@@ -339,21 +352,6 @@ canvas.vis-network-canvas:hover {
     display: block; /* or visibility: visible; */
   }
 
-/* 
-.vis-tooltip {
-    visibility: visible !important; 
-    opacity: 1 !important; 
-    position: absolute !important; 
-    background-color: rgba(255, 165, 0, 0.8);
-    font-size: 1.4em;
-    padding: 0.5em 1em; 
-    border-radius: 5px; 
-    z-index: 1000; 
-    pointer-events: none; 
-    transition: opacity 0.2s ease; 
-}
-
-*/
 
 /* ========================================================================
    Form Styles

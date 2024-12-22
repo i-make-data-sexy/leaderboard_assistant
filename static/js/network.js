@@ -164,81 +164,6 @@ function initializeNetwork() {
             console.log('Network stabilized, attaching hoverNode listener');
         });
 
-        /* ===============================
-           Tooltip Setup
-           =============================== */
-
-
-           console.log('Setting up the tooltip system');
-
-           // Create and append tooltip element if it doesn't exist
-           let tooltip = document.querySelector('.vis-tooltip');
-           if (!tooltip) {
-               tooltip = document.createElement('div');
-               tooltip.className = 'vis-tooltip';
-               document.body.appendChild(tooltip);
-               console.log('Tooltip element created and appended to body');
-           }
-   
-           // Handle node hover events
-           network.on('hoverNode', function(params) {
-               console.log('hoverNode fired:', params);
-   
-               // Don't show tooltip if modal is open
-               if (document.querySelector('.fixed.inset-0')) {
-                   console.log('Modal is open; skipping tooltip display');
-                   return;
-               }
-   
-               const nodeId = params.node;
-               const node = network.body.nodes[nodeId];
-               if (!node) {
-                   console.warn('Node not found for hoverNode event:', nodeId);
-                   return;
-               }
-   
-               const position = network.getPositions([nodeId])[nodeId];
-               const canvasPos = network.canvasToDOM(position);
-   
-               // Get container bounds
-               const containerRect = container.getBoundingClientRect();
-   
-               // Calculate tooltip position
-               let left = canvasPos.x + containerRect.left;
-               let top = canvasPos.y + containerRect.top;
-   
-               // Adjust position to prevent tooltip from going off-screen
-               const tooltipRect = tooltip.getBoundingClientRect();
-               if (left + tooltipRect.width > window.innerWidth) {
-                   left = window.innerWidth - tooltipRect.width - 10;
-               }
-               if (top + tooltipRect.height > window.innerHeight) {
-                   top = window.innerHeight - tooltipRect.height - 10;
-               }
-   
-               // Update tooltip content and position
-               tooltip.textContent = node.options.title || '';
-               tooltip.style.left = `${left + 10}px`;
-               tooltip.style.top = `${top + 10}px`;
-               tooltip.style.visibility = 'visible';
-               tooltip.style.opacity = '1';
-   
-               // Update cursor
-               document.body.style.cursor = 'pointer';
-           });
-   
-           // Handle mouse leave events
-           network.on('blurNode', function(params) {
-               console.log('blurNode fired:', params);
-               tooltip.style.visibility = 'hidden';
-               tooltip.style.opacity = '0';
-               document.body.style.cursor = 'default';
-           });
-   
-        /* ===============================
-           End Tooltip Setup
-           =============================== */
-
 
         // console.log(networkData.nodes);
         // console.log(networkData.edges);
@@ -354,9 +279,16 @@ function setupNetworkClickHandler() {
 console.log('Network click handler setup complete');
 
 // Handle clicks on leaderboard nodes
-// Look for this function in network.js:
+// In network.js, update handleLeaderboardNodeClick:
 function handleLeaderboardNodeClick(nodeId) {
     console.log('handleLeaderboardNodeClick fired for node:', nodeId);
+    
+    // Hide any existing tooltips
+    const tooltips = document.querySelectorAll('.vis-tooltip');
+    tooltips.forEach(tooltip => {
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.opacity = '0';
+    });
     
     // Create and dispatch the event
     const event = new CustomEvent('leaderboardClick', { 
