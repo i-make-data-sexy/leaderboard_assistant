@@ -107,9 +107,10 @@ function initializeNetwork() {
                     }
                 },
                 interaction: {
-                    zoomView: false,
-                    zoomSpeed: 0,
+                    zoomView: true,
+                    zoomSpeed: 0.1,
                     dragNodes: true,
+                    dragView: true,
                     hover: true, 
                     tooltipDelay: 0,
                     hoverConnectedEdges: true,
@@ -183,7 +184,6 @@ function initializeNetwork() {
         throw error; 
     }
 }
-
 
 // Setup when document is ready
 document.addEventListener('DOMContentLoaded', function() {

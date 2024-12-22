@@ -1,7 +1,7 @@
 /* ========================================================================
    General Styles
    ======================================================================== */
-body {
+   body {
     font-family: 'Ek Mukta', sans-serif;
     color: #333;
     font-weight: 200;
@@ -207,7 +207,7 @@ h3 {
     position: fixed;
     top: 50%;
     left: 50%;
-    height: auto;                               /* Allow it to shrink for modals with less content */
+    /* height: auto;                               Allow it to shrink for modals with less content */
     transform: translate(-50%, -50%);
     background: white;
     padding: 10px;
@@ -217,11 +217,15 @@ h3 {
     max-height: 80vh;
     z-index: 10000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    /* overflow: hidden; */
     box-sizing: border-box;                     /* Include padding and border in the dimensions */
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid #F4F4F4;
     width: 100%;
     height: auto;                               /* Let content determine height, up to max-height */
     max-height: calc(100% - 20px);              /* Subtract modal padding to fit properly */
@@ -240,9 +244,9 @@ h3 {
 
 /* Remove d-block style and background color from leaderboard modal */
 .modal.d-block {
-    background: white;
+    /* background: white; */
+    display: block;
 }
-
 
 .modal .modal-header {
     display: flex;
@@ -253,7 +257,6 @@ h3 {
     background-color: #F4F4F4;
 }
     
-
 .modal-title {
     color: #0273be;
     font-size: 1.5rem;
@@ -282,7 +285,7 @@ h3 {
     outline: none !important;
     box-shadow: none !important;
     opacity: 1;
-    margin-right: 0.05em;
+    margin-right: 0.002em;
 }
 
 .modal .close:hover {
@@ -313,6 +316,11 @@ h3 {
 .modal-footer {
     display: none;
 }
+
+
+
+
+
 
 
 /* ========================================================================
