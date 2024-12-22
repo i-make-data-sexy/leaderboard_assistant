@@ -235,8 +235,10 @@ function updateSliderTrack(slider, value) {
 // Apply zoom value to network
 function updateNetworkZoom(zoomValue) {
     if (network) {
+        // Convert slider value (0.1 to 2) to actual zoom scale (0.2 to 2)
+        const actualZoom = 0.2 + (zoomValue - 0.1) * (1.8/1.9);
         network.moveTo({
-            scale: zoomValue,
+            scale: actualZoom,
             animation: {
                 duration: 1000,
                 easingFunction: 'easeInOutQuad'
