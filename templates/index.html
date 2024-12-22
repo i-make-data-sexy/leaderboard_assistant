@@ -36,11 +36,11 @@
         <div class="d-flex justify-content-between align-items-baseline">
             <h2>Step 1: Let's get some information about your model's purpose
                 <span class="info-icon info-icon-trigger" tabindex="0" title="Select to view tips">ⓘ
-                    <div class="info-modal">
+                    <div class="modal">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Tips</h5>
-                                <button type="button" class="close-modal" aria-label="Close">&times;</button>
+                                <h5 class="modal-title">Tips for selecting options</h5>
+                                <span class="close">&times;</span>
                             </div>
                             <div class="modal-body">
                                 <ul>
@@ -69,7 +69,7 @@
         <form id="modelPickerForm">
             <section class="form-section">
                 <!-- Tasks -->
-                <h3>What tasks will your AI app perform? <span class="info-icon" data-tooltip="You can select more than one task. If there's a task you'd like to suggest, please fill out the form below.">ⓘ</span></h3>
+                <h3>What tasks will your AI app perform?</h3>
                 <div class="checkbox-group">
                     <label class="checkbox-option">
                         <input type="checkbox" name="tasks" value="Chain agents">
@@ -147,11 +147,11 @@
         <div id="results" class="results-container hidden">
         <h2>Step 2: Find benchmarks appropriate to compare models against
             <span class="info-icon info-icon-trigger" tabindex="0" title="Select to view tips">ⓘ
-                <div class="info-modal">
+                <div class="modal">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Tips</h5>
-                            <button type="button" class="close-modal" aria-label="Close">&times;</button>
+                            <h5 class="modal-title">Tips for using the graph</h5>
+                            <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
                             <ul>
@@ -169,6 +169,7 @@
                 </div>
             </span>
         </h2>
+        </div>
         <!-- Slider Container -->
         <div class="slider-container">
             <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
@@ -226,53 +227,53 @@
 
         <script type="text/babel">
             console.log('Starting React initialization');
+        
             function LeaderboardModal() {
                 const [isOpen, setIsOpen] = React.useState(false);
                 const [data, setData] = React.useState(null);
-            
-            // Look for this section in your LeaderboardModal component:
-            React.useEffect(() => {
-                console.log('LeaderboardModal mounted, setting up event listener');
-                
-                function handleLeaderboardClick(event) {
-                console.log('LeaderboardClick event received in React:', event.detail);
-                const nodeId = event.detail.nodeId;
-            
-                // Hide any existing tooltip
-                const tooltip = document.querySelector('.vis-tooltip');
-                if (tooltip) {
-                    tooltip.style.visibility = 'hidden';
-                    tooltip.style.opacity = '0';
-                }
-            
-                console.log('Fetching data for node:', nodeId);
-                fetch('/filter_data', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ node_id: nodeId })
-                })
-                .then(res => {
-                    console.log('Received response:', res);
-                    return res.json();
-                })
-                .then(jsonData => {
-                    console.log('Parsed data:', jsonData);
-                    if (jsonData.error) {
-                    console.error('Error from server:', jsonData.error);
-                    return;
+        
+                React.useEffect(() => {
+                    console.log('LeaderboardModal mounted, setting up event listener');
+        
+                    function handleLeaderboardClick(event) {
+                        console.log('LeaderboardClick event received in React:', event.detail);
+                        const nodeId = event.detail.nodeId;
+        
+                        // Hide any existing tooltip
+                        const tooltip = document.querySelector('.vis-tooltip');
+                        if (tooltip) {
+                            tooltip.style.visibility = 'hidden';
+                            tooltip.style.opacity = '0';
+                        }
+        
+                        console.log('Fetching data for node:', nodeId);
+                        fetch('/filter_data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ node_id: nodeId })
+                        })
+                        .then(res => {
+                            console.log('Received response:', res);
+                            return res.json();
+                        })
+                        .then(jsonData => {
+                            console.log('Parsed data:', jsonData);
+                            if (jsonData.error) {
+                                console.error('Error from server:', jsonData.error);
+                                return;
+                            }
+                            setData(jsonData);
+                            setIsOpen(true);
+                        })
+                        .catch(error => console.error('Fetch error:', error));
                     }
-                    setData(jsonData);
-                    setIsOpen(true);
-                })
-                .catch(error => console.error('Fetch error:', error));
-                }
-            
-                window.addEventListener('leaderboardClick', handleLeaderboardClick);
-                return () => window.removeEventListener('leaderboardClick', handleLeaderboardClick);
-            }, []);
-            
+        
+                    window.addEventListener('leaderboardClick', handleLeaderboardClick);
+                    return () => window.removeEventListener('leaderboardClick', handleLeaderboardClick);
+                }, []);
+        
                 if (!isOpen || !data) return null;
-                
+        
                 function closeModal() {
                     setIsOpen(false);
                     // Re-enable tooltips by removing inline styles
@@ -290,93 +291,90 @@
                         });
                     }
                 }
-            
-            return (
-                <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                    <div className="modal-dialog" style={{ maxWidth: '50vw', maxHeight: '80vh', margin: '1.75rem auto' }}>
-                    <div className="modal-content" style={{ maxHeight: '80vh', overflow: 'hidden' }}>
-                        {/* Header */}
-                        <div className="modal-header">
-                            <h5 className="modal-title">{data.leaderboard}</h5>
-                            <button type="button" className="close" onClick={closeModal}>
-                            </button>
-                        </div>
-                
-                        {/* Body */}
-                        <div className="modal-body" style={{ maxHeight: 'calc(80vh - 120px)', overflowY: 'auto' }}>
-                            <div className="row">
-                            {/* Column 1 */}
-                            <div className="col-md-3">
-                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Leaderboard</h4>
-                            
-                                <h5 style={{ fontSize: '1.2em', marginBottom: '0.5rem' }}>Summary</h5>
-                                <p>{data.tooltip}</p>
-                            
-                                <h5 style={{ fontSize: '1.2em', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Sources</h5>
-                                {data.leaderboard_link && (
-                                <a 
-                                    href={data.leaderboard_link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="tools-link d-block mb-2"
-                                >
-                                    Leaderboard
-                                </a>
-                                )}
-                                {(data.paper?.url || data.methodology_url) && (
-                                    <a 
-                                      href={data.paper?.url || data.methodology_url} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer"
-                                      className="tools-link"
-                                    >
-                                      Methodology
-                                    </a>
-                                  )}
+        
+                // NOTE: Removed the entire <div className="modal-footer"> ... </div> block
+                return (
+                    <div className={isOpen ? "modal d-block" : "modal"}>
+                        <div className="modal-content">
+                            {/* Header */}
+                            <div className="modal-header">
+                                <h5 className="modal-title">{data.leaderboard}</h5>
+                                <span className="close" onClick={closeModal}>&times;</span>
                             </div>
-                
-                            {/* Column 2 */}
-                            <div className="col-md-6" style={{ paddingRight: '25px' }}>
-                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Tips</h4>
-                                <ul>
-                                {data.analysis_tips?.map((tip, i) => (
-                                    <li key={i}>{tip}</li>
-                                ))}
-                                </ul>
-                            </div>
-                
-                            {/* Column 3 */}
-                            <div className="col-md-3">
-                                <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>Benchmark(s)</h4>
-                                {data.benchmarks && (
-                                <div>
-                                    {Object.entries(data.benchmarks).map(([name, details], idx) => (
-                                    <div key={idx} className="mb-3">
-                                        <h5>{name}</h5>
-                                        <p>
-                                        {details.measures}{' '}
-                                            ({details.score_interpretation})
-                                        </p>
+        
+                            {/* Body */}
+                            <div className="modal-body">
+                                <div className="row">
+                                    {/* Column 1 */}
+                                    <div className="col-md-3">
+                                        <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>
+                                            Leaderboard
+                                        </h4>
+                                        <h5 style={{ fontSize: '1.2em', marginBottom: '0.5rem' }}>Summary</h5>
+                                        <p>{data.tooltip}</p>
+                                        
+                                        <h5 style={{ fontSize: '1.2em', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+                                            Sources
+                                        </h5>
+                                        {data.leaderboard_link && (
+                                            <a
+                                                href={data.leaderboard_link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="tools-link d-block mb-2"
+                                            >
+                                                Leaderboard
+                                            </a>
+                                        )}
+                                        {(data.paper?.url || data.methodology_url) && (
+                                            <a
+                                                href={data.paper?.url || data.methodology_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="tools-link"
+                                            >
+                                                Methodology
+                                            </a>
+                                        )}
                                     </div>
-                                    ))}
+        
+                                    {/* Column 2 */}
+                                    <div className="col-md-6" style={{ paddingRight: '25px' }}>
+                                        <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>
+                                            Tips
+                                        </h4>
+                                        <ul>
+                                            {data.analysis_tips?.map((tip, i) => (
+                                                <li key={i}>{tip}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+        
+                                    {/* Column 3 */}
+                                    <div className="col-md-3">
+                                        <h4 style={{ fontSize: '1.6em', marginBottom: '1rem', color: '#8bb42d' }}>
+                                            Benchmark(s)
+                                        </h4>
+                                        {data.benchmarks && (
+                                            <div>
+                                                {Object.entries(data.benchmarks).map(([name, details], idx) => (
+                                                    <div key={idx} className="mb-3">
+                                                        <h5>{name}</h5>
+                                                        <p>
+                                                            {details.measures} ({details.score_interpretation})
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                                )}
                             </div>
-                            </div>
-                        </div>
-                
-                        {/* Footer */}
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                            Close
-                            </button>
                         </div>
                     </div>
-                  </div>
-                </div>
-              );
+                );
             }
-            
+        
             // Then mount it in your "leaderboard-container" div
             (() => {
                 console.log('Attempting to mount LeaderboardModal');
@@ -390,7 +388,8 @@
                     console.error('Could not find leaderboard-container');
                 }
             })();
-        </script>            
+        </script>
+                 
         {% endraw %}
 
         <!-- Submit form -->
@@ -403,7 +402,7 @@
                 icons.forEach(icon => {
                     // Handle click for modal
                     icon.addEventListener('click', (e) => {
-                        const modal = icon.querySelector('.info-modal');
+                        const modal = icon.querySelector('.modal');
                         if (modal && backdrop) {
                             modal.style.display = 'block';
                             backdrop.style.display = 'block';
@@ -411,12 +410,12 @@
                         }
                     });
             
-                    // Handle close button click
-                    const closeBtn = icon.querySelector('.close-modal');
-                    if (closeBtn) {
-                        closeBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();  // Prevent event bubbling
-                            const modal = closeBtn.closest('.info-modal');
+                    // Handle close icon click
+                    const closeIcon = icon.querySelector('.close');
+                    if (closeIcon) {
+                        closeIcon.addEventListener('click', (e) => {
+                            e.stopPropagation();                            // Prevent event bubbling
+                            const modal = closeIcon.closest('.modal');
                             if (modal && backdrop) {
                                 modal.style.display = 'none';
                                 backdrop.style.display = 'none';
@@ -429,7 +428,7 @@
                 // Close on backdrop click
                 if (backdrop) {
                     backdrop.addEventListener('click', () => {
-                        const modals = document.querySelectorAll('.info-modal');
+                        const modals = document.querySelectorAll('.modal');
                         modals.forEach(modal => {
                             modal.style.display = 'none';
                         });
