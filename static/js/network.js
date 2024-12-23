@@ -8,6 +8,9 @@ var network = null;
 // Initialize spinner root at global scope
 window.spinnerReactRoot = null;
 
+// Add flag to track spinner removal
+let spinnerRemoved = false;
+
 // Update canvas size to match container
 function resizeCanvas() {
     const container = document.getElementById('network-container');
@@ -64,7 +67,7 @@ function initializeNetwork() {
         container.innerHTML = '';
         
         /* ===============================
-            Spinner 
+            Spinner Initialization
             =============================== */
 
         // Create loading spinner container
@@ -80,18 +83,9 @@ function initializeNetwork() {
             height: 100%;
             z-index: 1000;
             pointer-events: none;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.95);
         `;
         container.appendChild(spinnerRoot);
-        console.log('Spinner container dimensions:', {
-            width: spinnerRoot.offsetWidth,
-            height: spinnerRoot.offsetHeight,
-            position: spinnerRoot.style.position,
-            zIndex: spinnerRoot.style.zIndex
-        });
-
-        // Create a single root for the spinner
-        let spinnerReactRoot = null;
 
         // Function to create and show spinner
         const showSpinner = () => {
@@ -111,7 +105,6 @@ function initializeNetwork() {
                 }
                 
                 if (!window.spinnerReactRoot) {
-                    // Only create new root if one doesn't exist globally
                     console.log('Creating new spinner root...');
                     window.spinnerReactRoot = ReactDOM.createRoot(spinnerElement);
                 } else {
@@ -126,20 +119,32 @@ function initializeNetwork() {
             }
         };
 
+        // Create a single root for the spinner
+        // let spinnerReactRoot = null;
+
         // Start showing spinner
         showSpinner();
-     
 
-        // I can probably delete this as I'm now using the built-in zoom capabilities
-        // const zoomLevel = $('#node-spacing-slider').val() || 1;
-        // const networkData = window.networkData || { nodes: [], edges: [] };
-        
-        // console.log('Network data:', {
-        //     nodes: networkData.nodes.length,
-        //     edges: networkData.edges.length,
-        //     data: networkData
-        // });
+        // Initialize network with delay and check for nodes
+        const checkForNodesInterval = setInterval(() => {
+            const nodes = document.querySelectorAll('.vis-network .vis-node');
+            if (nodes.length > 0) {
+                console.log('Nodes found, starting spinner removal...');
+                const spinnerElement = document.getElementById('network-spinner');
+                if (spinnerElement) {
+                    spinnerElement.style.transition = 'opacity 1s ease-out';
+                    spinnerElement.style.opacity = '0';
+                    setTimeout(() => {
+                        if (spinnerElement.parentNode) {
+                            container.removeChild(spinnerElement);
+                        }
+                    }, 1000);
+                }
+                clearInterval(checkForNodesInterval);
+            }
+        }, 100);
 
+        // Initialize network after delay
         setTimeout(() => {
             network = new vis.Network(
                 container,
@@ -172,16 +177,6 @@ function initializeNetwork() {
                             updateInterval: 50,
                             onlyDynamicEdges: false,
                             fit: true,
-                            // Add stabilization progress callback
-                            onChange: function(progress) {
-                                if (progress.iterations > 0) {
-                                    // Keep spinner until we have some network progress
-                                    const spinnerElement = document.getElementById('network-spinner');
-                                    if (spinnerElement) {
-                                        spinnerElement.style.opacity = '1';
-                                    }
-                                }
-                            },
                         },
                         minVelocity: 0.75,
                         maxVelocity: 50,
@@ -201,8 +196,8 @@ function initializeNetwork() {
                         hover: true, 
                         tooltipDelay: 0,
                         hoverConnectedEdges: true,
-                        keyboard: false,                        // Disable keyboard navigation
-                        hideEdgesOnDrag: false,                  // Improve performance
+                        keyboard: false,                        
+                        hideEdgesOnDrag: false,                  
                     },
                     nodes: {
                         shape: 'dot',
@@ -232,33 +227,39 @@ function initializeNetwork() {
                 }
             );
  
+            // First make sure network is fully rendered
+            network.on("afterDrawing", function() {
+                // Ensure network fills the space initially
+                network.fit();                                      
+                setupZoomSlider();
+                setupNetworkClickHandler();
 
-            // Only remove spinner after network fully stabilizes
-            network.once('stabilized', function () {
-                console.log('Network stabilized, removing spinner...');
-                const spinnerElement = document.getElementById('network-spinner');
-                if (spinnerElement && spinnerElement.parentNode === container) {
-                    spinnerElement.style.opacity = '0';
-                    spinnerElement.style.transition = 'opacity 0.5s ease-out';
-                    setTimeout(() => {
-                        container.removeChild(spinnerElement);
-                    }, 1000);  // Increased fade-out time
-                }
-                console.log('Network stabilized, attaching hoverNode listener');
-            });
-
-            // console.log(networkData.nodes);
-            // console.log(networkData.edges);
-
-            // console.log('Network creation successful');
-            // resizeCanvas();
-
-            // Ensure network fills the space initially
-            network.fit();                                      
-            setupZoomSlider();
-            setupNetworkClickHandler();
-        
+                // Then wait for stabilization
+                network.once('stabilized', function () {
+                    console.log('Network stabilized, checking spinner...');
+                    if (!spinnerRemoved) {  // Only remove if not already removed
+                        console.log('Removing spinner...');
+                        const spinnerElement = document.getElementById('network-spinner');
+                        if (spinnerElement && spinnerElement.parentNode === container) {
+                            spinnerElement.style.opacity = '0';
+                            spinnerElement.style.transition = 'opacity 1s ease-out';
+                            setTimeout(() => {
+                                if (spinnerElement.parentNode) {
+                                    container.removeChild(spinnerElement);
+                                }
+                                spinnerRemoved = true;  // Set flag after removal
+                            }, 1000);
+                        }
+                    }
+                    console.log('Network stabilized, attaching hoverNode listener');
+                });
+            });        
         }, 500);                                                                    // Increased from 100ms to 500ms
+        
+        // Safety cleanup of interval after 10 seconds
+        setTimeout(() => {
+            clearInterval(checkForNodesInterval);
+        }, 10000);
     
     } catch (error) {
         console.error('Error initializing network:', error);
