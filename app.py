@@ -55,6 +55,12 @@ def index():
         import recommendations_engine
         importlib.reload(recommendations_engine)
         
+        # Add this right after reloading
+        with open('recommendations_engine.py', 'r') as f:
+            content = f.read()
+            logging.info("Content of recommendations_engine.py:")
+            logging.info(content)
+        
         # Process QUESTIONS and RECOMMENDATIONS data into a "processed_data" format
         # Get query parameters for filtering tasks and goals
         tasks_selected = request.args.getlist('tasks')   # Retrieves tasks from query params like ?tasks=chat&tasks=generate_text
@@ -190,67 +196,61 @@ def index():
 @app.route('/filter_data', methods=['POST'])
 def filter_data():
     try:
-        # Trying to resolve caching issue
+        # Force reload recommendations module
+        logging.info("Starting to reload RECOMMENDATIONS module")
         import recommendations_engine
         importlib.reload(recommendations_engine)
-        # Re-import after reload
-        from recommendations_engine import RECOMMENDATIONS  
-        
-        # Add logging to see what's being loaded
-        logging.info("Reloaded RECOMMENDATIONS module")
-        
+        global RECOMMENDATIONS
+        RECOMMENDATIONS = recommendations_engine.RECOMMENDATIONS
+
         node_id = request.json.get('node_id')
         if not node_id:
             return jsonify({"error": "No node ID provided"}), 400
 
         if node_id.startswith('leaderboard_'):
-            # Example: nodeId is "leaderboard_Chat_Quality_Vellum LLM Leaderboard"
-            # We'll parse the nodeId but let's keep it simple:
-            parts = node_id.split('_', 3)  # e.g. ['leaderboard', 'Chat', 'Quality', 'Vellum LLM Leaderboard']
+            # Example: nodeId is "leaderboard_Generate text_Speed_KLU"
+            parts = node_id.split('_', 3)  
             if len(parts) < 4:
                 return jsonify({"error": "Invalid leaderboard node ID format"}), 400
 
-            lb_name = parts[3]  # "Vellum LLM Leaderboard"
+            task = parts[1]
+            goal = parts[2]
+            lb_name = parts[3]
             
-            # Now search in RECOMMENDATIONS for that matching leaderboard name
-            for task, goals in RECOMMENDATIONS.items():
-                for goal, leaderboards in goals.items():
-                    for lb in leaderboards:
-                        if lb['leaderboard'] == lb_name:
-                            # Found the correct leaderboard object
-                            
-                            # Convert the 'benchmarks' list into an object
-                            # so React can do: Object.entries(data.benchmarks)
-                            bench_obj = {}
-                            if 'benchmarks' in lb:
-                                for bench in lb['benchmarks']:
-                                    name = bench.get('benchmark_name', 'Untitled Benchmark')
-                                    bench_obj[name] = {
-                                        'measures': bench.get('benchmark_measures', ''),
-                                        'score_interpretation': bench.get('score_interpretation', '')
-                                    }
-                            
-                            # Logging to diagnose caching issue
-                            logging.info(f"Sending benchmark data for {lb_name}: {json.dumps(bench_obj, indent=2)}")
-                            
-                            # Build final response
-                            return jsonify({
-                                'leaderboard': lb['leaderboard'],  # Full name
-                                'tooltip': lb.get('tooltip', ''),
-                                'analysis_tips': lb.get('analysis_tips', []),
-                                'benchmarks': bench_obj,
-                                'leaderboard_link': lb['leaderboard_link']['url'],
-                                # If you need text too, you can do: lb['leaderboard_link']['text']
-                                
-                                # The 'methodology' may be nested, so handle carefully
-                                'methodology_url': lb.get('methodology', {}).get('url', ''),
-                                # or if you want to call it 'methodology', do:
-                                # 'methodology': lb.get('methodology', {}).get('url', '')
-                            })
+            logging.info(f"Looking SPECIFICALLY in: Task='{task}', Goal='{goal}', for Leaderboard='{lb_name}'")
+            
+            # Only look in the specific task and goal section
+            if task in RECOMMENDATIONS and goal in RECOMMENDATIONS[task]:
+                leaderboards = RECOMMENDATIONS[task][goal]
+                # Log what we found in this specific section
+                logging.info(f"Contents of {task}->{goal}:")
+                logging.info(json.dumps(leaderboards, indent=2))
+                
+                # Look for our leaderboard only in this section
+                for lb in leaderboards:
+                    if lb['leaderboard'] == lb_name:
+                        bench_obj = {}
+                        if 'benchmarks' in lb:
+                            for bench in lb['benchmarks']:
+                                name = bench.get('benchmark_name', 'Untitled Benchmark')
+                                bench_obj[name] = {
+                                    'measures': bench.get('benchmark_measures', ''),
+                                    'score_interpretation': bench.get('score_interpretation', '')
+                                }
+                        
+                        logging.info(f"Found benchmarks for {lb_name} in {task}->{goal}: {json.dumps(bench_obj, indent=2)}")
+                        
+                        return jsonify({
+                            'leaderboard': lb['leaderboard'],
+                            'tooltip': lb.get('tooltip', ''),
+                            'analysis_tips': lb.get('analysis_tips', []),
+                            'benchmarks': bench_obj,
+                            'leaderboard_link': lb['leaderboard_link']['url'],
+                            'methodology_url': lb.get('methodology', {}).get('url', ''),
+                        })
 
-        # Add this right before your return jsonify line
-        logging.info(f"Sending benchmark data for {lb_name}: {json.dumps(bench_obj, indent=2)}")
-        
+        logging.info(f"Leaderboard {lb_name} not found in {task}->{goal}")
+
         return jsonify({"error": "Leaderboard not found"}), 404
     
     except Exception as e:
