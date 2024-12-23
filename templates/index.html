@@ -16,11 +16,11 @@
 
     <!-- Initialize network data -->
     <script>
-        // Expose network data to JavaScript to make it available in browser
+        // Expose network data to JavaScript to make it available in browser 
         window.networkData = {% if network_data %}{{ network_data | safe }}{% else %}null{% endif %};
-
-        // Expose recommendations data to JavaScript to make it available in browser
         window.recommendationsData = {% if recommendations_data %}{{ recommendations_data|tojson }}{% else %}{}{% endif %};
+        // Added version tracking to combat caching
+        window.dataVersion = "{{ version() }}";  // Add version tracking
     </script>
 </head>
 <body>
@@ -162,6 +162,7 @@
                                 <ul>
                                     <li>The learning curve for using leaderboards is quite high. It doesn't help that they tend to approach assessing models quite differently. Then there are the analysis challenges associated with comparing performance across models, e.g., some provide charts where most just provide a table. Some at least add interactivity to the table (e.g., the ability to sort by different columns), while others don't. Additionally, many test common use cases like chat, where very few test things like a model's ability to handle agents or interpret videos. And most don't provide tooltips letting you know what a benchmark metric actually tests, which is the issue that makes leaderboards most difficult to work with, imo. I set out to create a tool to reduce that learning curve.</li>
                                     <li>Hover over a node (i.e., dot/datapoint) to learn more or remind you of its function (e.g., task or benchmark to compare across models).</li>
+                                    <li>If your nodes get a little tangled, I've found that giving a hard tug on one of the main nodes (orange or blue) will generally be enough to detangle the clusters. It's kinda cathartic to rearrange them. 👀</li>
                                     <li>When scrolling be careful to move your mouse to the right or left of the graph as using your mouse wheel could cause unexpected zoom behavior. </li>
                                     <li>You can pan the canvas by selecting it and dragging. This is helpful if you zoom in.</li>
                                     <li>Depending on how many options you selected, the dashboard can get quite complex and unwieldy. If you have nodes overlapping, you can drag a node to reposition it. You can also zoom in and out using your mouse wheel (or its equivalent) and increase the size of the canvas by dragging the bottom edge. (The line is thicker to provide a visual cue that it's a handle.)</li>
@@ -219,10 +220,11 @@
         <!-- 3. vis-network JavaScript -->
         <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
 
-        <!-- Check if vis is loaded -->
+        <!-- Check if vis is loaded 
         <script>
             console.log('After loading vis-network, vis is:', typeof vis);
         </script>
+        -->
 
         <!-- 4. My network.js (which uses vis) -->
         <script src="{{ url_for('static', filename='js/network.js') }}"></script>
@@ -234,17 +236,17 @@
         {% raw %}
 
         <script type="text/babel">
-            console.log('Starting React initialization');
+            // console.log('Starting React initialization'); 
         
             function LeaderboardModal() {
                 const [isOpen, setIsOpen] = React.useState(false);
                 const [data, setData] = React.useState(null);
         
                 React.useEffect(() => {
-                    console.log('LeaderboardModal mounted, setting up event listener');
+                    // console.log('LeaderboardModal mounted, setting up event listener');
         
                     function handleLeaderboardClick(event) {
-                        console.log('LeaderboardClick event received in React:', event.detail);
+                        // console.log('LeaderboardClick event received in React:', event.detail);
                         const nodeId = event.detail.nodeId;
         
                         // Hide any existing tooltip
@@ -254,18 +256,19 @@
                             tooltip.style.opacity = '0';
                         }
         
-                        console.log('Fetching data for node:', nodeId);
+                        // console.log('Fetching data for node:', nodeId);
                         fetch('/filter_data', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ node_id: nodeId })
                         })
                         .then(res => {
-                            console.log('Received response:', res);
+                            // console.log('Received response:', res);
                             return res.json();
                         })
                         .then(jsonData => {
-                            console.log('Parsed data:', jsonData);
+                            console.log('Data received from the server:', jsonData);
+                            console.log('Benchmarks received:', jsonData.benchmarks);
                             if (jsonData.error) {
                                 console.error('Error from server:', jsonData.error);
                                 return;
@@ -385,12 +388,12 @@
         
             // Then mount it in your "leaderboard-container" div
             (() => {
-                console.log('Attempting to mount LeaderboardModal');
+                // console.log('Attempting to mount LeaderboardModal');
                 const container = document.getElementById('leaderboard-container');
                 if (container) {
-                    console.log('Found container, creating root');
+                    // console.log('Found container, creating root');
                     const root = ReactDOM.createRoot(container);
-                    console.log('Rendering LeaderboardModal');
+                    // console.log('Rendering LeaderboardModal');
                     root.render(<LeaderboardModal />);
                 } else {
                     console.error('Could not find leaderboard-container');

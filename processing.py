@@ -1,8 +1,17 @@
+# ========================================================================
+#   Imports
+# ======================================================================== 
+
 import json
 from pyvis.network import Network
 
+
+# ========================================================================
+#   Build Default Network Graph Structure
+# ======================================================================== 
+
 def build_network(recommendations):
-    print(f"Building network with recommendations: {len(recommendations)} tasks")
+    # print(f"Building network with recommendations: {len(recommendations)} tasks")
     if not recommendations:
         print("Warning: Empty recommendations provided")
         return None  # or handle appropriately
@@ -135,46 +144,4 @@ def build_network(recommendations):
                     )
                     net.add_edge(lb_id, benchmark_id, color='#999999')
 
-
-
-    # Network styling options
-    # Commented out as a part of the refactoring process
-    # options = {
-    #     'layout': {
-    #         'hierarchical': {
-    #             'enabled': False,        # CHANGED: Set hierarchical to false because we're using a physics-based layout for repulsion
-    #             # Remove or comment out hierarchical parameters if not needed
-    #         },
-    #         'improvedLayout': False     # Keep this false to see the physics in action
-    #     },
-    #     'nodes': {
-    #         'font': label_font,
-    #         'shape': 'dot',
-    #         'borderWidth': 2,
-    #         'borderWidthSelected': 4
-    #     },
-    #     'edges': {
-    #         'smooth': False,
-    #         'width': 1,
-    #         'color': '#999999'
-    #     },
-    #     'physics': {
-    #         'enabled': True,            # NEW: Enable physics to allow for node repulsion
-    #         'solver': 'barnesHut',      # NEW: Use the barnesHut solver, which allows adjusting gravity and overlap
-    #         'barnesHut': {
-    #             'gravitationalConstant': -30000,  # NEW: Large negative value increases repulsion
-    #             'centralGravity': 0.3,            # Adjust as needed
-    #             'springLength': 95,               # Adjust if nodes are still too close
-    #             'springConstant': 0.04,
-    #             'damping': 0.09,
-    #             'avoidOverlap': 1                 # NEW: Ensures nodes don’t overlap by treating them as larger
-    #         },
-    #         'minVelocity': 0.75                   # Adjust to prevent nodes from settling too close
-    #     },
-    #     'interaction': {
-    #         'hover': True
-    #     }
-    # }
-
-    # net.set_options(json.dumps(options))
     return net

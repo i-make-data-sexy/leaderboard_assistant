@@ -31,11 +31,11 @@ window.addEventListener('resize', function() {
 // Key functionality of network graph using vis.js  with the data provided from the Flask backend
 function initializeNetwork() {
     try {
-        console.log('Initializing network:', {
-            'vis available': typeof vis !== 'undefined',
-            'network data exists': !!window.networkData,
-            'container exists': !!document.getElementById('network-container')
-        });
+        // console.log('Initializing network:', {
+        //     'vis available': typeof vis !== 'undefined',
+        //     'network data exists': !!window.networkData,
+        //     'container exists': !!document.getElementById('network-container')
+        // });
         
         // Check for vis-network library
         if (typeof vis === 'undefined') {
@@ -161,7 +161,7 @@ function initializeNetwork() {
         }
 
         // NEW: Log network creation
-        console.log('Network creation successful. Setting up event listeners...');
+        // console.log('Network creation successful. Setting up event listeners...');
 
         // Once stabilized add an event to watch for node hovers
         network.once('stabilized', function () {
@@ -286,12 +286,12 @@ function setupNetworkClickHandler() {
     });
 }
 
-console.log('Network click handler setup complete');
+// console.log('Network click handler setup complete');
 
 // Handle clicks on leaderboard nodes
 // In network.js, update handleLeaderboardNodeClick:
 function handleLeaderboardNodeClick(nodeId) {
-    console.log('handleLeaderboardNodeClick fired for node:', nodeId);
+    // console.log('handleLeaderboardNodeClick fired for node:', nodeId);
     
     // Hide any existing tooltips
     const tooltips = document.querySelectorAll('.vis-tooltip');
@@ -304,9 +304,9 @@ function handleLeaderboardNodeClick(nodeId) {
     const event = new CustomEvent('leaderboardClick', { 
         detail: { nodeId: nodeId }
     });
-    console.log('Dispatching leaderboardClick event:', event);
+    // console.log('Dispatching leaderboardClick event:', event);
     window.dispatchEvent(event);
-    console.log('Event dispatched');
+    // console.log('Event dispatched');
 }
 
 /* ========================================================================

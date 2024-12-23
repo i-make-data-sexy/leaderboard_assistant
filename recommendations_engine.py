@@ -2449,7 +2449,7 @@ RECOMMENDATIONS = {
                 "benchmarks": [
                     {
                         "benchmark_name": "Speed (TPS)",
-                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., its throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]

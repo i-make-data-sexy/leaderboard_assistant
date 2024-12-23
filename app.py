@@ -1,18 +1,60 @@
-from flask import Flask, render_template, request, jsonify 
+# ========================================================================
+#   Imports
+# ======================================================================== 
+
+from flask import Flask, render_template, request, jsonify, send_from_directory, make_response
 import logging
 import os
 import json
+import importlib
 from recommendations_engine import QUESTIONS, RECOMMENDATIONS
 from processing import build_network
 import pandas as pd
 from bs4 import BeautifulSoup
 
+
+# ========================================================================
+#   Configure Logging
+# ========================================================================
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+
+# ========================================================================
+#   Disable Caching
+# ======================================================================== 
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+# Disable caching for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  
+
+# Add this too for good measure
+app.config['TEMPLATES_AUTO_RELOAD'] = True    
+
+
+@app.context_processor
+def utility_processor():
+    def get_version():
+        return str(os.path.getmtime('recommendations_engine.py'))
+    return dict(version=get_version)
+
+
+# ========================================================================
+#   Routes
+# ======================================================================== 
 
 @app.route('/')
 def index():
     try:
+        # Force reload the recommendations module
+        import recommendations_engine
+        importlib.reload(recommendations_engine)
+        
         # Process QUESTIONS and RECOMMENDATIONS data into a "processed_data" format
         # Get query parameters for filtering tasks and goals
         tasks_selected = request.args.getlist('tasks')   # Retrieves tasks from query params like ?tasks=chat&tasks=generate_text
@@ -109,13 +151,32 @@ def index():
             'edges': net.edges
         }
 
-        # Render the template, passing in the graph HTML and processed_data
-        return render_template(
+        # Render the template, passing in the most recent graph HTML and processed_data
+        response = render_template(
             'index.html',
             network_data=json.dumps(network_data),
             initial_data=json.dumps(processed_data),
             recommendations_data=RECOMMENDATIONS
         )
+        
+        # Create a response object that I can modify with headers
+        # Add cache-control headers to prevent browser caching
+        # 'no-cache': browser must revalidate with server before using cached version
+        # 'no-store': browser shouldn't store the response at all
+        # 'must-revalidate': browser must check if the content has changed
+        response = make_response(response)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        
+        # 'Pragma: no-cache' for backwards compatibility with HTTP/1.0
+        response.headers['Pragma'] = 'no-cache'
+        
+        # Set expiration to 0 to help prevent caching in older browsers
+        response.headers['Expires'] = '0'
+        
+        # Return the modified response with no-cache headers
+        return response
+
+        
        
     except Exception as e:
         logging.error(f"Error in index route: {str(e)}")
@@ -129,6 +190,15 @@ def index():
 @app.route('/filter_data', methods=['POST'])
 def filter_data():
     try:
+        # Trying to resolve caching issue
+        import recommendations_engine
+        importlib.reload(recommendations_engine)
+        # Re-import after reload
+        from recommendations_engine import RECOMMENDATIONS  
+        
+        # Add logging to see what's being loaded
+        logging.info("Reloaded RECOMMENDATIONS module")
+        
         node_id = request.json.get('node_id')
         if not node_id:
             return jsonify({"error": "No node ID provided"}), 400
@@ -160,6 +230,9 @@ def filter_data():
                                         'score_interpretation': bench.get('score_interpretation', '')
                                     }
                             
+                            # Logging to diagnose caching issue
+                            logging.info(f"Sending benchmark data for {lb_name}: {json.dumps(bench_obj, indent=2)}")
+                            
                             # Build final response
                             return jsonify({
                                 'leaderboard': lb['leaderboard'],  # Full name
@@ -175,6 +248,9 @@ def filter_data():
                                 # 'methodology': lb.get('methodology', {}).get('url', '')
                             })
 
+        # Add this right before your return jsonify line
+        logging.info(f"Sending benchmark data for {lb_name}: {json.dumps(bench_obj, indent=2)}")
+        
         return jsonify({"error": "Leaderboard not found"}), 404
     
     except Exception as e:
