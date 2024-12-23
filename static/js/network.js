@@ -116,7 +116,7 @@ function initializeNetwork() {
                 },
                 interaction: {
                     zoomView: true,
-                    zoomSpeed: 0.05,
+                    zoomSpeed: 0.08,
                     dragNodes: true,
                     dragView: true,
                     hover: true, 
