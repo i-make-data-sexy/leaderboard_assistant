@@ -132,7 +132,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -161,18 +160,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -554,8 +555,8 @@ RECOMMENDATIONS = {
                 "tooltip": "The Artificial Analysis Quality Evaluations leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
+                    "All 'tokens per second' metrics refer to OpenAI tokens. At the time of writing the Artificial Analysis team uses OpenAI tokens as a standard unit of measurement across all of its tests to allow fair comparisons between models.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -584,18 +585,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -654,6 +657,33 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Latency",
                         "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent. For models which do not support streaming, this represents time to receive the completion.",
+                        "score_interpretation": "Lower is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Speed (TTFT)",
+                        "benchmark_measures": "Time to First Token (TTFT) measures the amount of time it takes for a language model to generate and return the very first token of its response after receiving a user prompt, essentially measuring how quickly a user starts seeing output from the model after initiating a query.",
                         "score_interpretation": "Lower is better."
                     }
                 ]
@@ -994,7 +1024,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -1023,18 +1052,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -1558,7 +1589,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -1587,18 +1617,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -1669,20 +1701,21 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "The Artificial Analysis and Vellum leaderboards both use the HumanEval benchmark where KLU uses the BigCodeBench benchmark.",
-                    "All of the coding benchmarks included in this tool are Python-specific.",
-                    "While the HumanEval benchmark is Python-specific, extensions like HumanEval-X or MultiPLE have been developed to support additional programming languages, such as JavaScript, Java, C, C#, C++, PHP, Ruby, and Go.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).",
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "BCB Coding (BigCodeBench)",
-                        "benchmark_measures": "Evaluates the Python generation capabilities of an LLM by its performance in realistic programming scenarios. It's comprised of 1,140 function-level tasks that challenge models to utilize multiple function calls from 139 libraries across seven domains, including data analysis and web development. The tasks feature complex instructions and diverse function calls, aiming to assess models' abilities to understand intricate requirements and generate appropriate code solutions.",
-                        "score_interpretation": "Higher is better."
+                        "benchmark_name": "Speed (TTFT)",
+                        "benchmark_measures": "Time to First Token (TTFT) measures the amount of time it takes for a language model to generate and return the very first token of its response after receiving a user prompt, essentially measuring how quickly a user starts seeing output from the model after initiating a query.",
+                        "score_interpretation": "Lower is better."
                     }
                 ]
             },
@@ -1938,7 +1971,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -1967,18 +1999,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -2011,6 +2045,33 @@ RECOMMENDATIONS = {
             }
         ],
         "Latency": [
+            {
+                "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Speed (TTFT)",
+                        "benchmark_measures": "Time to First Token (TTFT) measures the amount of time it takes for a language model to generate and return the very first token of its response after receiving a user prompt, essentially measuring how quickly a user starts seeing output from the model after initiating a query.",
+                        "score_interpretation": "Lower is better."
+                    }
+                ]
+            },
             {
                 "leaderboard": "Vellum LLM Leaderboard",
                 "leaderboard_abbrev": "Vellum",
@@ -2347,7 +2408,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -2376,18 +2436,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -2446,6 +2508,33 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Latency",
                         "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent. For models which do not support streaming, this represents time to receive the completion.",
+                        "score_interpretation": "Lower is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Speed (TTFT)",
+                        "benchmark_measures": "Time to First Token (TTFT) measures the amount of time it takes for a language model to generate and return the very first token of its response after receiving a user prompt, essentially measuring how quickly a user starts seeing output from the model after initiating a query.",
                         "score_interpretation": "Lower is better."
                     }
                 ]
@@ -2965,7 +3054,6 @@ RECOMMENDATIONS = {
                 "analysis_tips": [
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -2994,18 +3082,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Quality Index",
-                        "benchmark_measures": "Evaluates the model's overall ability across reasoning, instruction-following, text generation, and domain-specific tasks such as math and coding.",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -3543,7 +3633,6 @@ RECOMMENDATIONS = {
                     "The math-leaning benchmarks from least to most difficult: 'GSM8K' (KLU/Vellum): grade school word problems; 'MATH' (KLU/Vellum): high school math (algebra, geometry, intro calculus); MATH-500 (Artificial Analysis): university-level math problems. I didn't include Chat Arena's MT-Bench benchmark (which it labels 'Math') because its focus is on assessing multi-turn conversation, which has some math overlap. It would be good to look at to see maybe a hybrid of chat and math (think Khan Academy's chatbot, Khanmigo), but since it's not a pure math benchmark, I left it out.",
                     "Speed is included in the 'Quality Evaluations', 'Performance Summary', 'Speed', and 'Total Response Time' sections of their leaderboard.",
                     "They shorten their 'Quality Index' benchmark to 'Quality' in their charts.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
                     "In the 'Further details' section they provide a link to the API Providers for each model, which is incredibly helpful. There can be significant differences in cost and performance from one provider to another.",
                     "These speed scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower speed but higher quality and at a fraction of the cost , it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
                     "I love their use of bubble charts to visualize their performance data because it provides context. And they make them even more useful by coloring the 'most attractive quadrant' green and the least attractive gray.",
@@ -3577,24 +3666,20 @@ RECOMMENDATIONS = {
                 },
                 "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
                 "analysis_tips": [
-                    "The math-leaning benchmarks from least to most difficult: 'GSM8K' (KLU/Vellum): grade school word problems; 'MATH' (KLU/Vellum): high school math (algebra, geometry, intro calculus); MATH-500 (Artificial Analysis): university-level math problems. I didn't include Chat Arena's MT-Bench benchmark (which it labels 'Math') because its focus is on assessing multi-turn conversation, which has some math overlap. It would be good to look at to see maybe a hybrid of chat and math (think Khan Academy's chatbot, Khanmigo), but since it's not a pure math benchmark, I left it out.",
-                    "These quality scores are best evaluated against other performance metrics, imo. (IOW, I'm a bigger fan of scatterplots than bar charts.) For example, if you find a model that has slightly lower quality but at a fraction of the cost with similar speed and lower latency, it might be a better choice overall. So take some time to check out their scatterplots on the same page.",
-                    "It's important to understand that the Artificial Analysis and KLU leaderboards measure speed differently. Artificial Analysis breaks it down into two metrics: latency (time to generate the first token) and tokens per second (TPS) (rate of token generation). KLU, on the other hand, measures inference speed, which looks at the total time to process input and generate the entire output without breaking it into latency or TPS components. So you can't do an apples-to-apples comparison between the two leaderboards.",
-                    "The 'What LLM Provider' leaderboard (which is based on Artificial Analysis' data) is a great resource for comparing metrics (https://whatllm.vercel.app/). You can choose your x and y axes (a man after my own heart) and also apply filters, e.g., Minimum Model Performance Index and Maximum Cost."
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).", # LEFT OFF
                 ],
                 "methodology": {
                     "text": "Methodology",
-                    "url": "https://artificialanalysis.ai/methodology"
+                    "url": "https://klu.ai/llm-leaderboard"
                 },
                 "benchmarks": [
                     {
-                        "benchmark_name": "Hard Math (MATH)",
-                        "benchmark_measures": "High school math (algebra, geometry, intro calculus)",
-                        "score_interpretation": "Higher is better."
-                    },
-                    {
-                        "benchmark_name": "Easy Math (GSM8K)",
-                        "benchmark_measures": "Grade school word problems",
+                        "benchmark_name": "Speed (TPS)",
+                        "benchmark_measures": "Tokens Per Second (TPS) measures the number of tokens a model can process per second, i.e., throughput.",
                         "score_interpretation": "Higher is better."
                     }
                 ]
@@ -3659,6 +3744,33 @@ RECOMMENDATIONS = {
                     {
                         "benchmark_name": "Latency",
                         "benchmark_measures": "Time to first token of tokens received, in seconds, after API request sent. For models which do not support streaming, this represents time to receive the completion.",
+                        "score_interpretation": "Lower is better."
+                    }
+                ]
+            },
+            {
+                "leaderboard": "KLU",
+                "leaderboard_abbrev": "KLU",
+                "leaderboard_link": {
+                    "text": "View leaderboard",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "tooltip": "The KLU leaderboard evaluates LLMs based on their own set of independent metrics.",
+                "analysis_tips": [
+                    "KLU didn't have a methodology page at the time of writing, but they have an FAQ section below the leaderboard, which touches on their methodology.",
+                    "One thing that could be confusing is at the time of writing KLU has two different columns in their tables labeled 'SPEED'. One measures tokens per second (TPS) where the other measures time to first token (TTFT). I categorize TTFT as latency, not speed.",
+                    "The goal is to have lower latency (TTFT) and higher throughput TPS.", 
+                    "One thing I like about this leaderboard is the ability to compare two models side by side. (Search for 'Frontier Model Comparison'. This is a nice feature when you've narrowed your model choices down to a couple.)", 
+                    "At the time of writing, the leaderboard listed Claud 3 Opus as having the largest context window, with 200k. However, they track Gemini 1.5 Pro, which has a 2m token context window, so this leaderboard (or at least the summary metrics at the top of the leaderboard).",
+                ],
+                "methodology": {
+                    "text": "Methodology",
+                    "url": "https://klu.ai/llm-leaderboard"
+                },
+                "benchmarks": [
+                    {
+                        "benchmark_name": "Speed (TTFT)",
+                        "benchmark_measures": "Time to First Token (TTFT) measures the amount of time it takes for a language model to generate and return the very first token of its response after receiving a user prompt, essentially measuring how quickly a user starts seeing output from the model after initiating a query.",
                         "score_interpretation": "Lower is better."
                     }
                 ]
