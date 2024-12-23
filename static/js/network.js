@@ -5,6 +5,9 @@
 // Initialize network object at global scope
 var network = null;
 
+// Initialize spinner root at global scope
+window.spinnerReactRoot = null;
+
 // Update canvas size to match container
 function resizeCanvas() {
     const container = document.getElementById('network-container');
@@ -47,6 +50,10 @@ function initializeNetwork() {
         if (!container) {
             throw new Error('network-container element not found');
         }
+
+        // Set positioning context on container
+        container.style.position = 'relative';
+
         
         // Check for network data
         if (!window.networkData) {
@@ -56,15 +63,76 @@ function initializeNetwork() {
         // Clear any existing content in the container
         container.innerHTML = '';
         
-        // Create a loading indicator
-        const loadingDiv = document.createElement('div');
-        loadingDiv.textContent = 'Loading network...';
-        loadingDiv.style.textAlign = 'center';
-        loadingDiv.style.padding = '20px';
-        container.appendChild(loadingDiv);
-    
-        const zoomLevel = $('#node-spacing-slider').val() || 1;
-        const networkData = window.networkData || { nodes: [], edges: [] };
+        /* ===============================
+            Spinner 
+            =============================== */
+
+        // Create loading spinner container
+        let spinnerRoot = document.createElement('div');
+        spinnerRoot.id = 'network-spinner';
+        spinnerRoot.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.8);
+        `;
+        container.appendChild(spinnerRoot);
+        console.log('Spinner container dimensions:', {
+            width: spinnerRoot.offsetWidth,
+            height: spinnerRoot.offsetHeight,
+            position: spinnerRoot.style.position,
+            zIndex: spinnerRoot.style.zIndex
+        });
+
+        // Create a single root for the spinner
+        let spinnerReactRoot = null;
+
+        // Function to create and show spinner
+        const showSpinner = () => {
+            try {
+                console.log('Attempting to show spinner...');
+                const spinnerElement = document.getElementById('network-spinner');
+                
+                if (!spinnerElement) {
+                    console.error('Spinner container not found in DOM');
+                    return;
+                }
+                
+                if (!window.LoadingSpinner) {
+                    console.log('LoadingSpinner not available yet, retrying...');
+                    setTimeout(showSpinner, 100);
+                    return;
+                }
+                
+                if (!window.spinnerReactRoot) {
+                    // Only create new root if one doesn't exist globally
+                    console.log('Creating new spinner root...');
+                    window.spinnerReactRoot = ReactDOM.createRoot(spinnerElement);
+                } else {
+                    console.log('Using existing spinner root...');
+                }
+                
+                window.spinnerReactRoot.render(React.createElement(window.LoadingSpinner));
+                console.log('Spinner rendered successfully');
+                
+            } catch (error) {
+                console.error('Error showing spinner:', error);
+            }
+        };
+
+        // Start showing spinner
+        showSpinner();
+     
+
+        // I can probably delete this as I'm now using the built-in zoom capabilities
+        // const zoomLevel = $('#node-spacing-slider').val() || 1;
+        // const networkData = window.networkData || { nodes: [], edges: [] };
         
         // console.log('Network data:', {
         //     nodes: networkData.nodes.length,
@@ -72,118 +140,125 @@ function initializeNetwork() {
         //     data: networkData
         // });
 
-        network = new vis.Network(
-            container,
-            {
-                nodes: new vis.DataSet(networkData.nodes),
-                edges: new vis.DataSet(networkData.edges)
-            },
-            {
-                // CHANGED: Remove hierarchical layout or set enabled: false to rely on physics only.
-                // If you want a physics-based layout with repulsion:
-                layout: {
-                    improvedLayout: false // CHANGED: Disables improvedLayout for a raw physics approach
+        setTimeout(() => {
+            network = new vis.Network(
+                container,
+                {
+                    nodes: new vis.DataSet(networkData.nodes),
+                    edges: new vis.DataSet(networkData.edges)
                 },
-        
-                // Use physics-based repulsion 
-                physics: {
-                    enabled: true,
-                    solver: 'barnesHut',
-                    barnesHut: {
-                        gravitationalConstant: -60000,
-                        centralGravity: 0,
-                        springLength: 200,
-                        springConstant: 0.04,
-                        damping: 0.09,
-                        avoidOverlap: 1
+                {
+
+                    // Physics-based layout with repulsion
+                    layout: {
+                        improvedLayout: false // CHANGED: Disables improvedLayout for a raw physics approach
                     },
-                    stabilization: {
+            
+                    // Use physics-based repulsion 
+                    physics: {
                         enabled: true,
-                        iterations: 1000,
-                        updateInterval: 50,
-                        onlyDynamicEdges: false,
-                        fit: true
+                        solver: 'barnesHut',
+                        barnesHut: {
+                            gravitationalConstant: -60000,
+                            centralGravity: 0,
+                            springLength: 200,
+                            springConstant: 0.04,
+                            damping: 0.09,
+                            avoidOverlap: 1
+                        },
+                        stabilization: {
+                            enabled: true,
+                            iterations: 1000,
+                            updateInterval: 50,
+                            onlyDynamicEdges: false,
+                            fit: true,
+                            // Add stabilization progress callback
+                            onChange: function(progress) {
+                                if (progress.iterations > 0) {
+                                    // Keep spinner until we have some network progress
+                                    const spinnerElement = document.getElementById('network-spinner');
+                                    if (spinnerElement) {
+                                        spinnerElement.style.opacity = '1';
+                                    }
+                                }
+                            },
+                        },
+                        minVelocity: 0.75,
+                        maxVelocity: 50,
                     },
-                    minVelocity: 0.75,
-                    maxVelocity: 50,
-                },
-                autoResize: true,
-                edges: {
-                    smooth: false,
-                    arrows: {
-                        to: false,
-                    }
-                },
-                interaction: {
-                    zoomView: true,
-                    zoomSpeed: 0.08,
-                    dragNodes: true,
-                    dragView: true,
-                    hover: true, 
-                    tooltipDelay: 0,
-                    hoverConnectedEdges: true,
-                    keyboard: false,                        // Disable keyboard navigation
-                    hideEdgesOnDrag: false,                  // Improve performance
-                },
-                nodes: {
-                    shape: 'dot',
-                    font: {
-                        face: 'Ek Mukta',
-                        size: 14,
-                        background: '#ffffffCC',
-                        color: '#333333',
-                        strokeWidth: 0,
-                        multi: true,
-                        bold: {
-                            color: '#333333',
-                            size: 16,
-                            face: 'Ek Mukta'
+                    autoResize: true,
+                    edges: {
+                        smooth: false,
+                        arrows: {
+                            to: false,
                         }
                     },
-                    borderWidth: 1,
-                    borderWidthSelected: 2,
-                    chosen: {
-                        node: function(values, id, selected, hovering) {
-                            if (hovering) {
-                                document.body.style.cursor = 'pointer';
+                    interaction: {
+                        zoomView: true,
+                        zoomSpeed: 0.08,
+                        dragNodes: true,
+                        dragView: true,
+                        hover: true, 
+                        tooltipDelay: 0,
+                        hoverConnectedEdges: true,
+                        keyboard: false,                        // Disable keyboard navigation
+                        hideEdgesOnDrag: false,                  // Improve performance
+                    },
+                    nodes: {
+                        shape: 'dot',
+                        font: {
+                            face: 'Ek Mukta',
+                            size: 14,
+                            background: '#ffffffCC',
+                            color: '#333333',
+                            strokeWidth: 0,
+                            multi: true,
+                            bold: {
+                                color: '#333333',
+                                size: 16,
+                                face: 'Ek Mukta'
+                            }
+                        },
+                        borderWidth: 1,
+                        borderWidthSelected: 2,
+                        chosen: {
+                            node: function(values, id, selected, hovering) {
+                                if (hovering) {
+                                    document.body.style.cursor = 'pointer';
+                                }
                             }
                         }
                     }
                 }
-            }
-        );
+            );
+ 
 
-        // NEW: Safely remove loadingDiv if it's still a child of container
-        if (loadingDiv.parentNode === container) {
-            container.removeChild(loadingDiv);
-        } else {
-            console.warn('loadingDiv was not in container, skipping removeChild');
-        }
+            // Only remove spinner after network fully stabilizes
+            network.once('stabilized', function () {
+                console.log('Network stabilized, removing spinner...');
+                const spinnerElement = document.getElementById('network-spinner');
+                if (spinnerElement && spinnerElement.parentNode === container) {
+                    spinnerElement.style.opacity = '0';
+                    spinnerElement.style.transition = 'opacity 0.5s ease-out';
+                    setTimeout(() => {
+                        container.removeChild(spinnerElement);
+                    }, 1000);  // Increased fade-out time
+                }
+                console.log('Network stabilized, attaching hoverNode listener');
+            });
 
-        // NEW: Log network creation
-        // console.log('Network creation successful. Setting up event listeners...');
+            // console.log(networkData.nodes);
+            // console.log(networkData.edges);
 
-        // Once stabilized add an event to watch for node hovers
-        network.once('stabilized', function () {
-            // NEW: Removed line below
-            // network.on('hoverNode', function (params) {
-                // console.log('Hovered node:', params.node);
-                
-            // This fires only once the layout is stable
-            console.log('Network stabilized, attaching hoverNode listener');
-        });
+            // console.log('Network creation successful');
+            // resizeCanvas();
 
-
-        // console.log(networkData.nodes);
-        // console.log(networkData.edges);
-
-        // console.log('Network creation successful');
-        // resizeCanvas();
-
-        // Ensure network fills the space initially
-        network.fit();                                      
-        setupZoomSlider();
-        setupNetworkClickHandler();
+            // Ensure network fills the space initially
+            network.fit();                                      
+            setupZoomSlider();
+            setupNetworkClickHandler();
+        
+        }, 500);                                                                    // Increased from 100ms to 500ms
     
     } catch (error) {
         console.error('Error initializing network:', error);
