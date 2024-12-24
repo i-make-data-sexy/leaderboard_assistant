@@ -296,7 +296,8 @@ function formatBenchmarkLabel(label) {
     ======================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
-    const networkContainerWrapper = document.querySelector('.network-container');
+    const networkContainerWrapper = document.querySelector('.network-wrapper');
+    const networkContainer = networkContainerWrapper.querySelector('.network-container');
     const resizer = document.querySelector('#resizer');
 
     let isDragging = false;
@@ -310,12 +311,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isDragging) return;
 
         // Measure from the top of .network-container
-        const containerRect = networkContainerWrapper.getBoundingClientRect();
+        const containerRect = networkContainer.getBoundingClientRect();
         const newHeight = e.clientY - containerRect.top;
 
         // Ensure minimum and maximum heights
         if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
-            networkContainerWrapper.style.height = `${newHeight}px`;
+            networkContainer.style.height = `${newHeight}px`;
             if (window.network) {
                 network.fit({
                     animation: {

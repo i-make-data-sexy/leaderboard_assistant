@@ -177,19 +177,23 @@
                 </span>
             </h2>
 
-             <!-- Network container -->
-             <div class="network-wrapper"> 
+            <!-- Network container -->
+            <div class="network-wrapper"> 
+
                 <!-- Spinner Overlay -->
                 <div id="spinner-overlay">
                     <div class="spinner"></div>
                 </div>
+
                 <!-- Network Container -->
                 <div class="network-container">
                     <div id="network-container">
                         {{ graph_body | safe }}
                     </div>
-                    <div id="resizer"></div>  
                 </div>
+
+                <!-- Resizer -->
+                <div id="resizer"></div>  
             </div>
         </div>
 
