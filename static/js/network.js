@@ -52,25 +52,9 @@ function initializeNetwork() {
         if (!window.networkData) {
             throw new Error('Network data not available');
         }
-        
-        // Clear any existing content in the container
-        container.innerHTML = '';
-        
-        // Create a loading indicator
-        const loadingDiv = document.createElement('div');
-        loadingDiv.textContent = 'Loading network...';
-        loadingDiv.style.textAlign = 'center';
-        loadingDiv.style.padding = '20px';
-        container.appendChild(loadingDiv);
     
         const zoomLevel = $('#node-spacing-slider').val() || 1;
         const networkData = window.networkData || { nodes: [], edges: [] };
-        
-        // console.log('Network data:', {
-        //     nodes: networkData.nodes.length,
-        //     edges: networkData.edges.length,
-        //     data: networkData
-        // });
 
         network = new vis.Network(
             container,
@@ -153,32 +137,21 @@ function initializeNetwork() {
             }
         );
 
-        // NEW: Safely remove loadingDiv if it's still a child of container
-        if (loadingDiv.parentNode === container) {
-            container.removeChild(loadingDiv);
-        } else {
-            console.warn('loadingDiv was not in container, skipping removeChild');
-        }
-
-        // NEW: Log network creation
-        // console.log('Network creation successful. Setting up event listeners...');
-
         // Once stabilized add an event to watch for node hovers
         network.once('stabilized', function () {
-            // NEW: Removed line below
-            // network.on('hoverNode', function (params) {
-                // console.log('Hovered node:', params.node);
                 
             // This fires only once the layout is stable
             console.log('Network stabilized, attaching hoverNode listener');
+
+            // Hide spinner after stabilization
+            const spinnerOverlay = document.getElementById('spinner-overlay');
+            if (spinnerOverlay) {
+                spinnerOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    spinnerOverlay.style.display = 'none';
+                }, 500);
+            }
         });
-
-
-        // console.log(networkData.nodes);
-        // console.log(networkData.edges);
-
-        // console.log('Network creation successful');
-        // resizeCanvas();
 
         // Ensure network fills the space initially
         network.fit();                                      

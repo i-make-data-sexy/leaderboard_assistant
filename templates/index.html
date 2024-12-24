@@ -192,12 +192,19 @@
 
             -->
 
-            <!-- Network container -->
-            <div class="network-container">
-                <div id="network-container">
-                    {{ graph_body | safe }}
+             <!-- Network container -->
+             <div class="network-wrapper"> 
+                <!-- Spinner Overlay -->
+                <div id="spinner-overlay">
+                    <div class="spinner"></div>
                 </div>
-                <div id="resizer"></div>  
+                <!-- Network Container -->
+                <div class="network-container">
+                    <div id="network-container">
+                        {{ graph_body | safe }}
+                    </div>
+                    <div id="resizer"></div>  
+                </div>
             </div>
         </div>
 

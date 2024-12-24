@@ -456,8 +456,40 @@ canvas.vis-network-canvas:hover {
 
 
 /* ========================================================================
-   Form Styles
+   Spinner
    ======================================================================== */
+/* Spinner Overlay */
+#spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's above the network graph */
+    pointer-events: none; /* Allow interactions to pass through */
+    transition: opacity 0.5s ease-out; /* Smooth fade-out */
+}
+#spinner-overlay.hidden {
+    display: none;
+}
+/* Spinner Animation */
+.spinner {
+    border: 8px solid #f3f3f3; /* Light gray */
+    border-top: 8px solid #8bb42d; /* Green */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+/* Spin Keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 /* ========================================================================
