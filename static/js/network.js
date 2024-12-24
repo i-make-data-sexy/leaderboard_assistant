@@ -316,14 +316,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Ensure minimum and maximum heights
         if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
+            // Log the element being resized
+            console.log("Resizing element:", networkContainer); 
+
             networkContainer.style.height = `${newHeight}px`;
             if (window.network) {
-                network.fit({
-                    animation: {
-                        duration: 500,
-                        easingFunction: 'easeInOutQuad'
-                    }
-                });
+                network.redraw();
             }
         }
     });
