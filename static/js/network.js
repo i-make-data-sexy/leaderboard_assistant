@@ -26,8 +26,6 @@ window.addEventListener('resize', function() {
     }
 });
 
-
-
 // Key functionality of network graph using vis.js  with the data provided from the Flask backend
 function initializeNetwork() {
     try {        
@@ -156,29 +154,98 @@ function initializeNetwork() {
     }
 }
 
-// Setup when document is ready
+
+/* ========================================================================
+   Event Listeners
+   ======================================================================== */
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Results container
     const resultsContainer = document.getElementById('results');
     if (!resultsContainer) {
         console.error('Results container not found');
         return;
     }
 
-    // Initialize if container is already visible
     if (!resultsContainer.classList.contains('hidden')) {
         initializeNetwork();
     }
 
-    // Setup form submission handler
+    // Model picker form
     const form = document.getElementById('modelPickerForm');
     if (form) {
         form.addEventListener('submit', function() {
-            // Form submission will naturally update URL
             resultsContainer.classList.remove('hidden');
-        setTimeout(initializeNetwork, 100);                         // Give DOM time to update
+            setTimeout(initializeNetwork, 100);
         });
     }
+
+    // Network graph 
+    const networkContainerWrapper = document.querySelector('.network-wrapper');
+    const networkContainer = networkContainerWrapper.querySelector('.network-container');
+    const resizer = document.querySelector('#resizer');
+
+    let isDragging = false;
+    let originalMouseY = 0;
+
+    // Resizer
+    resizer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        originalMouseY = e.clientY;
+        document.body.style.cursor = 'row-resize';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const deltaY = e.clientY - originalMouseY;
+        const newHeight = networkContainer.offsetHeight + deltaY;
+
+        if (newHeight > 300) {
+            networkContainer.style.height = `${newHeight}px`;
+            if (window.network) {
+                network.redraw();
+            }
+        }
+
+        originalMouseY = e.clientY;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+        }
+    });
+
+    // Search
+    const searchInput = document.getElementById('network-search');
+    const clearButton = document.getElementById('clear-search');
+    
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                const searchTerm = searchInput.value;  // Removed .trim()
+                searchNetwork(searchTerm);
+            } else if (!network) {  //Simplified
+                console.error("Network not initialized. Cannot search.");
+            }
+        });
+    
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                searchInput.value = '';
+                searchNetwork(''); // Reset graph on clear
+            });
+        } else {
+            console.error("Clear button not found.");
+        }
+    
+    } else {
+        console.error("Search input not found.");
+    }
 });
+
 
 /* ========================================================================
    Slider Configuration and Event Handling
@@ -250,7 +317,6 @@ function setupNetworkClickHandler() {
 }
 
 // Handle clicks on leaderboard nodes
-// In network.js, update handleLeaderboardNodeClick:
 function handleLeaderboardNodeClick(nodeId) {    
     // Hide any existing tooltips
     const tooltips = document.querySelectorAll('.vis-tooltip');
@@ -271,7 +337,6 @@ function handleLeaderboardNodeClick(nodeId) {
    Window Event Handling and UI Updates
    ======================================================================== */
 
-
 // Handle window resize events
 $(window).on('resize', function() {
     resizeCanvas();
@@ -291,56 +356,58 @@ function formatBenchmarkLabel(label) {
     return label;
 }
 
+
 /* ========================================================================
-    Resize Visualization Container
+    Search Network Graph
     ======================================================================== */
 
-document.addEventListener('DOMContentLoaded', function () {
-    const networkContainerWrapper = document.querySelector('.network-wrapper');
-    const networkContainer = networkContainerWrapper.querySelector('.network-container');
-    const resizer = document.querySelector('#resizer');
+function searchNetwork(searchTerm) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase(); // Case-insensitive search
 
-    let isDragging = false;
-
-    // Store the initial mouse Y position
-    let originalMouseY = 0;
-
-    resizer.addEventListener('mousedown', (e) => {
-        isDragging = true;
-
-        // Capture the initial mouse Y
-        originalMouseY = e.clientY;
-        document.body.style.cursor = 'row-resize';
+    // Reset all nodes to visible
+    network.getNodes().forEach(nodeId => {
+        const node = network.body.nodes[nodeId];
+        node.options.opacity = 1; // Reset opacity
+        node.options.font = { ...node.options.font, background: 'rgba(255, 255, 255, 0.8)'};
+        network.body.emitter.emit('_dataChanged'); // This helps immediately update the visualization.
     });
 
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+    if (lowerCaseSearchTerm) {
+        network.getNodes().forEach(nodeId => {
+            let nodeMatches = false;
 
-        // Change in mouse Y
-        const deltaY = e.clientY - originalMouseY; 
-
-        // Calculate new height based on delta
-        const newHeight = networkContainer.offsetHeight + deltaY; 
-
-        // Ensure minimum and maximum heights
-        if (newHeight > 300) {
-            // Log the element being resized
-            // console.log("Resizing element:", networkContainer); 
-
-            networkContainer.style.height = `${newHeight}px`;
-            if (window.network) {
-                network.redraw();
+            // Check both label and tooltip (title)
+            const node = network.body.nodes[nodeId];
+            if (node.options.label && node.options.label.toLowerCase().includes(lowerCaseSearchTerm)) {
+                nodeMatches = true;
+                markNodeText(node, lowerCaseSearchTerm); // Call markNodeText to highlight the label
+            } else if (node.options.title && node.options.title.toLowerCase().includes(lowerCaseSearchTerm)) {
+                nodeMatches = true;
             }
-        }
 
-        // Update for the next mousemove
-        originalMouseY = e.clientY; 
-    });
+            if (!nodeMatches) {
+                // Reduce opacity if no match found
+                node.options.opacity = 0.4;
+            }
 
-    document.addEventListener('mouseup', () => {
-        if (isDragging) {
-            isDragging = false;
-            document.body.style.cursor = 'default';
-        }
-    });
-});
+            network.body.emitter.emit('_dataChanged'); 
+        });
+
+    }
+}
+
+
+/* ========================================================================
+    Highlight Keywords
+    ======================================================================== */
+
+function markNodeText(node, searchTerm) {
+    const originalLabel = node.options.label;
+    const highlightedLabel = originalLabel.replace(
+        new RegExp(searchTerm, 'gi'),
+        match => `<span style="background-color:#ffa500; color: white;">${match}</span>`
+    );
+    node.options.font = { ...node.options.font, background: 'transparent'}; // Remove background from node to not interfere with label highlight.
+    node.options.label = highlightedLabel;
+    network.body.emitter.emit('_dataChanged'); 
+}

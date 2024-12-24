@@ -24,6 +24,7 @@
     </script>
 </head>
 <body>
+    <!-- App Container -->
     <div class="container-fluid"> 
         <div class="modal-backdrop"></div>
         
@@ -33,8 +34,9 @@
             <img src="{{ url_for('static', filename='img/annielytics-logo.png') }}" alt="Annielytics Logo" class="header-logo">
         </div>
 
-        <!-- Model Picker Form Container -->
+        <!-- Step 1 / Model Picker Container -->
         <div class="d-flex justify-content-between align-items-baseline">
+            <!-- Step 1 -->
             <h2>Step 1: Let's get some information about your model's purpose
                 <span class="info-icon info-icon-trigger" tabindex="0" title="Select to view tips">ⓘ
                     <div class="modal">
@@ -61,6 +63,7 @@
                 </span>
             </h2>
 
+            <!-- Hire Me Link -->
             <div class="link-container">
                 <a href="https://annielytics.com/services/ai-strategy/" 
                    target="_blank" 
@@ -71,6 +74,8 @@
                 <span class="chess-piece">♟️</span>
             </div>
         </div>
+
+        <!-- Model Picker -->
         <form id="modelPickerForm">
             <section class="form-section">
                 <!-- Tasks -->
@@ -150,37 +155,48 @@
 
         <!-- Results Container -->
         <div id="results" class="results-container hidden">
-            <h2>Step 2: Find benchmarks appropriate to compare models against
-                <span class="info-icon info-icon-trigger" tabindex="0" title="Select to view tips">ⓘ
-                    <div class="modal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Tips for using the graph</h5>
-                                <span class="close">&times;</span>
-                            </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <li>The learning curve for using leaderboards is quite high. It doesn't help that they tend to approach assessing models quite differently. Then there are the analysis challenges associated with comparing performance across models, e.g., some provide charts where most just provide a table. Some at least add interactivity to the table (e.g., the ability to sort by different columns), while others don't. Additionally, many test common use cases like chat, where very few test things like a model's ability to handle agents or interpret videos. And most don't provide tooltips letting you know what a benchmark metric actually tests, which is the issue that makes leaderboards most difficult to work with, imo. I set out to create a tool to reduce that learning curve.</li>
-                                    <li>Hover over a node (i.e., dot/datapoint) to learn more or remind you of its function (e.g., task or benchmark to compare across models).</li>
-                                    <li>If your nodes get a little tangled, I've found that giving a hard tug on one of the main nodes (orange or blue) will generally be enough to detangle the clusters. It's kinda cathartic to rearrange them. 👀</li>
-                                    <li>When scrolling be careful to move your mouse to the right or left of the graph as using your mouse wheel could cause unexpected zoom behavior. </li>
-                                    <li>You can pan the canvas by selecting it and dragging. This is helpful if you zoom in.</li>
-                                    <li>Depending on how many options you selected, the dashboard can get quite complex and unwieldy. If you have nodes overlapping, you can drag a node to reposition it. You can also zoom in and out using your mouse wheel (or its equivalent) and increase the size of the canvas by dragging the bottom edge. (The line is thicker to provide a visual cue that it's a handle.)</li>
-                                    <li>Because the leaderboards introduce the most complexity, I went through each listed in the visualization and compiled a list of tips. You can view those, as well as other important details, by clicking on a leaderboard node (the green ones). You can click through to the leaderboard, learn about the methodology behind their approach to evaluating models, and see a list of the benchmark metrics pertinent to the task/measurement pair you're focused on (e.g., Convert speech to text / Quality).</li>
-                                    <li>I let you know leaderboards that also include charts. Some, like the Artificial Analysis leaderboard (my personal fave), provide charts that are really helpful in seeing how models compare, especially their bubble charts, which allow you to compare three benchmark metrics at once (e.g., quality, cost, and speed). If I find a chart I really like on the Artificial Analysis leaderboard, I'll fire up the What LLM Provider leaderboard (https://whatllm.vercel.app/) to view cleaner visualizations that give me more control. It uses the AA data. You just need to check out Dylan's last updated date at the bottom of the page to make sure the data isn't too outdated. I don't know Dylan, and he hasn't asked me to promote his dashboard; I'm just a big fan of wildly interactive dashboards (example from one of my own tools: https://annielytics.com/services/404-no-more/)</li>
-                                    <li>You can share links to the filtered dashboard because your filter options are captured in the url.</li>
-                                    <li>I will be building this tool out as I add more tasks. If you have a suggestion or correction, please fill out the form below.</li>
-                                </ul>
+            <!-- H2 / Search Row -->
+            <div class="d-flex justify-content-between align-items-baseline">
+                <!-- Step 2 -->
+                <h2>Step 2: Find benchmarks to compare models against
+                    <span class="info-icon info-icon-trigger" tabindex="0" title="Select to view tips">ⓘ
+                        <div class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Tips for using the graph</h5>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <ul>
+                                        <li>The learning curve for using leaderboards is quite high. It doesn't help that they tend to approach assessing models quite differently. Then there are the analysis challenges associated with comparing performance across models, e.g., some provide charts where most just provide a table. Some at least add interactivity to the table (e.g., the ability to sort by different columns), while others don't. Additionally, many test common use cases like chat, where very few test things like a model's ability to handle agents or interpret videos. And most don't provide tooltips letting you know what a benchmark metric actually tests, which is the issue that makes leaderboards most difficult to work with, imo. I set out to create a tool to reduce that learning curve.</li>
+                                        <li>Hover over a node (i.e., dot/datapoint) to learn more or remind you of its function (e.g., task or benchmark to compare across models).</li>
+                                        <li>If your nodes get a little tangled, I've found that giving a hard tug on one of the main nodes (orange or blue) will generally be enough to detangle the clusters. It's kinda cathartic to rearrange them. 👀</li>
+                                        <li>When scrolling be careful to move your mouse to the right or left of the graph as using your mouse wheel could cause unexpected zoom behavior. </li>
+                                        <li>You can pan the canvas by selecting it and dragging. This is helpful if you zoom in.</li>
+                                        <li>Depending on how many options you selected, the dashboard can get quite complex and unwieldy. If you have nodes overlapping, you can drag a node to reposition it. You can also zoom in and out using your mouse wheel (or its equivalent) and increase the size of the canvas by dragging the bottom edge. (The line is thicker to provide a visual cue that it's a handle.)</li>
+                                        <li>Because the leaderboards introduce the most complexity, I went through each listed in the visualization and compiled a list of tips. You can view those, as well as other important details, by clicking on a leaderboard node (the green ones). You can click through to the leaderboard, learn about the methodology behind their approach to evaluating models, and see a list of the benchmark metrics pertinent to the task/measurement pair you're focused on (e.g., Convert speech to text / Quality).</li>
+                                        <li>I let you know leaderboards that also include charts. Some, like the Artificial Analysis leaderboard (my personal fave), provide charts that are really helpful in seeing how models compare, especially their bubble charts, which allow you to compare three benchmark metrics at once (e.g., quality, cost, and speed). If I find a chart I really like on the Artificial Analysis leaderboard, I'll fire up the What LLM Provider leaderboard (https://whatllm.vercel.app/) to view cleaner visualizations that give me more control. It uses the AA data. You just need to check out Dylan's last updated date at the bottom of the page to make sure the data isn't too outdated. I don't know Dylan, and he hasn't asked me to promote his dashboard; I'm just a big fan of wildly interactive dashboards (example from one of my own tools: https://annielytics.com/services/404-no-more/)</li>
+                                        <li>You can share links to the filtered dashboard because your filter options are captured in the url.</li>
+                                        <li>I will be building this tool out as I add more tasks. If you have a suggestion or correction, please fill out the form below.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </span>
-            </h2>
+                    </span>
+                </h2>
+                
+                <!-- Search -->
+                <div class="clearable-input">
+                    <input type="text" id="network-search" placeholder="Search..." required>
+                    <span class="clear-input">&times;</span>
+                </div>
 
-            <!-- Network container -->
+            </div>
+
+            <!-- Network Container -->
             <div class="network-wrapper"> 
 
-                <!-- Spinner Overlay -->
+                <!-- Spinner Container -->
                 <div id="spinner-overlay">
                     <div class="spinner"></div>
                 </div>
@@ -197,7 +213,7 @@
             </div>
         </div>
 
-        <!-- Modal Container -->
+        <!-- Leaderboard Modal Container -->
         <div id="leaderboard-container"></div>
 
         <!-- Check if the leaderboard modal container exists 
@@ -286,7 +302,6 @@
                     }
                 }
         
-                // NOTE: Removed the entire <div className="modal-footer"> ... </div> block
                 return (
                     <div className={isOpen ? "modal d-block" : "modal"}>
                         <div className="modal-content">
@@ -429,6 +444,7 @@
                 }
             });
 
+            // Model picker logic 
             document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('modelPickerForm');
                 const resultsContainer = document.getElementById('results');

@@ -1421,57 +1421,57 @@ RECOMMENDATIONS = {
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Clone Detection (Code-Code)",
+                        "benchmark_name": "Clone Detection",
                         "benchmark_measures": "Identifies semantically equivalent code snippets despite syntactic differences",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Defect Detection (Code-Code)",
+                        "benchmark_name": "Defect Detection",
                         "benchmark_measures": "Evaluates ability to identify bugs and potential defects in code",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Cloze Test (Code-Code)",
+                        "benchmark_name": "Cloze Test",
                         "benchmark_measures": "Evaluates understanding of code context by predicting masked tokens in code sequences",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Code Completion (Code-Code)",
+                        "benchmark_name": "Code Completion",
                         "benchmark_measures": "Evaluates ability to autocomplete partial code snippets with contextually appropriate suggestions",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Code Refinement (Code-Code)",
+                        "benchmark_name": "Code Refinement",
                         "benchmark_measures": "Evaluates capacity to improve code quality through bug fixes and optimizations",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Code Translation (Code-Code)",
+                        "benchmark_name": "Code Translation",
                         "benchmark_measures": "Evaluates ability to convert code between different programming languages while preserving functionality",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Type Prediction (Code-Code)",
+                        "benchmark_name": "Type Prediction",
                         "benchmark_measures": "Predicts variable and function types in dynamically typed languages",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Natural Language Code Search (Text-Code)",
+                        "benchmark_name": "Natural Language Code Search",
                         "benchmark_measures": "Evaluates effectiveness in finding relevant code snippets based on natural language queries",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Code Generation (Text-Code)",
+                        "benchmark_name": "Code Generation",
                         "benchmark_measures": "Evaluates ability to create executable code from natural language descriptions",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Code Summarization (Code-Text)",
+                        "benchmark_name": "Code Summarization",
                         "benchmark_measures": "Evaluates capacity to generate concise natural language descriptions of code functionality",
                         "score_interpretation": "Higher is better."
                     },
                     {
-                        "benchmark_name": "Documentation Translation (Text-Text)",
+                        "benchmark_name": "Documentation Translation",
                         "benchmark_measures": "Evaluates accuracy in translating technical documentation between different human languages",
                         "score_interpretation": "Higher is better."
                     }
