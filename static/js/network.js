@@ -302,17 +302,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let isDragging = false;
 
+    // Store the initial mouse Y position
+    let originalMouseY = 0;
+
     resizer.addEventListener('mousedown', () => {
         isDragging = true;
+
+        // Capture the initial mouse Y
+        originalMouseY = e.clientY;
         document.body.style.cursor = 'row-resize';
     });
 
     document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
 
-        // Measure from the top of .network-container
-        const containerRect = networkContainer.getBoundingClientRect();
-        const newHeight = e.clientY - containerRect.top;
+        // Change in mouse Y
+        const deltaY = e.clientY - originalMouseY; 
+
+        // Calculate new height based on delta
+        const newHeight = networkContainer.offsetHeight + deltaY; 
 
         // Ensure minimum and maximum heights
         if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
@@ -324,6 +332,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 network.redraw();
             }
         }
+
+        // Update for the next mousemove
+        originalMouseY = e.clientY; 
     });
 
     document.addEventListener('mouseup', () => {
