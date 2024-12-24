@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Store the initial mouse Y position
     let originalMouseY = 0;
 
-    resizer.addEventListener('mousedown', () => {
+    resizer.addEventListener('mousedown', (e) => {
         isDragging = true;
 
         // Capture the initial mouse Y
@@ -323,9 +323,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const newHeight = networkContainer.offsetHeight + deltaY; 
 
         // Ensure minimum and maximum heights
-        if (newHeight > 300 && newHeight < window.innerHeight * 0.9) {
+        if (newHeight > 300) {
             // Log the element being resized
-            console.log("Resizing element:", networkContainer); 
+            // console.log("Resizing element:", networkContainer); 
 
             networkContainer.style.height = `${newHeight}px`;
             if (window.network) {
