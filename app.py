@@ -58,33 +58,13 @@ def index():
         # Add this right after reloading
         with open('recommendations_engine.py', 'r') as f:
             content = f.read()
-            logging.info("Content of recommendations_engine.py:")
-            logging.info(content)
         
         # Process QUESTIONS and RECOMMENDATIONS data into a "processed_data" format
         # Get query parameters for filtering tasks and goals
         tasks_selected = request.args.getlist('tasks')   # Retrieves tasks from query params like ?tasks=chat&tasks=generate_text
         goals_selected = request.args.getlist('goals')   # Retrieves goals from query params like ?goals=quality&goals=speed
-        
-        # ADD LOGGING: Print selected tasks and goals
-        logging.info(f"Tasks selected: {tasks_selected}")
-        logging.info(f"Goals selected: {goals_selected}")
 
-        # ADD LOGGING: Print all available tasks and goals from RECOMMENDATIONS
-        # This helps confirm that the keys you selected actually exist
         all_tasks = list(RECOMMENDATIONS.keys())
-        # logging.info(f"All available tasks in RECOMMENDATIONS: {all_tasks}")
-        # # If needed, you can also log goals for each task
-        # for t, g_dict in RECOMMENDATIONS.items():
-        #     logging.info(f"Task: {t}, available goals: {list(g_dict.keys())}")
-        
-        # Add these lines right after you get RECOMMENDATIONS and before filtering logic:
-        # NEW: Logging to see what keys RECOMMENDATIONS has.
-        logging.info(f"Tasks available in RECOMMENDATIONS: {list(RECOMMENDATIONS.keys())}")
-        for t, g_dict in RECOMMENDATIONS.items():
-            logging.info(f"For task '{t}', goals available: {list(g_dict.keys())}")
-
-
         
         # If tasks and goals are specified, filter RECOMMENDATIONS
         if tasks_selected and goals_selected:              
@@ -98,31 +78,22 @@ def index():
                         continue
                     filtered_goals[goal] = leaderboards
                 if filtered_goals:
-                    filtered_recs[task] = filtered_goals
-            
-            # ADD LOGGING: Show what's in filtered_recs when both tasks and goals are filtered
-            logging.info(f"Filtered recommendations (tasks & goals): {json.dumps(filtered_recs, indent=2)}")        
+                    filtered_recs[task] = filtered_goals       
                     
         # If only tasks are selected, filter only by tasks
         elif tasks_selected:
-            logging.info("Filtering by tasks only")
             filtered_recs = {task: goals for task, goals in RECOMMENDATIONS.items() if task in tasks_selected}
             # ADD LOGGING: Show filtered_recs for tasks only
-            logging.info(f"Filtered recommendations (tasks only): {json.dumps(filtered_recs, indent=2)}")
             
         # If only goals are selected, filter only by goals
         elif goals_selected:
-            logging.info("Filtering by goals only")
             filtered_recs = {}
             for task, goals in RECOMMENDATIONS.items():
                 filtered_goals = {goal: leaderboards for goal, leaderboards in goals.items() if goal in goals_selected}
                 if filtered_goals:
                     filtered_recs[task] = filtered_goals
-            # ADD LOGGING: Show filtered_recs for goals only
-            logging.info(f"Filtered recommendations (goals only): {json.dumps(filtered_recs, indent=2)}")
             
         else:
-            logging.info("No filters selected, using original RECOMMENDATIONS")
             filtered_recs = RECOMMENDATIONS
             
         processed_data = []
@@ -140,9 +111,6 @@ def index():
                             'Methodology': leaderboard_info.get('methodology', {}).get('url', '')
                         }
                         processed_data.append(row)
-        
-        # ADD LOGGING: Confirm how many tasks and goals ended up in filtered_recs before building network
-        logging.info(f"Final filtered_recs structure before build_network: {json.dumps(filtered_recs, indent=2)}")
 
         # Build the PyVis network
         net = build_network(filtered_recs)
@@ -197,7 +165,6 @@ def index():
 def filter_data():
     try:
         # Force reload recommendations module
-        logging.info("Starting to reload RECOMMENDATIONS module")
         import recommendations_engine
         importlib.reload(recommendations_engine)
         global RECOMMENDATIONS
@@ -217,14 +184,9 @@ def filter_data():
             goal = parts[2]
             lb_name = parts[3]
             
-            logging.info(f"Looking SPECIFICALLY in: Task='{task}', Goal='{goal}', for Leaderboard='{lb_name}'")
-            
             # Only look in the specific task and goal section
             if task in RECOMMENDATIONS and goal in RECOMMENDATIONS[task]:
                 leaderboards = RECOMMENDATIONS[task][goal]
-                # Log what we found in this specific section
-                logging.info(f"Contents of {task}->{goal}:")
-                logging.info(json.dumps(leaderboards, indent=2))
                 
                 # Look for our leaderboard only in this section
                 for lb in leaderboards:
@@ -238,8 +200,6 @@ def filter_data():
                                     'score_interpretation': bench.get('score_interpretation', '')
                                 }
                         
-                        logging.info(f"Found benchmarks for {lb_name} in {task}->{goal}: {json.dumps(bench_obj, indent=2)}")
-                        
                         return jsonify({
                             'leaderboard': lb['leaderboard'],
                             'tooltip': lb.get('tooltip', ''),
@@ -248,8 +208,6 @@ def filter_data():
                             'leaderboard_link': lb['leaderboard_link']['url'],
                             'methodology_url': lb.get('methodology', {}).get('url', ''),
                         })
-
-        logging.info(f"Leaderboard {lb_name} not found in {task}->{goal}")
 
         return jsonify({"error": "Leaderboard not found"}), 404
     

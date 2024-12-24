@@ -177,21 +177,6 @@
                 </span>
             </h2>
 
-            <!-- Slider Container 
-            <div class="slider-container">
-                <label for="node-spacing-slider" class="d-block">Set zoom level:</label>
-                <div class="slider-with-signs">
-                    <div class="signs-container">
-                        <span class="zoom-sign minus">−</span>
-                        <span class="zoom-sign plus">+</span>
-                    </div>
-                   
-                    <input type="range" id="node-spacing-slider" min="0.1" max="2" step="0.05" value="1.05">
-                </div>
-            </div>
-
-            -->
-
              <!-- Network container -->
              <div class="network-wrapper"> 
                 <!-- Spinner Overlay -->
@@ -211,8 +196,8 @@
         <!-- Modal Container -->
         <div id="leaderboard-container"></div>
 
-        <!-- Check if the leaderboard modal container exists -->
-        <script>console.log('Container exists:', !!document.getElementById('leaderboard-container'));</script>
+        <!-- Check if the leaderboard modal container exists 
+        <script>console.log('Container exists:', !!document.getElementById('leaderboard-container'));</script> -->
 
         <!-- Dependencies in order -->
 
@@ -227,12 +212,6 @@
         <!-- 3. vis-network JavaScript -->
         <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
 
-        <!-- Check if vis is loaded 
-        <script>
-            console.log('After loading vis-network, vis is:', typeof vis);
-        </script>
-        -->
-
         <!-- 4. My network.js (which uses vis) -->
         <script src="{{ url_for('static', filename='js/network.js') }}"></script>
 
@@ -243,17 +222,14 @@
         {% raw %}
 
         <script type="text/babel">
-            // console.log('Starting React initialization'); 
         
             function LeaderboardModal() {
                 const [isOpen, setIsOpen] = React.useState(false);
                 const [data, setData] = React.useState(null);
         
                 React.useEffect(() => {
-                    // console.log('LeaderboardModal mounted, setting up event listener');
         
                     function handleLeaderboardClick(event) {
-                        // console.log('LeaderboardClick event received in React:', event.detail);
                         const nodeId = event.detail.nodeId;
         
                         // Hide any existing tooltip
@@ -263,19 +239,15 @@
                             tooltip.style.opacity = '0';
                         }
         
-                        // console.log('Fetching data for node:', nodeId);
                         fetch('/filter_data', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ node_id: nodeId })
                         })
                         .then(res => {
-                            // console.log('Received response:', res);
                             return res.json();
                         })
                         .then(jsonData => {
-                            console.log('Data received from the server:', jsonData);
-                            console.log('Benchmarks received:', jsonData.benchmarks);
                             if (jsonData.error) {
                                 console.error('Error from server:', jsonData.error);
                                 return;
@@ -395,12 +367,9 @@
         
             // Then mount it in your "leaderboard-container" div
             (() => {
-                // console.log('Attempting to mount LeaderboardModal');
                 const container = document.getElementById('leaderboard-container');
                 if (container) {
-                    // console.log('Found container, creating root');
                     const root = ReactDOM.createRoot(container);
-                    // console.log('Rendering LeaderboardModal');
                     root.render(<LeaderboardModal />);
                 } else {
                     console.error('Could not find leaderboard-container');

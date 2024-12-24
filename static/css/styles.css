@@ -44,7 +44,7 @@ body, html {
     background-color: #f8f9fa;
     padding: 2rem;
     margin: 50px auto;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.5);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
@@ -59,18 +59,12 @@ body, html {
     background-color: #f8f9fa;
 }
 
-.slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-}
 
 /* ========================================================================
    Header Styles
    ======================================================================== */
 
-   .header-container {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -320,8 +314,7 @@ h3 {
     background: #f8f9fa;
     font-size: 1.8rem;
     padding: 2rem;
-    /* background: #fff; */
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.5);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -551,133 +544,4 @@ canvas.vis-network-canvas:hover {
     right: 0;
     height: 2px;
     background: linear-gradient(180deg, rgba(0,0,0,0.05), transparent 100%);
-}
-
-
-/* ========================================================================
-   Slider Styles - Removed for now
-   ======================================================================== */
-
-/* Slider label */
-.slider-container label {
-    font-family: 'Ek Mukta', sans-serif;
-    display: block;
-    text-align: center;
-    margin-bottom: 8px;
-    font-size: 1.7em;
-    color: #000000;
-}
-
-/* Slider track */
-#node-spacing-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 200px;
-    height: 5px;
-    background: #ccc;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: opacity 0.2s;
-    transition: opacity 0.2s;
-}
-
-/* Colored track before the thumb */
-#node-spacing-slider::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, #ffa500 0%, #ffa500 var(--value, 50%), #ccc var(--value, 50%), #ccc 100%);
-    height: 5px;
-    border-radius: 2.5px;
-}
-
-#node-spacing-slider::-moz-range-track {
-    background: #ccc;
-    height: 5px;
-    border-radius: 2.5px;
-}
-
-#node-spacing-slider::-moz-range-progress {
-    background: #ffa500;
-    height: 5px;
-    border-radius: 2.5px;
-}
-
-#node-spacing-slider:hover {
-    opacity: 1;
-}
-
-/* Add + and - signs to the slider */
-.slider-with-signs {
-    display: flex;
-    flex-direction: column;
-    width: 200px;  /* Match the slider width */
-}
-
-.signs-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 4px;  /* Space between signs and slider */
-}
-
-/* Styling for the + and - signs */
-.zoom-sign {
-    font-family: 'Ek Mukta', sans-serif;
-    font-size: 16px;
-    color: #333333;
-    user-select: none;
-}
-
-/* Adjust the slider margins to remove any default spacing */
-#node-spacing-slider {
-    margin: 0;
-}
-
-/* Slider thumb for WebKit browsers */
-#node-spacing-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    background: #ffa500;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    margin-top: -5px;
-}
-
-/* Slider thumb for Firefox */
-#node-spacing-slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    background: #ffa500;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-}
-
-/* Slider thumb for IE */
-#node-spacing-slider::-ms-thumb {
-    width: 15px;
-    height: 15px;
-    background: #ffa500;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-}
-
-/* Remove default focus outline */
-#node-spacing-slider:focus {
-    outline: none;
-}
-
-/* Optional: Active state */
-#node-spacing-slider:active::-webkit-slider-thumb {
-    background: #ffa500;
-}
-
-#node-spacing-slider:active::-moz-range-thumb {
-    background: #ffa500;
-}
-
-#node-spacing-slider:active::-ms-thumb {
-    background: #ffa500;
 }

@@ -30,13 +30,7 @@ window.addEventListener('resize', function() {
 
 // Key functionality of network graph using vis.js  with the data provided from the Flask backend
 function initializeNetwork() {
-    try {
-        // console.log('Initializing network:', {
-        //     'vis available': typeof vis !== 'undefined',
-        //     'network data exists': !!window.networkData,
-        //     'container exists': !!document.getElementById('network-container')
-        // });
-        
+    try {        
         // Check for vis-network library
         if (typeof vis === 'undefined') {
             throw new Error('vis-network library not available');
@@ -139,10 +133,6 @@ function initializeNetwork() {
 
         // Once stabilized add an event to watch for node hovers
         network.once('stabilized', function () {
-                
-            // This fires only once the layout is stable
-            console.log('Network stabilized, attaching hoverNode listener');
-
             // Hide spinner after stabilization
             const spinnerOverlay = document.getElementById('spinner-overlay');
             if (spinnerOverlay) {
@@ -259,13 +249,9 @@ function setupNetworkClickHandler() {
     });
 }
 
-// console.log('Network click handler setup complete');
-
 // Handle clicks on leaderboard nodes
 // In network.js, update handleLeaderboardNodeClick:
-function handleLeaderboardNodeClick(nodeId) {
-    // console.log('handleLeaderboardNodeClick fired for node:', nodeId);
-    
+function handleLeaderboardNodeClick(nodeId) {    
     // Hide any existing tooltips
     const tooltips = document.querySelectorAll('.vis-tooltip');
     tooltips.forEach(tooltip => {
@@ -277,9 +263,8 @@ function handleLeaderboardNodeClick(nodeId) {
     const event = new CustomEvent('leaderboardClick', { 
         detail: { nodeId: nodeId }
     });
-    // console.log('Dispatching leaderboardClick event:', event);
+
     window.dispatchEvent(event);
-    // console.log('Event dispatched');
 }
 
 /* ========================================================================
